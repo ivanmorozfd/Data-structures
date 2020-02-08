@@ -1,10 +1,14 @@
 #include "Main/Stack.h"
 #include <iostream>
+#include "Main/BinarySearchTree.h"
+int a() {
+	return 0;
+}
 int main() {
-	Stack<int> test(5);
-	test.push(5);
-	test.push(7);
-	std::cout << test.pop() << std::endl;
-	std::cout << test.pop() << std::endl;
+	BinarySearchTree<int> tree;
+	tree.addLeaf(5);
+	tree.addLeaf(7);
+	tree.addLeaf(6);	
+	tree.printInOrder();
 	return 0;
 }

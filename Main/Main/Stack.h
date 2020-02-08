@@ -36,17 +36,12 @@ private:
 		Node* prev;
 	};
 	Node* m_top;
-	unsigned int size;
 public:
-	Stack(int size) {
+	Stack() {
 		m_top = nullptr;
-		this->size = size;
 	}
 	T getTop() const {
 		return m_top->data;
-	}
-	unsigned int getLenght() const {
-		return size;
 	}
 	bool isEmpty() const {
 		return m_top;
@@ -70,16 +65,6 @@ public:
 			std::cout << "Stack is empty,pop error";
 			return -1;
 		}
-	}
-	void reverse() {
-		
-	}
-	void printStack() const {
-		Node* tmp = m_top;
-		do {
-			std::cout << tmp->data;
-		} while (tmp = tmp->prev);
-		delete tmp;
 	}
 };
 
