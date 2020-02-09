@@ -45,7 +45,7 @@ public:
 	}
 	DoubleLinkedList<T>::iterator end()
 	{
-		return iterator(tail);
+		return iterator(tail->next);
 	}
 	DoubleLinkedList<T>::const_iterator begin() const
 	{
