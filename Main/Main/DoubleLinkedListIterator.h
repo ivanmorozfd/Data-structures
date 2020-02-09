@@ -36,6 +36,11 @@ public:
 		p = p->prev	;
 		return *this;
 	}
+	DoubleLinkedListIterator& operator++(int)
+	{
+		p = p->next;
+		return *this;
+	}
 public:
 	DoubleLinkedListIterator(Node<T>* p) :
 		p(p)

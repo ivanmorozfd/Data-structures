@@ -41,11 +41,11 @@ public:
 public:
 	DoubleLinkedList<T>::iterator begin()
 	{
-		return iterator(tail);
+		return iterator(head);
 	}
 	DoubleLinkedList<T>::iterator end()
 	{
-		return iterator(head);
+		return iterator(tail);
 	}
 	DoubleLinkedList<T>::const_iterator begin() const
 	{
