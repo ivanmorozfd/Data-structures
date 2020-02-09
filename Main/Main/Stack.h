@@ -3,6 +3,7 @@
 #include <exception>
 #include <iterator>
 #include <memory>
+#include "StackIterator.h"
 using std::exception;
 using std::string;
 using std::iterator;
@@ -49,45 +50,13 @@ inline const char* StackException::what() const noexcept {
 }
 
 
-
 template<typename T>
-class StackIterator : iterator<std::input_iterator_tag, T> {
-	class Stack<T>;
-	friend class Stack<T>;
-private:
-	T* p;
+class Node
+{
 public:
-	bool operator!=(StackIterator const& other) const
-	{
-		return p != other.p;
-	}
-	bool operator==(StackIterator const& other) const //BOOST_FOREACH
-	{
-		return p == other.p;
-	}
-	typename StackIterator::reference operator*() const
-	{
-		return *p;
-	}
-	StackIterator& operator++()
-	{
-		++p;
-		return *this;
-	}
-private:
-	StackIterator(T* p) :
-		p(p)
-	{
-
-	}
-public:
-	StackIterator(const StackIterator& it) :
-		p(it.p)
-	{
-
-	}
+	T data;
+	Node* prev;
 };
-
 template<typename T>
 class Stack
 {
@@ -95,31 +64,30 @@ public:
 	typedef StackIterator<T> iterator;
 	typedef StackIterator<const T> const_iterator;
 public:
-	iterator begin()
+	Stack<T>::iterator rend()
 	{
-		return iterator(m_top.get()->data);
+		Node<T>* temp = m_top;
+		for (int i = count - 1; i > 0; i--)
+		{
+			temp = temp->prev;
+		}
+		return iterator(temp);
 	}
-	iterator end()
+	Stack<T>::iterator rbegin()
 	{
-		return iterator(getTop() + count);
+		return iterator(m_top);
 	}
-
-	const_iterator begin() const
+	Stack<T>::const_iterator begin() const	
 	{
-		return const_iterator(getTop());
+		return const_iterator(begin());
 	}
-	const_iterator end() const
+	Stack<T>::const_iterator end() const
 	{
-		return const_iterator(getTop() + count);
+		return const_iterator(end());
 	}
-private:
+public:
 	//This structure contain data and pointer to previous node
-	struct Node
-	{
-		T data;
-		Node* prev;
-	};
-	std::unique_ptr<Node> m_top;
+	Node<T>* m_top;
 	unsigned count;
 public:
 	T getTop() const 
@@ -132,13 +100,13 @@ public:
 	bool isEmpty() const {
 		return !m_top;
 	}
-	void push(T& item)
+	void push(T item)
 	{
-		std::unique_ptr<Node> tmp(new Node);
-		tmp.get()->data = item;
-		tmp.get()->prev = m_top.get();
-		count--;
-		std::swap(tmp, m_top);
+		Node<T>* tmp = new Node<T>();
+		tmp->data = item;
+		tmp->prev = m_top;
+		m_top = tmp;
+		count++;
 	}
 	T pop() 
 	{
@@ -156,14 +124,22 @@ public:
 		}
 	}
 public:
-	Stack() : m_top(new Node), count(0) { }
+	Stack() : m_top(nullptr), count(0) { }
+
 	Stack(std::initializer_list<T>data): 
-		m_top(new Node),
-		count(0)
+		m_top(nullptr),
+		count(data.size)
 	{
 		for (auto i : data) {
 			this->push(i);
 		}
+	}
+	void printStack() const {
+		Node<T>* tmp = m_top;
+		do {
+			std::cout << tmp->data;
+		} while (tmp = tmp->prev);
+		delete tmp;
 	}
 };
 

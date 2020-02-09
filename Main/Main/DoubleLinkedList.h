@@ -1,62 +1,137 @@
 #pragma once
-#include <iostream>
-#include<Windows.h>
+#include <string>
+#include <exception>
+#include <iterator>
+#include <memory>
+#include "DoubleLinkedListIterator.h"
+using std::exception;
+using std::string;
+using std::iterator;
+
+class DoubleLinkedListException : exception
+{
+private:
+	std::string whatStr;
+public:
+	const char* what() const noexcept override;
+public:
+	DoubleLinkedListException(std::string&& whatStr) noexcept : whatStr(std::move(whatStr)) { }
+	DoubleLinkedListException(const std::string& whatStr) noexcept : whatStr(whatStr) { }
+	~DoubleLinkedListException() noexcept = default;
+};
+inline const char* DoubleLinkedListException::what() const noexcept {
+	return this->whatStr.c_str();
+}
+
 template<typename T>
-class DoubleLinkedLIst {							
-													
-private:											
-	struct Node {									
-		T value = NULL;							
-		Node* prev = nullptr;					
-		Node* next = nullptr;					
-	};												
+class Node
+{
+public:
+	T value = NULL;
+	Node<T>* prev = nullptr;
+	Node<T>* next = nullptr;
+};
+
+template<typename T>
+class DoubleLinkedList 
+{		
+public:
+	typedef DoubleLinkedListIterator<T> iterator;
+	typedef DoubleLinkedListIterator<const T> const_iterator;
+public:
+	DoubleLinkedList<T>::iterator begin()
+	{
+		return iterator(tail);
+	}
+	DoubleLinkedList<T>::iterator end()
+	{
+		return iterator(head);
+	}
+	DoubleLinkedList<T>::const_iterator begin() const
+	{
+		return const_iterator(begin());
+	}
+	DoubleLinkedList<T>::const_iterator end() const
+	{
+		return const_iterator(end());
+	}
+private:														
 	unsigned int count;								
-	Node* head;										
-	Node* tail;										
+	Node<T>* head;										
+	Node<T>* tail;										
 	bool is_empty() {
 		return !head;
 	}
 public:
-	DoubleLinkedLIst() :head(nullptr), tail(nullptr), count(0) {}
-	~DoubleLinkedLIst() {}
-	T* pop_back() {
-		if (!is_empty()) {
-			int* tmp_val = new int(tail->value);
-			Node* tmp_tail(tail);
+	T pop_back() 
+	{
+		if (!is_empty()) 
+		{
+			int returnValue = tail->value;
+			Node<T>* tmp_tail = tail;
 			tail = tail->prev;
 			delete tmp_tail;
-			return tmp_val;
+			return returnValue;
 		}
-		return nullptr;
+		else
+			throw DoubleLinkedListException("List is empty");
 	}
-	T* pop_front() {
-		if (!is_empty()) {
-			int* tmp_val = new int(head->value);
-			Node* tmp_head = head;
+	T  pop_front() 
+	{
+		if (!is_empty()) 
+		{
+			int returnValue = head->value;
+			Node<T>* tmp_head = head;
 			head = head->next;
 			delete tmp_head;
-			return tmp_val;
+			return returnValue;
 		}
+		else
+			throw DoubleLinkedListException("List is empty");
 	}
-	void push_back(int item) {
-		Node* tmp = new Node();
+	void push_back(int item) 
+	{
+		Node<T>* tmp = new Node<T>();
 		tmp->next = nullptr;
 		tmp->value = item;
-		if (head != nullptr) { tmp->prev = tail; tail->next = tmp; tail = tmp; count++; }
-		else { tmp->prev = nullptr; head = tail = tmp; count++; }
+		if (head)
+		{ 
+			tmp->prev = tail;
+			tail->next = tmp;
+			tail = tmp;
+			count++; 
+		}
+		else 
+		{ 
+			tmp->prev = nullptr;
+			head = tail = tmp;
+			count++; 
+		}
 	}
-	void push_front(int item) {
-		Node* tmp = new Node();
+	void push_front(int item) 
+	{
+		Node<T>* tmp = new Node<T>();
 		tmp->prev = nullptr;
 		tmp->value = item;
-		if (head != nullptr) { tmp->next = head; head->prev = tmp; head = tmp; count++; }
-		else { tmp->next = nullptr; head = tail = tmp; count++; };
+		if (head) 
+		{ 
+			tmp->next = head;
+			head->prev = tmp;
+			head = tmp;
+			count++; }
+		else 
+		{ 
+			tmp->next = nullptr;
+			head = tail = tmp;
+			count++; 
+		};
 	}
-	void reverse() {
-		Node* iter = head;
-		Node* temp = NULL;
+	void reverse() 
+	{
+		Node<T>* iter = head;
+		Node<T>* temp = NULL;
 
-		while (iter != NULL)
+		while (iter)
 		{
 			// Swap the prev/next pointer
 			temp = iter->prev;
@@ -70,36 +145,51 @@ public:
 		head = tail;
 		tail = temp;
 	}
-	void erase(int pos) {
-		Node* tmp_tail(tail);
+	void erase(int pos) 
+	{
+		Node<T>* tmp_tail(tail);
 		int tmp_count(count);
-		if (pos > tmp_count) { std::cout << "Input error" << std::endl; }
-		else {
+		if (pos > tmp_count) 
+		{ 
+			throw DoubleLinkedListException("Out of range");
+		}
+		else 
+		{
 			if (tmp_count == pos) { pop_back(); }
 			if (tmp_count == 1) { pop_front(); }
-			if (!is_empty()) {
+			if (!is_empty())
+			{
 				while (pos < tmp_count) {
 					tmp_tail = tmp_tail->prev;
 					tmp_count--;
 				}
-				Node* beforeDel = tmp_tail->prev;
-				Node* afterDel = tmp_tail->next;
+				Node<T>* beforeDel = tmp_tail->prev;
+				Node<T>* afterDel = tmp_tail->next;
 				beforeDel->next = afterDel;
 				afterDel->prev = beforeDel;
 				count--;
 				delete tmp_tail;
 			}
+			else
+				throw DoubleLinkedListException("List is empty");
 		}
 	}
-	void changeEl(int item, int pos) {
-		Node* tmp(tail);
+	void changeEl(int item, int pos) 
+	{
+		Node<T>* tmp = tail;
 		int tmp_c(count);
-		if (pos > tmp_c) { std::cout << "Input error" << std::endl; }
-		else {
+		if (pos > tmp_c) 
+		{ 
+			throw DoubleLinkedListException("Out of range"); 
+		}
+		else 
+		{
 			if (pos == tmp_c) { tail->value = item; }
 			if (pos == 0) { head->value = item; }
-			if (pos < tmp_c) {
-				while (pos < tmp_c) {
+			if (pos < tmp_c) 
+			{
+				while (pos < tmp_c) 
+				{
 					tmp = tmp->prev;
 					tmp_c--;
 				}
@@ -107,20 +197,24 @@ public:
 			}
 		}
 	}
-	void insert(int item, int pos) {
-		Node* tmp_1 = tail;
+	void insert(int item, int pos) 
+	{
+		Node<T>* tmp_1 = tail;
 		int tmp_c = count;
 		if (pos == tmp_c) { push_back(item); }
 		if (pos == 1) { push_front(item); }
 		if (pos > tmp_c) { std::cout << "Input error" << std::endl; }
-		else {
-			if (pos < tmp_c) {
-				while (pos < tmp_c) {
+		else 
+		{
+			if (pos < tmp_c) 
+			{
+				while (pos < tmp_c) 
+				{
 					tmp_1 = tmp_1->prev;
 					tmp_c--;
 				}
-				Node* prevIns = tmp_1->prev;
-				Node* tmp_2 = new Node();
+				Node<T>* prevIns = tmp_1->prev;
+				Node<T>* tmp_2 = new Node<T>();
 				tmp_2->value = item;
 				tmp_2->next = tmp_1;
 				tmp_2->prev = prevIns;
@@ -130,10 +224,10 @@ public:
 		}
 	}
 	void printlist() {
-		Node* tmp_tail(tail);
+		Node<T>* tmp_tail(tail);
 		int tmp_count(count);
 		std::cout << tail->value;
-		while (tmp_count != 0)
+		while (tmp_count)
 		{
 			tmp_tail = tmp_tail->prev;
 			if (tmp_tail == nullptr) break;
@@ -142,4 +236,10 @@ public:
 			tmp_count--;
 		}
 	}
+public:
+	DoubleLinkedList():
+		head(nullptr),
+		tail(nullptr),
+		count(0) {}
+	~DoubleLinkedList() {}
 };

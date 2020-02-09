@@ -1,8 +1,10 @@
-#include "Main/Stack.h"
 #include <iostream>
-#include "Main/BinarySearchTree.h"
+#include "Main/DoubleLinkedList.h"
 int main() {
-	Stack<int> stack = { 1,2,3,4 };
-	Stack<int>::iterator it = stack.begin();
+	DoubleLinkedList<int> list;
+	list.push_back(5);
+	list.push_back(7);
+	DoubleLinkedList<int>::iterator it1 = list.begin();
+	std::cout << *it1;
 	return 0;
 }
