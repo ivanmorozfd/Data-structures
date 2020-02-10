@@ -134,12 +134,5 @@ public:
 			this->push(i);
 		}
 	}
-	void printStack() const {
-		Node<T>* tmp = m_top;
-		do {
-			std::cout << tmp->data;
-		} while (tmp = tmp->prev);
-		delete tmp;
-	}
 };
 

@@ -9,16 +9,17 @@ private:
 		Node* right;
 	};
 	Node* root;
+
 	void addLeaf_(int key, Node* ptr) {
 		if (!root) {
-			root = ñreateLeaf(key);
+			root = createLeaf(key);
 		}
 		else if (key < ptr->key) {
 			if (ptr->left) {
 				addLeaf_(key, ptr->left);
 			}
 			else {
-				ptr->left = ñreateLeaf(key);
+				ptr->left = createLeaf(key);
 			}
 		}
 		else if (key > ptr->key) {
@@ -26,7 +27,7 @@ private:
 				addLeaf_(key, ptr->right);
 			}
 			else {
-				ptr->right = ñreateLeaf(key);
+				ptr->right = createLeaf(key);
 			}
 		}
 		else {
@@ -185,7 +186,7 @@ public:
 	}
 	~BinarySearchTree() {}
 
-	Node* ñreateLeaf(int key) {
+	Node* createLeaf(int key) {
 		Node* leaf = new Node();
 		leaf->key = key;
 		leaf->left = nullptr;
@@ -239,6 +240,4 @@ public:
 	void removeNode(int key) {
 		removeNode_(key, root);
 	}
-
-
 };
