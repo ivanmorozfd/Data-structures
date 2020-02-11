@@ -1,6 +1,9 @@
 #pragma once
 #include <exception>
 #include <string>
+#include <queue>
+#include "QueueIterator.h"
+using std::queue;
 using std::string;
 using std::exception;
 
@@ -26,32 +29,92 @@ class Node
 public:
 	T data;
 	Node* next;
+	Node() :data(NULL), next(nullptr){ }
 };
 
 
 template<typename T>
 class Queue 
 {
+	typedef QueueIterator<T> iterator;
+	typedef QueueIterator<const T> const_iterator;
 private:
-	Node<T>* front;
-	Node<T>* back;
+	Node<T>* pFront;
+	Node<T>* pBack;
 	unsigned count;
 public:
+	Queue<T>::iterator begin()
+	{
+		return iterator(pBack);
+	}
+	Queue<T>::iterator end()
+	{
+		return iterator(pFront->next);
+	}
+	Queue<T>::const_iterator begin() const
+	{
+		return const_iterator(begin());
+	}
+	Queue<T>::const_iterator end() const
+	{
+		return const_iterator(end());
+	}
+public:
 	unsigned getSize() const { return this->count; }
+	T front()
+	{
+		if (!empty())
+			return pFront->data;
+		else
+			throw QueueException("Queue is empty");
+	}
+	T back()
+	{
+		if (!empty())
+			return pBack->data;
+		else
+			throw QueueException("Queue is empty");
+	}
 public:
 	void pop() 
 	{
-
+		if (!empty())
+		{
+			Node<T>* temp = pBack;
+			pBack = pBack->next;
+			delete temp;
+		}
+		else
+			throw QueueException("Queue is empty");
 	}
-	void push(T item) 
+	void push(T item)
 	{
+		this->count++;
 
+	    Node<T>* node = new Node<T>;
+	    node->data = item;
+
+		if (!pBack)
+		{
+			pFront = pBack = node;
+		}
+		else
+		{
+			pFront->next = node;
+			pFront = node;
+		}
 	}
 	bool empty() {
-		return front == back;
+		return pFront == pBack;
 	}
 public:
-	Queue() { }
-	Queue(std::initializer_list) { }
+	Queue() { pBack = pFront; }
+	Queue(std::initializer_list<T> data) 
+	{ 
+		for (auto i : data)
+		{
+			this->push(i);
+		}
+	}
 	~Queue() { }
 };
