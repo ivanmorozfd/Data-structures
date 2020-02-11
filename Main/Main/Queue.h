@@ -108,7 +108,7 @@ public:
 		return pFront == pBack;
 	}
 public:
-	Queue() { pBack = pFront; }
+	Queue() :count(0),pBack(nullptr),pFront(nullptr) { pBack = pFront; }
 	Queue(std::initializer_list<T> data) 
 	{ 
 		for (auto i : data)

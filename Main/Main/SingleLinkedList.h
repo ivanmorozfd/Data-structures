@@ -1,36 +1,145 @@
 #pragma once
-template<typename T>
-class SingleLinkedList {
+#include <exception>
+#include <string>
+#include "SingleLinkedListIterator.h"
+using std::string;
+using std::exception;
+
+class SingleLinkedListException :exception {
 private:
-	struct Node
+	std::string whatStr;
+public:
+	const char* what() const noexcept override;
+public:
+	SingleLinkedListException(std::string&& whatStr) noexcept : whatStr(std::move(whatStr)) { }
+	SingleLinkedListException(const std::string& whatStr) noexcept : whatStr(whatStr) { }
+	~SingleLinkedListException() noexcept = default;
+};
+inline const char* SingleLinkedListException::what() const noexcept
+{
+	return this->whatStr.c_str();
+};
+
+
+template<typename T>
+class Node
+{
+public:
+	T data;
+	Node* next;
+	Node() :data(NULL), next(nullptr) { }
+};
+
+
+template<typename T>
+class SingleLinkedList
+{
+	typedef SingleLinkedListIterator<T> iterator;
+	typedef SingleLinkedListIterator<const T> const_iterator;
+private:
+	Node<T>* pFront;
+	Node<T>* pBack;
+	unsigned count;
+public:
+	SingleLinkedList<T>::iterator begin()
 	{
-		T data;
-		Node* next;
-	};
-	Node* head;
-	Node* tail;
-	SingleLinkedList():head(nullptr),tail(nullptr) {
-
+		return iterator(pBack);
 	}
-	void push_back(T item) {
-
+	SingleLinkedList<T>::iterator end()
+	{
+		return iterator(pFront->next);
 	}
-	void push_front(T item) {
-
+	SingleLinkedList<T>::const_iterator begin() const
+	{
+		return const_iterator(begin());
 	}
-	T pop_back() {
-
+	SingleLinkedList<T>::const_iterator end() const
+	{
+		return const_iterator(end());
 	}
-	void insert(T item, int pos) {
-
+public:
+	unsigned getSize() const { return this->count; }
+	T front()
+	{
+		if (!empty())
+			return pFront->data;
+		else
+			throw SingleLinkedListException("List is empty");
 	}
-	T pop_front() {
-
+	T back()
+	{
+		if (!empty())
+			return pBack->data;
+		else
+			throw SingleLinkedListException("List is empty");
 	}
-	void at(int pos) {
-
+public:
+	void pop_back()
+	{
+		if (!empty())
+		{
+			Node<T>* temp = pBack;
+			pBack = pBack->next;
+			delete temp;
+		}
+		else
+			throw SingleLinkedListException("List is empty");
 	}
-	T remove(int pos) {
-
+	void pop_front()
+	{
+		if (!empty())
+		{
+			Node<T>* temp = pFront;
+			pFront = pFront->prev;
+			delete temp;
+		}
+		else
+			throw SingleLinkedListException("List is empty");
 	}
+	void push_front(T item)
+	{
+		this->count++;
+
+		Node<T>* node = new Node<T>;
+		node->data = item;
+		if (!pFront)
+		{
+			pFront = pBack = node;
+		}
+		else
+		{
+			pFront->next = node;
+			pFront = node;
+		}
+	}
+	void push_back(T item)
+	{
+		this->count++;
+
+		Node<T>* node = new Node<T>;
+		node->data = item;
+
+		if (!pBack)
+		{
+			pFront = pBack = node;
+		}
+		else
+		{
+			node->next = pBack;
+			pBack = node;
+		}
+	}
+	bool empty() {
+		return pFront == pBack;
+	}
+public:
+	SingleLinkedList() :count(0), pBack(nullptr), pFront(nullptr) { pBack = pFront; }
+	SingleLinkedList(std::initializer_list<T> data)
+	{
+		for (auto i : data)
+		{
+			this->push(i);
+		}
+	}
+	~SingleLinkedList() { }
 };

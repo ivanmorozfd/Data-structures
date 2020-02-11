@@ -1,16 +1,13 @@
 #include <iostream>
-#include "Main/BinarySearchTree.h"
-#include "Main/BinaryHeap.h"
-#include "Main/Queue.h"
+#include "Main/SingleLinkedList.h"
 int main() {
-	Queue<int> queue;
-
-	queue.push(5);
-	queue.push(6);
-	queue.push(7);
-	queue.pop();
-	for (auto& i : queue)
-	{
+	SingleLinkedList<int> list;
+	list.push_back(1);
+	list.push_front(5);
+	list.push_front(6);
+	list.push_back(5);
+	list.push_back(7);
+	for (auto& i : list) {
 		std::cout << i;
 	}
 	return 0;

@@ -108,20 +108,22 @@ public:
 		m_top = tmp;
 		count++;
 	}
-	T pop() 
+	void pop() 
 	{
 		if (!isEmpty()) 
 		{
-			Node* tmp = m_top;
-			T returnData = m_top->data;
+			Node<T>* tmp = m_top;
 			m_top = m_top->prev;
 			delete tmp;
 			count--;
-			return returnData;
 		}
 		else {
 			throw StackException("Stack is empty");
 		}
+	}
+	void clear()
+	{
+
 	}
 public:
 	Stack() : m_top(nullptr), count(0) { }
