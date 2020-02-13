@@ -85,11 +85,12 @@ public:
 	{
 		return const_iterator(end());
 	}
-public:
+private:
 	//This structure contain data and pointer to previous node
 	Node<T>* m_top;
 	unsigned count;
 public:
+	unsigned getSize() const { return this->count; }
 	T getTop() const 
 	{
 		if (!isEmpty())

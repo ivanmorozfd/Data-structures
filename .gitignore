@@ -8,3 +8,6 @@
 /Main/Main/Main.vcxproj.user
 /Main/Debug
 /Main/Main/Debug
+/Main/Tests/Debug
+*.user
+/Main/packages/Microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.1
