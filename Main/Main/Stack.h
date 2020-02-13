@@ -94,7 +94,7 @@ public:
 	T getTop() const 
 	{
 		if (!isEmpty())
-			return m_top.get()->data;
+			return m_top->data;
 		else
 			throw StackException("Stack is empty");
 	}
@@ -131,7 +131,7 @@ public:
 
 	Stack(std::initializer_list<T>data): 
 		m_top(nullptr),
-		count(data.size)
+		count(0)
 	{
 		for (auto i : data) {
 			this->push(i);
