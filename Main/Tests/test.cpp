@@ -1,24 +1,24 @@
 #include <gtest/gtest.h>
 #include "../Main/Stack.h"
 
-TEST(StackTests, CreatedStackSizeTest) 
+TEST(StackTests, SizeTest) 
 {
 	Stack<int> stack;
 	ASSERT_EQ(stack.getSize(), 0);
 }
-TEST(StackTests, IsEmptyStackTest) 
+TEST(StackTests, IsEmptyTest) 
 {
 	Stack<int> stack;
 	ASSERT_TRUE(stack.isEmpty());
 	stack.push(1);
 	ASSERT_FALSE(stack.isEmpty());
 }
-TEST(StackTests, CreatedStackNullptrTopTest) 
+TEST(StackTests, NullptrTopTest) 
 {
 	Stack<int> stack;
 	ASSERT_THROW(stack.getTop(), StackException);
 }
-TEST(StackTests, StackCountTest)
+TEST(StackTests, CountTest)
 {
 	Stack<int> stack;
 	stack.push(1);
@@ -38,11 +38,113 @@ TEST(StackTests, PopFromEmptyStack)
 	ASSERT_NO_THROW(stack.pop(), StackException);
 	ASSERT_THROW(stack.pop(), StackException);
 }
-TEST(ListTests, PopFromEmptyStack)
+TEST(StackTests, StackDestructorTest)
 {
-	Stack<int> stack;
-	ASSERT_THROW(stack.pop(), StackException);
-	stack.push(1);
-	ASSERT_NO_THROW(stack.pop(), StackException);
-	ASSERT_THROW(stack.pop(), StackException);
+	//TODO
 }
+TEST(StackTests, StackConstructorTest)
+{
+	//TODO
+}
+TEST(StackTests, StackCopyConstructorTest)
+{
+	//TODO
+}
+TEST(StackTests, MemoryTest)
+{
+
+}
+
+
+TEST(SingleLinkedListTests, ConstructorTest)
+{
+	//TODO
+}
+TEST(SingleLinkedListTests, EmptyListTest)
+{
+	//TODO
+}
+TEST(SingleLinkedListTests, InsertAndDelTest)
+{
+	//TODO
+}
+TEST(SingleLinkedListTests, PopFromEmptyList)
+{
+	//TODO
+}
+TEST(SingleLinkedListTests, ListSizeTest)
+{
+	//TODO
+}
+TEST(SingleLinkedListTests, InitializerTest)
+{
+	//TODO
+}
+TEST(SingleLinkedListTests, ListIteratorTest)
+{
+	//TODO
+}
+TEST(SingleLinkedListTests, CopyConstructorTest)
+{
+	//TODO
+}
+TEST(SingleLinkedListTests, MemoryTest)
+{
+	//TODO
+}
+
+TEST(QueueTests, HeadTest)
+{
+	//TODO
+}
+TEST(QueueTests, TailTest)
+{
+	//TODO
+}
+TEST(QueueTests, ConstructorTest)
+{
+	//TODO
+}
+TEST(QueueTests, CopyConstructorTest)
+{
+	//TODO
+}
+TEST(QueueTests, DestructorTest)
+{
+	//TODO
+}
+TEST(QueueTests, InitializerListTest)
+{
+	//TODO
+}
+TEST(QueueTests, PushTest)
+{
+	//TODO
+}
+TEST(QueueTests, PopTest)
+{
+	//TODO
+}
+TEST(QueueTests, IsEmptyTest)
+{
+	//TODO
+}
+TEST(QueueTests, CountTest)
+{
+	//TODO
+}
+TEST(QueueTests, EmptyPopTest)
+{
+	//TODO
+}
+TEST(QueueTests, IteratorTest)
+{
+	//TODO
+}
+TEST(QueueTests, MemoryTest)
+{
+	//TODO
+}
+
+
+
