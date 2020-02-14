@@ -38,3 +38,11 @@ TEST(StackTests, PopFromEmptyStack)
 	ASSERT_NO_THROW(stack.pop(), StackException);
 	ASSERT_THROW(stack.pop(), StackException);
 }
+TEST(ListTests, PopFromEmptyStack)
+{
+	Stack<int> stack;
+	ASSERT_THROW(stack.pop(), StackException);
+	stack.push(1);
+	ASSERT_NO_THROW(stack.pop(), StackException);
+	ASSERT_THROW(stack.pop(), StackException);
+}
