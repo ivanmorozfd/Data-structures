@@ -12,3 +12,7 @@
 *.user
 /Main/packages/Microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.1
 /Main/Main/StackVisualization/build-StackVisualization-Desktop_Qt_5_14_1_MSVC2017_32bit-Debug
+/Main/x64/Debug
+/Main/Tests/x64/Debug
+/Main/Main/x64/Debug/Main.tlog
+/Main/Main/x64/Debug

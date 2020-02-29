@@ -1,14 +1,10 @@
 #include <iostream>
-#include "Main/SingleLinkedList.h"
+#include "Main/BinarySearchTree.h"
 int main() {
-	SingleLinkedList<int> list;
-	list.push_back(1);
-	list.push_front(5);
-	list.push_front(6);
-	list.push_back(5);
-	list.push_back(7);
-	for (auto& i : list) {
-		std::cout << i;
-	}
+	BinarySearchTree<int> bst;
+	bst.addLeaf(5);
+	bst.addLeaf(7);
+	bst.addLeaf(3);
+	bst.printInOrder();
 	return 0;
 }

@@ -1,9 +1,6 @@
 #pragma once
 #include <exception>
 #include <string>
-#include <queue>
-#include "QueueIterator.h"
-using std::queue;
 using std::string;
 using std::exception;
 
@@ -36,56 +33,36 @@ public:
 template<typename T>
 class Queue 
 {
-	typedef QueueIterator<T> iterator;
-	typedef QueueIterator<const T> const_iterator;
 private:
 	Node<T>* pFront;
 	Node<T>* pBack;
 	unsigned count;
-public:
-	Queue<T>::iterator begin()
-	{
-		return iterator(pBack);
-	}
-	Queue<T>::iterator end()
-	{
-		return iterator(pFront->next);
-	}
-	Queue<T>::const_iterator begin() const
-	{
-		return const_iterator(begin());
-	}
-	Queue<T>::const_iterator end() const
-	{
-		return const_iterator(end());
-	}
-public:
 	unsigned getSize() const { return this->count; }
 	T front()
 	{
-		if (!empty())
+		if (!isEmpty())
 			return pFront->data;
 		else
-			throw QueueException("Queue is empty");
+			throw QueueException("Queue is Empty");
 	}
 	T back()
 	{
-		if (!empty())
+		if (!isEmpty())
 			return pBack->data;
 		else
-			throw QueueException("Queue is empty");
+			throw QueueException("Queue is Empty");
 	}
 public:
 	void pop() 
 	{
-		if (!empty())
+		if (!isEmpty())
 		{
 			Node<T>* temp = pBack;
 			pBack = pBack->next;
 			delete temp;
 		}
 		else
-			throw QueueException("Queue is empty");
+			throw QueueException("Queue is Empty");
 	}
 	void push(T item)
 	{
@@ -104,7 +81,7 @@ public:
 			pFront = node;
 		}
 	}
-	bool empty() {
+	bool isEmpty() {
 		return pFront == pBack;
 	}
 public:

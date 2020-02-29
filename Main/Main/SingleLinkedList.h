@@ -61,40 +61,40 @@ public:
 	unsigned getSize() const { return this->count; }
 	T front()
 	{
-		if (!empty())
+		if (!isEmpty())
 			return pFront->data;
 		else
-			throw SingleLinkedListException("List is empty");
+			throw SingleLinkedListException("List is Empty");
 	}
 	T back()
 	{
-		if (!empty())
+		if (!isEmpty())
 			return pBack->data;
 		else
-			throw SingleLinkedListException("List is empty");
+			throw SingleLinkedListException("List is Empty");
 	}
 public:
 	void pop_back()
 	{
-		if (!empty())
+		if (!isEmpty())
 		{
 			Node<T>* temp = pBack;
 			pBack = pBack->next;
 			delete temp;
 		}
 		else
-			throw SingleLinkedListException("List is empty");
+			throw SingleLinkedListException("List is Empty");
 	}
 	void pop_front()
 	{
-		if (!empty())
+		if (!isEmpty())
 		{
 			Node<T>* temp = pFront;
 			pFront = pFront->prev;
 			delete temp;
 		}
 		else
-			throw SingleLinkedListException("List is empty");
+			throw SingleLinkedListException("List is Empty");
 	}
 	void push_front(T item)
 	{
@@ -129,7 +129,7 @@ public:
 			pBack = node;
 		}
 	}
-	bool empty() {
+	bool isEmpty() {
 		return pFront == pBack;
 	}
 public:

@@ -129,15 +129,15 @@
     <ClInclude Include="BinaryHeap.h" />
     <ClInclude Include="BinarySearchTree.h" />
     <ClInclude Include="BinarySearchTreeIterator.h" />
+    <ClInclude Include="Deque.h" />
     <ClInclude Include="DoubleLinkedList.h" />
     <ClInclude Include="DoubleLinkedListIterator.h" />
     <ClInclude Include="Queue.h" />
-    <ClInclude Include="QueueIterator.h" />
+    <ClInclude Include="RBTree.h" />
     <ClInclude Include="SingleLinkedList.h" />
     <ClInclude Include="SingleLinkedListIterator.h" />
     <ClInclude Include="SparseMatrix.h" />
     <ClInclude Include="Stack.h" />
-    <ClInclude Include="StackIterator.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\main.cpp" />
