@@ -126,18 +126,28 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AvlTree.h" />
+    <ClInclude Include="AvlTreeExceptions.h" />
     <ClInclude Include="BinaryHeap.h" />
+    <ClInclude Include="BinaryHeapExceptions.h" />
     <ClInclude Include="BinarySearchTree.h" />
     <ClInclude Include="BinarySearchTreeIterator.h" />
+    <ClInclude Include="BinarySearchTreeExceptions.h" />
     <ClInclude Include="Deque.h" />
+    <ClInclude Include="DequeExceptions.h" />
     <ClInclude Include="DoubleLinkedList.h" />
+    <ClInclude Include="DoubleLinkedListExceptions.h" />
     <ClInclude Include="DoubleLinkedListIterator.h" />
     <ClInclude Include="Queue.h" />
+    <ClInclude Include="QueueException.h" />
     <ClInclude Include="RBTree.h" />
+    <ClInclude Include="RBTreeExceptions.h" />
     <ClInclude Include="SingleLinkedList.h" />
+    <ClInclude Include="SingleLinkedListException.h" />
     <ClInclude Include="SingleLinkedListIterator.h" />
     <ClInclude Include="SparseMatrix.h" />
+    <ClInclude Include="SparseMatrixException.h" />
     <ClInclude Include="Stack.h" />
+    <ClInclude Include="StackException.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\main.cpp" />

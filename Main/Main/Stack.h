@@ -1,41 +1,28 @@
 #pragma once
 #include <string>
-#include <exception>
-using std::exception;
+#include "StackException.h"
 using std::string;
 
-class StackException : exception 
-{
-private:
-	std::string whatStr;
-public:
-	const char* what() const noexcept override;
-public:
-	StackException(std::string&& whatStr) noexcept : whatStr(std::move(whatStr)) { }
-	StackException(const std::string& whatStr) noexcept : whatStr(whatStr) { }
-	~StackException() noexcept = default;
-};
-inline const char* StackException::what() const noexcept {
-	return this->whatStr.c_str();
-}
-
-
-template<typename T>
-class Node
-{
-public:
-	T data;
-	Node* prev;
-};
 template<typename T>
 class Stack
 {
 private:
-	//This structure contain data and pointer to previous node
-	Node<T>* m_top;
-	unsigned count;	
+	template<typename T>
+	class Node
+	{
+	public:
+		T data;
+		Node* prev;
+	};
+	Node<T>* m_top;//This structure contains data and pointer to previous node
+	unsigned count;	//number of elements in the stack
 public:
-	unsigned getSize() const { return this->count; }
+	//returns the stack size
+	unsigned getSize() const 
+	{ 
+		return this->count;
+	}
+	//returns the value at the top of the stack
 	T getTop() const 
 	{
 		if (!isEmpty())
@@ -43,17 +30,24 @@ public:
 		else
 			throw StackException("Stack is empty");
 	}
-	bool isEmpty() const {
+	//checking the stack for empty space
+	bool isEmpty() const 
+	{
 		return !m_top;
 	}
-	void push(T item)
+	//add element to stack
+	void push(const T& item)
 	{
+		//create new stack node
 		Node<T>* tmp = new Node<T>();
 		tmp->data = item;
 		tmp->prev = m_top;
+		//set new top of the stack
 		m_top = tmp;
+
 		count++;
 	}
+	//remove element stack
 	void pop() 
 	{
 		if (!isEmpty()) 
@@ -63,25 +57,30 @@ public:
 			delete tmp;
 			count--;
 		}
-		else {
+		else 
 			throw StackException("Stack is empty");
-		}
+		
 	}
+	//clear stack
 	void clear()
 	{
-		for (; !isEmpty();)
+		for (;!isEmpty();)
 			this->pop();
 	}
 public:
-	Stack() : m_top(nullptr), count(0) { }
-
-	Stack(std::initializer_list<T>data): 
+	Stack(): 
+		m_top(nullptr),
+		count(0) { }
+	Stack(const std::initializer_list<T>& data): 
 		m_top(nullptr),
 		count(0)
 	{
-		for (auto i : data) {
+		for (auto i : data) 
 			this->push(i);
-		}
+	}
+	Stack(const Stack& other)
+	{
+
 	}
 };
 

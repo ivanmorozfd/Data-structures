@@ -1,22 +1,8 @@
 #pragma once
-#include <exception>
-#include <string>
+#include "SparseMatrixException.h"
 #include <vector>
 using std::vector;
-using std::string;
-using std::exception;
 
-class SparseMatrixException : exception 
-{
-private:
-	std::string whatStr;
-public:
-	const char* what() const noexcept { return this->whatStr.c_str(); }
-public:
-	SparseMatrixException(std::string&& whatStr) noexcept : whatStr(std::move(whatStr)) { }
-	SparseMatrixException(const std::string& whatStr) noexcept : whatStr(whatStr) { }
-	~SparseMatrixException() noexcept = default;
-};
 template<typename _T>
 class SparseMatrix
 {
@@ -33,16 +19,14 @@ public:
 	//Return's matrix value at (row,column) position
 	_T get(int row, int column) const
 	{
-		this->validateCoordinates(row, column);
-
 		int currentColumn;
 
 		for (int pos = (*(this->m_ptrs))[row - 1] - 1; pos < (*(this->m_ptrs))[row] - 1; ++pos) 
 		{
-			currentColumn = (*(this->cols))[pos];
+			currentColumn = (*(this->m_cols))[pos];
 			if (currentColumn == column) 
-				return (*(this->vals))[pos];
-			else if (currCol > col) 
+				return (*(this->m_data))[pos];
+			else if (currentColumn > column)
 				break;
 		}
 
@@ -63,21 +47,19 @@ public:
 				break;
 		}
 
-		if (currCol != col) {
-			if (!(value == T())) {
-				this->insert(pos, row, col, val);
+		if (currCol != column) {
+			if (!(value == _T())) {
+				this->insert(pos, row, column, value);
 			}
 
 		}
-		else if (value == T()) {
+		else if (value == _T()) {
 			this->remove(pos, row);
 
 		}
 		else {
-			(*(this->m_data))[pos] = val;
+			(*(this->m_data))[pos] = value;
 		}
-
-		return *this;
 	}
 	uint32_t getRows() const 
 	{ 
@@ -100,36 +82,95 @@ public:
 
 	vector<_T> multiply(const vector<_T>& other) const
 	{
-		//TODO
+		if (this->m_ncolumns != other.size()) {
+			throw SparseMatrixException("Invalid dimensions");
+		}
+
+		vector<_T> result(this->m_nrows, _T());
+
+		if (this->m_data) { // only if any value set
+			for (int i = 0; i < this->m_nrows; ++i) 
+			{
+				_T sum = _T();
+				for (int j = (*(this->m_ptrs))[i]; j < (*(this->m_ptrs))[i + 1]; j++) 
+				{
+					sum+= (*(this->m_data))[j - 1] * other[(*(this->m_cols))[j - 1] - 1];
+				}
+				result[i] = sum;
+			}
+		}
+
+		return result;
 	}
 	vector<_T> operator * (const vector<_T>& other) const
 	{
-		//TODO
+		return this->multiply(other);
 	}
 
 	SparseMatrix<_T> multiply(const SparseMatrix<_T>& other) const
 	{
 
+		if (this->m_ncolumns != other.m_nrows)
+			throw SparseMatrixException("Invalid dimensions");
+		
+
+		SparseMatrix<_T> result(this->m_nrows, other.m_ncolumns);
+
+		_T a;
+		for (int i = 1; i <= this->m_nrows; i++) 
+		{
+			for (int j = 1; j <= this->m_ncolumns; j++) 
+			{
+				a = _T();
+				for (int k = 1; k <= this->m_ncolumns; k++) 
+				{
+					a+= this->get(i, k) * other.get(k, j);
+				}
+				result.set(a, i, j);
+			}
+		}
+		return result;
 	}
 	SparseMatrix<_T> operator * (const SparseMatrix<_T>& other) const
 	{
-
+		this->multiply(other);
 	}
 	SparseMatrix<_T> add(const SparseMatrix<_T>& other) const
 	{
+		if (this->m_nrows != other.m_nrows || this->m_ncolumns != other.m_ncolumns) 
+			throw SparseMatrixException("Cannot add: matrices dimensions don't match.");
 
+		SparseMatrix<_T> result(this->m_nrows, this->m_ncolumns);
+		for (int i = 1; i <= this->m_nrows; ++i)
+		{
+			for (int j = 1; j <= this->m_ncolumns; ++j)
+			{
+				result.set(this->get(i, j) + other.get(i, j), i, j);
+			}
+		}
+		return result;
 	}
 	SparseMatrix<_T> operator + (const SparseMatrix<_T>& other) const
 	{
-
+		this->add(other);	
 	}
 	SparseMatrix<_T> subtract(const SparseMatrix<_T>& other) const
 	{
-
+		if (this->m_nrows != other.m_nrows || this->m_ncolumns != other.m_ncolumns) 
+			throw SparseMatrixException("Cannot subtract: matrices dimensions don't match.");
+		SparseMatrix<_T> result(this->m_nrows, this->m_ncolumns);
+		for (int i = 1; i <= this->m_nrows; i++) 
+		{
+			for (int j = 1; j <= this->m_ncolumns; j++)
+			{
+				result.set(this->get(i, j) - other.get(i, j), i, j);
+			}
+		}
+		return result;
 	}
 	SparseMatrix<_T> operator - (const SparseMatrix<_T>& other) const
 	{
-
+		this->subtract(other);
 	}
 private:
 	void construct(uint32_t rows, uint32_t columns)
@@ -173,7 +214,7 @@ private:
 			throw SparseMatrixException("Invalid coordinates");
 		}
 	}
-	//Insert value to matrix
+	//Insert value to matrix	
 	void insert(uint32_t index, uint32_t row, uint32_t column, _T value)
 	{
 		if (!this->m_data)
@@ -187,9 +228,7 @@ private:
 			this->m_data->insert(this->m_data->begin() + index, value);
 		}
 		for (int i = row; i <= this->m_nrows; i++) 
-		{
 			(*(this->m_ptrs))[i]++;
-		}
 	}
 	//Remove value from matrix
 	void remove(uint32_t index, uint32_t row)

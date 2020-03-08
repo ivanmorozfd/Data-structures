@@ -35,7 +35,7 @@ TEST(StackTests, PopFromEmptyStack)
 	Stack<int> stack;
 	ASSERT_THROW(stack.pop(), StackException);
 	stack.push(1);
-	ASSERT_NO_THROW(stack.pop(), StackException);
+	ASSERT_NO_THROW(stack.pop());
 	ASSERT_THROW(stack.pop(), StackException);
 }
 TEST(StackTests, StackDestructorTest)
@@ -88,7 +88,36 @@ TEST(SingleLinkedListTests, CopyConstructorTest)
 {
 	//TODO
 }
-TEST(SingleLinkedListTests, MemoryTest)
+
+TEST(DoubleLinkedListTests, ConstructorTest)
+{
+	//TODO
+}
+TEST(DoubleLinkedListTests, EmptyListTest)
+{
+	//TODO
+}
+TEST(DoubleLinkedListTests, InsertAndDelTest)
+{
+	//TODO
+}
+TEST(DoubleLinkedListTests, PopFromEmptyList)
+{
+	//TODO
+}
+TEST(DoubleLinkedListTests, ListSizeTest)
+{
+	//TODO
+}
+TEST(DoubleLinkedListTests, InitializerTest)
+{
+	//TODO
+}
+TEST(DoubleLinkedListTests, ListIteratorTest)
+{
+	//TODO
+}
+TEST(DoubleLinkedListTests, CopyConstructorTest)
 {
 	//TODO
 }
@@ -146,5 +175,7 @@ TEST(QueueTests, MemoryTest)
 	//TODO
 }
 
+TEST(AVLTreeTests, ConstructorTest)
+{
 
-
+}

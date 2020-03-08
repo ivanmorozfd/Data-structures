@@ -1,35 +1,16 @@
 #pragma once
-#include <string>
-#include <exception>
 #include <iterator>
-#include <memory>
 #include "DoubleLinkedListIterator.h"
-using std::exception;
-using std::string;
+#include "DoubleLinkedListExceptions.h"
 using std::iterator;
-
-class DoubleLinkedListException : exception
-{
-private:
-	std::string whatStr;
-public:
-	const char* what() const noexcept override;
-public:
-	DoubleLinkedListException(std::string&& whatStr) noexcept : whatStr(std::move(whatStr)) { }
-	DoubleLinkedListException(const std::string& whatStr) noexcept : whatStr(whatStr) { }
-	~DoubleLinkedListException() noexcept = default;
-};
-inline const char* DoubleLinkedListException::what() const noexcept {
-	return this->whatStr.c_str();
-}
 
 template<typename T>
 class Node
 {
 public:
-	T value = NULL;
-	Node<T>* prev = nullptr;
-	Node<T>* next = nullptr;
+	T value;
+	Node<T>* prev;
+	Node<T>* next;
 };
 
 template<typename T>
@@ -59,7 +40,8 @@ private:
 	unsigned int count;								
 	Node<T>* head;										
 	Node<T>* tail;										
-	bool is_empty() {
+	bool is_empty() 
+	{
 		return !head;
 	}
 public:
@@ -129,8 +111,7 @@ public:
 	void reverse() 
 	{
 		Node<T>* iter = head;
-		Node<T>* temp = NULL;
-
+		Node<T>* temp;
 		while (iter)
 		{
 			// Swap the prev/next pointer
@@ -147,19 +128,20 @@ public:
 	}
 	void erase(int pos) 
 	{
-		Node<T>* tmp_tail(tail);
-		int tmp_count(count);
+		Node<T>* tmp_tail = tail;
+		int tmp_count = count;
 		if (pos > tmp_count) 
-		{ 
 			throw DoubleLinkedListException("Out of range");
-		}
 		else 
 		{
-			if (tmp_count == pos) { pop_back(); }
-			if (tmp_count == 1) { pop_front(); }
+			if (tmp_count == pos) 
+				pop_back();
+			if (tmp_count == 1)  
+				pop_front(); 
 			if (!is_empty())
 			{
-				while (pos < tmp_count) {
+				while (pos < tmp_count) 
+				{
 					tmp_tail = tmp_tail->prev;
 					tmp_count--;
 				}
@@ -179,13 +161,14 @@ public:
 		Node<T>* tmp = tail;
 		int tmp_c(count);
 		if (pos > tmp_c) 
-		{ 
 			throw DoubleLinkedListException("Out of range"); 
-		}
+
 		else 
 		{
-			if (pos == tmp_c) { tail->value = item; }
-			if (pos == 0) { head->value = item; }
+			if (pos == tmp_c) 
+				tail->value = item; 
+			if (pos == 0) 
+				head->value = item; 
 			if (pos < tmp_c) 
 			{
 				while (pos < tmp_c) 
@@ -203,7 +186,8 @@ public:
 		int tmp_c = count;
 		if (pos == tmp_c) { push_back(item); }
 		if (pos == 1) { push_front(item); }
-		if (pos > tmp_c) { std::cout << "Input error" << std::endl; }
+		if (pos > tmp_c)
+			throw DoubleLinkedListException("Out of range");
 		else 
 		{
 			if (pos < tmp_c) 
@@ -223,14 +207,16 @@ public:
 			}
 		}
 	}
-	void printlist() {
+	void printlist() 
+	{
 		Node<T>* tmp_tail(tail);
 		int tmp_count(count);
 		std::cout << tail->value;
 		while (tmp_count)
 		{
 			tmp_tail = tmp_tail->prev;
-			if (tmp_tail == nullptr) break;
+			if (tmp_tail == nullptr) 
+				break;
 			std::cout << std::endl;
 			std::cout << tmp_tail->value << std::endl;
 			tmp_count--;

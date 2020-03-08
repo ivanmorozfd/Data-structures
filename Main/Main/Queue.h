@@ -1,54 +1,39 @@
 #pragma once
-#include <exception>
-#include <string>
-using std::string;
-using std::exception;
-
-class QueueException:exception {
-private:
-	std::string whatStr;
-public:
-	const char* what() const noexcept override;
-public:
-	QueueException(std::string&& whatStr) noexcept : whatStr(std::move(whatStr)) { }
-	QueueException(const std::string& whatStr) noexcept : whatStr(whatStr) { }
-	~QueueException() noexcept = default;
-};
-inline const char* QueueException::what() const noexcept 
-{
-	return this->whatStr.c_str();
-};
-
-
-template<typename T>
-class Node
-{
-public:
-	T data;
-	Node* next;
-	Node() :data(NULL), next(nullptr){ }
-};
-
+#include "QueueException.h"
 
 template<typename T>
 class Queue 
 {
 private:
+	template<typename T>
+	class Node
+	{
+	public:
+		T data;
+		Node* next;
+		Node() :
+			data(T()),
+			next(nullptr) { }
+	};
+private:
 	Node<T>* pFront;
 	Node<T>* pBack;
 	unsigned count;
-	unsigned getSize() const { return this->count; }
+	unsigned getSize() const 
+	{ 
+		return this->count; 
+	}
 	T front()
 	{
 		if (!isEmpty())
-			return pFront->data;
+			return this->pFront->data;
 		else
 			throw QueueException("Queue is Empty");
 	}
 	T back()
 	{
 		if (!isEmpty())
-			return pBack->data;
+			return this->pBack->data;
 		else
 			throw QueueException("Queue is Empty");
 	}
@@ -58,7 +43,7 @@ public:
 		if (!isEmpty())
 		{
 			Node<T>* temp = pBack;
-			pBack = pBack->next;
+			this->pBack = this->pBack->next;
 			delete temp;
 		}
 		else
@@ -73,25 +58,38 @@ public:
 
 		if (!pBack)
 		{
-			pFront = pBack = node;
+			this->pFront = this->pBack = node;
 		}
 		else
 		{
-			pFront->next = node;
-			pFront = node;
+			this->pFront->next = node;
+			this->pFront = node;
 		}
 	}
-	bool isEmpty() {
-		return pFront == pBack;
+	bool isEmpty()
+	{
+		return this->pFront == this->pBack;
+	}
+	void clear()
+	{
+		for (;isEmpty();)
+			this->pop();
 	}
 public:
-	Queue() :count(0),pBack(nullptr),pFront(nullptr) { pBack = pFront; }
-	Queue(std::initializer_list<T> data) 
+	Queue():
+		count(0),
+		pBack(nullptr),
+		pFront(nullptr) 
+	{ 
+		this->pBack = this->pFront;
+	}
+	Queue(const std::initializer_list<T>& data) 
 	{ 
 		for (auto i : data)
-		{
 			this->push(i);
-		}
 	}
-	~Queue() { }
+	~Queue() 
+	{
+		this->clear();
+	}
 };

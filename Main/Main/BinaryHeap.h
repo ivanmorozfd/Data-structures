@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include "BinaryHeapExceptions.h"
 using std::vector;
 
 template<typename T>

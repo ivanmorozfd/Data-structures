@@ -9,7 +9,8 @@ class SingleLinkedList;
 template<typename T>
 class Node;
 template<typename T>
-class SingleLinkedListIterator : iterator<std::input_iterator_tag, Node<T>> {
+class SingleLinkedListIterator : iterator<std::input_iterator_tag, Node<T> > 
+{
 	friend Node<T>;
 	friend class SingleLinkedList<T>;
 private:

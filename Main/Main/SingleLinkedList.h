@@ -1,24 +1,6 @@
 #pragma once
-#include <exception>
-#include <string>
 #include "SingleLinkedListIterator.h"
-using std::string;
-using std::exception;
-
-class SingleLinkedListException :exception {
-private:
-	std::string whatStr;
-public:
-	const char* what() const noexcept override;
-public:
-	SingleLinkedListException(std::string&& whatStr) noexcept : whatStr(std::move(whatStr)) { }
-	SingleLinkedListException(const std::string& whatStr) noexcept : whatStr(whatStr) { }
-	~SingleLinkedListException() noexcept = default;
-};
-inline const char* SingleLinkedListException::what() const noexcept
-{
-	return this->whatStr.c_str();
-};
+#include "SingleLinkedListException.h"
 
 
 template<typename T>
@@ -27,7 +9,7 @@ class Node
 public:
 	T data;
 	Node* next;
-	Node() :data(NULL), next(nullptr) { }
+	Node() :data(T()), next(nullptr) { }
 };
 
 
@@ -58,7 +40,10 @@ public:
 		return const_iterator(end());
 	}
 public:
-	unsigned getSize() const { return this->count; }
+	unsigned getSize() const 
+	{ 
+		return this->count;
+	}
 	T front()
 	{
 		if (!isEmpty())
@@ -118,7 +103,6 @@ public:
 
 		Node<T>* node = new Node<T>;
 		node->data = item;
-
 		if (!pBack)
 		{
 			pFront = pBack = node;
@@ -129,17 +113,22 @@ public:
 			pBack = node;
 		}
 	}
-	bool isEmpty() {
+	bool isEmpty() 
+	{
 		return pFront == pBack;
 	}
 public:
-	SingleLinkedList() :count(0), pBack(nullptr), pFront(nullptr) { pBack = pFront; }
+	SingleLinkedList() :
+		count(0),
+		pBack(nullptr),
+		pFront(nullptr) 
+	{ 
+		pBack = pFront;
+	}
 	SingleLinkedList(std::initializer_list<T> data)
 	{
 		for (auto i : data)
-		{
 			this->push(i);
-		}
 	}
 	~SingleLinkedList() { }
 };
