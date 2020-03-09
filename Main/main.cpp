@@ -1,10 +1,12 @@
 #include <iostream>
-#include "Main/AvlTree.h"
+#include "Main/BinaryHeap.h"
 int main() {
-	AvlTree<int> tree;
-	tree.insert(5);
-	tree.insert(4);
-	tree.insert(6);
-	tree.display();
+	BinaryHeap<int> heap;
+	heap.addItem(5);
+	heap.addItem(6);
+	heap.addItem(4);
+	heap.addItem(610);
+	for (auto& i : heap.data)
+		std::cout << i;
 	return 0;
 }
