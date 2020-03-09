@@ -25,7 +25,9 @@ Window {
     ListView {
         id:ui_stackView
 
-        model:[]
+        model:ListModel {
+            id:stackView_Model
+        }
         height: ui_mainWindow.height
         width: 200
         anchors.top: ui_menuBar.bottom
@@ -33,20 +35,20 @@ Window {
         anchors.left:ui_stackControls.right
         anchors.leftMargin: 175
         delegate: TextField{
-            Component.onCompleted: showAnim.start();
                 id:stackView_textField
-                transform: Rotation { id:rt; origin.x: width; origin.y: height; axis { x: 0.3; y: 1; z: 0 } angle: 0}
                 height: 24
                 width: parent.width
-                leftPadding: width/2
-
-                text:modelData
-                SequentialAnimation {
-                    id: showAnim
-                    running: false
-                    RotationAnimation { target: rt; from: 180; to: 0; duration: 800; easing.type: Easing.OutBack; property: "angle" }
-                }
+                leftPadding: width / 2
+                text:key
             }
+        add: Transition {
+            NumberAnimation { properties: "x"; from: -100; duration: 500 }
+            NumberAnimation { properties: "opacity"; from:0;to: 1; duration:500 }
+        }
+        remove: Transition {
+            NumberAnimation { properties: "x"; to: -100; duration: 500 }
+            NumberAnimation { properties: "opacity"; from:1;to: 0; duration:500 }
+        }
         }
 }
 

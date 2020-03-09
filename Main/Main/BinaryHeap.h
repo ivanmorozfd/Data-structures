@@ -1,4 +1,4 @@
-#pragma once
+	#pragma once
 #include <vector>
 #include "BinaryHeapExceptions.h"
 using std::vector;
@@ -9,7 +9,10 @@ class BinaryHeap
 public:
 	int heapSize;	
 	vector<T> data;
-	int getSize() { return data.size(); }
+	int getSize() 
+	{
+		return data.size(); 
+	}
 	void addItem(T item)
 	{
 		data.push_back(item);
@@ -66,7 +69,7 @@ public:
 		data[0] = data[getSize() - 1];
 		heapSize--;
 		heapify(0);
-		return(item);
+		return item;
 	}
 	BinaryHeap() {
 

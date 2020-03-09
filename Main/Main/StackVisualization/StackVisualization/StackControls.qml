@@ -15,7 +15,7 @@ Item {
                 Layout.preferredWidth: 100
                 text:"Push"
                 onClicked: {
-                    ui_stackView.model.push("a");
+                    stackView_Model.append({"key":"a"});
                 }
             }
             TextField {
@@ -31,6 +31,9 @@ Item {
                 Layout.preferredHeight: 24
                 Layout.preferredWidth: 100
                 text:"Pop"
+                onClicked: {
+                    stackView_Model.remove(stackView_Model.count - 1);
+                }
             }
             TextField {
                 id:clayout_popButtonField
