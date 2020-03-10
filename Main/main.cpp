@@ -1,12 +1,10 @@
 #include <iostream>
-#include "Main/BinaryHeap.h"
+#include "Main/RBTree.h"
 int main() {
-	BinaryHeap<int> heap;
-	heap.addItem(5);
-	heap.addItem(6);
-	heap.addItem(4);
-	heap.addItem(610);
-	for (auto& i : heap.data)
-		std::cout << i;
+	RBTree<int> tree;
+	tree.addItem(5);
+	tree.addItem(6);
+	tree.addItem(12);
+	tree.inorder();
 	return 0;
 }
