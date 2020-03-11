@@ -13,21 +13,26 @@ class AvlTree
 		Node* right;
 	};
 	Node* m_top;
-	int height(Node* node)
+	int height(Node*& node)
 	{
-		return node?node->height:0;
+		return node
+			?node->height
+			:0;
 	}
-	int balanceFactor(Node* node)
+	int balanceFactor(Node*& node)
 	{
-		return height(node->right) - height(node->left);
+		return height(node->right) 
+			- height(node->left);
 	}
-	void fixHeight(Node* node)
+	void fixHeight(Node*& node)
 	{
 		int heightLeft = height(node->left);
 		int heightRight = height(node->right);
-		node->height = (heightLeft > heightRight ? heightLeft : heightRight) + 1;
+		node->height = 1 + (heightLeft > heightRight 
+				? heightLeft 
+				: heightRight) ;
 	}
-	Node* rotateRight(Node* node) // правый поворот вокруг p
+	Node* rotateRight(Node*& node) // right turn relative to the vertex node
 	{
 		Node* q = node->left;
 		node->left = q->right;
@@ -36,7 +41,7 @@ class AvlTree
 		fixHeight(q);
 		return q;
 	}
-	Node* rotateLeft(Node* node) // правый поворот вокруг p
+	Node* rotateLeft(Node* node) // left turn relative to the vertex
 	{
 		Node* q = node->right;
 		node->right = q->left;
@@ -45,7 +50,7 @@ class AvlTree
 		fixHeight(q);
 		return q;
 	}
-	Node* balance(Node* node) // балансировка узла p
+	Node* balance(Node* node) // balance tree with root in node
 	{
 		fixHeight(node);
 		if (balanceFactor(node) == 2)
@@ -62,7 +67,8 @@ class AvlTree
 		}
 		return node;
 	}
-	Node* insert_(Node* node, _T key) // вставка ключа k в дерево с корнем p
+	Node* insert_(Node*& node,
+		      const _T& key) // insert to the tree with the root in node
 	{
 		if (!node)
 		{
@@ -76,11 +82,13 @@ class AvlTree
 			node->right = insert_(node->right, key);
 		return balance(node);
 	}
-	Node* findMin(Node* node) // поиск узла с минимальным ключом в дереве p 
+	Node* findMin(Node*& node) // returns minimal element in tre
 	{
-		return node->left ? findMin(node->left) : node;
+		return node->left 
+			? findMin(node->left) 
+			: node;
 	}
-	Node* removeMin(Node* node) // удаление узла с минимальным ключом из дерева p
+	Node* removeMin(Node*& node) // remove min element in subtree with root in node
 	{
 		if (node->left == 0)
 			return node->right;
@@ -88,7 +96,8 @@ class AvlTree
 		return balance(node);
 	}
 
-	Node* remove(Node* node, _T key) // удаление ключа k из дерева p
+	Node* remove(Node*& node,
+		     const _T& key) // remove node from tree
 	{
 		if (!node) return 0;
 		if (key < node->key)
@@ -108,7 +117,7 @@ class AvlTree
 		}
 		return balance(node);
 	}
-	void inOrder(Node* t)
+	void inOrder(Node*& t) // print tree in order
 	{
 		if (!t)
 			return;
@@ -117,7 +126,7 @@ class AvlTree
 		inOrder(t->right);
 	}
 public:
-	void insert(_T key)
+	void insert(const _T& key)
 	{
 		m_top = insert_(this->m_top, key);
 	}
@@ -126,8 +135,21 @@ public:
 		inOrder(m_top);
 	}
 public:
-	AvlTree() :m_top(nullptr)
+	AvlTree() :
+	m_top(nullptr)
 	{
 
+	}
+	AvlTree(cosnt std::initializer_list<_T>& data)
+	{
+		
+	}
+	AvlTree(const AvlTree<_T>& other)
+	{
+		
+	}
+	~AvlTree()
+	{
+		
 	}
 };
