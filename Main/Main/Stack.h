@@ -3,18 +3,18 @@
 #include "StackException.h"
 using std::string;
 
-template<typename T>
+template<typename _T>
 class Stack
 {
 private:
-	template<typename T>
+	template<typename _T>
 	class Node
 	{
 	public:
-		T data;
+		_T data;
 		Node* prev;
 	};
-	Node<T>* m_top;//This structure contains data and pointer to previous node
+	Node<_T>* m_top;//This structure contains data and pointer to previous node
 	unsigned count;	//number of elements in the stack
 public:
 	//returns the stack size
@@ -23,7 +23,7 @@ public:
 		return this->count;
 	}
 	//returns the value at the top of the stack
-	T getTop() const 
+	_T getTop() const 
 	{
 		if (!isEmpty())
 			return m_top->data;
@@ -36,10 +36,10 @@ public:
 		return !m_top;
 	}
 	//add element to stack
-	void push(const T& item)
+	void push(const _T& item)
 	{
 		//create new stack node
-		Node<T>* tmp = new Node<T>();
+		Node<_T>* tmp = new Node<_T>();
 		tmp->data = item;
 		tmp->prev = m_top;
 		//set new top of the stack
@@ -52,7 +52,7 @@ public:
 	{
 		if (!isEmpty()) 
 		{
-			Node<T>* tmp = m_top;
+			Node<_T>* tmp = m_top;
 			m_top = m_top->prev;
 			delete tmp;
 			count--;
@@ -81,6 +81,10 @@ public:
 	Stack(const Stack& other)
 	{
 
+	}
+	~Stack()
+	{
+		this->clear();
 	}
 };
 
