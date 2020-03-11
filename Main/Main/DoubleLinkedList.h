@@ -4,53 +4,53 @@
 #include "DoubleLinkedListExceptions.h"
 using std::iterator;
 
-template<typename T>
+template<typename _T>
 class Node
 {
 public:
-	T value;
-	Node<T>* prev;
-	Node<T>* next;
+	_T value;
+	Node<_T>* prev;
+	Node<_T>* next;
 };
 
-template<typename T>
+template<typename _T>
 class DoubleLinkedList 
 {		
 public:
-	typedef DoubleLinkedListIterator<T> iterator;
-	typedef DoubleLinkedListIterator<const T> const_iterator;
+	typedef DoubleLinkedListIterator<_T> iterator;
+	typedef DoubleLinkedListIterator<const _T> const_iterator;
 public:
-	DoubleLinkedList<T>::iterator begin()
+	DoubleLinkedList<_T>::iterator begin()
 	{
 		return iterator(head);
 	}
-	DoubleLinkedList<T>::iterator end()
+	DoubleLinkedList<_T>::iterator end()
 	{
 		return iterator(tail->next);
 	}
-	DoubleLinkedList<T>::const_iterator begin() const
+	DoubleLinkedList<_T>::const_iterator begin() const
 	{
 		return const_iterator(begin());
 	}
-	DoubleLinkedList<T>::const_iterator end() const
+	DoubleLinkedList<_T>::const_iterator end() const
 	{
 		return const_iterator(end());
 	}
 private:														
 	unsigned int count;								
-	Node<T>* head;										
-	Node<T>* tail;										
+	Node<_T>* head;										
+	Node<_T>* tail;										
 	bool is_empty() 
 	{
 		return !head;
 	}
 public:
-	T pop_back() 
+	_T pop_back() 
 	{
 		if (!is_empty()) 
 		{
 			int returnValue = tail->value;
-			Node<T>* tmp_tail = tail;
+			Node<_T>* tmp_tail = tail;
 			tail = tail->prev;
 			delete tmp_tail;
 			return returnValue;
@@ -58,12 +58,12 @@ public:
 		else
 			throw DoubleLinkedListException("List is empty");
 	}
-	T  pop_front() 
+	_T  pop_front() 
 	{
 		if (!is_empty()) 
 		{
 			int returnValue = head->value;
-			Node<T>* tmp_head = head;
+			Node<_T>* tmp_head = head;
 			head = head->next;
 			delete tmp_head;
 			return returnValue;
@@ -71,9 +71,9 @@ public:
 		else
 			throw DoubleLinkedListException("List is empty");
 	}
-	void push_back(int item) 
+	void push_back(const _T& item) 
 	{
-		Node<T>* tmp = new Node<T>();
+		Node<_T>* tmp = new Node<_T>();
 		tmp->next = nullptr;
 		tmp->value = item;
 		if (head)
@@ -90,9 +90,9 @@ public:
 			count++; 
 		}
 	}
-	void push_front(int item) 
+	void push_front(const _T& item) 
 	{
-		Node<T>* tmp = new Node<T>();
+		Node<_T>* tmp = new Node<_T>();
 		tmp->prev = nullptr;
 		tmp->value = item;
 		if (head) 
@@ -110,8 +110,8 @@ public:
 	}
 	void reverse() 
 	{
-		Node<T>* iter = head;
-		Node<T>* temp;
+		Node<_T>* iter = head;
+		Node<_T>* temp;
 		while (iter)
 		{
 			// Swap the prev/next pointer
@@ -126,9 +126,9 @@ public:
 		head = tail;
 		tail = temp;
 	}
-	void erase(int pos) 
+	void erase(const int& pos) 
 	{
-		Node<T>* tmp_tail = tail;
+		Node<_T>* tmp_tail = tail;
 		int tmp_count = count;
 		if (pos > tmp_count) 
 			throw DoubleLinkedListException("Out of range");
@@ -156,9 +156,9 @@ public:
 				throw DoubleLinkedListException("List is empty");
 		}
 	}
-	void changeEl(int item, int pos) 
+	void changeEl(const _T& item, int pos) 
 	{
-		Node<T>* tmp = tail;
+		Node<_T>* tmp = tail;
 		int tmp_c(count);
 		if (pos > tmp_c) 
 			throw DoubleLinkedListException("Out of range"); 
@@ -180,9 +180,9 @@ public:
 			}
 		}
 	}
-	void insert(int item, int pos) 
+	void insert(const _T& item, int pos) 
 	{
-		Node<T>* tmp_1 = tail;
+		Node<_T>* tmp_1 = tail;
 		int tmp_c = count;
 		if (pos == tmp_c) { push_back(item); }
 		if (pos == 1) { push_front(item); }
@@ -197,8 +197,8 @@ public:
 					tmp_1 = tmp_1->prev;
 					tmp_c--;
 				}
-				Node<T>* prevIns = tmp_1->prev;
-				Node<T>* tmp_2 = new Node<T>();
+				Node<_T>* prevIns = tmp_1->prev;
+				Node<_T>* tmp_2 = new Node<_T>();
 				tmp_2->value = item;
 				tmp_2->next = tmp_1;
 				tmp_2->prev = prevIns;
@@ -207,22 +207,7 @@ public:
 			}
 		}
 	}
-	void printlist() 
-	{
-		Node<T>* tmp_tail(tail);
-		int tmp_count(count);
-		std::cout << tail->value;
-		while (tmp_count)
-		{
-			tmp_tail = tmp_tail->prev;
-			if (tmp_tail == nullptr) 
-				break;
-			std::cout << std::endl;
-			std::cout << tmp_tail->value << std::endl;
-			tmp_count--;
-		}
-	}
-public:
+	public:
 	DoubleLinkedList():
 		head(nullptr),
 		tail(nullptr),
