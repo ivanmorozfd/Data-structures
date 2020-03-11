@@ -1,23 +1,23 @@
 #pragma once
 #include "QueueException.h"
 
-template<typename T>
+template<typename _T>
 class Queue 
 {
 private:
-	template<typename T>
+	template<typename _T>
 	class Node
 	{
 	public:
-		T data;
+		_T data;
 		Node* next;
 		Node() :
-			data(T()),
+			data(_T()),
 			next(nullptr) { }
 	};
 private:
-	Node<T>* pFront;
-	Node<T>* pBack;
+	Node<_T>* pFront;
+	Node<_T>* pBack;
 	unsigned count;
 	unsigned getSize() const 
 	{ 
@@ -49,11 +49,11 @@ public:
 		else
 			throw QueueException("Queue is Empty");
 	}
-	void push(T item)
+	void push(const T& item)
 	{
 		this->count++;
 
-	    Node<T>* node = new Node<T>;
+	    Node<_T>* node = new Node<_T>;
 	    node->data = item;
 
 		if (!pBack)
