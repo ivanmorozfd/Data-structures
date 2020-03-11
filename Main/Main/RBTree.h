@@ -1,6 +1,8 @@
 #pragma once
 #include <initializer_list>
 #include "RBTreeExceptions.h"
+using std::initializer_list;
+using std::string;
 template<typename _T>
 class RBTree
 {
@@ -17,7 +19,7 @@ class RBTree
 		Node* parent;
 		_T data;
 		ELeafColor color;
-		std::string colorToString()
+		string colorToString()
 		{
 			return this->color == ELeafColor::BLACK
 				? "Black"
@@ -25,10 +27,10 @@ class RBTree
 		}
 	public:
 		Node(ELeafColor color,
-			Node* left,
-			Node* right,
-			Node* parent,
-			_T value): 
+			Node*& left,
+			Node*& right,
+			Node*& parent,
+			_T& value): 
 				color(color),
 				data(value), 
 				left(left),
@@ -171,7 +173,7 @@ public:
 		return !m_root;
 	}
 public:
-	void addItem(_T item)
+	void addItem(_T& item)
 	{
 		Node* node = new Node(ELeafColor::RED,
 			nullptr,
@@ -190,7 +192,7 @@ public:
 	{
 
 	}
-	RBTree(std::initializer_list<_T> data)
+	RBTree(initializer_list<_T> data)
 	{
 
 	}
