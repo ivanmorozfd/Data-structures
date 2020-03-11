@@ -175,7 +175,7 @@ public:
 		inorderBST(m_root);
 	}
 public:
-	RBTree()
+	RBTree() :m_root(nullptr)
 	{
 
 	}
