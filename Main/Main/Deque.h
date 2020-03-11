@@ -1,55 +1,65 @@
 #pragma once
 #include "DequeExceptions.h"
-template<typename T>
+template<typename _T>
 class Node
 {
 public:
-	T value;
-	Node<T>* prev;
-	Node<T>* next;
+	_T value;
+	Node<_T>* prev;
+	Node<_T>* next;
 };
 
-template<typename T>
+template<typename _T>
 class Deque
 {
 private:
 	unsigned int count;
-	Node<T>* head;
-	Node<T>* tail;
+	Node<_T>* head;
+	Node<_T>* tail;
 	bool is_empty()
 	{
 		return !head;
 	}
 public:
-	T pop_back()
+	_T peekHead() const
+	{
+		if(!is_empty())
+			return head->value;
+		else
+			throw DequeException("Deque is empty");
+	}
+	_T peekTail() const
+	{
+		if(!is_empty())
+			return tail->value;
+		else
+			throw DequeException("Deque is empty");
+	}
+	void pop_back()
 	{
 		if (!is_empty())
 		{
-			int returnValue = tail->value;
 			Node<T>* tmp_tail = tail;
 			tail = tail->prev;
 			delete tmp_tail;
-			return returnValue;
 		}
 		else
-			throw DequeException("List is empty");
+			throw DequeException("Deque is empty");
 	}
-	T  pop_front()
+	void  pop_front()
 	{
 		if (!is_empty())
 		{
-			int returnValue = head->value;
 			Node<T>* tmp_head = head;
 			head = head->next;
 			delete tmp_head;
-			return returnValue;
 		}
 		else
-			throw DequeException("List is empty");
+			throw DequeException("Deque is empty");
 	}
-	void push_back(int item)
+	void push_back(const _T& item)
 	{
-		Node<T>* tmp = new Node<T>();
+		Node<_T>* tmp = new Node<_T>();
 		tmp->next = nullptr;
 		tmp->value = item;
 		if (head)
@@ -66,9 +76,9 @@ public:
 			count++;
 		}
 	}
-	void push_front(int item)
+	void push_front(const _T& item)
 	{
-		Node<T>* tmp = new Node<T>();
+		Node<_T>* tmp = new Node<_T>();
 		tmp->prev = nullptr;
 		tmp->value = item;
 		if (head)
@@ -85,40 +95,29 @@ public:
 			count++;
 		};
 	}
-	void erase(int pos)
+	void clear()
 	{
-		Node<T>* tmp_tail = tail;
-		int tmp_count = count;
-		if (pos > tmp_count)
-			throw DequeException("Out of range");
-		else
-		{
-			if (tmp_count == pos)
-				pop_back();
-			if (tmp_count == 1)
-				pop_front();
-			if (!is_empty())
-			{
-				while (pos < tmp_count)
-				{
-					tmp_tail = tmp_tail->prev;
-					tmp_count--;
-				}
-				Node<T>* beforeDel = tmp_tail->prev;
-				Node<T>* afterDel = tmp_tail->next;
-				beforeDel->next = afterDel;
-				afterDel->prev = beforeDel;
-				count--;
-				delete tmp_tail;
-			}
-			else
-				throw DequeException("List is empty");
-		}
+		for(;!is_empty();)
+			pop_front();
 	}
 public:
 	Deque() :
 		head(nullptr),
 		tail(nullptr),
-		count(0) {}
-	~Deque() {}
+		count(0) 
+		{
+			//Init deque
+		}
+	Deque(const std::initializer_list<_T>& data)
+	{
+		
+	}
+	Deque(const Deque& other)
+	{
+		
+	}
+	~Deque() 
+	{
+		this->clear();
+	}
 };
