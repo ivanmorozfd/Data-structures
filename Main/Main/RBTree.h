@@ -82,22 +82,29 @@ private:
 		ptr->parent = left_child;
 	}
 
-	void fixInsertion(Node*& ptr) {
+	void fixInsertion(Node*& ptr) 
+	{
 		Node* parent = nullptr;
 		Node* grandparent = nullptr;
-		while (ptr != m_root && ptr->color == ELeafColor::RED && ptr->parent->color == ELeafColor::RED) {
+		while (ptr != m_root 
+		       && ptr->color == ELeafColor::RED
+		       && ptr->parent->color == ELeafColor::RED) 
+		{
 			parent = ptr->parent;
 			grandparent = parent->parent;
 			if (parent == grandparent->left) {
 				Node* uncle = grandparent->right;
-				if (uncle->color == ELeafColor::RED) {
-					uncle->ELeafColor::BLACK;
+				if (uncle->color == ELeafColor::RED) 
+				{
+					uncle->color = ELeafColor::BLACK;
 					parent->color = ELeafColor::BLACK;
 					grandparent->color = ELeafColor::RED;
 					ptr = grandparent;
 				}
-				else {
-					if (ptr == parent->right) {
+				else 
+				{
+					if (ptr == parent->right) 
+					{
 						rotateLeft(parent);
 						ptr = parent;
 						parent = ptr->parent;
@@ -107,16 +114,20 @@ private:
 					ptr = parent;
 				}
 			}
-			else {
+			else 
+			{
 				Node* uncle = grandparent->left;
-				if (uncle->color == ELeafColor::RED) {
+				if (uncle->color == ELeafColor::RED)
+				{
 					uncle->color = ELeafColor::BLACK;
 					parent->color = ELeafColor::BLACK;
 					grandparent->color = ELeafColor::RED;
 					ptr = grandparent;
 				}
-				else {
-					if (ptr == parent->left) {
+				else 
+				{
+					if (ptr == parent->left) 
+					{
 						rotateRight(parent);
 						ptr = parent;
 						parent = ptr->parent;
