@@ -1,18 +1,18 @@
 #pragma once
 #include "BinarySearchTreeExceptions.h"
-template<typename T>
+template<typename _T>
 class BinarySearchTree 
 {
 private:
 	struct Node 
 	{
-		T key;
+		_T key;
 		Node* left;
 		Node* right;
 	};
 	Node* root;
 
-	void addLeaf_(T key, Node* ptr) 
+	void addLeaf_(const _T& key, Node*& ptr) 
 	{
 		if (!root)
 			root = createLeaf(key);
@@ -33,7 +33,7 @@ private:
 		else
 			throw BinarySearchTreeException("This key just avialable");
 	}
-	void printInOrder_(Node* ptr)
+	void printInOrder_(Node*& ptr)
 	{
 		if (root) 
 		{
@@ -47,7 +47,7 @@ private:
 			throw BinarySearchTreeException("Tree is empty");
 		
 	}
-	Node* returnNode_(T key, BinarySearchTree::Node* ptr) 
+	Node* returnNode_(const _T& key, Node*& ptr) 
 	{
 		if (ptr) 
 		{
@@ -61,7 +61,7 @@ private:
 		else 
 			return nullptr;
 	}
-	T findSmallestK_(BinarySearchTree::N	ode* ptr) 
+	_T findSmallestK_(Node*& ptr) 
 	{
 		if (!root) 
 			throw BinarySearchTreeException("Tree is empty");
@@ -74,7 +74,7 @@ private:
 
 		}
 	}
-	void removeNode_(T key, BinarySearchTree::Node* parent) 
+	void removeNode_(const _T& key, Node*& parent) 
 	{
 		if (root)
 		{
@@ -82,20 +82,22 @@ private:
 				removeRootMatch();
 			else 
 			{
-				if (key < parent->key && parent->left)
+				if (key < parent->key 
+				    && parent->left)
 				{
 					parent->left->key == key
 					?removeMatch(parent, parent->left, true)
 					:removeNode_(key, parent->left);
 				}
-				else if (key > parent->key&& parent->right)
+				else if (key > parent->key 
+					 && parent->right)
 				{
 					parent->right->key == key
 					?removeMatch(parent, parent->right, false)
 					:removeNode_(key, parent->right);
 				}
 				else 
-					std::cout << "Not found this key" << std::endl;
+					throw BinarySearchTreeException("This key is not exist");
 			}
 		}
 		else
@@ -106,8 +108,8 @@ private:
 		if (root)
 		{
 			Node* delPtr = root;
-			T rootK = root->key;
-			T smallInRghtSubtr;
+			_T rootK = root->key;
+			_T smallInRghtSubtr;
 			// 0 children
 			if (!root->left && !root->left)
 			{
@@ -129,22 +131,25 @@ private:
 			}
 			else
 			{
-				T = findSmallestK_(root->right);
+				_T = findSmallestK_(root->right);
 				removeNode_(smallInRghtSubtr, root);
 			}
 		}
 		else
 			throw BinarySearchTreeException("Tree is empty");
 	}
-	void removeMatch(Node* parent, Node* match, bool isLeft) 
+	void removeMatch(Node*& parent,
+			 Node*& match,
+			 const bool& isLeft) 
 	{
 		if (root) 
 		{
 			Node* delPtr;
-			int matchK = match->key;
-			int smallestInRightSub;
+			_T matchK = match->key;
+			_T smallestInRightSub;
 			// zero child
-			if (!match->right && match->left)
+			if (!match->right 
+			    && match->left)
 			{
 				delPtr = match;
 				
@@ -155,7 +160,8 @@ private:
 				delete delPtr;
 			}
 			// 1 child
-			else if (match->left && !match->right)
+			else if (match->left
+				 && !match->right)
 			{
 				delPtr = match;
 
@@ -189,7 +195,7 @@ private:
 			throw BinarySearchTreeException("Tree is empty");
 	}
 public:
-	Node* createLeaf(T key) 
+	Node* createLeaf(const _T& key) 
 	{
 		Node* leaf = new Node();
 		leaf->key = key;
@@ -197,7 +203,7 @@ public:
 		leaf->right = nullptr;
 		return leaf;
 	}
-	void  addLeaf(T key) 
+	void  addLeaf(cosnt T& key) 
 	{
 		addLeaf_(key, root);
 	}
@@ -205,27 +211,28 @@ public:
 	{
 		printInOrder_(root);
 	}
-	Node* returnNode(T key) 
+	Node* returnNode(const _T& key) 
 	{
 		return returnNode_(key, root);
 	}
-	T returnRootK()
+	_T returnRootK()
 	{
 		if (root)
 			return root->key;
 		else 
-			return -1;
+			throw BinarySearchException("Tree is emtpy");
 	}
-	T findSmallestK() 
+	_T findSmallestK() 
 	{
 		findSmallestK_(root);
 	}
-	void removeNode(T key) 
+	void removeNode(const _T& key) 
 	{
 		removeNode_(key, root);
 	}
 public:
-	BinarySearchTree() :root(nullptr)
+	BinarySearchTree() :
+	root(nullptr)
 	{
 
 	}
