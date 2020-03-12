@@ -27,10 +27,10 @@ class RBTree
 		}
 	public:
 		Node(ELeafColor color,
-			Node*& left,
-			Node*& right,
-			Node*& parent,
-			_T& value): 
+			Node* left,
+			Node* right,
+			Node* parent,
+			const _T& value): 
 				color(color),
 				data(value), 
 				left(left),
@@ -94,9 +94,10 @@ private:
 		{
 			parent = ptr->parent;
 			grandparent = parent->parent;
-			if (parent == grandparent->left) {
+			if (parent == grandparent->left) 
+			{
 				Node* uncle = grandparent->right;
-				if (uncle->color == ELeafColor::RED) 
+				if (uncle && uncle->color == ELeafColor::RED) 
 				{
 					uncle->color = ELeafColor::BLACK;
 					parent->color = ELeafColor::BLACK;
@@ -119,7 +120,7 @@ private:
 			else 
 			{
 				Node* uncle = grandparent->left;
-				if (uncle->color == ELeafColor::RED)
+				if (uncle && uncle->color == ELeafColor::RED )
 				{
 					uncle->color = ELeafColor::BLACK;
 					parent->color = ELeafColor::BLACK;
@@ -173,7 +174,7 @@ public:
 		return !m_root;
 	}
 public:
-	void addItem(_T& item)
+	void addItem(const _T& item)
 	{
 		Node* node = new Node(ELeafColor::RED,
 			nullptr,
@@ -192,11 +193,11 @@ public:
 	{
 
 	}
-	RBTree(initializer_list<_T> data)
+	RBTree(const initializer_list<_T>& data)
 	{
 
 	}
-	RBTree(RBTree<_T>& other)
+	RBTree(const RBTree<_T>& other)
 	{
 
 	}
