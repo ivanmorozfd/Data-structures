@@ -29,6 +29,7 @@ void MenuHelper::createMainMenuInstance()
 				<< "[9] Бинарное дерево поиска" << std::endl
 				<< "[10] Красно-черное дерево " << std::endl
 				<< "[11] Выйти" << std::endl << std::endl;
+			std::cout << "Введите ответ: ";
 			std::cin >> answer;
 			switch (answer)
 			{
@@ -78,29 +79,86 @@ void MenuHelper::createStackMenuInstance()
 {
 	system("cls");
 	bool isActive = true;
+	Stack<int>* stack = nullptr;
 	while (isActive)
 	{
 		int answer = -1;
-		std::wcout <<"Выберите действие"<< std::endl
+		std::wcout << "Выберите действие" << std::endl
 			<< "[1] Создать стек" << std::endl
 			<< "[2] Проверить стек на пустоту" << std::endl
 			<< "[3] Добавить элемент в стек" << std::endl
 			<< "[4] Получить элемент на вершине" << std::endl
-			<< "[5] Прочитать стек из файла" << std::endl
-			<< "[6] Записать стек в файл" << std::endl
-			<< "[7] Очистить стек" << std::endl
-			<< "[8] Удалить стек" << std::endl
-			<< "[9] Выйти" << std::endl << std::endl;
+			<< "[5] Удалить элемент с вершины стека" << std::endl
+			<< "[6] Прочитать стек из файла" << std::endl
+			<< "[7] Записать стек в файл" << std::endl
+			<< "[8] Очистить стек" << std::endl
+			<< "[9] Удалить стек" << std::endl
+			<< "[10] Выйти" << std::endl << std::endl;
+		std::cout << "Введите ответ: ";
 		std::cin >> answer;
 		switch (answer)
 		{
 		case 1:
+			if (!stack)
+			{
+				stack = new Stack<int>();
+				system("cls");
+				std::wcout << "[ Система ] Стек успешно создан" << std::endl << std::endl;
+			}
+			else
+			{
+				system("cls");
+				std::wcout << "[ Система ] Стек уже создан" << std::endl << std::endl;
+			}
 			break;
 		case 2:
+			if (!stack)
+			{
+				system("cls");
+				std::wcout << "[ Система ] Стек не создан" << std::endl << std::endl;
+			}
+			else
+			{
+				if (stack->isEmpty())
+				{
+					system("cls");
+					std::wcout << "[ Система ] Стек пуст" << std::endl << std::endl;
+				}
+				else
+				{
+					system("cls");
+					std::wcout << "[ Система ] Стек не пуст" << std::endl << std::endl;
+				}
+			}
 			break;
 		case 3:
+			if (!stack)
+			{
+				system("cls");
+				std::wcout << "[ Система ] Стек не создан" << std::endl << std::endl;
+			}
+			else
+			{
+				int answer = -1;
+			    std::wcout<<"[ Система ] Введите элемент , который нужно добавить в стек" << std::endl << std::endl;
+				std::cout << "Введите ответ: ";
+				std::cin >> answer;
+				system("cls");
+				stack->push(answer);
+				std::wcout << "[ Cистема ] Элемент "<<answer<<" успешно добавлен в стек" << std::endl << std::endl;
+			}
 			break;
 		case 4:
+			if (!stack)
+			{
+				system("cls");
+				std::wcout << "[ Система ] Стек не создан" << std::endl << std::endl;
+			}
+			else
+			{
+				system("cls");
+				std::wcout << "[ Cистема ] Элемент на вершине стека : " << stack->getTop() << std::endl << std::endl;
+			}
 			break;
 		case 5:
 			break;
