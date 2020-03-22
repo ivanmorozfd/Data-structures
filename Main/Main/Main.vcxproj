@@ -137,6 +137,7 @@
     <ClInclude Include="DoubleLinkedList.h" />
     <ClInclude Include="DoubleLinkedListExceptions.h" />
     <ClInclude Include="DoubleLinkedListIterator.h" />
+    <ClInclude Include="MenuHelper.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="QueueException.h" />
     <ClInclude Include="RBTree.h" />
@@ -151,6 +152,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\main.cpp" />
+    <ClCompile Include="MenuHelper.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

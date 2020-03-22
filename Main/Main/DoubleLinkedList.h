@@ -3,19 +3,17 @@
 #include "DoubleLinkedListIterator.h"
 #include "DoubleLinkedListExceptions.h"
 using std::iterator;
-
-template<typename _T>
-class Node
-{
-public:
-	_T value;
-	Node<_T>* prev;
-	Node<_T>* next;
-};
-
 template<typename _T>
 class DoubleLinkedList 
 {		
+	template<typename _T>
+	class Node
+	{
+	public:
+		_T value;
+		Node<_T>* prev;
+		Node<_T>* next;
+	};
 public:
 	typedef DoubleLinkedListIterator<_T> iterator;
 	typedef DoubleLinkedListIterator<const _T> const_iterator;
@@ -145,8 +143,8 @@ public:
 					tmp_tail = tmp_tail->prev;
 					tmp_count--;
 				}
-				Node<T>* beforeDel = tmp_tail->prev;
-				Node<T>* afterDel = tmp_tail->next;
+				Node<_T>* beforeDel = tmp_tail->prev;
+				Node<_T>* afterDel = tmp_tail->next;
 				beforeDel->next = afterDel;
 				afterDel->prev = beforeDel;
 				count--;

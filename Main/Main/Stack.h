@@ -71,7 +71,7 @@ public:
 	Stack(): 
 		m_top(nullptr),
 		count(0) { }
-	Stack(const std::initializer_list<T>& data): 
+	Stack(const std::initializer_list<_T>& data): 
 		m_top(nullptr),
 		count(0)
 	{

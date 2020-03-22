@@ -23,14 +23,14 @@ private:
 	{ 
 		return this->count; 
 	}
-	T front()
+	_T front()
 	{
 		if (!isEmpty())
 			return this->pFront->data;
 		else
 			throw QueueException("Queue is Empty");
 	}
-	T back()
+	_T back()
 	{
 		if (!isEmpty())
 			return this->pBack->data;
@@ -42,14 +42,14 @@ public:
 	{
 		if (!isEmpty())
 		{
-			Node<T>* temp = pBack;
+			Node<_T>* temp = pBack;
 			this->pBack = this->pBack->next;
 			delete temp;
 		}
 		else
 			throw QueueException("Queue is Empty");
 	}
-	void push(const T& item)
+	void push(const _T& item)
 	{
 		this->count++;
 
@@ -83,7 +83,7 @@ public:
 	{ 
 		this->pBack = this->pFront;
 	}
-	Queue(const std::initializer_list<T>& data) 
+	Queue(const std::initializer_list<_T>& data)
 	{ 
 		for (auto i : data)
 			this->push(i);

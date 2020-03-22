@@ -203,7 +203,7 @@ public:
 		leaf->right = nullptr;
 		return leaf;
 	}
-	void  addLeaf(cosnt T& key) 
+	void  addLeaf(const _T& key) 
 	{
 		addLeaf_(key, root);
 	}
@@ -220,7 +220,7 @@ public:
 		if (root)
 			return root->key;
 		else 
-			throw BinarySearchException("Tree is emtpy");
+			throw BinarySearchTreeException("Tree is emtpy");
 	}
 	_T findSmallestK() 
 	{
@@ -236,7 +236,7 @@ public:
 	{
 
 	}
-	BinarySearchTree(const BinarySearchTree<T>& other)
+	BinarySearchTree(const BinarySearchTree<_T>& other)
 	{
 
 	}

@@ -140,7 +140,7 @@ public:
 	{
 
 	}
-	AvlTree(cosnt std::initializer_list<_T>& data)
+	AvlTree(const std::initializer_list<_T>& data)
 	{
 		
 	}

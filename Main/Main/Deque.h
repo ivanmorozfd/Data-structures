@@ -39,7 +39,7 @@ public:
 	{
 		if (!is_empty())
 		{
-			Node<T>* tmp_tail = tail;
+			Node<_T>* tmp_tail = tail;
 			tail = tail->prev;
 			delete tmp_tail;
 		}
@@ -50,7 +50,7 @@ public:
 	{
 		if (!is_empty())
 		{
-			Node<T>* tmp_head = head;
+			Node<_T>* tmp_head = head;
 			head = head->next;
 			delete tmp_head;
 		}

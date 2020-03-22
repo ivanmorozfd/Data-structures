@@ -11,11 +11,11 @@ private:
 public:
 	const char* what() const noexcept override;
 public:
-	BinaryHeap(std::string&& whatStr) noexcept : whatStr(std::move(whatStr)) { }
-	BinaryHeap(const std::string& whatStr) noexcept : whatStr(whatStr) { }
-	~BinaryHeap() noexcept = default;
+	BinaryHeapException(std::string&& whatStr) noexcept : whatStr(std::move(whatStr)) { }
+	BinaryHeapException(const std::string& whatStr) noexcept : whatStr(whatStr) { }
+	~BinaryHeapException() noexcept = default;
 };
-inline const char* BinaryHeap::what() const noexcept
+inline const char* BinaryHeapException::what() const noexcept
 {
 	return this->whatStr.c_str();
 };

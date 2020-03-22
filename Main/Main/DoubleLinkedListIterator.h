@@ -55,8 +55,3 @@ public:
 
 	}
 };
-template<typename T>
-ostream& operator << (ostream& os, Node<T>& rhs)
-{
-	return os << rhs.value;
-}
