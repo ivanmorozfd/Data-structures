@@ -48,12 +48,12 @@ private:
 		Node* right_child = ptr->right;
 		ptr->right = right_child->left;
 
-		if (ptr->right != nullptr)
+		if (ptr->right)
 			ptr->right->parent = ptr;
 
 		right_child->parent = ptr->parent;
 
-		if (ptr->parent == nullptr)
+		if (!ptr->parent)
 			m_root = right_child;
 		else if (ptr == ptr->parent->left)
 			ptr->parent->left = right_child;
@@ -68,12 +68,12 @@ private:
 		Node* left_child = ptr->left;
 		ptr->left = left_child->right;
 
-		if (ptr->left != nullptr)
+		if (ptr->left)
 			ptr->left->parent = ptr;
 
 		left_child->parent = ptr->parent;
 
-		if (ptr->parent == nullptr)
+		if (!ptr->parent)
 			m_root = left_child;
 		else if (ptr == ptr->parent->left)
 			ptr->parent->left = left_child;
@@ -160,7 +160,8 @@ private:
 		}
 		return root;
 	}
-	void inorderBST(Node*& ptr) {
+	void inorderBST(Node*& ptr)
+	{
 		if (ptr == nullptr)
 			return;
 
