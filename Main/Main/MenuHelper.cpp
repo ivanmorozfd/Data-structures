@@ -9,6 +9,7 @@
 #include "AvlTree.h"
 #include "BinarySearchTree.h"
 #include "RBTree.h"
+#include <fstream>
 void MenuHelper::createMainMenuInstance()
 {
 	{
@@ -156,19 +157,87 @@ void MenuHelper::createStackMenuInstance()
 			}
 			else
 			{
-				system("cls");
-				std::wcout << "[ Cистема ] Элемент на вершине стека : " << stack->getTop() << std::endl << std::endl;
+				try
+				{
+					system("cls");
+					std::wcout << "[ Cистема ] Элемент на вершине стека : " << stack->getTop() << std::endl << std::endl;
+				}
+				catch (StackException & e)
+				{
+					system("cls");
+					std::wcout << "[ Cистема ] Cтек пуст " << std::endl << std::endl;
+				}
 			}
 			break;
 		case 5:
+			if (!stack)
+			{
+				system("cls");
+				std::wcout << "[ Система ] Стек не создан" << std::endl << std::endl;
+			}
+			else
+			{
+				try
+				{
+					system("cls");
+					stack->pop();
+					std::wcout << "[ Cистема ] Элемент на вершине стека удален " << std::endl << std::endl;
+				}
+				catch (StackException& e)
+				{
+					system("cls");
+					std::wcout << "[ Cистема ] Cтек пуст " << std::endl << std::endl;
+				}
+			}
 			break;
 		case 6:
+		{
+			std::vector<int> initlist;
+			std::wcout << "[ Система ] Введите название файла , из которого нужно прочитать стек" << std::endl << std::endl;
+			std::cout << "Введите ответ: ";
+			std::string fileName;
+			std::cin >> fileName;
+			std::ifstream fin(fileName + ".txt");
+			if (!fin.is_open())
+			{
+				system("cls");
+				std::wcout << "[ Cистема ] Файл с таким названием не существует" << std::endl << std::endl;
+				break;
+			}
+			else
+			{
+				while (!fin.eof())
+				{
+					int a;
+					fin >> a;
+					initlist.push_back(a);
+					
+				}
+			}
+			system("cls");	
+
 			break;
+		}
 		case 7:
 			break;
 		case 8: 
+			stack->clear();
 			break;
 		case 9:
+			if (stack)
+			{
+				delete stack;
+				stack = nullptr;
+				system("cls");
+				std::wcout << "[ Cистема ] Cтек разрушен " << std::endl << std::endl;
+			}
+			else
+			{
+				system("cls");
+				std::wcout << "[ Cистема ] Стек не создан " << std::endl << std::endl;
+			}
+			break;
+		case 10:
 			isActive = false;
 			break;
 		default:
