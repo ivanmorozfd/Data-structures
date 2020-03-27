@@ -10,6 +10,7 @@
 #include "BinarySearchTree.h"
 #include "RBTree.h"
 #include <fstream>
+#include <random>
 void MenuHelper::createMainMenuInstance()
 {
 	{
@@ -93,8 +94,10 @@ void MenuHelper::createStackMenuInstance()
 			<< "[6] Прочитать стек из файла" << std::endl
 			<< "[7] Записать стек в файл" << std::endl
 			<< "[8] Очистить стек" << std::endl
-			<< "[9] Удалить стек" << std::endl
-			<< "[10] Выйти" << std::endl << std::endl;
+			<< "[9] Разрушить стек" << std::endl
+			<< "[10] Заполнить стек случайными числами " << std::endl
+			<< "[11] Вывести содержимое стека" << std::endl
+			<< "[12] Выйти" << std::endl << std::endl;
 		std::cout << "Введите ответ: ";
 		std::cin >> answer;
 		switch (answer)
@@ -141,12 +144,12 @@ void MenuHelper::createStackMenuInstance()
 			else
 			{
 				int answer = -1;
-			    std::wcout<<"[ Система ] Введите элемент , который нужно добавить в стек" << std::endl << std::endl;
+				std::wcout << "[ Система ] Введите элемент , который нужно добавить в стек" << std::endl << std::endl;
 				std::cout << "Введите ответ: ";
 				std::cin >> answer;
 				system("cls");
 				stack->push(answer);
-				std::wcout << "[ Cистема ] Элемент "<<answer<<" успешно добавлен в стек" << std::endl << std::endl;
+				std::wcout << "[ Cистема ] Элемент " << answer << " успешно добавлен в стек" << std::endl << std::endl;
 			}
 			break;
 		case 4:
@@ -183,7 +186,7 @@ void MenuHelper::createStackMenuInstance()
 					stack->pop();
 					std::wcout << "[ Cистема ] Элемент на вершине стека удален " << std::endl << std::endl;
 				}
-				catch (StackException& e)
+				catch (StackException & e)
 				{
 					system("cls");
 					std::wcout << "[ Cистема ] Cтек пуст " << std::endl << std::endl;
@@ -192,9 +195,8 @@ void MenuHelper::createStackMenuInstance()
 			break;
 		case 6:
 		{
-			std::vector<int> initlist;
 			std::wcout << "[ Система ] Введите название файла , из которого нужно прочитать стек" << std::endl << std::endl;
-			std::cout << "Введите ответ: ";
+			std::wcout << "Введите ответ: ";
 			std::string fileName;
 			std::cin >> fileName;
 			std::ifstream fin(fileName + ".txt");
@@ -206,21 +208,60 @@ void MenuHelper::createStackMenuInstance()
 			}
 			else
 			{
+				if (stack)
+				{
+					delete stack;
+					stack = nullptr;
+					stack = new Stack<int>();
+				}
+				else
+					stack = new Stack<int>();
+
 				while (!fin.eof())
 				{
 					int a;
 					fin >> a;
-					initlist.push_back(a);
-					
+					stack->push(a);
+
 				}
 			}
-			system("cls");	
+			system("cls");
 
 			break;
 		}
 		case 7:
+		{
+			if (!stack)
+			{
+				std::wcout << "[ Система ] Cтек не создан " << std::endl << std::endl;
+				break;
+			}
+			std::wcout << "[ Система ] Введите название файла , в который нужно записать стек " << std::endl << std::endl;
+			std::wcout << "Введите ответ: ";
+			std::string fileName;
+			std::cin >> fileName;
+			int result;
+			std::ofstream out(fileName + ".txt", std::ios_base::trunc);
+			if (!out.is_open())
+			{
+				system("cls");
+				std::wcout << "[ Cистема ] Ошибка при открытии потока" << std::endl << std::endl;
+				break;
+			}
+			else
+			{
+				while (!stack->isEmpty())
+				{
+					result = stack->getTop();
+					stack->pop();
+					out << result;
+					out << " ";
+				}
+			}
+			out.close();
 			break;
-		case 8: 
+		}
+		case 8:
 			stack->clear();
 			break;
 		case 9:
@@ -238,6 +279,35 @@ void MenuHelper::createStackMenuInstance()
 			}
 			break;
 		case 10:
+		{
+			std::wcout << "[ Система ] Введите размер стека " << std::endl << std::endl;
+			std::wcout << "Введите ответ: ";
+			int stackSize = 0;
+			std::cin >> stackSize;
+			if (stackSize < 1) 
+			{ 
+				system("cls");
+				std::wcout << "[ Система ] Ошибка ввода.Размер стека должен быть ненулевым значением" << std::endl << std::endl;
+				break;
+			}
+			std::wcout << "[ Система ] Введите верхнее значение диапазона случайных чисел" << std::endl << std::endl;
+			std::wcout << "Введите ответ: ";
+			int upValue;
+			std::cin >> upValue;
+			for (int i = 0; i < stackSize; ++i)
+			{
+				stack->push(std::rand() % upValue);
+			}
+			system("cls");
+			std::wcout<< "[ Система ] Стек упешно заполнен случайными числами" << std::endl << std::endl;
+			break;
+		}
+		case 11:
+		{
+			//todo	
+			break;
+		}
+		case 12:
 			isActive = false;
 			break;
 		default:

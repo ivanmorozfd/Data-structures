@@ -80,7 +80,6 @@ public:
 	}
 	Stack(const Stack& other)
 	{
-
 	}
 	~Stack()
 	{
