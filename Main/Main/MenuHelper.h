@@ -23,5 +23,6 @@ private:
 	void createAvlTreeMenuInstance();
 	void createBstMenuInstance();
 	void createRbTreeMenuInstance();
+	void clearConsole();
 };
 

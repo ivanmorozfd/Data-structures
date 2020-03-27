@@ -44,12 +44,14 @@ public:
 			rightChild = 2 * i + 2; // right child have 2i + 2 position in array
 			largestChild = i; // set the largest child
 			//searchind childs that greater than parent
-			if (leftChild < getSize() && data[leftChild] > data[largestChild])
+			if (leftChild < getSize() 
+				&& data[leftChild] > data[largestChild])
 			{
 				largestChild = leftChild;
 			}
 
-			if (rightChild < getSize() && data[rightChild] > data[largestChild])
+			if (rightChild < getSize() 
+				&& data[rightChild] > data[largestChild])
 			{
 				largestChild = rightChild;
 			}

@@ -137,6 +137,7 @@
     <ClInclude Include="DoubleLinkedList.h" />
     <ClInclude Include="DoubleLinkedListExceptions.h" />
     <ClInclude Include="DoubleLinkedListIterator.h" />
+    <ClInclude Include="MenuConsts.h" />
     <ClInclude Include="MenuHelper.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="QueueException.h" />
