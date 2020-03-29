@@ -108,6 +108,7 @@ void MenuHelper::createStackMenuInstance()
 		switch (answer)
 		{
 		case 1:
+		{
 			if (!stack)
 			{
 				stack = new Stack<int>();
@@ -120,7 +121,9 @@ void MenuHelper::createStackMenuInstance()
 				std::wcout << stackCreateFailure;
 			}
 			break;
+		}
 		case 2:
+		{
 			if (!stack)
 			{
 				clearConsole();
@@ -140,7 +143,9 @@ void MenuHelper::createStackMenuInstance()
 				}
 			}
 			break;
+		}
 		case 3:
+		{
 			if (!stack)
 			{
 				clearConsole();
@@ -157,12 +162,14 @@ void MenuHelper::createStackMenuInstance()
 				clearConsole();
 				stack->push(answer);
 
-				std::wcout << stackPushMessage02 
-					<< answer 
+				std::wcout << stackPushMessage02
+					<< answer
 					<< stackPushMessage03;
 			}
 			break;
+		}
 		case 4:
+		{
 			if (!stack)
 			{
 				clearConsole();
@@ -174,9 +181,9 @@ void MenuHelper::createStackMenuInstance()
 				{
 					clearConsole();
 
-					std::wcout << stackPeekMessage 
-						<< stack->getTop() 
-						<< std::endl 
+					std::wcout << stackPeekMessage
+						<< stack->getTop()
+						<< std::endl
 						<< std::endl;
 				}
 				catch (StackException & e)
@@ -186,7 +193,9 @@ void MenuHelper::createStackMenuInstance()
 				}
 			}
 			break;
+		}
 		case 5:
+		{
 			if (!stack)
 			{
 				clearConsole();
@@ -208,6 +217,7 @@ void MenuHelper::createStackMenuInstance()
 				}
 			}
 			break;
+		}
 		case 6:
 		{
 			std::wcout << stackReadFileMessage;
@@ -282,10 +292,13 @@ void MenuHelper::createStackMenuInstance()
 			break;
 		}
 		case 8:
+		{
 			stack->clear();
 			std::wcout << stackClearSucces;
 			break;
+		}
 		case 9:
+		{
 			if (stack)
 			{
 				delete stack;
@@ -299,6 +312,7 @@ void MenuHelper::createStackMenuInstance()
 				std::wcout << stackNotCreated;
 			}
 			break;
+		}
 		case 10:
 		{
 			std::wcout << stackRandomizeMessage;
@@ -329,8 +343,10 @@ void MenuHelper::createStackMenuInstance()
 			break;
 		}
 		case 12:
+		{
 			isActive = false;
 			break;
+		}
 		default:
 			break;
 		}
@@ -346,25 +362,28 @@ void MenuHelper::createQueueMenuInstance()
 	while (isActive)
 	{
 		int answer = -1;
-		std::wcout << "Выберите действие" << std::endl
-			<< "[1] Создать очередь" << std::endl
-			<< "[2] Проверить очередь на пустоту" << std::endl
-			<< "[3] Добавить элемент очередь" << std::endl
-			<< "[4] Получить элемент в начале очереди" << std::endl
-			<< "[5] Удалить элемент очереди" << std::endl
-			<< "[6] Прочитать очередь из файла" << std::endl
-			<< "[7] Записать очередь в файл" << std::endl
-			<< "[8] Заполнить очередь случайными числами " << std::endl
-			<< "[9] Вывести содержимое очереди" << std::endl
-			<< "[10] Очистить очередь" << std::endl
-			<< "[11] Удалить оередь" << std::endl
-			<< "[12] Выйти" << std::endl << std::endl;
-		std::cout << "Введите ответ: ";
+		std::wcout << queueMenuSelectAction
+			<< queueMenuCreate
+			<< queueMenuEmptyTest
+			<< queueMenuPushItem
+			<< queueMenuPeek
+			<< queueMenuPopItem
+			<< queueMenuReadFromFile
+			<< queueMenuWriteToFile
+			<< queueMenuRandomize
+			<< queueMenuPrint
+			<< queueMenuClear
+			<< queueMenuDestroy
+			<< queueMenuExit;
+
+		std::cout << enterAnswer;
 		std::cin >> answer;
 		switch (answer)
 		{
-		case 1:
-			break;
+			case 1:
+			{
+				break;
+			}
 		case 2:
 			break;
 		case 3:
@@ -401,56 +420,86 @@ void MenuHelper::createDequeMenuInstance()
 	while (isActive)
 	{
 		int answer = -1;
-		std::wcout << "Выберите действие" << std::endl
-			<< "[1] Создать очередь" << std::endl
-			<< "[2] Проверить очередь на пустоту" << std::endl
-			<< "[3] Добавить элемент в начало очереди" << std::endl
-			<< "[4] Добавить элемент в конец очереди" << std::endl
-			<< "[5] Получить элемент в начале очереди" << std::endl
-			<< "[6] Получить элемент в конце очереди" << std::endl
-			<< "[7] Удалить элемент в начале очереди" << std::endl
-			<< "[8] Удалить элемент в конце очереди" << std::endl
-			<< "[9] Прочитать очередь из файла" << std::endl
-			<< "[10] Записать очередь в файл" << std::endl
-			<< "[11] Заполнить очередь случайными числами " << std::endl
-			<< "[12] Вывести содержимое очереди" << std::endl
-			<< "[13] Очистить очередь" << std::endl
-			<< "[14] Удалить оередь" << std::endl
-			<< "[15] Выйти" << std::endl << std::endl;
-		std::cout << "Введите ответ: ";
+		std::wcout << dequeMenuSelectAction
+			<< dequeMenuCreate
+			<< dequeMenuIsEmpty
+			<< dequeMenuPushBack
+			<< dequeMenuPushFront
+			<< dequeMenuPeekBack
+			<< dequeMenuPeekFront
+			<< dequeMenuPopBack
+			<< dequeMenuPopFront
+			<< dequeMenuReadFromFile
+			<< dequeMenuWriteToFile
+			<< dequeMenuRandomize
+			<< dequeMenuPrint
+			<< dequeMenuClear
+			<< dequeMenuDestroy
+			<< dequeMenuExit;
+		std::cout << enterAnswer;
 		std::cin >> answer;
 		switch (answer)
 		{
 		case 1:
+		{
 			break;
+		}
 		case 2:
+		{
 			break;
+		}
 		case 3:
+		{
 			break;
+		}
 		case 4:
+		{
 			break;
+		}
 		case 5:
+		{
 			break;
+		}
 		case 6:
+		{
 			break;
+		}
 		case 7:
+		{
 			break;
+		}
 		case 8:
+		{
 			break;
+		}
 		case 9:
+		{
 			break;
+		}
 		case 10:
+		{
 			break;
+		}
 		case 11:
+		{
 			break;
+		}
 		case 12:
+		{
 			break;
+		}
 		case 13:
+		{
 			break;
+		}
 		case 14:
+		{
 			break;
+		}
 		case 15:
+		{
 			break;
+		}
 		default:
 			break;
 		}
@@ -465,22 +514,21 @@ void MenuHelper::createListMenuInstance()
 	while (isActive)
 	{
 		int answer = -1;
-		std::wcout << "Выберите действие" << std::endl
-			<< "[1] Создать список" << std::endl
-			<< "[2] Проверить список на пустоту" << std::endl
-			<< "[3] Добавить элемент в список" << std::endl
-			<< "[4] Получить элемент в начале списка" << std::endl
-			<< "[5] Получить элемент в конце списка" << std::endl
-			<< "[6] Удалить элемент в начале списка" << std::endl
-			<< "[7] Удалить элемент в конце списка" << std::endl
-			<< "[8] Прочитать список из файла" << std::endl
-			<< "[9] Записать список в файл" << std::endl
-			<< "[10] Заполнить список случайными числами " << std::endl
-			<< "[11] Вывести содержимое списка" << std::endl
-			<< "[12] Очистить список" << std::endl
-			<< "[13] Удалить список" << std::endl
-			<< "[14] Выйти" << std::endl << std::endl;
-		std::cout << "Введите ответ: ";
+		std::wcout << listMenuSelectAction
+			<< listMenuSelectAction
+			<< listMenuCreate
+			<< listMenuIsEmpty
+			<< listMenuPushItem
+			<< listMenuPeek
+			<< listMenuPopItem
+			<< listMenuReadFromFile
+			<< listMenuWriteToFile
+			<< listMenuRandomize
+			<< listMenuPrint
+			<< listMenuClear
+			<< listMenuDestroy
+			<< listMenuExit;
+		std::cout << enterAnswer;
 		std::cin >> answer;
 		switch (answer)
 		{
@@ -526,56 +574,86 @@ void MenuHelper::createDlistMenuInstance()
 	while (isActive)
 	{
 		int answer = -1;
-		std::wcout << "Выберите действие" << std::endl
-			<< "[1] Создать список" << std::endl
-			<< "[2] Проверить список на пустоту" << std::endl
-			<< "[3] Добавить элемент в начало списка" << std::endl
-			<< "[4] Добавить элемент в конец списка" << std::endl
-			<< "[5] Получить элемент в начале списка" << std::endl
-			<< "[6] Получить элемент в конце списка" << std::endl
-			<< "[7] Удалить элемент в начале списка" << std::endl
-			<< "[8] Удалить элемент в конце списка" << std::endl
-			<< "[9] Прочитать список из файла" << std::endl
-			<< "[10] Записать список в файл" << std::endl
-			<< "[11] Заполнить список случайными числами " << std::endl
-			<< "[12] Вывести содержимое списка" << std::endl
-			<< "[13] Очистить список" << std::endl
-			<< "[14] Удалить список" << std::endl
-			<< "[15] Выйти" << std::endl << std::endl;
-		std::cout << "Введите ответ: ";
+		std::wcout << dlistMenuSelectAction
+			<< dlistMenuCreate
+			<< dlistMenuIsEmpty
+			<< dlistMenuPushBack
+			<< dlistMenuPushFront
+			<< dlistMenuPeekFront
+			<< dlistMenuPeekBack
+			<< dlistMenuPopFront
+			<< dlistMenuPopBack
+			<< dlistMenuReadFromFile
+			<< dlistMenuWriteToFile
+			<< dlistMenuRandomize
+			<< dlistMenuPrint
+			<< dlistMenuClear
+			<< dlistMenuDestroy
+			<< dlistMenuExit;
+		std::cout << enterAnswer;
 		std::cin >> answer;
 		switch (answer)
 		{
 		case 1:
+		{
 			break;
+		}
 		case 2:
+		{
 			break;
+		}
 		case 3:
+		{
 			break;
+		}
 		case 4:
+		{
 			break;
+		}
 		case 5:
+		{
 			break;
+		}
 		case 6:
+		{
 			break;
+		}
 		case 7:
+		{
 			break;
+		}
 		case 8:
+		{
 			break;
+		}
 		case 9:
+		{
 			break;
+		}
 		case 10:
+		{
 			break;
+		}
 		case 11:
+		{
 			break;
+		}
 		case 12:
+		{
 			break;
+		}
 		case 13:
+		{
 			break;
+		}
 		case 14:
+		{
 			break;
+		}
 		case 15:
+		{
 			break;
+		}
 		default:
 			break;
 		}
@@ -590,47 +668,71 @@ void MenuHelper::createBheapMenuInstance()
 	while (isActive)
 	{
 		int answer = -1;
-		std::wcout << "Выберите действие" << std::endl
-			<< "[1] Создать кучу" << std::endl
-			<< "[2] Проверить кучу на пустоту" << std::endl
-			<< "[3] Добавить элемент в кучу" << std::endl
-			<< "[4] Получить элемент максимальный элемент в куче" << std::endl
-			<< "[5] Удалить элемент из кучи" << std::endl
-			<< "[6] Прочитать кучу из файла" << std::endl
-			<< "[7] Записать кучу в файл" << std::endl
-			<< "[8] Заполнить кучу случайными числами " << std::endl
-			<< "[9] Вывести содержимое кучи" << std::endl
-			<< "[10] Очистить кучу" << std::endl
-			<< "[11] Удалить кучу" << std::endl
-			<< "[12] Выйти" << std::endl << std::endl;
-		std::cout << "Введите ответ: ";
+		std::wcout << bheapMenuSelectAction
+			<< bheapMenuCreate
+			<< bheapMenuIsEmpty
+			<< bheapMenuAddItem
+			<< bheapMenuMax
+			<< bheapMenuRemove
+			<< bheapMenuReadFromFile
+			<< bheapMenuWriteToFile
+			<< bheapMenuRandomize
+			<< bheapMenuPrint
+			<< bheapMenuClear
+			<< bheapMenuDestroy
+			<< bheapMenuExit;
+		std::cout << enterAnswer;
 		std::cin >> answer;
 		switch (answer)
 		{
 		case 1:
+		{
 			break;
+		}
 		case 2:
+		{
 			break;
+		}
 		case 3:
+		{
 			break;
+		}
 		case 4:
+		{
 			break;
+		}
 		case 5:
+		{
 			break;
+		}
 		case 6:
+		{
 			break;
+		}
 		case 7:
+		{
 			break;
+		}
 		case 8:
+		{
 			break;
+		}
 		case 9:
+		{
 			break;
+		}
 		case 10:
+		{
 			break;
+		}
 		case 11:
+		{
 			break;
+		}
 		case 12:
+		{
 			break;
+		}
 		default:
 			break;
 		}
@@ -645,47 +747,71 @@ void MenuHelper::createMatrixMenuInstance()
 	while (isActive)
 	{
 		int answer = -1;
-		std::wcout << "Выберите действие" << std::endl
-			<< "[1] Создать разреженную матрицу" << std::endl
-			<< "[2] Проверить разреженную матрицу на пустоту" << std::endl
-			<< "[3] Добавить элемент в разреженную матрицу" << std::endl
-			<< "[4] Получить элемент из разреженной матрицы" << std::endl
-			<< "[5] Удалить элемент из разреженной матрицыу" << std::endl
-			<< "[6] Прочитать разреженную матрицу из файла" << std::endl
-			<< "[7] Записать разреженную матрицу в файл" << std::endl
-			<< "[8] Заполнить разреженную матрицу случайными числами " << std::endl
-			<< "[9] Вывести содержимое разреженную матрицы" << std::endl
-			<< "[10] Очистить разреженную матрицу" << std::endl
-			<< "[11] Удалить разреженную матрицу" << std::endl
-			<< "[12] Выйти" << std::endl << std::endl;
-		std::cout << "Введите ответ: ";
+		std::wcout << sMatrixMenuSelectAction
+			<< sMatrixMenuCreate
+			<< sMatrixMenuIsEmpty
+			<< sMatrixMenuAddItem
+			<< sMatrixMenuGetByPos
+			<< sMatrixMenuRemoveByPos
+			<< sMatrixMenuReadFromFile
+			<< sMatrixMenuWriteToFile
+			<< sMatrixMenuRandomize
+			<< sMatrixMenuPrint
+			<< sMatrixMenuClear
+			<< sMatrixMenuDestroy
+			<< sMatrixMenuExit;
+		std::cout << enterAnswer;
 		std::cin >> answer;
 		switch (answer)
 		{
 		case 1:
+		{
 			break;
+		}
 		case 2:
+		{
 			break;
+		}
 		case 3:
+		{
 			break;
+		}
 		case 4:
+		{
 			break;
+		}
 		case 5:
+		{
 			break;
+		}
 		case 6:
+		{
 			break;
+		}
 		case 7:
+		{
 			break;
+		}
 		case 8:
+		{
 			break;
+		}
 		case 9:
+		{
 			break;
+		}
 		case 10:
+		{
 			break;
+		}
 		case 11:
+		{
 			break;
+		}
 		case 12:
+		{
 			break;
+		}
 		default:
 			break;
 		}
@@ -700,47 +826,71 @@ void MenuHelper::createAvlTreeMenuInstance()
 	while (isActive)
 	{
 		int answer = -1;
-		std::wcout << "Выберите действие" << std::endl
-			<< "[1] Создать АВЛ дерево" << std::endl
-			<< "[2] Проверить АВЛ дерево на пустоту" << std::endl
-			<< "[3] Добавить элемент в АВЛ дерево" << std::endl
-			<< "[4] Проверить , существует ли элемент в дереве" << std::endl
-			<< "[5] Удалить элемент из АВЛ дерева" << std::endl
-			<< "[6] Прочитать АВЛ дерево из файла" << std::endl
-			<< "[7] Записать АВЛ дерево в файл" << std::endl
-			<< "[8] Заполнить АВЛ дерево случайными числами " << std::endl
-			<< "[9] Вывести содержимое АВЛ дерева" << std::endl
-			<< "[10] Очистить разреженную матрицу" << std::endl
-			<< "[11] Удалить разреженную матрицу" << std::endl
-			<< "[12] Выйти" << std::endl << std::endl;
-		std::cout << "Введите ответ: ";
+		std::wcout << avlMenuSelectAction
+			<< avlMenuCreate
+			<< avlMenuIsEmpty
+			<< avlMenuAddItem
+			<< avlMenuFind
+			<< avlMenuRemove
+			<< avlMenuReadFromFile
+			<< avlMenuWriteToFile
+			<< avlMenuRandomize
+			<< avlMenuPrint
+			<< avlMenuClear
+			<< avlMenuDestroy
+			<< avlMenuExit;
+		std::cout << enterAnswer;
 		std::cin >> answer;
 		switch (answer)
 		{
 		case 1:
+		{
 			break;
+		}
 		case 2:
+		{
 			break;
+		}
 		case 3:
+		{
 			break;
+		}
 		case 4:
+		{
 			break;
+		}
 		case 5:
+		{
 			break;
+		}
 		case 6:
+		{
 			break;
+		}
 		case 7:
+		{
 			break;
+		}
 		case 8:
+		{
 			break;
+		}
 		case 9:
+		{
 			break;
+		}
 		case 10:
+		{
 			break;
+		}
 		case 11:
+		{
 			break;
+		}
 		case 12:
+		{
 			break;
+		}
 		default:
 			break;
 		}
@@ -773,29 +923,53 @@ void MenuHelper::createBstMenuInstance()
 		switch (answer)
 		{
 		case 1:
+		{
 			break;
+		}
 		case 2:
+		{
 			break;
+		}
 		case 3:
+		{
 			break;
+		}
 		case 4:
+		{
 			break;
+		}
 		case 5:
+		{
 			break;
+		}
 		case 6:
+		{
 			break;
+		}
 		case 7:
+		{
 			break;
+		}
 		case 8:
+		{
 			break;
+		}
 		case 9:
+		{
 			break;
+		}
 		case 10:
+		{
 			break;
+		}
 		case 11:
+		{
 			break;
+		}
 		case 12:
+		{
 			break;
+		}
 		default:
 			break;
 		}
@@ -828,29 +1002,53 @@ void MenuHelper::createRbTreeMenuInstance()
 		switch (answer)
 		{
 		case 1:
+		{
 			break;
+		}
 		case 2:
+		{
 			break;
+		}
 		case 3:
+		{
 			break;
+		}
 		case 4:
+		{
 			break;
+		}
 		case 5:
+		{
 			break;
+		}
 		case 6:
+		{
 			break;
+		}
 		case 7:
+		{
 			break;
+		}
 		case 8:
+		{
 			break;
+		}
 		case 9:
+		{
 			break;
+		}
 		case 10:
+		{
 			break;
+		}
 		case 11:
+		{
 			break;
+		}
 		case 12:
+		{
 			break;
+		}
 		default:
 			break;
 		}
@@ -859,5 +1057,5 @@ void MenuHelper::createRbTreeMenuInstance()
 
 void MenuHelper::clearConsole()
 {
-	clearConsole();
+	system("cls");
 }
