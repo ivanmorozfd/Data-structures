@@ -382,6 +382,13 @@ void MenuHelper::createQueueMenuInstance()
 		{
 			case 1:
 			{
+				if (!queue) {
+					queue = new Queue<int>();
+					clearConsole();
+				}
+				else {
+
+				}
 				break;
 			}
 		case 2:
