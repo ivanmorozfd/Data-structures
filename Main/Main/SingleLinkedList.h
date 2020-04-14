@@ -3,11 +3,9 @@
 #include "SingleLinkedListException.h"
 using std::initializer_list;
 template<typename _T>
-class SingleLinkedList
-{
+class SingleLinkedList {
 	template<typename _T>
-	class Node
-	{
+	class Node {
 	public:
 		_T data;
 		Node* next;
@@ -20,46 +18,37 @@ private:
 	Node<_T>* pBack;
 	unsigned count;
 public:
-	SingleLinkedList<_T>::iterator begin()
-	{
+	SingleLinkedList<_T>::iterator begin() {
 		return iterator(pFront);
 	}
-	SingleLinkedList<_T>::iterator end()
-	{
+	SingleLinkedList<_T>::iterator end() {
 		return iterator(pBack->next);
 	}
-	SingleLinkedList<_T>::const_iterator begin() const
-	{
+	SingleLinkedList<_T>::const_iterator begin() const {
 		return const_iterator(begin());
 	}
-	SingleLinkedList<_T>::const_iterator end() const
-	{
+	SingleLinkedList<_T>::const_iterator end() const {
 		return const_iterator(end());
 	}
 public:
-	unsigned count() const 
-	{ 
+	unsigned count() const { 
 		return this->count;
 	}
-	_T front()
-	{
+	_T front() {
 		if (!isEmpty())
 			return pFront->data;
 		else
 			throw SingleLinkedListException("List is Empty");
 	}
-	_T back()
-	{
+	_T back() {
 		if (!isEmpty())
 			return pBack->data;
 		else
 			throw SingleLinkedListException("List is Empty");
 	}
 public:
-	void pop_front()
-	{
-		if (!isEmpty())
-		{
+	void pop_front() {
+		if (!isEmpty()) {
 			Node<_T>* temp = pFront;
 			pFront = pFront->next;
 			delete temp;
@@ -67,10 +56,8 @@ public:
 		else
 			throw SingleLinkedListException("List is Empty");
 	}
-	void pop_back()
-	{
-		if (!isEmpty())
-		{
+	void pop_back() {
+		if (!isEmpty()) {
 			Node<_T>* temp = pBack;
 			pBack = pBack->prev;
 			delete temp;
@@ -101,18 +88,14 @@ public:
 			pFront = node;
 		}
 	}
-	bool isEmpty() 
-	{
+	bool isEmpty() const {
 		return pFront == pBack;
 	}
 public:
 	SingleLinkedList() :
 		count(0),
 		pBack(nullptr),
-		pFront(nullptr) 
-	{ 
-		
-	}
+		pFront(nullptr) { }
 	SingleLinkedList(const std::initializer_list<_T>& data)
 	{
 		for (auto i : data)

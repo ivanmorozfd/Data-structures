@@ -4,12 +4,10 @@
 using std::string;
 
 template<typename _T>
-class Stack
-{
+class Stack {
 private:
 	template<typename _T>
-	class Node
-	{
+	class Node {
 	public:
 		_T data;
 		Node* prev;
@@ -18,38 +16,32 @@ private:
 	unsigned count;	//number of elements in the stack
 public:
 	//returns the stack size
-	unsigned getSize() const 
-	{ 
+	unsigned getSize() const { 
 		return this->count;
 	}
 	//returns the value at the top of the stack
-	_T getTop() const 
-	{
+	_T getTop() const {
 		if (!isEmpty())
 			return m_top->data;
 		else
 			throw StackException("Stack is empty");
 	}
 	//checking the stack for empty space
-	bool isEmpty() const 
-	{
+	bool isEmpty() const {
 		return !m_top;
 	}
 	//add element to stack
-	void push(const _T& item)
-	{
+	void push(const _T& item) {
 		//create new stack node
 		Node<_T>* tmp = new Node<_T>();
 		tmp->data = item;
 		tmp->prev = m_top;
 		//set new top of the stack
 		m_top = tmp;
-
 		count++;
 	}
 	//remove element stack
-	void pop() 
-	{
+	void pop() {
 		if (!isEmpty()) 
 		{
 			Node<_T>* tmp = m_top;
@@ -62,8 +54,7 @@ public:
 		
 	}
 	//clear stack
-	void clear()
-	{
+	void clear() {
 		for (;!isEmpty();)
 			this->pop();
 	}
@@ -73,16 +64,12 @@ public:
 		count(0) { }
 	Stack(const std::initializer_list<_T>& data): 
 		m_top(nullptr),
-		count(0)
-	{
+		count(0) {
 		for (auto i : data) 
 			this->push(i);
 	}
-	Stack(const Stack& other)
-	{
-	}
-	~Stack()
-	{
+	Stack(const Stack& other) { }
+	~Stack() {
 		this->clear();
 	}
 };

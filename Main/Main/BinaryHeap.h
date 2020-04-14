@@ -10,13 +10,11 @@ private:
 	vector<_T> data;//contains values
 public:
 	//returns size of the heap
-	int getSize() const
-	{
+	int getSize() const {
 		return data.size(); 
 	}
 	//add item to heap
-	void addItem(const _T& item)
-	{
+	void addItem(const _T& item) {
 		//push item to the value vector
 		data.push_back(item);
 		//get counter and leaf parent
@@ -24,8 +22,7 @@ public:
 		int parent = (i - 1) / 2;
 		//the heap property may be violated
 		//while its violated we swap element with parent
-		while (i > 0 && data[parent] < data[i])	
-		{
+		while (i > 0 && data[parent] < data[i])	{
 			std::swap(data[i],data[parent]);
 			i = parent;
 			parent = (i - 1) / 2;
@@ -45,54 +42,38 @@ public:
 			largestChild = i; // set the largest child
 			//searchind childs that greater than parent
 			if (leftChild < getSize() 
-				&& data[leftChild] > data[largestChild])
-			{
+				&& data[leftChild] > data[largestChild]) {
 				largestChild = leftChild;
 			}
 
 			if (rightChild < getSize() 
-				&& data[rightChild] > data[largestChild])
-			{
+				&& data[rightChild] > data[largestChild]) {
 				largestChild = rightChild;
 			}
 
-			if (largestChild == i)
-			{
+			if (largestChild == i) 
 				break;
-			}
+	
 			std::swap(data[largestChild],data[i]);
 			i = largestChild;
 		}
 	}
 	//get the max element of the heap and recover general purpose of the heap
-	_T getmax()
-	{
-		_T item;
-		item = data[0];
+	_T getmax() {
+		_T item = data.at(0);
 		data[0] = data[getSize() - 1];
 		heapify(0);
 		return item;
 	}
-	void clear() 
-	{
+	void clear()  {
 		this->data.clear();	
 	}
 public:
 	BinaryHeap(): 
-	data()
-	{
-		
-	}
-	BinaryHeap(const BinaryHeap<_T>& other)
-	{
-		
-	}
-	BinaryHeap(const initializer_list<_T>& data)
-	{
-		
-	}
-	~BinaryHeap()
-	{
+	data() {}
+	BinaryHeap(const BinaryHeap<_T>& other) { }
+	BinaryHeap(const initializer_list<_T>& data) { }
+	~BinaryHeap() {
 		this->clear();	
 	}
 };

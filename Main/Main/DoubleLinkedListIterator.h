@@ -15,43 +15,31 @@ class DoubleLinkedListIterator : iterator<std::input_iterator_tag, Node<T>> {
 private:
 	Node<T>* p;
 public:
-	bool operator!=(DoubleLinkedListIterator const& other) const
-	{
+	bool operator!=(DoubleLinkedListIterator const& other) const {
 		return p != other.p;
 	}
-	bool operator==(DoubleLinkedListIterator const& other) const //BOOST_FOREACH
-	{
+	bool operator==(DoubleLinkedListIterator const& other) const {
 		return p == other.p;
 	}
-	typename DoubleLinkedListIterator::reference operator*() const
-	{
+	typename DoubleLinkedListIterator::reference operator*() const {
 		return *p;
 	}
-	DoubleLinkedListIterator& operator++()
-	{
+	DoubleLinkedListIterator& operator++() {
 		p = p->next;
 		return *this;
 	}
-	DoubleLinkedListIterator& operator--()
-	{
+	DoubleLinkedListIterator& operator--() {
 		p = p->prev	;
 		return *this;
 	}
-	DoubleLinkedListIterator& operator++(int)
-	{
+	DoubleLinkedListIterator& operator++(int) {
 		p = p->next;
 		return *this;
 	}
 public:
 	DoubleLinkedListIterator(Node<T>* p) :
-		p(p)
-	{
-
-	}
+		p(p) { }
 public:
 	DoubleLinkedListIterator(const DoubleLinkedListIterator& it) :
-		p(it.p)
-	{
-
-	}
+		p(it.p) { }
 };

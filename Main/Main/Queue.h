@@ -2,74 +2,61 @@
 #include "QueueException.h"
 
 template<typename _T>
-class Queue 
-{
+class Queue {
 private:
 	template<typename _T>
-	class Node
-	{
+	class Node {
 	public:
 		_T data;
 		Node* next;
-		Node() :
-			data(_T()),
+		Node(const _T& data) :
+			data(data),
 			next(nullptr) { }
 	};
 private:
 	Node<_T>* pFront;
 	Node<_T>* pBack;
 	unsigned count;
-	unsigned getSize() const 
-	{ 
+	unsigned getSize() const { 
 		return this->count; 
 	}
 public:
-	void pop() 
-	{
-		if (!isEmpty())
-		{
-			Node<_T>* temp = pBack;
-			this->pBack = this->pBack->next;
+	void pop() {
+		if (!isEmpty()) {
+			Node<_T>* temp = pFront;
+
+			this->pFront = this->pFront->next;
 			delete temp;
 		}
 		else
 			throw QueueException("Queue is Empty");
 	}
-	void push(const _T& item)
-	{
+	void push(const _T& item) {
 		this->count++;
 
-	    Node<_T>* node = new Node<_T>;
-	    node->data = item;
+	    Node<_T>* node = new Node<_T>(item);
 
 		if (!pBack)
-		{
 			this->pFront = this->pBack = node;
-		}
-		else
-		{
-			this->pFront->next = node;
-			this->pFront = node;
+		else {
+			this->pBack->next = node;
+			this->pBack = node;
 		}
 	}
-	bool isEmpty()
-	{
+	bool isEmpty() const {
 		return this->pFront == this->pBack;
 	}
-	void clear()
-	{
+	void clear() {
 		for (;isEmpty();)
 			this->pop();
 	}
-	_T front()
-	{
+	_T front() {
 		if (!isEmpty())
 			return this->pFront->data;
 		else
 			throw QueueException("Queue is Empty");
 	}
-	_T back()
-	{
+	_T back() {
 		if (!isEmpty())
 			return this->pBack->data;
 		else
@@ -79,17 +66,14 @@ public:
 	Queue():
 		count(0),
 		pBack(nullptr),
-		pFront(nullptr) 
-	{ 
+		pFront(nullptr) { 
 		this->pBack = this->pFront;
 	}
-	Queue(const std::initializer_list<_T>& data)
-	{ 
+	Queue(const std::initializer_list<_T>& data) { 
 		for (auto i : data)
 			this->push(i);
 	}
-	~Queue() 
-	{
+	~Queue() {
 		this->clear();
 	}
 };
