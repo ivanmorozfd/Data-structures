@@ -385,33 +385,211 @@ void MenuHelper::createQueueMenuInstance()
 				if (!queue) {
 					queue = new Queue<int>();
 					clearConsole();
+					std::cout << queueCreateSuccess;
 				}
 				else {
-
+					clearConsole();
+					std::cout << queueCreateFailure;
 				}
 				break;
 			}
-		case 2:
-			break;
-		case 3:
-			break;
-		case 4:
-			break;
-		case 5:
-			break;
-		case 6:
-			break;
-		case 7:
-			break;
-		case 8:
-			break;
+			case 2: {
+				if (!queue) {
+					clearConsole();
+					std::cout << queueNotCreated;
+				}
+				else {
+					if (queue->isEmpty()) {
+						clearConsole();
+						std::cout << queueIsEmpty;
+					}
+					else {
+						clearConsole();
+						std::cout << queueIsNotEmpty;
+					}
+				}
+				break;
+			}
+			case 3: {
+				if (!queue) {
+					clearConsole();
+					std::cout << queueNotCreated;
+				}
+				else {
+					int answer = -1;
+
+					std::cout << queuePushMessage01;
+					std::wcout << enterAnswer;
+					std::cin >> answer;
+
+					clearConsole();
+					queue->push(answer);
+
+					std::wcout << queuePushMessage02
+						<< answer
+						<< queuePushMessage03;
+
+				}
+				break;
+			}	
+			case 4: {
+				if (!queue) {
+					clearConsole();
+					std::cout << queueNotCreated;
+				}
+				else {
+					if (queue->isEmpty()) {
+						clearConsole();
+						std::cout << queueIsEmpty;
+					}
+					else {
+						clearConsole();
+						std::cout << queuePeekMessage
+							<< queue->back();
+					}
+				}
+				break;
+			}
+			case 5: {
+				if (!queue) {
+					clearConsole();
+					std::cout << queueNotCreated;
+				}
+				else {
+					clearConsole();
+					try {
+						queue->pop();
+					}
+					catch (QueueException & e) {
+
+						std::cout << queueIsEmpty;
+					}
+				}
+				break;
+			}
+			case 6:
+			{
+				std::wcout << queueReadFileMessage;
+				std::wcout << enterAnswer;
+				std::string fileName;
+				std::cin >> fileName;
+				std::ifstream fin(fileName + ".txt");
+				if (!fin.is_open())
+				{
+					clearConsole();
+					std::wcout << queueReadFileErrMessage;
+					break;
+				}
+				else
+				{
+					if (queue)
+					{
+						delete queue;
+						queue = nullptr;
+						queue = new Queue<int>();
+					}
+					else
+						queue = new Queue<int>();
+
+					while (!fin.eof())
+					{
+						int a;
+						fin >> a;
+						queue->push(a);
+
+					}
+				}
+				clearConsole();
+
+				std::wcout << queueReadFileSuccessMessage;
+				break;
+			}
+			case 7:
+			{
+				if (!queue)
+				{
+					std::wcout << queueNotCreated;
+					break;
+				}
+				std::wcout << queueWriteFileMessage;
+				std::wcout << enterAnswer;
+
+				std::string fileName;
+				std::cin >> fileName;
+
+				int result;
+				std::ofstream out(fileName + ".txt", std::ios_base::trunc);
+				if (!out.is_open())
+				{
+					clearConsole();
+					std::wcout << queueWriteFileErrMessage;
+					break;
+				}
+				else
+				{
+					while (!queue->isEmpty())
+					{
+						result = queue->front();
+						queue->pop();
+						out << result;
+						out << " ";
+					}
+				}
+				out.close();
+
+				std::wcout << queueWriteFileSuccess;
+				break;
+			}
+			case 8: {
+				std::wcout << queueRandomizeMessage;
+				std::wcout << enterAnswer;
+				int queueSize = 0;
+				std::cin >> queueSize;
+				if (queueSize < 1)
+				{
+					clearConsole();
+					std::wcout << queueRandomizeErrorMessage;
+					break;
+				}
+				std::wcout << queueRandomizeUpRangeMessge;
+				std::wcout << enterAnswer;
+				int upValue;
+				std::cin >> upValue;
+				for (int i = 0; i < queueSize; ++i)
+				{
+					queue->push(std::rand() % upValue);
+				}
+				clearConsole();
+				std::wcout << queueRandomizeSuccess;
+				break;
+			}
 		case 9:
 			break;
-		case 10:
+		case 10: {
+			if (!queue) {
+				clearConsole();
+				std::cout << queueNotCreated;
+			}
+			else {
+				clearConsole();
+				queue->clear();
+			}
 			break;
-		case 11:
+		}
+		case 11: {
+			if (queue) {
+				clearConsole();
+				std::cout << queueDestroyedMessage;
+				delete queue;
+			}
+			else {
+				clearConsole();
+				std::cout << queueNotCreated;
+			}
 			break;
+		}
 		case 12:
+			isActive = false;
 			break;
 		default:
 			break;	
@@ -912,26 +1090,26 @@ void MenuHelper::createBstMenuInstance()
 	while (isActive)
 	{
 		int answer = -1;
-		std::wcout << "Выберите действие" << std::endl
-			<< "[1] Создать бинарное дерево поиска" << std::endl
-			<< "[2] Проверить бинарное дерево поиска на пустоту" << std::endl
-			<< "[3] Добавить элемент в бинарное дерево поиска" << std::endl
-			<< "[4] Проверить , существует ли элемент в бинарном дереве поиска" << std::endl
-			<< "[5] Удалить элемент из бинарного дерева поиска" << std::endl
-			<< "[6] Прочитать бинарное дерево поиска из файла" << std::endl
-			<< "[7] Записать бинарное дерево поиска в файл" << std::endl
-			<< "[8] Заполнить бинарное дерево поиска случайными числами " << std::endl
-			<< "[9] Вывести содержимое бинарного дерева поиска" << std::endl
-			<< "[10] Очистить бинарное дерево поиска" << std::endl
-			<< "[11] Удалить бинарное дерево поиска" << std::endl
-			<< "[12] Выйти" << std::endl << std::endl;
-		std::cout << "Введите ответ: ";
+		std::wcout << bstMenuSelectAction
+			<< bstMenuCreate
+			<< bstMenuIsEmpty
+			<< bstMenuAddItem
+			<< bstMenuFind
+			<< bstMenuRemove
+			<< bstMenuReadFromFile
+			<< bstMenuWriteToFile
+			<< bstMenuRandomize
+			<< bstMenuPrint
+			<< bstMenuClear
+			<< bstMenuDestroy
+			<< bstMenuExit;
+		std::cout << enterAnswer;
 		std::cin >> answer;
 		switch (answer)
 		{
 		case 1:
 		{
-			break;
+			break;	
 		}
 		case 2:
 		{
@@ -975,6 +1153,7 @@ void MenuHelper::createBstMenuInstance()
 		}
 		case 12:
 		{
+			isActive = false;
 			break;
 		}
 		default:
@@ -991,25 +1170,26 @@ void MenuHelper::createRbTreeMenuInstance()
 	while (isActive)
 	{
 		int answer = -1;
-		std::wcout << "Выберите действие" << std::endl
-			<< "[1] Создать красно-черное дерево поиска" << std::endl
-			<< "[2] Проверить красно-черное дерево поиска на пустоту" << std::endl
-			<< "[3] Добавить элемент в красно-черное дерево поиска" << std::endl
-			<< "[4] Проверить , существует ли элемент в красно-черном дереве поиска" << std::endl
-			<< "[5] Удалить элемент из красно-черного дерева поиска" << std::endl
-			<< "[6] Прочитать красно-черное дерево поиска из файла" << std::endl
-			<< "[7] Записать красно-черное дерево поиска в файл" << std::endl
-			<< "[8] Заполнить красно-черное дерево поиска случайными числами " << std::endl
-			<< "[9] Вывести содержимое красно-черного дерева поиска" << std::endl
-			<< "[10] Очистить красно-черное дерево поиска" << std::endl
-			<< "[11] Удалить красно-черное дерево поиска" << std::endl
-			<< "[12] Выйти" << std::endl << std::endl;
-		std::cout << "Введите ответ: ";
+		std::wcout << rbTreeMenuSelectAction
+			<< rbTreeMenuCreate
+			<< rbTreeMenuIsEmpty
+			<< rbTreeMenuAddItem
+			<< rbTreeMenuFind
+			<< rbTreeMenuRemove
+			<< rbTreeMenuReadFromFile
+			<< rbTreeMenuWriteToFile
+			<< rbTreeMenuRandomize
+			<< rbTreeMenuPrint
+			<< rbTreeMenuClear
+			<< rbTreeMenuDestroy
+			<< rbTreeMenuExit;
+		std::cout << enterAnswer;
 		std::cin >> answer;
 		switch (answer)
 		{
 		case 1:
 		{
+			
 			break;
 		}
 		case 2:

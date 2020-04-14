@@ -13,18 +13,18 @@ class AvlTree
 		Node* right;
 	};
 	Node* m_top;
-	int height(Node*& node)
+	int height(Node* node)
 	{
 		return node
 			?node->height
 			:0;
 	}
-	int balanceFactor(Node*& node)
+	int balanceFactor(Node* node)
 	{
 		return height(node->right) 
 			- height(node->left);
 	}
-	void fixHeight(Node*& node)
+	void fixHeight(Node* node)
 	{
 		int heightLeft = height(node->left);
 		int heightRight = height(node->right);
@@ -32,7 +32,7 @@ class AvlTree
 				? heightLeft 
 				: heightRight) ;
 	}
-	Node* rotateRight(Node*& node) // right turn relative to the vertex node
+	Node* rotateRight(Node*	 node) // right turn relative to the vertex node
 	{
 		Node* q = node->left;
 		node->left = q->right;
@@ -67,7 +67,7 @@ class AvlTree
 		}
 		return node;
 	}
-	Node* insert_(Node*& node,
+	Node* insert_(Node* node,
 		      const _T& key) // insert to the tree with the root in node
 	{
 		if (!node)
@@ -82,13 +82,13 @@ class AvlTree
 			node->right = insert_(node->right, key);
 		return balance(node);
 	}
-	Node* findMin(Node*& node) // returns minimal element in tre
+	Node* findMin(Node* node) // returns minimal element in tre
 	{
 		return node->left 
 			? findMin(node->left) 
 			: node;
 	}
-	Node* removeMin(Node*& node) // remove min element in subtree with root in node
+	Node* removeMin(Node* node) // remove min element in subtree with root in node
 	{
 		if (node->left == 0)
 			return node->right;
@@ -96,7 +96,7 @@ class AvlTree
 		return balance(node);
 	}
 
-	Node* remove(Node*& node,
+	Node* remove(Node* node,
 		     const _T& key) // remove node from tree
 	{
 		if (!node) return 0;
@@ -117,7 +117,7 @@ class AvlTree
 		}
 		return balance(node);
 	}
-	void inOrder(Node*& t) // print tree in order
+	void inOrder(Node* t) // print tree in order
 	{
 		if (!t)
 			return;
@@ -138,7 +138,7 @@ public:
 	AvlTree() :
 	m_top(nullptr)
 	{
-
+	
 	}
 	AvlTree(const std::initializer_list<_T>& data)
 	{

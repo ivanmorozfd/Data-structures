@@ -23,20 +23,6 @@ private:
 	{ 
 		return this->count; 
 	}
-	_T front()
-	{
-		if (!isEmpty())
-			return this->pFront->data;
-		else
-			throw QueueException("Queue is Empty");
-	}
-	_T back()
-	{
-		if (!isEmpty())
-			return this->pBack->data;
-		else
-			throw QueueException("Queue is Empty");
-	}
 public:
 	void pop() 
 	{
@@ -74,6 +60,20 @@ public:
 	{
 		for (;isEmpty();)
 			this->pop();
+	}
+	_T front()
+	{
+		if (!isEmpty())
+			return this->pFront->data;
+		else
+			throw QueueException("Queue is Empty");
+	}
+	_T back()
+	{
+		if (!isEmpty())
+			return this->pBack->data;
+		else
+			throw QueueException("Queue is Empty");
 	}
 public:
 	Queue():

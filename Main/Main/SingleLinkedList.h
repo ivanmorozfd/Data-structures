@@ -11,7 +11,7 @@ class SingleLinkedList
 	public:
 		_T data;
 		Node* next;
-		Node() :data(_T()), next(nullptr) { }
+		Node(const _T data) :data(data), next(nullptr) { }
 	};
 	typedef SingleLinkedListIterator<_T> iterator;
 	typedef SingleLinkedListIterator<const _T> const_iterator;
@@ -22,11 +22,11 @@ private:
 public:
 	SingleLinkedList<_T>::iterator begin()
 	{
-		return iterator(pBack);
+		return iterator(pFront);
 	}
 	SingleLinkedList<_T>::iterator end()
 	{
-		return iterator(pFront->next);
+		return iterator(pBack->next);
 	}
 	SingleLinkedList<_T>::const_iterator begin() const
 	{
@@ -37,7 +37,7 @@ public:
 		return const_iterator(end());
 	}
 public:
-	unsigned getSize() const 
+	unsigned count() const 
 	{ 
 		return this->count;
 	}
@@ -56,58 +56,49 @@ public:
 			throw SingleLinkedListException("List is Empty");
 	}
 public:
-	void pop_back()
-	{
-		if (!isEmpty())
-		{
-			Node<_T>* temp = pBack;
-			pBack = pBack->next;
-			delete temp;
-		}
-		else
-			throw SingleLinkedListException("List is Empty");
-	}
 	void pop_front()
 	{
 		if (!isEmpty())
 		{
 			Node<_T>* temp = pFront;
-			pFront = pFront->prev;
+			pFront = pFront->next;
 			delete temp;
 		}
 		else
 			throw SingleLinkedListException("List is Empty");
 	}
-	void push_front(const _T& item)
+	void pop_back()
 	{
-		this->count++;
-
-		Node<_T>* node = new Node<_T>;
-		node->data = item;
-		if (!pFront)
+		if (!isEmpty())
 		{
-			pFront = pBack = node;
+			Node<_T>* temp = pBack;
+			pBack = pBack->prev;
+			delete temp;
 		}
 		else
-		{
-			pFront->next = node;
-			pFront = node;
+			throw SingleLinkedListException("List is Empty");
+	}
+	void push_back(const _T& item) {
+		this->count++;
+
+		Node<_T>* node = new Node<_T>(item);
+		if (!pBack)
+			pFront = pBack = node;
+		else {
+			pBack->next = node;
+			pBack = node;
 		}
 	}
-	void push_back(const _T& item)
-	{
+	void push_front(const _T& item) {
 		this->count++;
 
-		Node<_T>* node = new Node<_T>;
-		node->data = item;
-		if (!pBack)
-		{
+		Node<_T>* node = new Node<_T>(item);
+
+		if (!pFront)
 			pFront = pBack = node;
-		}
-		else
-		{
-			node->next = pBack;
-			pBack = node;
+		else {
+			node->next = pFront;
+			pFront = node;
 		}
 	}
 	bool isEmpty() 
@@ -120,7 +111,7 @@ public:
 		pBack(nullptr),
 		pFront(nullptr) 
 	{ 
-		pBack = pFront;
+		
 	}
 	SingleLinkedList(const std::initializer_list<_T>& data)
 	{
