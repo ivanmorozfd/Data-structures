@@ -9,6 +9,9 @@ class BinaryHeap
 private:
 	vector<_T> data;//contains values
 public:
+	bool isEmpty() const {
+		return data.empty();
+	}
 	//returns size of the heap
 	int getSize() const {
 		return data.size(); 
@@ -64,6 +67,9 @@ public:
 		data[0] = data[getSize() - 1];
 		heapify(0);
 		return item;
+	}
+	_T peekMax() const {
+		return data.at(0);
 	}
 	void clear()  {
 		this->data.clear();	

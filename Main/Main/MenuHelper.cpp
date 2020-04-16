@@ -79,14 +79,12 @@ void MenuHelper::createMainMenuInstance()
 	}
 }
 
-void MenuHelper::createStackMenuInstance()
-{
+void MenuHelper::createStackMenuInstance() {
 	clearConsole();
 
 	bool isActive = true;
 	Stack<int>* stack = nullptr;
-	while (isActive)
-	{
+	while (isActive) {
 		int answer = -1;
 
 		std::wcout << stackMenuSelectAction
@@ -105,61 +103,41 @@ void MenuHelper::createStackMenuInstance()
 
 		std::cout << enterAnswer;
 		std::cin >> answer;
-		switch (answer)
-		{
-		case 1:
-		{
-			if (!stack)
-			{
+		switch (answer) {
+		case 1: {
+			clearConsole();
+			if (!stack) {
 				stack = new Stack<int>();
-				clearConsole();
 				std::wcout << stackCreateSuccess;
 			}
 			else
-			{
-				clearConsole();
 				std::wcout << stackCreateFailure;
-			}
 			break;
 		}
-		case 2:
-		{
+		case 2: {
+			clearConsole();
 			if (!stack)
-			{
-				clearConsole();
 				std::wcout << stackNotCreated;
-			}
-			else
-			{
+			else {
 				if (stack->isEmpty())
-				{
-					clearConsole();
 					std::wcout << stackIsEmpty;
-				}
 				else
-				{
-					clearConsole();
 					std::wcout << stackIsNotEmpty;
-				}
 			}
 			break;
 		}
-		case 3:
-		{
+		case 3: {
+			clearConsole();
+
 			if (!stack)
-			{
-				clearConsole();
 				std::wcout << stackNotCreated;
-			}
-			else
-			{
+			else {
 				int answer = -1;
 
 				std::wcout << stackPushMessage01;
 				std::wcout << enterAnswer;
 				std::cin >> answer;
 
-				clearConsole();
 				stack->push(answer);
 
 				std::wcout << stackPushMessage02
@@ -168,27 +146,18 @@ void MenuHelper::createStackMenuInstance()
 			}
 			break;
 		}
-		case 4:
-		{
+		case 4: {
+			clearConsole();
 			if (!stack)
-			{
-				clearConsole();
 				std::wcout << stackNotCreated;
-			}
-			else
-			{
-				try
-				{
-					clearConsole();
-
+			else {
+				try {
 					std::wcout << stackPeekMessage
 						<< stack->getTop()
 						<< std::endl
 						<< std::endl;
 				}
-				catch (StackException & e)
-				{
-					clearConsole();
+				catch (StackException & e) {
 					std::wcout << stackIsEmpty;
 				}
 			}
@@ -581,6 +550,7 @@ void MenuHelper::createQueueMenuInstance()
 				clearConsole();
 				std::cout << queueDestroyedMessage;
 				delete queue;
+				queue = nullptr;
 			}
 			else {
 				clearConsole();
@@ -627,62 +597,260 @@ void MenuHelper::createDequeMenuInstance()
 		{
 		case 1:
 		{
+			if (!deque) {
+				clearConsole();
+				std::cout << dequeCreateSuccess;
+			}
+			else {
+				clearConsole();
+				deque = new Deque<int>();
+				std::cout << dequeCreateFailure;
+			}
 			break;
 		}
 		case 2:
 		{
+			if (!deque) {
+				clearConsole();
+				std::cout << dequeNotCreated;
+			}
+			else {
+				clearConsole();
+				if (deque->is_empty()) {
+					std::cout << dequeIsEmpty;
+				}
+				else {
+					std::cout << dequeIsNotEmpty;
+				}
+			}
 			break;
 		}
 		case 3:
 		{
+			if (!deque) {
+				clearConsole();
+				std::cout << dequeNotCreated;
+			}
+			else {
+				std::cout << dequePushBackMessage01;
+				int answer = -1;
+				std::cout << enterAnswer;
+				std::cin >> answer;
+				
+				deque->push_back(answer);
+				clearConsole();
+				std::cout << dequePushBackMessage02
+					<< answer
+					<< dequePushBackMessage03;
+			}
 			break;
 		}
-		case 4:
-		{
+		case 4: {
+			if (!deque) {
+				clearConsole();
+				std::cout << dequeNotCreated;
+			}
+			else {
+				std::cout << dequePushFrontMessage01;
+				int answer = -1;
+				std::cout << enterAnswer;
+				std::cin >> answer;
+
+				deque->push_front(answer);
+				clearConsole();
+				std::cout << dequePushFrontMessage02
+					<< answer
+					<< dequePushFrontMessage03;
+			}
 			break;
 		}
-		case 5:
-		{
+		case 5: {
+			if (!deque) {
+				clearConsole();
+				std::cout << dequeNotCreated;
+			}
+			else {
+				if (deque->is_empty()) {
+					clearConsole();
+					std::cout << dequeIsEmpty;
+				}
+				else {
+					clearConsole();
+					std::cout << dequePeekBackMessage
+						<< deque->back();
+				}
+			}
 			break;
 		}
-		case 6:
-		{
+		case 6: {
+			if (!deque) {
+				clearConsole();
+				std::cout << dequeNotCreated;
+			}
+			else {
+				clearConsole();
+				if (deque->is_empty()) {
+					std::cout << dequeIsEmpty;
+				}
+				else {
+					std::cout << dequePeekFrontMessage
+						<< deque->front();
+				}
+			}
 			break;
 		}
-		case 7:
-		{
+		case 7: {
+			if (!deque) {
+				clearConsole();
+				std::cout << dequeNotCreated;
+			}
+			else {
+				clearConsole();
+				try {
+					deque->pop_back();
+				}
+				catch (DequeException & e) {
+
+					std::cout << dequeIsEmpty;
+				}
+			}
 			break;
 		}
-		case 8:
-		{
+		case 8: {
+			if (!deque) {
+				clearConsole();
+				std::cout << dequeNotCreated;
+			}
+			else {
+				clearConsole();
+				try {
+					deque->pop_front();
+				}
+				catch (DequeException & e) {
+
+					std::cout << dequeIsEmpty;
+				}
+			}
 			break;
 		}
-		case 9:
-		{
+		case 9: {
+			std::wcout << dequeReadFileMessage;
+			std::wcout << enterAnswer;
+			std::string fileName;
+			std::cin >> fileName;
+			std::ifstream fin(fileName + ".txt");
+			if (!fin.is_open()) {
+				clearConsole();
+				std::wcout << dequeReadFileErrMessage;
+				break;
+			}
+			else {
+				if (deque) {
+					delete deque;
+					deque = nullptr;
+					deque = new Deque<int>();
+				}
+				else
+					deque = new Deque<int>();
+
+				while (!fin.eof()) {
+					int a;
+					fin >> a;
+					deque->push_back(a);
+
+				}
+			}
+			clearConsole();
+
+			std::wcout << dequeReadFileSuccessMessage;
 			break;
 		}
-		case 10:
-		{
+		case 10:{
+			if (!deque) {
+				std::wcout << dequeNotCreated;
+				break;
+			}
+			std::wcout << dequeWriteFileMessage;
+			std::wcout << enterAnswer;
+
+			std::string fileName;
+			std::cin >> fileName;
+
+			int result;
+			std::ofstream out(fileName + ".txt", std::ios_base::trunc);
+			if (!out.is_open()) {
+				clearConsole();
+				std::wcout << dequeWriteFileErrMessage;
+				break;
+			}
+			else {
+				while (!deque->is_empty()) {
+					result = deque->front();
+					deque->pop_back();
+					out << result;
+					out << " ";
+				}
+			}
+			out.close();
+
+			clearConsole();
+
+			std::wcout << dequeWriteFileSuccess;
 			break;
 		}
-		case 11:
-		{
+		case 11: {
+			std::wcout << dequeRandomizeMessage;
+			std::wcout << enterAnswer;
+			int dequeSize = 0;
+			std::cin >> dequeSize;
+			if (dequeSize < 1) {
+				clearConsole();
+				std::wcout << dequeRandomizeErrorMessage;
+				break;
+			}
+			std::wcout << dequeRandomizeUpRangeMessge;
+			std::wcout << enterAnswer;
+			int upValue;
+			std::cin >> upValue;
+			for (int i = 0; i < dequeSize; ++i)
+				deque->push_back(std::rand() % upValue);
+	
+			clearConsole();
+			std::wcout << dequeRandomizeSuccess;
 			break;
 		}
-		case 12:
-		{
+		case 12: {
 			break;
 		}
-		case 13:
-		{
+		case 13: {
+			if (!deque) {
+				clearConsole();
+				std::wcout << dequeNotCreated;
+				break;
+			}
+			else {
+				clearConsole();
+				std::cout << dequeClearSucces;
+				deque->clear();
+			}
 			break;
 		}
-		case 14:
-		{
+		case 14: {
+			if (!deque) {
+				clearConsole();
+				std::cout << dequeNotCreated;
+			}
+			else {
+				clearConsole();
+				std::cout << dequeDestroyedMessage;
+				delete deque;
+				deque = nullptr;
+			}
 			break;
 		}
 		case 15:
 		{
+			isActive = false;
 			break;
 		}
 		default:
@@ -700,7 +868,6 @@ void MenuHelper::createListMenuInstance()
 	{
 		int answer = -1;
 		std::wcout << listMenuSelectAction
-			<< listMenuSelectAction
 			<< listMenuCreate
 			<< listMenuIsEmpty
 			<< listMenuPushItem
@@ -717,34 +884,219 @@ void MenuHelper::createListMenuInstance()
 		std::cin >> answer;
 		switch (answer)
 		{
-		case 1:
+		case 1: {
+			if (!list) {
+				clearConsole();
+				std::cout << listCreateSuccess;
+			}
+			else {
+				clearConsole();
+				list = new SingleLinkedList<int>();
+				std::cout << listCreateFailure;
+			}
 			break;
-		case 2:
+		}
+		case 2: {
+			clearConsole();
+			if (!list) {
+				std::cout << listNotCreated;
+			}
+			else {
+				if (list->isEmpty())
+					std::cout << listIsEmpty;
+				else
+					std::cout << listIsNotEmpty;
+			}
 			break;
-		case 3:
+		}
+		case 3: {
+			if (!list) {
+				clearConsole();
+				std::cout << listNotCreated;
+			}
+			else {
+				int answer = 0;
+
+				std::cout << listPushMessage01;
+				std::cout << enterAnswer;
+
+				std::cin >> answer;
+				list->push_back(answer);
+
+				clearConsole();
+
+				std::cout << listPushMessage02
+					<< answer
+					<< listPushMessage03;
+			}
 			break;
-		case 4:
+		}
+		case 4: {
+			if (!list) {
+				clearConsole();
+				std::cout << listNotCreated;
+			}
+			else {
+				clearConsole();
+				try {
+					std::cout << listPeekMessage
+						<< list->back();
+				}
+				catch (SingleLinkedListException & e) {
+					std::cout << "Список пуст";
+				}
+			}
 			break;
-		case 5:
+		}
+		case 5: {
+			if (!list) {
+				clearConsole();
+				std::cout << listNotCreated;
+			}
+			else {
+				clearConsole();
+				try {
+					list->pop_back();
+					std::cout << listPopMessage;
+				}
+				catch (SingleLinkedListException & e) {
+					std::cout << "Список пуст";
+				}
+			}
 			break;
-		case 6:
+		}
+		case 6: {
+			std::wcout << listReadFileMessage;
+			std::wcout << enterAnswer;
+
+			std::string fileName;
+			std::cin >> fileName;
+
+			std::ifstream fin(fileName + ".txt");
+
+			if (!fin.is_open()) {
+				clearConsole();
+				std::wcout << listReadFileErrMessage;
+				break;
+			}
+			else {
+				if (list) {
+					delete list;
+					list = nullptr;
+					list = new SingleLinkedList<int>();
+				}
+				else
+					list = new SingleLinkedList<int>();
+
+				while (!fin.eof()) {
+					int a;
+					fin >> a;
+
+					list->push_back(a);
+
+				}
+			}
+			clearConsole();
+
+			std::wcout << listReadFileSuccessMessage;
+
 			break;
-		case 7:
+		}
+		case 7: {
+			clearConsole();
+			if (!list) {
+				std::wcout << listNotCreated;
+				break;
+			}
+			std::wcout << listWriteFileMessage;
+			std::wcout << enterAnswer;
+
+			std::string fileName;
+			std::cin >> fileName;
+
+
+			std::ofstream out(fileName + ".txt",
+				std::ios_base::trunc);
+
+			if (!out.is_open()) {
+				std::wcout << listWriteFileErrMessage;
+				break;
+			}
+			else {
+				int result = 0;
+				while (!list->isEmpty()) {
+					result = list->front();
+					list->pop_back();
+
+					out << result;
+					out << " ";
+				}
+			}
+			out.close();
+
+			std::wcout << listWriteFileSuccess;
 			break;
-		case 8:
+		}
+		case 8: {
+			std::wcout << listRandomizeMessage;
+			std::wcout << enterAnswer;
+
+			int listSize = 0;
+			std::cin >> listSize;
+	
+			if (listSize < 1) {
+				clearConsole();
+				std::wcout << listRandomizeErrorMessage;
+				break;
+			}
+
+			std::wcout << listRandomizeUpRangeMessge;
+			std::wcout << enterAnswer;
+
+			int upValue;
+			std::cin >> upValue;
+
+			for (int i = 0; i < listSize; ++i)
+				list->push_back(std::rand() % upValue);
+
+			clearConsole();
+
+			std::wcout << listRandomizeSuccess;
 			break;
-		case 9:
+		}
+		case 9: {
+			clearConsole();
+
+			for (auto& it = list->begin; it != list->end(); it++)
+				std::cout << *it;
+
 			break;
-		case 10:
+		}
+		case 10: {
+			list->clear();
+			
+			clearConsole();
+
+			std::cout << listClearSucces;
 			break;
-		case 11:
+		}
+		case 11: {
+			if (!list) {
+				clearConsole();
+				std::cout << listNotCreated;
+			}
+			else {
+				clearConsole();
+				std::cout << listDestroyedMessage;
+				delete list;
+				list = nullptr;
+			}
 			break;
-		case 12:
+		}
+		case 12: {
+				isActive = false;
 			break;
-		case 13:
-			break;
-		case 14:
-			break;
+		}
 		default:
 			break;
 		}
@@ -755,7 +1107,7 @@ void MenuHelper::createDlistMenuInstance()
 {
 	clearConsole();
 	bool isActive = true;
-	SingleLinkedList<int>* list = nullptr;
+	DoubleLinkedList<int>* list = nullptr;
 	while (isActive)
 	{
 		int answer = -1;
@@ -777,66 +1129,252 @@ void MenuHelper::createDlistMenuInstance()
 			<< dlistMenuExit;
 		std::cout << enterAnswer;
 		std::cin >> answer;
-		switch (answer)
-		{
-		case 1:
-		{
+		switch (answer) {
+		case 1: {
+			clearConsole();
+			if (list) 
+				std::cout << dlistCreateFailure;
+			else {
+				std::cout << dlistCreateSuccess;
+				list = new DoubleLinkedList<int>();
+			}
 			break;
 		}
-		case 2:
-		{
+		case 2: {
+			clearConsole();
+			if (!list)
+				std::cout << dlistNotCreated;
+			else {
+				if (list->is_empty())
+					std::cout << dlistIsEmpty;
+				else
+					std::cout << dlistIsNotEmpty;
+			}
 			break;
 		}
-		case 3:
-		{
+		case 3: {
+			clearConsole();
+			if (!list)
+				std::cout << dlistNotCreated;
+			else {
+				int answer = -1;
+
+				std::cout << dlistPushBackMessage01;
+				std::cout << enterAnswer;
+
+				std::cin >> answer;
+
+				list->push_back(answer);
+
+				std::cout << dlistPushBackMessage02
+					<< answer
+					<< dlistPushBackMessage03;
+			}
 			break;
 		}
-		case 4:
-		{
+		case 4: {
+			clearConsole();
+			if (!list)
+				std::cout << dlistNotCreated;
+			else {
+				int answer = -1;
+
+				std::cout << dlistPushFrontMessage01;
+				std::cout << enterAnswer;
+
+				std::cin >> answer;
+
+				list->push_back(answer);
+
+				std::cout << dlistPushFrontMessage02
+					<< answer
+					<< dlistPushFrontMessage03;
+			}
 			break;
 		}
-		case 5:
-		{
+		case 5: {
+			clearConsole();
+			if (!list)
+				std::cout << dlistNotCreated;
+			else {
+				try {
+					std::cout << dlistPeekFrontMessage << list->front();
+				}
+				catch(DoubleLinkedListException& e) {
+					std::cout << dlistIsEmpty;
+				}
+			}
 			break;
 		}
 		case 6:
 		{
+			clearConsole();
+			if (!list)
+				std::cout << dlistNotCreated;
+			else {
+				try {
+					std::cout << dlistPeekBackMessage << list->back();
+				}
+				catch (DoubleLinkedListException & e) {
+					std::cout << dlistIsEmpty;
+				}
+			}
 			break;
 		}
-		case 7:
-		{
+		case 7:	{
+			clearConsole();
+			if (!list)
+				std::cout << dlistNotCreated;
+			else {
+				try {
+					list->pop_front();
+					std::cout << dlistPopFrontMessage;
+				}
+				catch (DoubleLinkedListException & e) {
+					std::cout << dlistIsEmpty;
+				}
+			}
 			break;
 		}
-		case 8:
-		{
+		case 8: {
+			clearConsole();
+			if (!list)
+				std::cout << dlistNotCreated;
+			else {
+				try {
+					list->pop_back();
+					std::cout << dlistPopBackMessage;
+				}
+				catch (DoubleLinkedListException & e) {
+					std::cout << dlistIsEmpty;
+				}
+			}
 			break;
 		}
-		case 9:
-		{
+		case 9: {
+			clearConsole();
+
+			std::wcout << dlistReadFileMessage;
+			std::wcout << enterAnswer;
+
+			std::string fileName;
+			std::cin >> fileName;
+
+			std::ifstream fin(fileName + ".txt");
+
+			if (!fin.is_open()) {
+				std::wcout << dlistReadFileErrMessage;
+				break;
+			}
+			else {
+				if (list) {
+					delete list;
+					list = nullptr;
+					list = new DoubleLinkedList<int>();
+				}
+				else
+					list = new DoubleLinkedList<int>();
+
+				while (!fin.eof()) {
+					int a;
+					fin >> a;
+
+					list->push_back(a);
+
+				}
+			}
+
+			std::wcout << dlistReadFileSuccessMessage;
 			break;
 		}
-		case 10:
-		{
+		case 10: {
+			clearConsole();
+			if (!list) {
+				std::wcout << dlistNotCreated;
+				break;
+			}
+			std::wcout << dlistWriteFileMessage;
+			std::wcout << enterAnswer;
+
+			std::string fileName;
+			std::cin >> fileName;
+
+			std::ofstream out(fileName + ".txt",
+				std::ios_base::trunc);
+
+			if (!out.is_open()) {
+				std::wcout << dlistWriteFileErrMessage;
+				break;
+			}
+			else {
+				int result = 0;
+				while (!list->is_empty()) {
+					result = list->front();
+					list->pop_back();
+
+					out << result;
+					out << " ";
+				}
+			}
+			out.close();
+
+			std::wcout << listWriteFileSuccess;
+		}
+		case 11: {
+			clearConsole();
+
+			std::wcout << dlistRandomizeMessage;
+			std::wcout << enterAnswer;
+
+			int listSize = 0;
+			std::cin >> listSize;
+
+			if (listSize < 1) {
+				std::wcout << dlistRandomizeErrorMessage;
+				break;
+			}
+
+			std::wcout << dlistRandomizeUpRangeMessge;
+			std::wcout << enterAnswer;
+
+			int upValue;
+			std::cin >> upValue;
+
+			for (int i = 0; i < listSize; ++i)
+				list->push_back(std::rand() % upValue);
+
+			std::wcout << dlistRandomizeSuccess;
 			break;
 		}
-		case 11:
-		{
+		case 12: {
+			clearConsole();
+			for (auto& i :*list)
+				std::cout << i;
 			break;
 		}
-		case 12:
-		{
+		case 13: {
+			clearConsole();
+
+			list->clear();
+
+			std::cout << dlistClearSucces;
 			break;
 		}
-		case 13:
-		{
+		case 14: {
+			if (!list) {
+				clearConsole();
+				std::cout << dlistNotCreated;
+			}
+			else {
+				clearConsole();
+				std::cout << dlistDestroyedMessage;
+				delete list;
+				list = nullptr;
+			}
 			break;
 		}
-		case 14:
-		{
-			break;
-		}
-		case 15:
-		{
+		case 15: {
+			isActive = false;
 			break;
 		}
 		default:
@@ -868,54 +1406,191 @@ void MenuHelper::createBheapMenuInstance()
 			<< bheapMenuExit;
 		std::cout << enterAnswer;
 		std::cin >> answer;
-		switch (answer)
-		{
-		case 1:
-		{
+		switch (answer) {
+		case 1: {
+			clearConsole();
+			
+			if (heap)
+				std::cout << bheapCreateFailureMessage;
+			else {
+				heap = new BinaryHeap<int>();
+				std::cout << bheapCreateSuccessMessage;
+			}
 			break;
 		}
-		case 2:
-		{
+		case 2: {
+			clearConsole();
+			if (!heap)
+				std::cout << bheapNotCreatedMessage;
+			else {
+				if (heap->isEmpty())
+					std::cout << bheapIsEmptyMessage;
+				else
+					std::cout << bheapIsNotEmptyMessage;
+			}
 			break;
 		}
-		case 3:
-		{
+		case 3: {
+			clearConsole();
+			if (!heap)
+				std::cout << bheapNotCreatedMessage;
+			else {
+				int answer = -1;
+
+				std::cout << bheapAddItemMessage01;
+				std::cin >> answer;
+
+				heap->addItem(answer);
+
+				std::cout << bheapAddItemMessage02
+					<< answer
+					<< bheapAddItemMessage03;
+			}
 			break;
 		}
-		case 4:
-		{
+		case 4: {
+			clearConsole();
+			if (!heap)
+				std::cout << bheapNotCreatedMessage;
+			else {
+				if (heap->isEmpty())
+					std::cout << bheapIsEmptyMessage;
+				else {
+					std::cout << bheapPeekMaxMessage01
+						<< heap->getmax() 
+						<< std::endl;
+				}
+			}
 			break;
 		}
-		case 5:
-		{
+		case 5: {
 			break;
 		}
-		case 6:
-		{
+		case 6: {
+			clearConsole();
+
+			std::wcout << bheapReadFileMessage;
+			std::wcout << enterAnswer;
+
+			std::string fileName;
+			std::cin >> fileName;
+
+			std::ifstream fin(fileName + ".txt");
+
+			if (!fin.is_open()) {
+				std::wcout << bheapReadFileErrMessage;
+				break;
+			}
+			else {
+				if (heap) {
+					delete heap;
+					heap = nullptr;
+					heap = new BinaryHeap<int>();
+				}
+				else
+					heap = new BinaryHeap<int>();
+
+				while (!fin.eof()) {
+					int a;
+					fin >> a;
+
+					heap->addItem(a);
+
+				}
+			}
+
+			std::wcout << bheapReadFileSuccessMessage;
 			break;
 		}
-		case 7:
-		{
+		case 7: {
+			clearConsole();
+
+			if (!heap) {
+				std::wcout << bheapNotCreatedMessage;
+				break;
+			}
+			std::wcout << bheapWriteFileMessage;
+			std::wcout << enterAnswer;
+
+			std::string fileName;
+			std::cin >> fileName;
+
+			std::ofstream out(fileName + ".txt",
+				std::ios_base::trunc);
+
+			if (!out.is_open()) {
+				std::wcout << bheapWriteFileErrMessage;
+				break;
+			}
+			else {
+				int result = 0;
+				while (!heap->isEmpty()) {
+					result = heap->getmax();
+
+					out << result;
+					out << " ";
+				}
+			}
+			out.close();
+
+			std::wcout << listWriteFileSuccess;
 			break;
 		}
-		case 8:
-		{
+		case 8: {
+			clearConsole();
+
+			std::wcout << bheapRandomizeMessage;
+			std::wcout << enterAnswer;
+
+			int heapSize = 0;
+			std::cin >> heapSize;
+
+			if (heapSize < 1) {
+				std::wcout << bheapRandomizeErrorMessage;
+				break;
+			}
+
+			std::wcout << bheapRandomizeUpRangeMessge;
+			std::wcout << enterAnswer;
+
+			int upValue;
+			std::cin >> upValue;
+
+			for (int i = 0; i < heapSize; ++i)
+				heap->addItem(std::rand() % upValue);
+
+			std::wcout << bheapRandomizeSuccess;
 			break;
 		}
-		case 9:
-		{
+		case 9: {
+			//
 			break;
 		}
-		case 10:
-		{
+		case 10: {
+			clearConsole();
+
+			if (!heap) {
+				std::wcout << bheapNotCreatedMessage;
+				break;
+			}
+			
+			heap->clear();
 			break;
 		}
-		case 11:
-		{
+		case 11: {
+			clearConsole();
+			if (!heap) {
+				std::cout << bheapNotCreatedMessage;
+			}
+			else {
+				std::cout << bheapDestroyedMessage;
+				delete heap;
+				heap = nullptr;
+			}
 			break;
 		}
-		case 12:
-		{
+		case 12: {
+			isActive = false;
 			break;
 		}
 		default:
@@ -924,14 +1599,13 @@ void MenuHelper::createBheapMenuInstance()
 	}
 }
 
-void MenuHelper::createMatrixMenuInstance()
-{
+void MenuHelper::createMatrixMenuInstance() {
 	clearConsole();
 	bool isActive = true;
 	SparseMatrix<int>* matrix = nullptr;
-	while (isActive)
-	{
-		int answer = -1;
+	int answer;
+	while (isActive) {
+		answer = -1;
 		std::wcout << sMatrixMenuSelectAction
 			<< sMatrixMenuCreate
 			<< sMatrixMenuIsEmpty
@@ -947,54 +1621,58 @@ void MenuHelper::createMatrixMenuInstance()
 			<< sMatrixMenuExit;
 		std::cout << enterAnswer;
 		std::cin >> answer;
-		switch (answer)
-		{
-		case 1:
-		{
+		switch (answer) {
+		case 1: {
+			if (matrix) {
+
+			}
+			else {
+
+			}
 			break;
 		}
-		case 2:
-		{
+		case 2: {
+
 			break;
 		}
-		case 3:
-		{
+		case 3: {
+
 			break;
 		}
-		case 4:
-		{
+		case 4: {
+
 			break;
 		}
-		case 5:
-		{
+		case 5: {
+
 			break;
 		}
-		case 6:
-		{
+		case 6: {
+
 			break;
 		}
-		case 7:
-		{
+		case 7: {
+
 			break;
 		}
-		case 8:
-		{
+		case 8: {
+
 			break;
 		}
-		case 9:
-		{
+		case 9: {
+
 			break;
 		}
-		case 10:
-		{
+		case 10: {
+
 			break;
 		}
-		case 11:
-		{
+		case 11: {
+
 			break;
 		}
-		case 12:
-		{
+		case 12: {
+
 			break;
 		}
 		default:
@@ -1003,13 +1681,11 @@ void MenuHelper::createMatrixMenuInstance()
 	}
 }
 
-void MenuHelper::createAvlTreeMenuInstance()
-{
+void MenuHelper::createAvlTreeMenuInstance() {
 	clearConsole();
 	bool isActive = true;
 	AvlTree<int>* avlTree = nullptr;
-	while (isActive)
-	{
+	while (isActive) {
 		int answer = -1;
 		std::wcout << avlMenuSelectAction
 			<< avlMenuCreate
@@ -1026,54 +1702,41 @@ void MenuHelper::createAvlTreeMenuInstance()
 			<< avlMenuExit;
 		std::cout << enterAnswer;
 		std::cin >> answer;
-		switch (answer)
-		{
-		case 1:
-		{
+		switch (answer) {
+		case 1: {
 			break;
 		}
-		case 2:
-		{
+		case 2: {
 			break;
 		}
-		case 3:
-		{
+		case 3: {
 			break;
 		}
-		case 4:
-		{
+		case 4: {
 			break;
 		}
-		case 5:
-		{
+		case 5: {
 			break;
 		}
-		case 6:
-		{
+		case 6: {
 			break;
 		}
-		case 7:
-		{
+		case 7: {
 			break;
 		}
-		case 8:
-		{
+		case 8: {
 			break;
 		}
-		case 9:
-		{
+		case 9: {
 			break;
 		}
-		case 10:
-		{
+		case 10: {
 			break;
 		}
-		case 11:
-		{
+		case 11: {
 			break;
 		}
-		case 12:
-		{
+		case 12: {
 			break;
 		}
 		default:
@@ -1082,13 +1745,11 @@ void MenuHelper::createAvlTreeMenuInstance()
 	}
 }
 
-void MenuHelper::createBstMenuInstance()
-{
+void MenuHelper::createBstMenuInstance() {
 	clearConsole();
 	bool isActive = true;
 	BinarySearchTree<int>* bst = nullptr;
-	while (isActive)
-	{
+	while (isActive) {
 		int answer = -1;
 		std::wcout << bstMenuSelectAction
 			<< bstMenuCreate
@@ -1105,54 +1766,41 @@ void MenuHelper::createBstMenuInstance()
 			<< bstMenuExit;
 		std::cout << enterAnswer;
 		std::cin >> answer;
-		switch (answer)
-		{
-		case 1:
-		{
+		switch (answer) {
+		case 1: {
 			break;	
 		}
-		case 2:
-		{
+		case 2: {
 			break;
 		}
-		case 3:
-		{
+		case 3: {
 			break;
 		}
-		case 4:
-		{
+		case 4: {
 			break;
 		}
-		case 5:
-		{
+		case 5: {
 			break;
 		}
-		case 6:
-		{
+		case 6: {
 			break;
 		}
-		case 7:
-		{
+		case 7: {
 			break;
 		}
-		case 8:
-		{
+		case 8: {
 			break;
 		}
-		case 9:
-		{
+		case 9: {
 			break;
 		}
-		case 10:
-		{
+		case 10: {
 			break;
 		}
-		case 11:
-		{
+		case 11: {
 			break;
 		}
-		case 12:
-		{
+		case 12: {
 			isActive = false;
 			break;
 		}
@@ -1162,13 +1810,11 @@ void MenuHelper::createBstMenuInstance()
 	}
 }
 
-void MenuHelper::createRbTreeMenuInstance()
-{
+void MenuHelper::createRbTreeMenuInstance() {
 	clearConsole();
 	bool isActive = true;
 	RBTree<int>* rbtree = nullptr;
-	while (isActive)
-	{
+	while (isActive) {
 		int answer = -1;
 		std::wcout << rbTreeMenuSelectAction
 			<< rbTreeMenuCreate
@@ -1185,55 +1831,41 @@ void MenuHelper::createRbTreeMenuInstance()
 			<< rbTreeMenuExit;
 		std::cout << enterAnswer;
 		std::cin >> answer;
-		switch (answer)
-		{
-		case 1:
-		{
-			
+		switch (answer) {
+		case 1: { 
 			break;
 		}
-		case 2:
-		{
+		case 2: {
 			break;
 		}
-		case 3:
-		{
+		case 3: {
 			break;
 		}
-		case 4:
-		{
+		case 4: {
 			break;
 		}
-		case 5:
-		{
+		case 5: {
 			break;
 		}
-		case 6:
-		{
+		case 6: {
 			break;
 		}
-		case 7:
-		{
+		case 7: {
 			break;
 		}
-		case 8:
-		{
+		case 8: {
 			break;
 		}
-		case 9:
-		{
+		case 9: {
 			break;
 		}
-		case 10:
-		{
+		case 10: {
 			break;
 		}
-		case 11:
-		{
+		case 11: {
 			break;
 		}
-		case 12:
-		{
+		case 12: {
 			break;
 		}
 		default:
@@ -1242,7 +1874,11 @@ void MenuHelper::createRbTreeMenuInstance()
 	}
 }
 
-void MenuHelper::clearConsole()
-{
+void MenuHelper::clearConsole() {
+#ifdef __linux__ 
+	system("clear");
+#elif _WIN32
 	system("cls");
+#else
+#endif
 }

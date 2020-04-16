@@ -7,11 +7,13 @@ private:
 		_T key;
 		Node* left;
 		Node* right;
+		Node(const _T& key) : key(key),
+			left(nullptr),
+			right(nullptr) {}
 	};
 	Node* root;
 
-	void addLeaf_(const _T& key, Node* ptr) 
-	{
+	void addLeaf_(const _T& key, Node* ptr) {
 		if (!root)
 			root = createLeaf(key);
 		else if (key < ptr->key) {
@@ -64,8 +66,7 @@ private:
 
 		}
 	}
-	void removeNode_(const _T& key, Node* parent) 
-	{
+	void removeNode_(const _T& key, Node* parent) {
 		if (root){
 			if (root->key == key)
 				removeRootMatch();
@@ -89,8 +90,7 @@ private:
 		else
 			throw BinarySearchTreeException("Tree is empty");
 	}
-	void removeRootMatch() 
-	{
+	void removeRootMatch() {
 		if (root) {
 			Node* delPtr = root;
 			_T rootK = root->key;
@@ -198,8 +198,7 @@ public:
 		removeNode_(key, root);
 	}
 public:
-	BinarySearchTree() :
-	root(nullptr) { }
+	BinarySearchTree() :root(nullptr) { }
 	BinarySearchTree(const BinarySearchTree<_T>& other) { }
 	~BinarySearchTree() { }
 };

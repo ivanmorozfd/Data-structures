@@ -39,24 +39,26 @@ public:
 	bool is_empty()  const {
 		return !this->pFront;
 	}
-	_T pop_back() {
+	_T front() const {
+		return pFront->value;
+	}
+	_T back() const {
+		return pBack->value;	
+	}
+	void pop_back() {
 		if (!is_empty()) {
-			int retValue = this->pBack->value;
 			Node<_T>* tmp = this->pBack;
 			this->pBack = this->pBack->prev;
 			delete tmp;
-			return retValue;
 		}
 		else
 			throw DoubleLinkedListException("List is empty");
 	}
-	_T  pop_front() {
+	void  pop_front() {
 		if (!is_empty()) {
-			int retValue = this->pFront->value;
 			Node<_T>* tmp = this->pFront;
 			this->pFront = this->pFront->next;
 			delete tmp;
-			return retValue;
 		}
 		else
 			throw DoubleLinkedListException("List is empty");
@@ -84,6 +86,10 @@ public:
 		}
 		else
 			this->pFront = this->pBack = tmp;
+	}
+	void clear() {
+		while (!this->is_empty())
+			this->pop_back();
 	}
 	void reverse() 
 	{

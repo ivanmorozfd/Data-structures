@@ -17,17 +17,17 @@ private:
 	unsigned int count;
 	Node<_T>* pFront;
 	Node<_T>* pBack;
+public:
 	bool is_empty() const {
 		return !this->pFront;
 	}
-public:
 	_T front() const {
 		if(!is_empty())
 			return this->this->pFront->value;
 		else
 			throw DequeException("Deque is empty");
 	}
-	_T peekTail() const {
+	_T back() const {
 		if(!is_empty())
 			return this->pBack->value;
 		else

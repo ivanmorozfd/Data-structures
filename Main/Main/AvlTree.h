@@ -2,10 +2,8 @@
 #include <iostream>
 #include "AvlTreeExceptions.h"
 template<typename _T>
-class AvlTree
-{
-	class Node
-	{
+class AvlTree {
+	class Node {
 	public:
 		_T key;
 		int height;
@@ -13,27 +11,25 @@ class AvlTree
 		Node* right;
 	};
 	Node* m_top;
-	int height(Node* node)
-	{
+	int height(Node* node) {
 		return node
 			?node->height
 			:0;
 	}
-	int balanceFactor(Node* node)
-	{
+	// count balance factor of nodes
+	int balanceFactor(Node* node) {
 		return height(node->right) 
 			- height(node->left);
 	}
-	void fixHeight(Node* node)
-	{
+	void fixHeight(Node* node) {
 		int heightLeft = height(node->left);
 		int heightRight = height(node->right);
 		node->height = 1 + (heightLeft > heightRight 
 				? heightLeft 
 				: heightRight) ;
 	}
-	Node* rotateRight(Node*	 node) // right turn relative to the vertex node
-	{
+	// right turn relative to the vertex node
+	Node* rotateRight(Node*	 node) { 
 		Node* q = node->left;
 		node->left = q->right;
 		q->right = node;
@@ -41,8 +37,8 @@ class AvlTree
 		fixHeight(q);
 		return q;
 	}
-	Node* rotateLeft(Node* node) // left turn relative to the vertex
-	{
+	// left turn relative to the vertex
+	Node* rotateLeft(Node* node) {
 		Node* q = node->right;
 		node->right = q->left;
 		q->left = node;
@@ -50,28 +46,25 @@ class AvlTree
 		fixHeight(q);
 		return q;
 	}
-	Node* balance(Node* node) // balance tree with root in node
-	{
+	// balance tree with root in node
+	Node* balance(Node* node) {
 		fixHeight(node);
-		if (balanceFactor(node) == 2)
-		{
+		if (balanceFactor(node) == 2) {
 			if (balanceFactor(node->right) < 0)
 				node->right = rotateRight(node->right);
 			return rotateLeft(node);
 		}
-		if (balanceFactor(node) == -2)
-		{
+		if (balanceFactor(node) == -2) {
 			if (balanceFactor(node->left) > 0)
 				node->left = rotateLeft(node->left);
 			return rotateRight(node);
 		}
 		return node;
 	}
+	// insert to the tree with the root in node
 	Node* insert_(Node* node,
-		      const _T& key) // insert to the tree with the root in node
-	{
-		if (!node)
-		{
+		      const _T& key) {
+		if (!node) {
 			Node* nnode = new Node();
 			nnode->key = key;
 			return nnode;
@@ -82,30 +75,28 @@ class AvlTree
 			node->right = insert_(node->right, key);
 		return balance(node);
 	}
-	Node* findMin(Node* node) // returns minimal element in tre
-	{
+	// returns minimal element in tree
+	Node* findMin(Node* node){
 		return node->left 
 			? findMin(node->left) 
 			: node;
 	}
-	Node* removeMin(Node* node) // remove min element in subtree with root in node
-	{
+	// remove min element in subtree with root in node
+	Node* removeMin(Node* node) {
 		if (node->left == 0)
 			return node->right;
 		node->left = removeMin(node->left);
 		return balance(node);
 	}
-
+	// remove node from tree
 	Node* remove(Node* node,
-		     const _T& key) // remove node from tree
-	{
+		     const _T& key) {
 		if (!node) return 0;
 		if (key < node->key)
 			node->left = remove(node->left, key);
 		else if (key > node->key)
 			node->right = remove(node->right, key);
-		else
-		{
+		else {
 			Node* lft = node->left;
 			Node* rgt = node->right;
 			delete node;
@@ -117,8 +108,8 @@ class AvlTree
 		}
 		return balance(node);
 	}
-	void inOrder(Node* t) // print tree in order
-	{
+	// print tree in order
+	void inOrder(Node* t) {
 		if (!t)
 			return;
 		inOrder(t->left);
@@ -126,30 +117,16 @@ class AvlTree
 		inOrder(t->right);
 	}
 public:
-	void insert(const _T& key)
-	{
+	void insert(const _T& key) {
 		m_top = insert_(this->m_top, key);
 	}
-	void display()
-	{
+	void display() {
 		inOrder(m_top);
 	}
 public:
 	AvlTree() :
-	m_top(nullptr)
-	{
-	
-	}
-	AvlTree(const std::initializer_list<_T>& data)
-	{
-		
-	}
-	AvlTree(const AvlTree<_T>& other)
-	{
-		
-	}
-	~AvlTree()
-	{
-		
-	}
+	m_top(nullptr) {}
+	AvlTree(const std::initializer_list<_T>& data) { }
+	AvlTree(const AvlTree<_T>& other) {}
+	~AvlTree() { }
 };

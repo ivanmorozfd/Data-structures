@@ -91,6 +91,10 @@ public:
 	bool isEmpty() const {
 		return pFront == pBack;
 	}
+	void clear() {
+		for (; !this->isEmpty() ;)
+			this->pop_back();
+	}
 public:
 	SingleLinkedList() :
 		count(0),
