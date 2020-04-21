@@ -23,7 +23,7 @@ public:
 	}
 	_T front() const {
 		if(!is_empty())
-			return this->this->pFront->value;
+			return this->pFront->value;
 		else
 			throw DequeException("Deque is empty");
 	}
@@ -80,8 +80,8 @@ public:
 	}
 public:
 	Deque() :
-		this->pFront(nullptr),
-		this->pBack(nullptr),
+		pFront(nullptr),
+		pBack(nullptr),
 		count(0) { }
 	Deque(const std::initializer_list<_T>& data) { }
 	Deque(const Deque& other) { }

@@ -55,12 +55,12 @@ private:
 		else 
 			return nullptr;
 	}
-	_T findSmallestK_(Node* ptr) {
+	_T findMin_(Node* ptr) {
 		if (!root) 
 			throw BinarySearchTreeException("Tree is empty");
 		else {
 			if (ptr->left) 
-				return findSmallestK_(ptr->left);
+				return findMin_(ptr->left);
 			else 
 				return ptr->key;
 
@@ -112,7 +112,7 @@ private:
 				delete delPtr;
 			}
 			else {
-				_T = findSmallestK_(root->right);
+				_T = findMin_(root->right);
 				removeNode_(smallInRghtSubtr, root);
 			}
 		}
@@ -160,7 +160,7 @@ private:
 			}
 			// 2 child
 			else {
-				smallestInRightSub = findSmallestK_(match->right);
+				smallestInRightSub = findMin_(match->right);
 				removeNode_(smallestInRightSub, match);
 				match->key = smallestInRightSub;
 			}
@@ -191,8 +191,8 @@ public:
 		else 
 			throw BinarySearchTreeException("Tree is emtpy");
 	}
-	_T findSmallestK() {
-		findSmallestK_(root);
+	_T findMin() {
+		findMin_(root);
 	}
 	void removeNode(const _T& key) {
 		removeNode_(key, root);

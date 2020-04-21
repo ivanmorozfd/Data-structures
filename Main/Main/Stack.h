@@ -59,6 +59,12 @@ public:
 			this->pop();
 	}
 public:
+	friend void print() {
+		Node* tmp = m_top;
+		while (tmp = tmp->prev)
+			std::cout << m_top;
+	}
+public:
 	Stack(): 
 		m_top(nullptr),
 		count(0) { }

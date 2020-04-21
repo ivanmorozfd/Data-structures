@@ -20,10 +20,10 @@ public:
 	typedef DoubleLinkedListIterator<const _T> const_iterator;
 public:
 	DoubleLinkedList<_T>::iterator begin() {
-		return iterator(this->pFront);
+		return iterator(begin());
 	}
 	DoubleLinkedList<_T>::iterator end() {
-		return iterator(this->pBack->next);
+		return iterator(end());
 	}
 	DoubleLinkedList<_T>::const_iterator begin() const {
 		return const_iterator(begin());
@@ -196,8 +196,8 @@ public:
 	}
 	public:
 	DoubleLinkedList():
-		this->pFront(nullptr),
-		this->pBack(nullptr),
+		pFront(nullptr),
+		pBack(nullptr),
 		count(0) {}
 	~DoubleLinkedList() {}
 };

@@ -31,9 +31,6 @@ public:
 		return const_iterator(end());
 	}
 public:
-	unsigned count() const { 
-		return this->count;
-	}
 	_T front() {
 		if (!isEmpty())
 			return pFront->data;
@@ -51,15 +48,6 @@ public:
 		if (!isEmpty()) {
 			Node<_T>* temp = pFront;
 			pFront = pFront->next;
-			delete temp;
-		}
-		else
-			throw SingleLinkedListException("List is Empty");
-	}
-	void pop_back() {
-		if (!isEmpty()) {
-			Node<_T>* temp = pBack;
-			pBack = pBack->prev;
 			delete temp;
 		}
 		else
@@ -93,7 +81,7 @@ public:
 	}
 	void clear() {
 		for (; !this->isEmpty() ;)
-			this->pop_back();
+			this->pop_front();
 	}
 public:
 	SingleLinkedList() :

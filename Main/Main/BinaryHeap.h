@@ -32,7 +32,7 @@ public:
 		}
 	}
 	//This method is recover general property of heap
-	void heapify(const _T& i)
+	void heapify(_T i)
 	{
 		int leftChild;
 		int rightChild;

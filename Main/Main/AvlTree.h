@@ -120,6 +120,9 @@ public:
 	void insert(const _T& key) {
 		m_top = insert_(this->m_top, key);
 	}
+	bool is_empty() const {
+		return !m_top;
+	}
 	void display() {
 		inOrder(m_top);
 	}

@@ -863,7 +863,7 @@ void MenuHelper::createListMenuInstance()
 {
 	clearConsole();
 	bool isActive = true;
-	SingleLinkedList<int>* list = nullptr;
+	SingleLinkedList<int>* slist = nullptr;
 	while (isActive)
 	{
 		int answer = -1;
@@ -885,24 +885,24 @@ void MenuHelper::createListMenuInstance()
 		switch (answer)
 		{
 		case 1: {
-			if (!list) {
+			if (!slist) {
 				clearConsole();
 				std::cout << listCreateSuccess;
 			}
 			else {
 				clearConsole();
-				list = new SingleLinkedList<int>();
+				slist = new SingleLinkedList<int>();
 				std::cout << listCreateFailure;
 			}
 			break;
 		}
 		case 2: {
 			clearConsole();
-			if (!list) {
+			if (!slist) {
 				std::cout << listNotCreated;
 			}
 			else {
-				if (list->isEmpty())
+				if (slist->isEmpty())
 					std::cout << listIsEmpty;
 				else
 					std::cout << listIsNotEmpty;
@@ -910,10 +910,10 @@ void MenuHelper::createListMenuInstance()
 			break;
 		}
 		case 3: {
-			if (!list) {
-				clearConsole();
+			clearConsole();
+
+			if (!slist) 
 				std::cout << listNotCreated;
-			}
 			else {
 				int answer = 0;
 
@@ -921,9 +921,7 @@ void MenuHelper::createListMenuInstance()
 				std::cout << enterAnswer;
 
 				std::cin >> answer;
-				list->push_back(answer);
-
-				clearConsole();
+				slist->push_back(answer);
 
 				std::cout << listPushMessage02
 					<< answer
@@ -932,7 +930,7 @@ void MenuHelper::createListMenuInstance()
 			break;
 		}
 		case 4: {
-			if (!list) {
+			if (!slist) {
 				clearConsole();
 				std::cout << listNotCreated;
 			}
@@ -940,7 +938,7 @@ void MenuHelper::createListMenuInstance()
 				clearConsole();
 				try {
 					std::cout << listPeekMessage
-						<< list->back();
+						<< slist->back();
 				}
 				catch (SingleLinkedListException & e) {
 					std::cout << "Список пуст";
@@ -949,20 +947,7 @@ void MenuHelper::createListMenuInstance()
 			break;
 		}
 		case 5: {
-			if (!list) {
-				clearConsole();
-				std::cout << listNotCreated;
-			}
-			else {
-				clearConsole();
-				try {
-					list->pop_back();
-					std::cout << listPopMessage;
-				}
-				catch (SingleLinkedListException & e) {
-					std::cout << "Список пуст";
-				}
-			}
+			//
 			break;
 		}
 		case 6: {
@@ -980,19 +965,19 @@ void MenuHelper::createListMenuInstance()
 				break;
 			}
 			else {
-				if (list) {
-					delete list;
-					list = nullptr;
-					list = new SingleLinkedList<int>();
+				if (slist) {
+					delete slist;
+					slist = nullptr;
+					slist = new SingleLinkedList<int>();
 				}
 				else
-					list = new SingleLinkedList<int>();
+					slist = new SingleLinkedList<int>();
 
 				while (!fin.eof()) {
 					int a;
 					fin >> a;
 
-					list->push_back(a);
+					slist->push_back(a);
 
 				}
 			}
@@ -1004,7 +989,7 @@ void MenuHelper::createListMenuInstance()
 		}
 		case 7: {
 			clearConsole();
-			if (!list) {
+			if (!slist) {
 				std::wcout << listNotCreated;
 				break;
 			}
@@ -1024,9 +1009,9 @@ void MenuHelper::createListMenuInstance()
 			}
 			else {
 				int result = 0;
-				while (!list->isEmpty()) {
-					result = list->front();
-					list->pop_back();
+				while (!slist->isEmpty()) {
+					result = slist->front();
+					slist->pop_front();
 
 					out << result;
 					out << " ";
@@ -1057,7 +1042,7 @@ void MenuHelper::createListMenuInstance()
 			std::cin >> upValue;
 
 			for (int i = 0; i < listSize; ++i)
-				list->push_back(std::rand() % upValue);
+				slist->push_back(std::rand() % upValue);
 
 			clearConsole();
 
@@ -1067,13 +1052,13 @@ void MenuHelper::createListMenuInstance()
 		case 9: {
 			clearConsole();
 
-			for (auto& it = list->begin; it != list->end(); it++)
-				std::cout << *it;
+			//for (auto& it = list->begin; it != list->end(); it++)
+			//	std::cout << *it;
 
 			break;
 		}
 		case 10: {
-			list->clear();
+			slist->clear();
 			
 			clearConsole();
 
@@ -1081,15 +1066,15 @@ void MenuHelper::createListMenuInstance()
 			break;
 		}
 		case 11: {
-			if (!list) {
+			if (!slist) {
 				clearConsole();
 				std::cout << listNotCreated;
 			}
 			else {
 				clearConsole();
 				std::cout << listDestroyedMessage;
-				delete list;
-				list = nullptr;
+				delete slist;
+				slist = nullptr;
 			}
 			break;
 		}
@@ -1623,16 +1608,18 @@ void MenuHelper::createMatrixMenuInstance() {
 		std::cin >> answer;
 		switch (answer) {
 		case 1: {
-			if (matrix) {
+			clearConsole();
 
+			if (!matrix) {
+				matrix = new SparseMatrix<int>();
+				matrixCreateSuccessMessage;
 			}
-			else {
-
-			}
+			else 
+				std::cout << matrixCreateFailureMessage;
 			break;
 		}
 		case 2: {
-
+			
 			break;
 		}
 		case 3: {
@@ -1691,7 +1678,7 @@ void MenuHelper::createAvlTreeMenuInstance() {
 			<< avlMenuCreate
 			<< avlMenuIsEmpty
 			<< avlMenuAddItem
-			<< avlMenuFind
+			<< avlMenuFindMin
 			<< avlMenuRemove
 			<< avlMenuReadFromFile
 			<< avlMenuWriteToFile
@@ -1704,12 +1691,45 @@ void MenuHelper::createAvlTreeMenuInstance() {
 		std::cin >> answer;
 		switch (answer) {
 		case 1: {
+			if (avlTree) {
+				avlTree = new AvlTree<int>();
+				std::cout << avlTreeCreateSuccessMessage;
+			}
+			else
+				std::cout << avlTreeCreateFailureMessage;
 			break;
 		}
 		case 2: {
+			clearConsole();
+
+			if (!avlTree)
+				std::cout << avlTreeNotCreatedMessage;
+			else {
+				if (avlTree->is_empty())
+					std::cout << avlTreeIsEmptyMessage;
+				else
+					std::cout << avlTreeIsNotEmptyMessage;
+			}
 			break;
 		}
 		case 3: {
+			clearConsole();
+			if(!avlTree)
+				std::cout << avlTreeNotCreatedMessage;
+			else {
+				int answer = -1;
+				
+				std::cout << avlTreeAddItemMessage01
+					<< enterAnswer;
+				
+				std::cin >> answer;
+
+				avlTree->insert(answer);
+
+				std::cout << avlTreeAddItemMessage02
+					<< answer
+					<< avlTreeAddItemMessage03;
+			}
 			break;
 		}
 		case 4: {
