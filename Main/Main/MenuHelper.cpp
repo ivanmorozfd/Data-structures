@@ -153,7 +153,7 @@ void MenuHelper::createStackMenuInstance() {
 			else {
 				try {
 					std::wcout << stackPeekMessage
-						<< stack->getTop()
+						<< stack->peek()
 						<< std::endl
 						<< std::endl;
 				}
@@ -249,7 +249,7 @@ void MenuHelper::createStackMenuInstance() {
 			{
 				while (!stack->isEmpty())
 				{
-					result = stack->getTop();
+					result = stack->peek();
 					stack->pop();
 					out << result;
 					out << " ";
@@ -414,7 +414,7 @@ void MenuHelper::createQueueMenuInstance()
 					else {
 						clearConsole();
 						std::cout << queuePeekMessage
-							<< queue->back();
+							<< queue->peek();
 					}
 				}
 				break;
@@ -498,7 +498,7 @@ void MenuHelper::createQueueMenuInstance()
 				{
 					while (!queue->isEmpty())
 					{
-						result = queue->front();
+						result = queue->peek();
 						queue->pop();
 						out << result;
 						out << " ";

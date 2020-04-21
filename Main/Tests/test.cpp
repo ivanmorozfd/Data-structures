@@ -16,7 +16,7 @@ TEST(StackTests, IsEmptyTest)
 TEST(StackTests, NullptrTopTest) 
 {
 	Stack<int> stack;
-	ASSERT_THROW(stack.getTop(), StackException);
+	ASSERT_THROW(stack.peek(), StackException);
 }
 TEST(StackTests, CountTest)
 {

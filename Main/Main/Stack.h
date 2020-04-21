@@ -6,11 +6,16 @@ using std::string;
 template<typename _T>
 class Stack {
 private:
+	//data representation in stack
+	//contain pointer to previous element,and data
 	template<typename _T>
 	class Node {
 	public:
 		_T data;
 		Node* prev;
+		Node(const _T& data): 
+			data(data),
+			prev(nullptr) {}
 	};
 	Node<_T>* m_top;//This structure contains data and pointer to previous node
 	unsigned count;	//number of elements in the stack
@@ -20,7 +25,7 @@ public:
 		return this->count;
 	}
 	//returns the value at the top of the stack
-	_T getTop() const {
+	_T peek() const {
 		if (!isEmpty())
 			return m_top->data;
 		else
@@ -33,14 +38,13 @@ public:
 	//add element to stack
 	void push(const _T& item) {
 		//create new stack node
-		Node<_T>* tmp = new Node<_T>();
-		tmp->data = item;
+		Node<_T>* tmp = new Node<_T>(item);
 		tmp->prev = m_top;
 		//set new top of the stack
 		m_top = tmp;
 		count++;
 	}
-	//remove element stack
+	//remove element from stack
 	void pop() {
 		if (!isEmpty()) 
 		{
@@ -58,11 +62,25 @@ public:
 		for (;!isEmpty();)
 			this->pop();
 	}
-public:
-	friend void print() {
-		Node* tmp = m_top;
-		while (tmp = tmp->prev)
-			std::cout << m_top;
+	//return is value avialable in stack
+	bool contain(_T value) const {
+		Node<_T>* tmp = this->m_top;
+		bool isFound = false;
+		do {
+			if (tmp->data == value) {
+				isFound = true;
+				break;
+			}
+		} while (tmp = tmp->prev);
+		return isFound;
+	}
+	//display stack data
+	template<class _T>
+	friend void print_stack(Stack<_T>* stack) {
+		Node<_T>* tmp = stack->m_top;
+		do {
+			std::cout << tmp->data << " ";
+		} while (tmp = tmp->prev);
 	}
 public:
 	Stack(): 
@@ -74,9 +92,8 @@ public:
 		for (auto i : data) 
 			this->push(i);
 	}
-	Stack(const Stack& other) { }
 	~Stack() {
 		this->clear();
 	}
-};
+};	
 

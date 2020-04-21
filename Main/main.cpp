@@ -1,6 +1,6 @@
 #include <iostream>
-#include "Main/MenuHelper.h"
+#include "Main/Stack.h"
 int main() {
-	MenuHelper menu;
+	Stack<int> stack({ 1,2,3,4 });
 	return 0;
 }
