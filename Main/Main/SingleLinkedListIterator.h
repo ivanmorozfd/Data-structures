@@ -4,16 +4,16 @@
 using std::ostream;
 using std::iterator;
 
-template<typename T>
+template<typename _T>
 class SingleLinkedList;
-template<typename T>
+template<typename _T>
 class Node;
-template<typename T>
-class SingleLinkedListIterator : iterator<std::input_iterator_tag, Node<T> > {
-	friend Node<T>;
-	friend class SingleLinkedList<T>;
+template<typename _T>
+class SingleLinkedListIterator : iterator<std::input_iterator_tag, Node<_T> > {
+	friend Node<_T>;
+	friend SingleLinkedList<_T>;
 private:
-	Node<T>* p;
+	Node<_T>* p;
 public:
 	bool operator!=(SingleLinkedListIterator const& other) const {
 		return p != other.p;
@@ -22,20 +22,17 @@ public:
 		return p == other.p;
 	}
 	typename SingleLinkedListIterator::reference operator*() const {
-		return *p;
+		return *p->data;
 	}
 	SingleLinkedListIterator& operator++() {
 		p = p->next;
 		return *this;
 	}
 public:
-	SingleLinkedListIterator(Node<T>* p) :
+	SingleLinkedListIterator(Node<_T>* p) :
 		p(p) { }
 public:
 	SingleLinkedListIterator(const SingleLinkedListIterator& it) :
 		p(it.p) { }
 };
-template<typename T>
-ostream& operator << (ostream& os, Node<T>& rhs) {
-	return os << rhs.value;
-}
+

@@ -4,18 +4,22 @@
 using std::initializer_list;
 template<typename _T>
 class SingleLinkedList {
+private:
+	friend SingleLinkedListIterator<_T>;
 	template<typename _T>
 	class Node {
 	public:
 		_T data;
 		Node* next;
-		Node(const _T data) :data(data), next(nullptr) { }
+		Node(const _T data) :
+			data(data),
+			next(nullptr) { }
 	};
 	typedef SingleLinkedListIterator<_T> iterator;
 	typedef SingleLinkedListIterator<const _T> const_iterator;
 private:
-	Node<_T>* pFront;
-	Node<_T>* pBack;
+	Node<_T>* pFront;//pointer at the begin of the list
+	Node<_T>* pBack;//pointer at the end of the list
 	unsigned count;
 public:
 	SingleLinkedList<_T>::iterator begin() {
@@ -31,12 +35,14 @@ public:
 		return const_iterator(end());
 	}
 public:
+	//return element at the begin of the list
 	_T front() {
 		if (!isEmpty())
 			return pFront->data;
 		else
 			throw SingleLinkedListException("List is Empty");
 	}
+	//return element at the end of the list
 	_T back() {
 		if (!isEmpty())
 			return pBack->data;
@@ -44,6 +50,7 @@ public:
 			throw SingleLinkedListException("List is Empty");
 	}
 public:
+	//delete an item from the top of the list
 	void pop_front() {
 		if (!isEmpty()) {
 			Node<_T>* temp = pFront;
@@ -53,6 +60,7 @@ public:
 		else
 			throw SingleLinkedListException("List is Empty");
 	}
+	//add an item to the end of the list
 	void push_back(const _T& item) {
 		this->count++;
 
@@ -64,6 +72,7 @@ public:
 			pBack = node;
 		}
 	}
+	//add an item to the begin of the list
 	void push_front(const _T& item) {
 		this->count++;
 
@@ -76,12 +85,27 @@ public:
 			pFront = node;
 		}
 	}
+	//does the list contain elements
 	bool isEmpty() const {
 		return pFront == pBack;
 	}
+	//clear the list
 	void clear() {
 		for (; !this->isEmpty() ;)
 			this->pop_front();
+	}
+	//does the item exist in the list
+	bool contain(const _T& item) const {
+		Node<_T>* temp = pFront;
+		bool isFound = false;
+		
+		while (temp = temp->next) {
+			if (temp->data == item) {
+				isFound = true;
+				break;
+			}
+		}
+		return isFound;
 	}
 public:
 	SingleLinkedList() :
@@ -91,7 +115,7 @@ public:
 	SingleLinkedList(const std::initializer_list<_T>& data)
 	{
 		for (auto i : data)
-			this->push(i);
+			this->push_back(i);
 	}
 	~SingleLinkedList() { }
 };

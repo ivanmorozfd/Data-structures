@@ -1,6 +1,9 @@
 #include <iostream>
-#include "Main/Stack.h"
+#include "Main/SingleLinkedList.h"
 int main() {
-	Stack<int> stack({ 1,2,3,4 });
+	SingleLinkedList<int> list({ 1,2,3,4 });
+	for (auto& i : list) {
+		std::cout << i;
+	}
 	return 0;
 }

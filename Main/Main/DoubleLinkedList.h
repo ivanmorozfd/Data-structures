@@ -4,7 +4,8 @@
 #include "DoubleLinkedListExceptions.h"
 using std::iterator;
 template<typename _T>
-class DoubleLinkedList {		
+class DoubleLinkedList {
+	friend DoubleLinkedListIterator<_T>;
 	template<typename _T>
 	class Node {
 	public:

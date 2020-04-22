@@ -190,7 +190,7 @@ public:
 			return root->key;
 		else 
 			throw BinarySearchTreeException("Tree is emtpy");
-	}
+	}	
 	_T findMin() {
 		findMin_(root);
 	}

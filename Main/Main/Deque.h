@@ -1,18 +1,17 @@
 #pragma once
 #include "DequeExceptions.h"
 template<typename _T>
-class Node {
-public:
-	_T value;
-	Node<_T>* prev;
-	Node<_T>* next;
-	Node(const _T& item) : value(item),
-		prev(nullptr),
-		next(nullptr) { }
-};
-
-template<typename _T>
 class Deque {
+	template<typename _T>
+	class Node {
+	public:
+		_T value;
+		Node<_T>* prev;
+		Node<_T>* next;
+		Node(const _T& item) : value(item),
+			prev(nullptr),
+			next(nullptr) { }
+	};
 private:
 	unsigned int count;
 	Node<_T>* pFront;
