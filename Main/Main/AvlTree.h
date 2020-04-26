@@ -1,4 +1,5 @@
 #pragma once
+#include "core.h"
 #include <iostream>
 #include "AvlTreeExceptions.h"
 template<typename _T>

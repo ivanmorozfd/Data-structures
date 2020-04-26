@@ -1,9 +1,13 @@
 #include <iostream>
-#include "Main/SingleLinkedList.h"
+#include "Main/DoubleLinkedList.h"
 int main() {
-	SingleLinkedList<int> list({ 1,2,3,4 });
-	for (auto& i : list) {
+	DoubleLinkedList<int> list;
+	list.push_back(1);
+	list.push_back(2);
+	list.push_back(3);
+	for (auto& i : list)
+		i = 5;
+	for (auto& i : list)
 		std::cout << i;
-	}
 	return 0;
 }

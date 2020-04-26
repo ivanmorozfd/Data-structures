@@ -7,13 +7,13 @@ using std::iterator;
 template<typename _T>
 class DoubleLinkedList;
 template<typename _T>
-class Node;
+class _ListNode;
 template<typename _T>
-class DoubleLinkedListIterator : iterator<std::input_iterator_tag, Node<_T>> {
-	friend Node<_T>;
+class DoubleLinkedListIterator : iterator<std::input_iterator_tag, _T> {
+	friend _ListNode<_T>;
 	friend DoubleLinkedList<_T>;
 private:
-	Node<_T>* p;
+	_ListNode<_T>* p;
 public:
 	bool operator!=(DoubleLinkedListIterator const& other) const {
 		return p != other.p;
@@ -22,7 +22,7 @@ public:
 		return p == other.p;
 	}
 	typename DoubleLinkedListIterator::reference operator*() const {
-		return *p;
+		return p->value;
 	}
 	DoubleLinkedListIterator& operator++() {
 		p = p->next;
@@ -37,13 +37,9 @@ public:
 		return *this;
 	}
 public:
-	DoubleLinkedListIterator(Node<_T>* p) :
+	DoubleLinkedListIterator(_ListNode<_T>* p) :
 		p(p) { }
 public:
 	DoubleLinkedListIterator(const DoubleLinkedListIterator& it) :
 		p(it.p) { }
 };
-template<typename __T>
-ostream& operator << (ostream& os, Node<__T>& rhs) {
-	return os << rhs.value;
-}

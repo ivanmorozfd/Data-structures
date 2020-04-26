@@ -16,7 +16,6 @@ private:
 	void createStackMenuInstance();
 	void createQueueMenuInstance();
 	void createDequeMenuInstance();
-	void createListMenuInstance();
 	void createDlistMenuInstance();
 	void createBheapMenuInstance();
 	void createMatrixMenuInstance();

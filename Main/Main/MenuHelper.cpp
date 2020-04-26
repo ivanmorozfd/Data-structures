@@ -2,7 +2,6 @@
 #include "Stack.h"
 #include "Queue.h"
 #include "Deque.h"
-#include "SingleLinkedList.h"
 #include "DoubleLinkedList.h"
 #include "BinaryHeap.h"
 #include "SparseMatrix.h"
@@ -44,10 +43,6 @@ void MenuHelper::createMainMenuInstance()
 				break;
 			case 3:
 				this->createDequeMenuInstance();
-				break;
-			case 4:
-
-				this->createListMenuInstance();
 				break;
 			case 5:
 				this->createDlistMenuInstance();
@@ -859,235 +854,6 @@ void MenuHelper::createDequeMenuInstance()
 	}
 }
 
-void MenuHelper::createListMenuInstance()
-{
-	clearConsole();
-	bool isActive = true;
-	SingleLinkedList<int>* slist = nullptr;
-	while (isActive)
-	{
-		int answer = -1;
-		std::wcout << listMenuSelectAction
-			<< listMenuCreate
-			<< listMenuIsEmpty
-			<< listMenuPushItem
-			<< listMenuPeek
-			<< listMenuPopItem
-			<< listMenuReadFromFile
-			<< listMenuWriteToFile
-			<< listMenuRandomize
-			<< listMenuPrint
-			<< listMenuClear
-			<< listMenuDestroy
-			<< listMenuExit;
-		std::cout << enterAnswer;
-		std::cin >> answer;
-		switch (answer)
-		{
-		case 1: {
-			if (!slist) {
-				clearConsole();
-				std::cout << listCreateSuccess;
-			}
-			else {
-				clearConsole();
-				slist = new SingleLinkedList<int>();
-				std::cout << listCreateFailure;
-			}
-			break;
-		}
-		case 2: {
-			clearConsole();
-			if (!slist) {
-				std::cout << listNotCreated;
-			}
-			else {
-				if (slist->isEmpty())
-					std::cout << listIsEmpty;
-				else
-					std::cout << listIsNotEmpty;
-			}
-			break;
-		}
-		case 3: {
-			clearConsole();
-
-			if (!slist) 
-				std::cout << listNotCreated;
-			else {
-				int answer = 0;
-
-				std::cout << listPushMessage01;
-				std::cout << enterAnswer;
-
-				std::cin >> answer;
-				slist->push_back(answer);
-
-				std::cout << listPushMessage02
-					<< answer
-					<< listPushMessage03;
-			}
-			break;
-		}
-		case 4: {
-			if (!slist) {
-				clearConsole();
-				std::cout << listNotCreated;
-			}
-			else {
-				clearConsole();
-				try {
-					std::cout << listPeekMessage
-						<< slist->back();
-				}
-				catch (SingleLinkedListException & e) {
-					std::cout << "Список пуст";
-				}
-			}
-			break;
-		}
-		case 5: {
-			//
-			break;
-		}
-		case 6: {
-			std::wcout << listReadFileMessage;
-			std::wcout << enterAnswer;
-
-			std::string fileName;
-			std::cin >> fileName;
-
-			std::ifstream fin(fileName + ".txt");
-
-			if (!fin.is_open()) {
-				clearConsole();
-				std::wcout << listReadFileErrMessage;
-				break;
-			}
-			else {
-				if (slist) {
-					delete slist;
-					slist = nullptr;
-					slist = new SingleLinkedList<int>();
-				}
-				else
-					slist = new SingleLinkedList<int>();
-
-				while (!fin.eof()) {
-					int a;
-					fin >> a;
-
-					slist->push_back(a);
-
-				}
-			}
-			clearConsole();
-
-			std::wcout << listReadFileSuccessMessage;
-
-			break;
-		}
-		case 7: {
-			clearConsole();
-			if (!slist) {
-				std::wcout << listNotCreated;
-				break;
-			}
-			std::wcout << listWriteFileMessage;
-			std::wcout << enterAnswer;
-
-			std::string fileName;
-			std::cin >> fileName;
-
-
-			std::ofstream out(fileName + ".txt",
-				std::ios_base::trunc);
-
-			if (!out.is_open()) {
-				std::wcout << listWriteFileErrMessage;
-				break;
-			}
-			else {
-				int result = 0;
-				while (!slist->isEmpty()) {
-					result = slist->front();
-					slist->pop_front();
-
-					out << result;
-					out << " ";
-				}
-			}
-			out.close();
-
-			std::wcout << listWriteFileSuccess;
-			break;
-		}
-		case 8: {
-			std::wcout << listRandomizeMessage;
-			std::wcout << enterAnswer;
-
-			int listSize = 0;
-			std::cin >> listSize;
-	
-			if (listSize < 1) {
-				clearConsole();
-				std::wcout << listRandomizeErrorMessage;
-				break;
-			}
-
-			std::wcout << listRandomizeUpRangeMessge;
-			std::wcout << enterAnswer;
-
-			int upValue;
-			std::cin >> upValue;
-
-			for (int i = 0; i < listSize; ++i)
-				slist->push_back(std::rand() % upValue);
-
-			clearConsole();
-
-			std::wcout << listRandomizeSuccess;
-			break;
-		}
-		case 9: {
-			clearConsole();
-
-			//for (auto& it = list->begin; it != list->end(); it++)
-			//	std::cout << *it;
-
-			break;
-		}
-		case 10: {
-			slist->clear();
-			
-			clearConsole();
-
-			std::cout << listClearSucces;
-			break;
-		}
-		case 11: {
-			if (!slist) {
-				clearConsole();
-				std::cout << listNotCreated;
-			}
-			else {
-				clearConsole();
-				std::cout << listDestroyedMessage;
-				delete slist;
-				slist = nullptr;
-			}
-			break;
-		}
-		case 12: {
-				isActive = false;
-			break;
-		}
-		default:
-			break;
-		}
-	}
-}
-
 void MenuHelper::createDlistMenuInstance()
 {
 	clearConsole();
@@ -1333,8 +1099,9 @@ void MenuHelper::createDlistMenuInstance()
 		}
 		case 12: {
 			clearConsole();
-			for (auto& i :*list)
-				std::cout << i;
+			for (DoubleLinkedList<int>::iterator it = list->begin(); it != list->end(); ++it) {
+				std::cout << *it;
+			}
 			break;
 		}
 		case 13: {

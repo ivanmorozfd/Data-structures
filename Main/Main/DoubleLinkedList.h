@@ -3,39 +3,40 @@
 #include "DoubleLinkedListIterator.h"
 #include "DoubleLinkedListExceptions.h"
 using std::iterator;
+
+template<typename _T>
+class _ListNode {
+public:
+	_T value;
+	_ListNode<_T>* prev;
+	_ListNode<_T>* next;
+	_ListNode(const _T& item) : value(item),
+		prev(nullptr),
+		next(nullptr) {}
+};
 template<typename _T>
 class DoubleLinkedList {
 	friend DoubleLinkedListIterator<_T>;
-	template<typename _T>
-	class Node {
-	public:
-		_T value;
-		Node<_T>* prev;
-		Node<_T>* next;
-		Node(const _T& item) : value(item),
-			prev(nullptr),
-			next(nullptr) {}
-	};
 public:
 	typedef DoubleLinkedListIterator<_T> iterator;
 	typedef DoubleLinkedListIterator<const _T> const_iterator;
 public:
 	DoubleLinkedList<_T>::iterator begin() {
-		return iterator(begin());
+		return iterator(pFront);
 	}
 	DoubleLinkedList<_T>::iterator end() {
-		return iterator(end());
+		return iterator(pBack->next);
 	}
 	DoubleLinkedList<_T>::const_iterator begin() const {
-		return const_iterator(begin());
+		return const_iterator(pFront);
 	}
 	DoubleLinkedList<_T>::const_iterator end() const {
-		return const_iterator(end());
+		return const_iterator(pBack->next);
 	}
 private:														
 	unsigned int count;								
-	Node<_T>* pFront;										
-	Node<_T>* pBack;										
+	_ListNode<_T>* pFront;										
+	_ListNode<_T>* pBack;										
 public:
 	bool is_empty()  const {
 		return !this->pFront;
@@ -48,7 +49,7 @@ public:
 	}
 	void pop_back() {
 		if (!is_empty()) {
-			Node<_T>* tmp = this->pBack;
+			_ListNode<_T>* tmp = this->pBack;
 			this->pBack = this->pBack->prev;
 			delete tmp;
 		}
@@ -57,7 +58,7 @@ public:
 	}
 	void  pop_front() {
 		if (!is_empty()) {
-			Node<_T>* tmp = this->pFront;
+			_ListNode<_T>* tmp = this->pFront;
 			this->pFront = this->pFront->next;
 			delete tmp;
 		}
@@ -65,7 +66,7 @@ public:
 			throw DoubleLinkedListException("List is empty");
 	}
 	void push_back(const _T& item) {
-		Node<_T>* tmp = new Node<_T>(item);
+		_ListNode<_T>* tmp = new _ListNode<_T>(item);
 		this->count++;
 		if (this->pFront){ 
 			tmp->prev = this->pBack;
@@ -77,7 +78,7 @@ public:
 			this->pFront = this->pBack = tmp;
 	}
 	void push_front(const _T& item) {
-		Node<_T>* tmp = new Node<_T>(item);
+		_ListNode<_T>* tmp = new _ListNode<_T>(item);
 		this->count++;
 		if (this->pFront) {
 			tmp->next = this->pFront;
