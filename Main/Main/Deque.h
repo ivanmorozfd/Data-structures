@@ -3,7 +3,8 @@
 template<typename _T>
 class Deque {
 	template<typename _T>
-	class Node {
+	struct _QueueNode {
+
 	public:
 		_T value;
 		Node<_T>* prev;

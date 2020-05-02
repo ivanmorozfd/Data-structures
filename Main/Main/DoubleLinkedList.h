@@ -1,84 +1,173 @@
 #pragma once
+#include "core.h"
+#include "Container.h"
 #include <iterator>
 #include "DoubleLinkedListIterator.h"
 #include "DoubleLinkedListExceptions.h"
 using std::iterator;
-
+/*!
+	Data representation in DoubleLinkedList
+	Contain pointer to previous element,next element and data
+	\brief DoubleLinkedList element wrapper
+	\author ivanmorozfd
+	\version 1.0
+	\date April 2020
+*/
 template<typename _T>
-class _ListNode {
+struct _ListNode {
+	typedef _ListNode* NodePtr;//!< Node pointer
+	using valueType = _T;//!< Element type
+	using reference = valueType&;//!< Reference element type
+	using const_reference = const valueType&;
 public:
-	_T value;
-	_ListNode<_T>* prev;
-	_ListNode<_T>* next;
-	_ListNode(const _T& item) : value(item),
+	valueType value;//!< Node value
+	NodePtr prev;//!< Pointer to previous Node
+	NodePtr next;//!< Pointer to next Node
+public:
+	_ListNode(const _ListNode&) = delete;
+	_ListNode& operator=(const _ListNode&) = delete;
+public:
+	/*!
+		Default _StackNode constructor
+	*/
+	_ListNode() = default;
+	/*!
+		Parameterized _StackNode constructor
+		\param[in] valueType& Node data
+	*/
+	_ListNode(const_reference data) :
+		value(data),
 		prev(nullptr),
 		next(nullptr) {}
 };
+
+/*!
+	DoubleLinkedList class
+	\brief Use to store data
+	\author ivanmorozfd
+	\version 1.0
+	\date April 2020
+*/
 template<typename _T>
-class DoubleLinkedList {
+class DoubleLinkedList : public Container {	
+private:
+	using valueType = _T;// Element type
+	using reference = valueType&;// Reference element type
+	using NodePtr = _ListNode<_T>*;// Pointer node type
+	using NodeRef = _ListNode<_T>;// Reference node type
+public:
 	friend DoubleLinkedListIterator<_T>;
 public:
-	typedef DoubleLinkedListIterator<_T> iterator;
-	typedef DoubleLinkedListIterator<const _T> const_iterator;
+	typedef DoubleLinkedListIterator<_T> iterator; //!< iterator for DoubleLinkedList
+	typedef DoubleLinkedListIterator<const _T> const_iterator; //!< const iterator for DoubleLinkedList
 public:
+	/*!
+		Returns an const iterator to the beginning
+	*/		
 	DoubleLinkedList<_T>::iterator begin() {
 		return iterator(pFront);
 	}
+	/*!
+		Returns an iterator to the end
+	*/
 	DoubleLinkedList<_T>::iterator end() {
 		return iterator(pBack->next);
 	}
+	/*!
+		Returns an const iterator to the beginning
+	*/
 	DoubleLinkedList<_T>::const_iterator begin() const {
 		return const_iterator(pFront);
 	}
+	/*!
+		Returns an const iterator to the end
+	*/
 	DoubleLinkedList<_T>::const_iterator end() const {
 		return const_iterator(pBack->next);
 	}
+	/*!
+		Returns an reversed iterator to the beginning
+	*/
+	DoubleLinkedList<_T>::iterator rbegin() {
+		return iterator(end());
+	}
+	/*!
+		Returns an reversed iterator to the end
+	*/
+	DoubleLinkedList<_T>::iterator rend() {
+		return iterator(begin());
+	} 
 private:														
-	unsigned int count;								
-	_ListNode<_T>* pFront;										
-	_ListNode<_T>* pBack;										
+	size_t count;//
+	NodePtr pFront;//pointer to the list beginning										
+	NodePtr pBack;//pointer to the list end
 public:
-	bool is_empty()  const {
+	/*!
+		Checks whether the list is empty
+		\param[out] bool True,if DoubleLinkedList is empty,otherwise False
+	*/
+	bool isEmpty()  const override {
 		return !this->pFront;
 	}
-	_T front() const {
+	/*!
+		Returns the first element
+		\param[out] valueType
+	*/
+	valueType front() const {
 		return pFront->value;
 	}
-	_T back() const {
+	/*!
+		Returns the last element
+		\param[out] valueType
+	*/
+	valueType back() const {
 		return pBack->value;	
 	}
+	/*!
+		Removes the last element
+	*/
 	void pop_back() {
-		if (!is_empty()) {
-			_ListNode<_T>* tmp = this->pBack;
+		if (!isEmpty()) {
+			NodePtr tmp = this->pBack;
 			this->pBack = this->pBack->prev;
 			delete tmp;
 		}
 		else
 			throw DoubleLinkedListException("List is empty");
 	}
+	/*!
+		Removes the first element
+	*/
 	void  pop_front() {
-		if (!is_empty()) {
-			_ListNode<_T>* tmp = this->pFront;
+		if (!isEmpty()) {
+			NodePtr tmp = this->pFront;
 			this->pFront = this->pFront->next;
 			delete tmp;
 		}
 		else
 			throw DoubleLinkedListException("List is empty");
 	}
+	/*!
+		Adds element to the end
+		\param valueType item
+	*/
 	void push_back(const _T& item) {
-		_ListNode<_T>* tmp = new _ListNode<_T>(item);
+		NodePtr tmp = new NodeRef(item);
 		this->count++;
-		if (this->pFront){ 
+		if (this->pBack){ 
 			tmp->prev = this->pBack;
 			this->pBack->next = tmp;
 			this->pBack = tmp;
-
 		}
 		else 
 			this->pFront = this->pBack = tmp;
 	}
+	/*!
+		Adds element to the beginning
+		\param valueType item
+	*/
 	void push_front(const _T& item) {
-		_ListNode<_T>* tmp = new _ListNode<_T>(item);
+		NodePtr tmp = new NodeRef(item);
 		this->count++;
 		if (this->pFront) {
 			tmp->next = this->pFront;
@@ -89,8 +178,11 @@ public:
 		else
 			this->pFront = this->pBack = tmp;
 	}
+	/*!
+		Clear the contents
+	*/
 	void clear() {
-		while (!this->is_empty())
+		while (!this->isEmpty())
 			this->pop_back();
 	}
 	void reverse() 
@@ -201,5 +293,9 @@ public:
 		pFront(nullptr),
 		pBack(nullptr),
 		count(0) {}
+	DoubleLinkedList(std::initializer_list<valueType>& data) {
+		for (auto i : data)
+			this->push_back(i);
+	}
 	~DoubleLinkedList() {}
 };

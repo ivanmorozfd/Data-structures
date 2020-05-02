@@ -3,7 +3,13 @@
 #include <string>
 using std::string;
 using std::exception;
-
+/*!
+	Exception class for AvlTree
+	\brief Provide for AvlTree throw mechanism
+	\author ivanmorozfd
+	\version 1.0
+	\date April 2020
+*/
 class AvlTreeException :exception {
 private:
 	std::string whatStr;

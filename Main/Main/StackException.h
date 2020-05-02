@@ -3,9 +3,14 @@
 #include <exception>
 using std::exception;
 using std::string;
-
-class StackException : exception
-{
+/*!
+	Exception class for Stack
+	\brief Provide for Stack throw mechanism
+	\author ivanmorozfd
+	\version 1.0
+	\date April 2020
+*/
+class StackException : exception {
 private:
 	std::string whatStr;
 public:

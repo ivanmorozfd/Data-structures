@@ -3,8 +3,14 @@
 using std::exception;
 using std::string;
 
-class BinarySearchTreeException : exception
-{
+/*!
+	Exception class for BinarySearchTree
+	\brief Provide for BinarySearchTree throw mechanism
+	\author ivanmorozfd
+	\version 1.0
+	\date April 2020
+*/
+class BinarySearchTreeException : exception {
 private:
 	std::string whatStr;
 public:

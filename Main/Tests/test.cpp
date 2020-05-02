@@ -1,6 +1,13 @@
 #include <gtest/gtest.h>
 #include "../Main/Stack.h"
-
+#include "../Main/Queue.h"
+#include "../Main/DoubleLinkedList.h"
+#include "../Main/BinaryHeap.h"
+#include "../Main/SparseMatrix.h"
+#include "../Main/BinaryHeap.h"
+#include "../Main/BinarySearchTree.h"
+#include "../Main/AvlTree.h"
+#include "../Main/RBTree.h"
 TEST(StackTests, SizeTest) 
 {
 	Stack<int> stack;
@@ -38,60 +45,14 @@ TEST(StackTests, PopFromEmptyStack)
 	ASSERT_NO_THROW(stack.pop());
 	ASSERT_THROW(stack.pop(), StackException);
 }
-TEST(StackTests, StackDestructorTest)
-{
-	//TODO
-}
-TEST(StackTests, StackConstructorTest)
-{
-	//TODO
-}
-TEST(StackTests, StackCopyConstructorTest)
-{
-	//TODO
-}
-TEST(StackTests, MemoryTest)
-{
-
-}
 
 
-TEST(SingleLinkedListTests, ConstructorTest)
-{
-	//TODO
-}
-TEST(SingleLinkedListTests, EmptyListTest)
-{
-	//TODO
-}
-TEST(SingleLinkedListTests, InsertAndDelTest)
-{
-	//TODO
-}
-TEST(SingleLinkedListTests, PopFromEmptyList)
-{
-	//TODO
-}
-TEST(SingleLinkedListTests, ListSizeTest)
-{
-	//TODO
-}
-TEST(SingleLinkedListTests, InitializerTest)
-{
-	//TODO
-}
-TEST(SingleLinkedListTests, ListIteratorTest)
-{
-	//TODO
-}
-TEST(SingleLinkedListTests, CopyConstructorTest)
-{
-	//TODO
-}
 
 TEST(DoubleLinkedListTests, ConstructorTest)
 {
-	//TODO
+	DoubleLinkedList<int> list;
+	ASSERT_THROW(list.pop_back(),StackException);
+	ASSERT_THROW(list.pop_front(), StackException);
 }
 TEST(DoubleLinkedListTests, EmptyListTest)
 {

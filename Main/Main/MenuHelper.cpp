@@ -1,7 +1,6 @@
 #include "MenuHelper.h"
 #include "Stack.h"
 #include "Queue.h"
-#include "Deque.h"
 #include "DoubleLinkedList.h"
 #include "BinaryHeap.h"
 #include "SparseMatrix.h"
@@ -42,7 +41,7 @@ void MenuHelper::createMainMenuInstance()
 				this->createQueueMenuInstance();
 				break;
 			case 3:
-				this->createDequeMenuInstance();
+				//
 				break;
 			case 5:
 				this->createDlistMenuInstance();
@@ -562,298 +561,6 @@ void MenuHelper::createQueueMenuInstance()
 	}
 }
 
-void MenuHelper::createDequeMenuInstance()
-{
-	clearConsole();
-	bool isActive = true;
-	Deque<int>* deque = nullptr;
-	while (isActive)
-	{
-		int answer = -1;
-		std::wcout << dequeMenuSelectAction
-			<< dequeMenuCreate
-			<< dequeMenuIsEmpty
-			<< dequeMenuPushBack
-			<< dequeMenuPushFront
-			<< dequeMenuPeekBack
-			<< dequeMenuPeekFront
-			<< dequeMenuPopBack
-			<< dequeMenuPopFront
-			<< dequeMenuReadFromFile
-			<< dequeMenuWriteToFile
-			<< dequeMenuRandomize
-			<< dequeMenuPrint
-			<< dequeMenuClear
-			<< dequeMenuDestroy
-			<< dequeMenuExit;
-		std::cout << enterAnswer;
-		std::cin >> answer;
-		switch (answer)
-		{
-		case 1:
-		{
-			if (!deque) {
-				clearConsole();
-				std::cout << dequeCreateSuccess;
-			}
-			else {
-				clearConsole();
-				deque = new Deque<int>();
-				std::cout << dequeCreateFailure;
-			}
-			break;
-		}
-		case 2:
-		{
-			if (!deque) {
-				clearConsole();
-				std::cout << dequeNotCreated;
-			}
-			else {
-				clearConsole();
-				if (deque->is_empty()) {
-					std::cout << dequeIsEmpty;
-				}
-				else {
-					std::cout << dequeIsNotEmpty;
-				}
-			}
-			break;
-		}
-		case 3:
-		{
-			if (!deque) {
-				clearConsole();
-				std::cout << dequeNotCreated;
-			}
-			else {
-				std::cout << dequePushBackMessage01;
-				int answer = -1;
-				std::cout << enterAnswer;
-				std::cin >> answer;
-				
-				deque->push_back(answer);
-				clearConsole();
-				std::cout << dequePushBackMessage02
-					<< answer
-					<< dequePushBackMessage03;
-			}
-			break;
-		}
-		case 4: {
-			if (!deque) {
-				clearConsole();
-				std::cout << dequeNotCreated;
-			}
-			else {
-				std::cout << dequePushFrontMessage01;
-				int answer = -1;
-				std::cout << enterAnswer;
-				std::cin >> answer;
-
-				deque->push_front(answer);
-				clearConsole();
-				std::cout << dequePushFrontMessage02
-					<< answer
-					<< dequePushFrontMessage03;
-			}
-			break;
-		}
-		case 5: {
-			if (!deque) {
-				clearConsole();
-				std::cout << dequeNotCreated;
-			}
-			else {
-				if (deque->is_empty()) {
-					clearConsole();
-					std::cout << dequeIsEmpty;
-				}
-				else {
-					clearConsole();
-					std::cout << dequePeekBackMessage
-						<< deque->back();
-				}
-			}
-			break;
-		}
-		case 6: {
-			if (!deque) {
-				clearConsole();
-				std::cout << dequeNotCreated;
-			}
-			else {
-				clearConsole();
-				if (deque->is_empty()) {
-					std::cout << dequeIsEmpty;
-				}
-				else {
-					std::cout << dequePeekFrontMessage
-						<< deque->front();
-				}
-			}
-			break;
-		}
-		case 7: {
-			if (!deque) {
-				clearConsole();
-				std::cout << dequeNotCreated;
-			}
-			else {
-				clearConsole();
-				try {
-					deque->pop_back();
-				}
-				catch (DequeException & e) {
-
-					std::cout << dequeIsEmpty;
-				}
-			}
-			break;
-		}
-		case 8: {
-			if (!deque) {
-				clearConsole();
-				std::cout << dequeNotCreated;
-			}
-			else {
-				clearConsole();
-				try {
-					deque->pop_front();
-				}
-				catch (DequeException & e) {
-
-					std::cout << dequeIsEmpty;
-				}
-			}
-			break;
-		}
-		case 9: {
-			std::wcout << dequeReadFileMessage;
-			std::wcout << enterAnswer;
-			std::string fileName;
-			std::cin >> fileName;
-			std::ifstream fin(fileName + ".txt");
-			if (!fin.is_open()) {
-				clearConsole();
-				std::wcout << dequeReadFileErrMessage;
-				break;
-			}
-			else {
-				if (deque) {
-					delete deque;
-					deque = nullptr;
-					deque = new Deque<int>();
-				}
-				else
-					deque = new Deque<int>();
-
-				while (!fin.eof()) {
-					int a;
-					fin >> a;
-					deque->push_back(a);
-
-				}
-			}
-			clearConsole();
-
-			std::wcout << dequeReadFileSuccessMessage;
-			break;
-		}
-		case 10:{
-			if (!deque) {
-				std::wcout << dequeNotCreated;
-				break;
-			}
-			std::wcout << dequeWriteFileMessage;
-			std::wcout << enterAnswer;
-
-			std::string fileName;
-			std::cin >> fileName;
-
-			int result;
-			std::ofstream out(fileName + ".txt", std::ios_base::trunc);
-			if (!out.is_open()) {
-				clearConsole();
-				std::wcout << dequeWriteFileErrMessage;
-				break;
-			}
-			else {
-				while (!deque->is_empty()) {
-					result = deque->front();
-					deque->pop_back();
-					out << result;
-					out << " ";
-				}
-			}
-			out.close();
-
-			clearConsole();
-
-			std::wcout << dequeWriteFileSuccess;
-			break;
-		}
-		case 11: {
-			std::wcout << dequeRandomizeMessage;
-			std::wcout << enterAnswer;
-			int dequeSize = 0;
-			std::cin >> dequeSize;
-			if (dequeSize < 1) {
-				clearConsole();
-				std::wcout << dequeRandomizeErrorMessage;
-				break;
-			}
-			std::wcout << dequeRandomizeUpRangeMessge;
-			std::wcout << enterAnswer;
-			int upValue;
-			std::cin >> upValue;
-			for (int i = 0; i < dequeSize; ++i)
-				deque->push_back(std::rand() % upValue);
-	
-			clearConsole();
-			std::wcout << dequeRandomizeSuccess;
-			break;
-		}
-		case 12: {
-			break;
-		}
-		case 13: {
-			if (!deque) {
-				clearConsole();
-				std::wcout << dequeNotCreated;
-				break;
-			}
-			else {
-				clearConsole();
-				std::cout << dequeClearSucces;
-				deque->clear();
-			}
-			break;
-		}
-		case 14: {
-			if (!deque) {
-				clearConsole();
-				std::cout << dequeNotCreated;
-			}
-			else {
-				clearConsole();
-				std::cout << dequeDestroyedMessage;
-				delete deque;
-				deque = nullptr;
-			}
-			break;
-		}
-		case 15:
-		{
-			isActive = false;
-			break;
-		}
-		default:
-			break;
-		}
-	}
-}
-
 void MenuHelper::createDlistMenuInstance()
 {
 	clearConsole();
@@ -896,7 +603,7 @@ void MenuHelper::createDlistMenuInstance()
 			if (!list)
 				std::cout << dlistNotCreated;
 			else {
-				if (list->is_empty())
+				if (list->isEmpty())
 					std::cout << dlistIsEmpty;
 				else
 					std::cout << dlistIsNotEmpty;
@@ -1059,7 +766,7 @@ void MenuHelper::createDlistMenuInstance()
 			}
 			else {
 				int result = 0;
-				while (!list->is_empty()) {
+				while (!list->isEmpty()) {
 					result = list->front();
 					list->pop_back();
 
@@ -1069,7 +776,7 @@ void MenuHelper::createDlistMenuInstance()
 			}
 			out.close();
 
-			std::wcout << listWriteFileSuccess;
+			std::wcout << dlistWriteFileSuccess;
 		}
 		case 11: {
 			clearConsole();
@@ -1285,7 +992,7 @@ void MenuHelper::createBheapMenuInstance()
 			}
 			out.close();
 
-			std::wcout << listWriteFileSuccess;
+			std::wcout << dlistWriteFileSuccess;
 			break;
 		}
 		case 8: {
@@ -1472,7 +1179,7 @@ void MenuHelper::createAvlTreeMenuInstance() {
 			if (!avlTree)
 				std::cout << avlTreeNotCreatedMessage;
 			else {
-				if (avlTree->is_empty())
+				if (avlTree->isEmpty())
 					std::cout << avlTreeIsEmptyMessage;
 				else
 					std::cout << avlTreeIsNotEmptyMessage;

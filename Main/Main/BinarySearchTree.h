@@ -1,19 +1,61 @@
 #pragma once
+#include "core.h"
+#include "Container.h"
 #include "BinarySearchTreeExceptions.h"
 template<typename _T>
-class BinarySearchTree {
-private:
-	struct Node {
-		_T key;
-		Node* left;
-		Node* right;
-		Node(const _T& key) : key(key),
-			left(nullptr),
-			right(nullptr) {}
-	};
-	Node* root;
 
-	void addLeaf_(const _T& key, Node* ptr) {
+/*!
+	Data representation in BinarySearchTree
+	Contain pointer to next and right child,node key
+	\brief Stack element wrapper
+	\author ivanmorozfd
+	\version 1.0
+	\date April 2020
+*/
+struct _BstNode {
+	typedef _BstNode* NodePtr;//!< Node  pointer type
+	using valueType = _T;//!< Element type
+	using reference = valueType&;//Reference type
+public:
+	valueType key;//!< Node key 
+	NodePtr left;//!< Pointer  to left child
+	NodePtr right;//!< Pointer to right child
+public:
+	_BstNode(const _BstNode&) = delete;
+	_BstNode& operator=(const _BstNode&) = delete;
+public:
+	/*!
+		Default _BstNode constructor
+	*/
+	_BstNode() = default;
+	/*!
+		Parameterized _BstNode constructor
+		\param[in] valueType& Node data
+	*/
+	_BstNode(valueType key) : key(key),
+		left(nullptr),
+		right(nullptr) {}
+};
+
+
+/*!
+	BinarySearchTree class
+	\brief Use to store data in tree view
+	\author ivanmorozfd
+	\version 1.0
+	\date April 2020
+*/
+template<typename _T>	
+class BinarySearchTree : public Container {
+	using valueType = _T;//Element type
+	using reference = valueType&;//Reference element type
+	using const_reference = const valueType&;//Const reference element type
+	using NodePtr = _BstNode<_T>*;//Pointer node type
+	using NodeRef = _BstNode<_T>;//Reference node type
+private:
+	NodePtr root;//!< tree root
+	//add value to the tree recursively
+	void addLeaf_(const_reference key, NodePtr ptr) {
 		if (!root)
 			root = createLeaf(key);
 		else if (key < ptr->key) {
@@ -31,19 +73,31 @@ private:
 		else
 			throw BinarySearchTreeException("This key just avialable");
 	}
-	void printInOrder_(Node* ptr) {
-		if (root) {
-			if (ptr->left)
-				printInOrder_(ptr->left);
-			std::cout << ptr->key;
-			if (ptr->right)
-				printInOrder_(ptr->right);
-		}
-		else
-			throw BinarySearchTreeException("Tree is empty");
-		
+	// print tree in order
+	void inOrderTravers(NodePtr ptr) {
+		if (!ptr)
+			return;
+		inOrderTravers(ptr->left);
+		std::cout << ptr->key << " ";
+		inOrderTravers(ptr->right);
 	}
-	Node* returnNode_(const _T& key, Node* ptr) {
+	void preOrderTravers(NodePtr root) {
+		if (root) {
+			std::cout << root->key << " ";
+			preOrderTravers(root->left);
+			preOrderTravers(root->right);
+		}
+	}
+
+	void postOrderTravers(NodePtr root) {
+		if (root) {
+			postOrderTravers(root->left);
+			postOrderTravers(root->right);
+			std::cout << root->key << " ";
+		}
+	}
+	//Return node by key
+	NodePtr returnNode_(const_reference key, NodePtr ptr) {
 		if (ptr) {
 			if (ptr->key == key)
 				return ptr;
@@ -55,7 +109,8 @@ private:
 		else 
 			return nullptr;
 	}
-	_T findMin_(Node* ptr) {
+	//Find min element in tree
+	valueType findMin_(NodePtr ptr) {
 		if (!root) 
 			throw BinarySearchTreeException("Tree is empty");
 		else {
@@ -66,7 +121,8 @@ private:
 
 		}
 	}
-	void removeNode_(const _T& key, Node* parent) {
+	//Remove node from tree recursively
+	void removeNode_(const_reference key, NodePtr parent) {
 		if (root){
 			if (root->key == key)
 				removeRootMatch();
@@ -90,11 +146,12 @@ private:
 		else
 			throw BinarySearchTreeException("Tree is empty");
 	}
+	//Remove tree root
 	void removeRootMatch() {
 		if (root) {
-			Node* delPtr = root;
-			_T rootK = root->key;
-			_T smallInRghtSubtr;
+			NodePtr delPtr = root;
+			valueType rootK = root->key;
+			valueType smallInRghtSubtr;
 			// 0 children
 			if (!root->left && !root->left) {
 				root = nullptr;
@@ -112,20 +169,21 @@ private:
 				delete delPtr;
 			}
 			else {
-				_T = findMin_(root->right);
+				valueType = findMin_(root->right);
 				removeNode_(smallInRghtSubtr, root);
 			}
 		}
 		else
 			throw BinarySearchTreeException("Tree is empty");
 	}
-	void removeMatch(Node* parent,
-			 Node* match,
+	//Remove node match 
+	void removeMatch(NodePtr parent,
+			 NodePtr match,
 			 const bool& isLeft) {
 		if (root) {
-			Node* delPtr;
-			_T matchK = match->key;
-			_T smallestInRightSub;
+			NodePtr delPtr = nullptr;
+			valueType matchK = match->key;
+			valueType smallestInRightSub = valueType();
 			// zero child
 			if (!match->right 
 			    && match->left) {
@@ -168,37 +226,91 @@ private:
 		else
 			throw BinarySearchTreeException("Tree is empty");
 	}
-public:
-	Node* createLeaf(const _T& key) {
-		Node* leaf = new Node();
+	//Create leaf method
+	NodePtr createLeaf(const_reference key) {
+		NodePtr leaf = new NodeRef();
 		leaf->key = key;
 		leaf->left = nullptr;
 		leaf->right = nullptr;
 		return leaf;
 	}
-	void  addLeaf(const _T& key) {
-		addLeaf_(key, root);
-	}
-	void  printInOrder() {
-		printInOrder_(root);
-	}
-	Node* returnNode(const _T& key) {
+	// Return node by key
+	NodePtr returnNode(const_reference key) {
 		return returnNode_(key, root);
 	}
-	_T returnRootK() {
+public:
+	/*!
+		Is the BinarySearchTree empty
+		\param[out] bool True,if BinarySearchTree is empty
+	*/
+	bool isEmpty() const override {
+		return !root;
+	}
+	/*!
+		Add item to the tree
+		\param[out] size_t Stack size
+	*/
+	void  addLeaf(const_reference key) {
+		addLeaf_(key, root);
+	}
+	/*!
+		Display tree data in order
+	*/
+	void  printInOrder() const {
+		this->inOrderTravers(root);
+	}
+	/*!
+		Display tree data in post order
+	*/
+	void printPostOrder() const {
+		this->postOrderTravers();
+	}
+	/*!
+		Display tree data in pre order
+	*/
+	void printPreOrder() const {
+		this->preOrderTravers();
+	}
+	/*!
+		Returns the value in the root
+		\param[out] valueType
+	*/
+	valueType returnRootK() {
 		if (root)
 			return root->key;
 		else 
 			throw BinarySearchTreeException("Tree is emtpy");
 	}	
-	_T findMin() {
+	/*!
+		Find minimal element in the tree
+		\param[out] valueType key
+	*/
+	valueType findMin() {
 		findMin_(root);
 	}
-	void removeNode(const _T& key) {
+	/*!
+		Remove element from the tree by key
+		\param[out] valueType key
+	*/
+	void removeByKey(const_reference key) {
 		removeNode_(key, root);
 	}
 public:
+	/*!
+		Default BinarySearchTree constructor
+	*/
 	BinarySearchTree() :root(nullptr) { }
-	BinarySearchTree(const BinarySearchTree<_T>& other) { }
+	/*!
+		Parameterized BinarySearchTree constructor
+		\param[in] initializer_list<valueType>list STL init list
+	*/
+	BinarySearchTree(const std::initializer_list<valueType>& data) :
+		root(nullptr) {
+		for (auto i : data)
+			this->addLeaf(i);
+	}
+	/*!
+		BinarySearchTree destructor
+	*/
 	~BinarySearchTree() { }
 };

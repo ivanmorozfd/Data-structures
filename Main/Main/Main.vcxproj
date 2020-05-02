@@ -132,11 +132,10 @@
     <ClInclude Include="BinarySearchTree.h" />
     <ClInclude Include="BinarySearchTreeExceptions.h" />
     <ClInclude Include="core.h" />
-    <ClInclude Include="Deque.h" />
-    <ClInclude Include="DequeExceptions.h" />
     <ClInclude Include="DoubleLinkedList.h" />
     <ClInclude Include="DoubleLinkedListExceptions.h" />
     <ClInclude Include="DoubleLinkedListIterator.h" />
+    <ClInclude Include="Container.h" />
     <ClInclude Include="MenuConsts.h" />
     <ClInclude Include="MenuHelper.h" />
     <ClInclude Include="Queue.h" />

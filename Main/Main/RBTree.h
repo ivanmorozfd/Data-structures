@@ -1,36 +1,65 @@
 #pragma once
+#include "core.h"
+#include "Container.h"
 #include <initializer_list>
 #include "RBTreeExceptions.h"
 using std::initializer_list;
 using std::string;
+/*!
+	RBTree class
+	\brief Use to store data in tree view
+	\author ivanmorozfd
+	\version 1.0
+	\date April 2020
+*/
 template<typename _T>
-class RBTree
-{
-	enum class ELeafColor
-	{
+class RBTree : public Container {
+private:
+	/** @enum ELeafColor
+	  *  \brief is a strongly typed enum class representing the leaf color
+	  *  @var ELeafColor::BLACK
+	  *  is coded as std::int8_t of value 0
+	  *  @var ELeafColor::BLACK
+	  *  is coded as std::int8_t of value 1
+	  */
+	enum class ELeafColor : std::int8_t {
 		BLACK,
 		RED
 	};
-	struct Node
-	{
+	struct _RBtreeNode {
+		typedef _RBtreeNode* NodePtr;//!< Node pointer type
+		using valueType = _T;//!< Element type
+		using reference = valueType&;//!< Reference element type
+		using const_reference = const _T&;//!< Const reference element type
 	public:
-		Node* left;
-		Node* right;
-		Node* parent;
-		_T data;
-		ELeafColor color;
-		string colorToString()
-		{
+		NodePtr left;//!< Pointer to left child
+		NodePtr right;//!< Pointer to right child
+		NodePtr parent;//!< Pointer to parent node
+		valueType data;//!< Node key
+		ELeafColor color;//!< Leaf Color
+	public:
+		/*!
+			Returns the color in string representation
+			\param[out] string Leaf color
+		*/
+		string colorToString() {
 			return this->color == ELeafColor::BLACK
 				? "Black"
 				: "Red";
 		}
 	public:
-		Node(ELeafColor color,
-			Node* left,
-			Node* right,
-			Node* parent,
-			const _T& value): 
+		/*!
+			Parameterized _RBtreeNode constructor
+			\param[in] ELeafColor Leaf color
+			\param[in] NodePtr Left child
+			\param[in] NodePtr Right child
+			\param[in] NodePtr Parent node
+		*/
+		_RBtreeNode(ELeafColor color,
+			NodePtr left,
+			NodePtr right,
+			NodePtr parent,
+			const_reference value):
 				color(color),
 				data(value), 
 				left(left),
@@ -40,12 +69,17 @@ class RBTree
 
 		}
 	};
+	typedef _RBtreeNode* NodePtr;//!< Node pointer type
+	typedef _RBtreeNode NodeRef;//!< Node pointer type
+	using valueType = _T;//!< Element type
+	using reference = valueType&;//!< Reference element type
+	using const_reference = const _T&;//!< Const reference element type
 private:
-	Node* m_root;
+	NodePtr m_root;
 private:
-
-	void rotateLeft(Node*& ptr) {
-		Node* right_child = ptr->right;
+	// Left turn relative to the vertex
+	void rotateLeft(NodePtr ptr) {
+		NodePtr right_child = ptr->right;
 		ptr->right = right_child->left;
 
 		if (ptr->right)
@@ -63,9 +97,9 @@ private:
 		right_child->left = ptr;
 		ptr->parent = right_child;
 	}
-
-	void rotateRight(Node*& ptr) {
-		Node* left_child = ptr->left;
+	// Right turn relative to the vertex
+	void rotateRight(NodePtr ptr) {
+		NodePtr left_child = ptr->left;
 		ptr->left = left_child->right;
 
 		if (ptr->left)
@@ -83,31 +117,25 @@ private:
 		left_child->right = ptr;
 		ptr->parent = left_child;
 	}
-
-	void fixInsertion(Node*& ptr) 
-	{
-		Node* parent = nullptr;
-		Node* grandparent = nullptr;
+	//Fix tree after inserti
+	void fixInsertion(NodePtr ptr){
+		NodePtr parent = nullptr;
+		NodePtr grandparent = nullptr;
 		while (ptr != m_root 
 		       && ptr->color == ELeafColor::RED
-		       && ptr->parent->color == ELeafColor::RED) 
-		{
+		       && ptr->parent->color == ELeafColor::RED) {
 			parent = ptr->parent;
 			grandparent = parent->parent;
-			if (parent == grandparent->left) 
-			{
-				Node* uncle = grandparent->right;
-				if (uncle && uncle->color == ELeafColor::RED) 
-				{
+			if (parent == grandparent->left) {
+				NodePtr uncle = grandparent->right;
+				if (uncle && uncle->color == ELeafColor::RED) {
 					uncle->color = ELeafColor::BLACK;
 					parent->color = ELeafColor::BLACK;
 					grandparent->color = ELeafColor::RED;
 					ptr = grandparent;
 				}
-				else 
-				{
-					if (ptr == parent->right) 
-					{
+				else {
+					if (ptr == parent->right) {
 						rotateLeft(parent);
 						ptr = parent;
 						parent = ptr->parent;
@@ -117,20 +145,16 @@ private:
 					ptr = parent;
 				}
 			}
-			else 
-			{
-				Node* uncle = grandparent->left;
-				if (uncle && uncle->color == ELeafColor::RED )
-				{
+			else {
+				NodePtr uncle = grandparent->left;
+				if (uncle && uncle->color == ELeafColor::RED ) {
 					uncle->color = ELeafColor::BLACK;
 					parent->color = ELeafColor::BLACK;
 					grandparent->color = ELeafColor::RED;
 					ptr = grandparent;
 				}
-				else 
-				{
-					if (ptr == parent->left) 
-					{
+				else {
+					if (ptr == parent->left) {
 						rotateRight(parent);
 						ptr = parent;
 						parent = ptr->parent;
@@ -143,63 +167,88 @@ private:
 		}
 		m_root->color = ELeafColor::BLACK;
 	}
-	Node* insert_(Node*& root, Node*& ptr)
-	{
-		if (root == nullptr)
+	//insert node to the tree
+	NodePtr insert_(NodePtr root, NodePtr ptr) {
+		if (!root)
 			return ptr;
 
-		if (ptr->data < root->data) 
-		{
+		if (ptr->data < root->data) {
 			root->left = insert_(root->left, ptr);
 			root->left->parent = root;
 		}
-		else if (ptr->data > root->data) 
-		{
+		else if (ptr->data > root->data)  {
 			root->right = insert_(root->right, ptr);
 			root->right->parent = root;
 		}
 		return root;
 	}
-	void inorderBST(Node*& ptr)
-	{
-		if (ptr == nullptr)
+	// print tree in order travers
+	void inOrderTraverse(NodePtr ptr) {
+		if (!ptr)
 			return;
-
-		inorderBST(ptr->left);
-		std::cout << ptr->data << " " << ptr->colorToString()<< std::endl;
-		inorderBST(ptr->right);
+		inOrderTraverse(ptr->left);
+		std::cout << ptr->data << " ";
+		inOrderTraverse(ptr->right);
+	}
+	// print tree in pre order travers
+	void preOrderTraverse(NodePtr root) {
+		if (root) {
+			std::cout << root->data << " ";
+			preOrderTraverse(root->left);
+			preOrderTraverse(root->right);
+		}
+	}
+	// print tree in post order travers
+	void postOrderTraverse(NodePtr root) {
+		if (root) {
+			postOrderTraverse(root->left);
+			postOrderTraverse(root->right);
+			std::cout << root->data << " ";
+		}
 	}
 public:
-	bool isEmpty()
-	{
+	/*!
+	Display tree data in order
+*/
+	void  printInOrder() const {
+		this->inOrderTraverse(m_root);
+	}
+	/*!
+		Display tree data in post order
+	*/
+	void printPostOrder() const {
+		this->postOrderTraverse(m_root);
+	}
+	/*!
+		Display tree data in pre order
+	*/
+	void printPreOrder() const {
+		this->preOrderTraverse(m_root);
+	}
+	bool isEmpty() const override {
 		return !m_root;
 	}
-public:
-	void addItem(const _T& item)
-	{
-		Node* node = new Node(ELeafColor::RED,
+	void addItem(const_reference item) {
+		NodePtr node = new NodeRef(ELeafColor::RED,
 			nullptr,
 			nullptr,
 			nullptr,
 			item);
+
 		m_root = insert_(m_root, node);
 		fixInsertion(node);
 	}
-	void inorder()
-	{
-		inorderBST(m_root);
-	}
 public:
-	RBTree() :m_root(nullptr)
-	{
-
-	}
-	RBTree(const initializer_list<_T>& data)
-	{
-
-	}
-	RBTree(const RBTree<_T>& other)
-	{
-
+	/*!
+		Default RBTree constructor
+	*/
+	RBTree() :m_root(nullptr) {}
+	/*!
+		Parameterized RBTree constructor
+		\param[in] initializer_list<valueType>list STL init list
+	*/
+	RBTree(const initializer_list<_T>& data) {
+		for (auto& i : data)
+			this->addItem(i);
 	}
 };

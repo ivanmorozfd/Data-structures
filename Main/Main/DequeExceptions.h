@@ -2,9 +2,14 @@
 #include <exception>
 using std::exception;
 using std::string;
-
-class DequeException : exception
-{
+/*!
+	Exception class for Deque
+	\brief Provide for Deque throw mechanism
+	\author ivanmorozfd
+	\version 1.0
+	\date April 2020
+*/
+class DequeException : exception {
 private:
 	std::string whatStr;
 public:

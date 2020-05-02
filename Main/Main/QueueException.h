@@ -1,10 +1,15 @@
 #pragma once
-#pragma once
 #include <exception>
 #include <string>
 using std::string;
 using std::exception;
-
+/*!
+	Exception class for Queue
+	\brief Provide for Queue throw mechanism
+	\author ivanmorozfd
+	\version 1.0
+	\date April 2020
+*/
 class QueueException :exception {
 private:
 	std::string whatStr;

@@ -3,7 +3,13 @@
 #include <string>
 using std::string;
 using std::exception;
-
+/*!
+	Exception class for BinaryHeap
+	\brief Provide for BinaryHeap throw mechanism
+	\author ivanmorozfd
+	\version 1.0
+	\date April 2020
+*/
 class BinaryHeapException :exception {
 private:
 	std::string whatStr;

@@ -1,49 +1,89 @@
 #pragma once
+#include "core.h"
+#include "Container.h"
 #include "QueueException.h"
 
+/*!
+	Data representation in queue
+	Contain pointer to next element,and data
+	\brief Queue element wrapper
+	\author ivanmorozfd
+	\version 1.0
+	\date April 2020
+*/
 template<typename _T>
-class Queue {
-private:
-	//data representation in queue
-	//contain pointer to previous element,and data
-	template<typename _T>
-	class Node {
-	public:
-		_T data;
-		Node* next;
-		Node(const _T& data) :
-			data(data),
-			next(nullptr) { }
-	};
-private:
-	Node<_T>* pFront;//pointer to the begin of the queue
-	Node<_T>* pBack;//pointer to the end of the queue
-	unsigned count;//number of elements in queue
+struct _QueueNode {
 public:
-	//returns the queue length
-	unsigned getLenght() const {
+	typedef _QueueNode* NodePtr;//!< Node pointer
+	using valueType = _T;//!< Element type
+	using reference = valueType&;//!< Reference element type
+	valueType data;//!< Node value
+	NodePtr next;//!< Pointer to previous Node
+public:
+	_QueueNode(const _QueueNode&) = delete;
+	_QueueNode& operator=(const _QueueNode&) = delete;
+public:
+	/*!
+		Default _QueueNode constructor
+	*/
+	_QueueNode() = default;
+	/*!
+		Parameterized _QueueNode constructor
+		\param[in] valueType& Node data
+	*/
+	_QueueNode(valueType data) :
+		data(data),
+		next(nullptr) { }
+};
+
+/*!
+	Queue class
+	\brief Use to store data
+	\author ivanmorozfd
+	\version 1.0
+	\date April 2020
+*/
+template<typename _T>
+class Queue : public Container{
+	using valueType = _T;// Element Type
+	using reference = valueType&;// Reference element type
+	using NodePtr = _QueueNode<_T>*;// Node pointer type
+	using NodeRef = _QueueNode<_T>;// Node reference type
+private:
+	NodePtr pFront;// pointer to the begin of the queue
+	NodePtr pBack;// pointer to the end of the queue
+	size_t count;// number of elements in queue
+public:
+	/*!
+		Returns the Queue size
+		\param[out] size_t Queue size
+	*/
+	size_t getLenght() const {
 		if (!isEmpty())
 			return this->count;
 		else
 			throw QueueException("Queue is Empty");
 	}
-	//delete an item from the beginning of the queue
+	/*!
+		Remove item from the queue
+	*/
 	void pop() {
 		if (!isEmpty()) {
-			Node<_T>* temp = pFront;
-
+			NodePtr temp = pFront;
 			this->pFront = this->pFront->next;
 			delete temp;
 		}
 		else
 			throw QueueException("Queue is Empty");
 	}
-	//add item to the queue
-	void push(const _T& item) {
+	/*!
+		Add item to the queue
+		\param[in] valueType item 
+	*/
+	void push(valueType item) {
 		this->count++;
-
-	    Node<_T>* node = new Node<_T>(item);
-
+		NodePtr node = new NodeRef(item);
+		
 		if (!pBack)
 			this->pFront = this->pBack = node;
 		else {
@@ -51,26 +91,37 @@ public:
 			this->pBack = node;
 		}
 	}
-	//does the queue contain elements
-	bool isEmpty() const {
+	/*!
+		Checking the Queue for empty space
+		\param[out] bool True,if Queue is empty
+	*/
+	bool isEmpty() const override {
 		return this->pFront == this->pBack;
 	}
-	//clear the queue
+	/*!
+		Remove all elements from the Queue
+	*/
 	void clear() {
 		for (;isEmpty();)
 			this->pop();
 	}
-	//returns an element at the beginning of the queue
-	_T peek() {
+	/*!
+		Returns an element at the beginning of the Queue
+		\param[out] valueType
+	*/
+	valueType peek() {
 		if (!isEmpty())
 			return this->pFront->data;
 		else
 			throw QueueException("Queue is Empty");
 	}
-	//does the item exist in the queue
-	bool contain(const _T& item) const {
-		Node<_T>* tmp = this->pFront;
-
+	/*!
+		Does the item exist in the Queue,otherwise false
+		\param[out] bool True, if elem exist
+		\param[in] valueType Checked value
+	*/
+	bool contain(const reference item) const {
+		NodePtr tmp = this->pFront;
 		bool isFound = false;
 
 		do {
@@ -81,26 +132,38 @@ public:
 		} while (tmp = tmp->next);
 		return isFound;
 	}
-	//display the contents of a queue
+	/*!
+		Display Queue data
+		\brief Friend function,help to print Queue data
+	*/
 	template<class _T>
 	friend void print_queue(Queue<_T>* queue) {
-		Node<_T> tmp = queue->pFront;
-
+		NodePtr tmp = queue->pFront;
 		do {
-			std::cout << tmp.data << " ";
+			std::cout << tmp->data << " ";
 		} while (tmp = tmp->next);
 	}
 public:
+	/*!
+		Default Queue constructor
+	*/
 	Queue():
 		count(0),
 		pBack(nullptr),
 		pFront(nullptr) { 
 		this->pBack = this->pFront;
 	}
+	/*!
+		Parameterized Queue constructor
+		\param[in] initializer_list<valueType>list STL init list
+	*/
 	Queue(const std::initializer_list<_T>& data) { 
 		for (auto i : data)
 			this->push(i);
 	}
+	/*!
+		Queue destructor
+	*/
 	~Queue() {
 		this->clear();
 	}
