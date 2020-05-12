@@ -15,13 +15,15 @@ template<typename _T>
 struct _QueueNode {
 public:
 	typedef _QueueNode* NodePtr;//!< Node pointer
+	typedef _QueueNode& NodeRef;//!< Node reference
 	using valueType = _T;//!< Element type
 	using reference = valueType&;//!< Reference element type
+	using const_reference = const _T&;//!< Reference element type
 	valueType data;//!< Node value
 	NodePtr next;//!< Pointer to previous Node
 public:
-	_QueueNode(const _QueueNode&) = delete;
-	_QueueNode& operator=(const _QueueNode&) = delete;
+	_QueueNode(const NodeRef&) = delete;
+	_QueueNode& operator=(const NodeRef&) = delete;
 public:
 	/*!
 		Default _QueueNode constructor
@@ -31,7 +33,7 @@ public:
 		Parameterized _QueueNode constructor
 		\param[in] valueType& Node data
 	*/
-	_QueueNode(valueType data) :
+	_QueueNode(const_reference data) :
 		data(data),
 		next(nullptr) { }
 };
@@ -47,8 +49,9 @@ template<typename _T>
 class Queue : public Container{
 	using valueType = _T;// Element Type
 	using reference = valueType&;// Reference element type
-	using NodePtr = _QueueNode<_T>*;// Node pointer type
-	using NodeRef = _QueueNode<_T>;// Node reference type
+	using const_reference = const _T&;// Reference element type
+	using NodePtr = _QueueNode<valueType>*;// Node pointer type
+	using NodeRef = _QueueNode<valueType>;// Node reference type
 private:
 	NodePtr pFront;// pointer to the begin of the queue
 	NodePtr pBack;// pointer to the end of the queue
@@ -59,18 +62,16 @@ public:
 		\param[out] size_t Queue size
 	*/
 	size_t getLenght() const {
-		if (!isEmpty())
 			return this->count;
-		else
-			throw QueueException("Queue is Empty");
 	}
 	/*!
 		Remove item from the queue
 	*/
 	void pop() {
 		if (!isEmpty()) {
-			NodePtr temp = pFront;
+			NodePtr temp = this->pFront;
 			this->pFront = this->pFront->next;
+			this->count--;
 			delete temp;
 		}
 		else
@@ -80,7 +81,7 @@ public:
 		Add item to the queue
 		\param[in] valueType item 
 	*/
-	void push(valueType item) {
+	void push(const_reference item) {
 		this->count++;
 		NodePtr node = new NodeRef(item);
 		
@@ -96,20 +97,20 @@ public:
 		\param[out] bool True,if Queue is empty
 	*/
 	bool isEmpty() const override {
-		return this->pFront == this->pBack;
+		return !this->pFront;
 	}
 	/*!
 		Remove all elements from the Queue
 	*/
 	void clear() {
-		for (;isEmpty();)
+		for (;!isEmpty();)
 			this->pop();
 	}
 	/*!
 		Returns an element at the beginning of the Queue
 		\param[out] valueType
 	*/
-	valueType peek() {
+	reference peek() {
 		if (!isEmpty())
 			return this->pFront->data;
 		else
@@ -120,7 +121,7 @@ public:
 		\param[out] bool True, if elem exist
 		\param[in] valueType Checked value
 	*/
-	bool contain(const reference item) const {
+	bool contain(const_reference item) const {
 		NodePtr tmp = this->pFront;
 		bool isFound = false;
 
@@ -151,13 +152,15 @@ public:
 		count(0),
 		pBack(nullptr),
 		pFront(nullptr) { 
-		this->pBack = this->pFront;
 	}
 	/*!
 		Parameterized Queue constructor
 		\param[in] initializer_list<valueType>list STL init list
 	*/
-	Queue(const std::initializer_list<_T>& data) { 
+	Queue(const std::initializer_list<_T>& data) :
+		count(0),
+		pBack(nullptr),
+		pFront(nullptr) {
 		for (auto i : data)
 			this->push(i);
 	}

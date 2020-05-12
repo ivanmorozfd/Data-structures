@@ -1,10 +1,7 @@
 #pragma once
 #include "core.h"
 #include "Container.h"
-#include <string>
 #include "StackException.h"
-#include <list>
-using std::string;
 /*!
 	Data representation in Stack
 	Contain pointer to previous element,and data
@@ -17,13 +14,15 @@ template<typename _T>
 struct _StackNode {
 public:
 	typedef _StackNode* NodePtr;//!< Node pointer type
+	typedef _StackNode& NodeRef;//!< Node reference type
 	using valueType = _T;//!< Element type
 	using reference = valueType&;//!< Reference element type
+	using const_reference = const _T&;
 	valueType data;//!< Node value
 	NodePtr prev;//!< Pointer to previous Node
 public:
-	_StackNode(const _StackNode&) = delete;
-	_StackNode& operator=(const _StackNode&) = delete;
+	_StackNode(const NodeRef) = delete;
+	_StackNode& operator=(const NodeRef) = delete;
 public:
 	/*!
 		Default _StackNode constructor
@@ -33,7 +32,7 @@ public:
 		Parameterized _StackNode constructor
 	    \param[in] valueType& Node data
 	*/
-	_StackNode(const reference data) :
+	_StackNode(const_reference data) :
 		data(data),
 		prev(nullptr) {}
 };
@@ -51,24 +50,22 @@ class Stack : public Container {
 private:
 	using valueType = _T;// Element type
 	using reference = valueType&;// Reference element type
+	using const_reference = const _T&;// Const reference element type
 	using NodePtr = _StackNode<_T>*;// Pointer node type
 	using NodeRef = _StackNode<_T>;// Reference node type
 private:
 	/*!
 		Default stack constructor
 	*/
-	NodePtr m_top; //This structure contains data and pointer to previous node
+	NodePtr _top; //This structure contains data and pointer to previous node
 	size_t count; //number of elements in the stack
 public:
 	/*!
 		Returns the stack size
-		\param[out] size_t Stack size
+		\param[out] size Stack size
 	*/
 	size_t getSize() const {
-		if (!this->isEmpty())
 			return this->count;
-		else
-			throw StackException("Stack is empty");
 	}
 	/*!
 		Returns the value at the top of the Stack
@@ -76,7 +73,7 @@ public:
 	*/
 	reference peek() const {
 		if (!isEmpty())
-			return m_top->data;
+			return _top->data;
 		else
 			throw StackException("Stack is empty");
 	}
@@ -85,18 +82,18 @@ public:
 		\param[out] bool True,if Stack is empty
 	*/
 	bool isEmpty() const override {
-		return !m_top;
+		return !_top;
 	}
 	/*!
 		Push element to the Stack
-		\param[in] valueType item
+		\param[in] item Element for push
 	*/
 	void push(valueType item) {
 		//create new stack node
 		NodePtr tmp = new NodeRef(item);
-		tmp->prev = m_top;
+		tmp->prev = _top;
 		//set new top of the stack
-		m_top = tmp;
+		_top = tmp;
 		count++;
 	}
 	/*!
@@ -105,8 +102,10 @@ public:
 	void pop() {
 		if (!isEmpty()) 
 		{
-			NodePtr tmp = m_top;
-			m_top = m_top->prev;
+			//set new top
+			NodePtr tmp = _top;
+			_top = _top->prev;
+			//free temp pointer
 			delete tmp;
 			count--;
 		}
@@ -126,7 +125,7 @@ public:
 		\param[in] const reference Checked value
 	*/
 	bool contain(const reference value) const {
-		NodePtr tmp = this->m_top;
+		NodePtr tmp = this->_top;
 		bool isFound = false;
 		do {
 			if (tmp->data == value) {
@@ -142,24 +141,24 @@ public:
 	*/
 	template<class _T>
 	friend void print_stack(Stack<valueType>* stack) {
-		NodePtr tmp = stack->m_top;
+		NodePtr tmp = stack->_top;
 		do {
 			std::cout << tmp->data << " ";
 		} while (tmp = tmp->prev);
 	}
 public:
-	/*!
+	/*!	
 		Default Stack constructor
 	*/
 	Stack(): 
-		m_top(nullptr),
+		_top(nullptr),
 		count(0) { }
 	/*!
 		Parameterized Stack constructor
 	    \param[in] initializer_list<valueType>list STL init list
 	*/
 	Stack(const std::initializer_list<valueType>& data): 
-		m_top(nullptr),
+		_top(nullptr),
 		count(0) {
 		for (auto i : data) 
 			this->push(i);

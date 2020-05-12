@@ -5,6 +5,14 @@
 #include "BinaryHeapExceptions.h"
 using std::vector;
 using std::initializer_list;
+
+/*!
+	BinaryHeap class
+	\brief Use to store data and sorting arrays
+	\author ivanmorozfd
+	\version 1.0
+	\date April 2020
+*/
 template<typename _T>
 class BinaryHeap : public Container {
 	using valueType = _T;// Element type
@@ -37,7 +45,7 @@ public:
 		int parent = (i - 1) / 2;
 		//the heap property may be violated
 		//while its violated we swap element with parent
-		while (i > 0 && data[parent] < data[i])	{
+		while (i > 0 && data.at(parent) < data.at(i))	{
 			std::swap(data[i],data[parent]);
 			i = parent;
 			parent = (i - 1) / 2;
@@ -55,12 +63,12 @@ public:
 			largestChild = i; // set the largest child
 			//searchind childs that greater than parent
 			if (leftChild < getSize() 
-				&& data[leftChild] > data[largestChild]) {
+				&& data.at(leftChild) > data.at(largestChild)) {
 				largestChild = leftChild;
 			}
 
 			if (rightChild < getSize() 
-				&& data[rightChild] > data[largestChild]) {
+				&& data.at(rightChild) > data.at(largestChild)) {
 				largestChild = rightChild;
 			}
 
@@ -77,7 +85,8 @@ public:
 	*/
 	valueType getmax() {
 		valueType item = data.at(0);
-		data[0] = data[getSize() - 1];
+		data[0] = data.back();
+		data.pop_back();
 		heapify(0);
 		return item;
 	}

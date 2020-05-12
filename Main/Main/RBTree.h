@@ -182,6 +182,32 @@ private:
 		}
 		return root;
 	}
+ 
+	void remove(const_reference key) {
+		NodePtr temp = m_root;
+		NodePtr temp2 = nullptr;
+		NodePtr temp3 = nullptr;
+		while (temp->data != key) {
+			if (temp->data < key)
+				temp = temp->right;
+			else
+				temp = temp->left;
+		}
+		//0 children
+		if (!temp->right && !temp->left)
+			delete temp;
+		//1 children
+		else if (temp->right && !temp->left) {
+			
+		}
+		else if (!temp->right && temp->left) {
+
+		}
+		//2 children
+		else if (temp->right && temp->left) {
+				
+		}
+	}
 	// print tree in order travers
 	void inOrderTraverse(NodePtr ptr) {
 		if (!ptr)
@@ -225,9 +251,17 @@ public:
 	void printPreOrder() const {
 		this->preOrderTraverse(m_root);
 	}
+	/*!
+		Is the RBTree empty
+		\param[out] bool True,if RBTree is empty
+	*/
 	bool isEmpty() const override {
 		return !m_root;
 	}
+	/*!
+		Add item to the tree
+		\param[in] const_reference item
+	*/
 	void addItem(const_reference item) {
 		NodePtr node = new NodeRef(ELeafColor::RED,
 			nullptr,

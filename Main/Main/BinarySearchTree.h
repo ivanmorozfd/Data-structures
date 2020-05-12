@@ -81,6 +81,7 @@ private:
 		std::cout << ptr->key << " ";
 		inOrderTravers(ptr->right);
 	}
+	//
 	void preOrderTravers(NodePtr root) {
 		if (root) {
 			std::cout << root->key << " ";
@@ -88,7 +89,7 @@ private:
 			preOrderTravers(root->right);
 		}
 	}
-
+	//
 	void postOrderTravers(NodePtr root) {
 		if (root) {
 			postOrderTravers(root->left);
@@ -153,7 +154,7 @@ private:
 			valueType rootK = root->key;
 			valueType smallInRghtSubtr;
 			// 0 children
-			if (!root->left && !root->left) {
+			if (!root->left && !root->right) {
 				root = nullptr;
 				delete delPtr;
 			}
@@ -169,7 +170,7 @@ private:
 				delete delPtr;
 			}
 			else {
-				valueType = findMin_(root->right);
+				smallInRghtSubtr = findMin_(root->right);
 				removeNode_(smallInRghtSubtr, root);
 			}
 		}
@@ -186,7 +187,7 @@ private:
 			valueType smallestInRightSub = valueType();
 			// zero child
 			if (!match->right 
-			    && match->left) {
+			    && !match->left) {
 				delPtr = match;
 				
 				isLeft == true
@@ -196,6 +197,7 @@ private:
 				delete delPtr;
 			}
 			// 1 child
+			//if right child exist
 			else if (match->left
 				 && !match->right) {
 				delPtr = match;
@@ -206,7 +208,9 @@ private:
 				match->right = nullptr;
 				delete delPtr;
 			}
-			else if (match->left && !match->right) {
+			//if left child exist
+			else if (match->left 
+				&& !match->right) {
 				delPtr = match;
 
 				isLeft == true
@@ -248,7 +252,7 @@ public:
 	}
 	/*!
 		Add item to the tree
-		\param[out] size_t Stack size
+		\param[in] const_reference key
 	*/
 	void  addLeaf(const_reference key) {
 		addLeaf_(key, root);
@@ -256,26 +260,26 @@ public:
 	/*!
 		Display tree data in order
 	*/
-	void  printInOrder() const {
-		this->inOrderTravers(root);
+	void  printInOrder() {
+		inOrderTravers(root);
 	}
 	/*!
 		Display tree data in post order
 	*/
-	void printPostOrder() const {
-		this->postOrderTravers();
+	void printPostOrder() {
+		postOrderTravers(root);
 	}
 	/*!
 		Display tree data in pre order
 	*/
-	void printPreOrder() const {
-		this->preOrderTravers();
+	void printPreOrder() {
+		preOrderTravers(root);
 	}
 	/*!
 		Returns the value in the root
 		\param[out] valueType
 	*/
-	valueType returnRootK() {
+	valueType returnRootKey() {
 		if (root)
 			return root->key;
 		else 
@@ -286,7 +290,7 @@ public:
 		\param[out] valueType key
 	*/
 	valueType findMin() {
-		findMin_(root);
+		return findMin_(root);
 	}
 	/*!
 		Remove element from the tree by key

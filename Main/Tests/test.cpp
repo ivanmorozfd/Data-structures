@@ -51,92 +51,391 @@ TEST(StackTests, PopFromEmptyStack)
 TEST(DoubleLinkedListTests, ConstructorTest)
 {
 	DoubleLinkedList<int> list;
-	ASSERT_THROW(list.pop_back(),StackException);
-	ASSERT_THROW(list.pop_front(), StackException);
+	ASSERT_THROW(list.pop_back(),DoubleLinkedListException);
+	ASSERT_THROW(list.pop_front(), DoubleLinkedListException);
+	ASSERT_TRUE(list.isEmpty());
+	ASSERT_EQ(list.getSize(), 0);
 }
 TEST(DoubleLinkedListTests, EmptyListTest)
 {
-	//TODO
+	DoubleLinkedList<int> list;
+	ASSERT_THROW(list.pop_back(), DoubleLinkedListException);
+	ASSERT_THROW(list.pop_front(), DoubleLinkedListException);
+	ASSERT_TRUE(list.isEmpty());
+	list.push_back(1);
+	ASSERT_FALSE(list.isEmpty());
+	list.pop_back();
+	ASSERT_TRUE(list.isEmpty());
+	list.push_front(1);
+	ASSERT_FALSE(list.isEmpty());
+	list.pop_front();
+	ASSERT_TRUE(list.isEmpty());
 }
 TEST(DoubleLinkedListTests, InsertAndDelTest)
 {
-	//TODO
+	DoubleLinkedList<int> list;
+	list.push_back(5);
+	ASSERT_EQ(list.back(),5);
+	list.push_front(6);
+	ASSERT_EQ(list.front(), 6);
+	list.pop_back();
+	ASSERT_EQ(list.back(), 6);
+	list.pop_back();
+	ASSERT_TRUE(list.isEmpty());
+
 }
-TEST(DoubleLinkedListTests, PopFromEmptyList)
+TEST(DoubleLinkedListTests, PopBackTest)
 {
-	//TODO
+	DoubleLinkedList<int> list;
+	list.push_back(5);
+	list.push_front(6);
+	ASSERT_EQ(list.back(), 5);
+	list.pop_back();
+	ASSERT_EQ(list.back(), 6);
+}
+TEST(DoubleLinkedListTests, PopFrontTest)
+{
+	DoubleLinkedList<int> list;
+	list.push_back(5);
+	list.push_front(6);
+	ASSERT_EQ(list.front(), 6);
+	list.pop_front();
+	ASSERT_EQ(list.back(), 5);
+}
+TEST(DoubleLinkedListTests, BackTest)
+{
+	DoubleLinkedList<int> list;
+	list.push_back(5);
+	list.push_front(6);
+	ASSERT_EQ(list.back(), 5);
+}
+TEST(DoubleLinkedListTests, FrontTest)
+{
+	DoubleLinkedList<int> list;
+	list.push_back(5);
+	list.push_front(6);
+	ASSERT_EQ(list.front(), 6);
 }
 TEST(DoubleLinkedListTests, ListSizeTest)
 {
-	//TODO
+	DoubleLinkedList<int> list;
+	list.push_back(5);
+	list.push_front(6);
+	ASSERT_EQ(list.getSize(), 2);
 }
 TEST(DoubleLinkedListTests, InitializerTest)
 {
-	//TODO
-}
-TEST(DoubleLinkedListTests, ListIteratorTest)
-{
-	//TODO
-}
-TEST(DoubleLinkedListTests, CopyConstructorTest)
-{
-	//TODO
+	DoubleLinkedList<int> list;
+	
 }
 
-TEST(QueueTests, HeadTest)
-{
-	//TODO
-}
-TEST(QueueTests, TailTest)
-{
-	//TODO
-}
 TEST(QueueTests, ConstructorTest)
 {
-	//TODO
+	Queue<int> queue;
+	ASSERT_THROW(queue.pop(),QueueException);
+	ASSERT_THROW(queue.peek(), QueueException);
+	ASSERT_TRUE(queue.isEmpty());
+	ASSERT_EQ(queue.getLenght(), 0);
 }
-TEST(QueueTests, CopyConstructorTest)
+TEST(QueueTests, PeekTest)
 {
-	//TODO
+	Queue<int> queue;
+	queue.push(1);
+	queue.push(2);
+	queue.push(3);
+	ASSERT_EQ(queue.peek(), 1);
 }
-TEST(QueueTests, DestructorTest)
+TEST(QueueTests, ContainTest)
 {
-	//TODO
+	Queue<int> queue;
+	queue.push(1);
+	queue.push(2);
+	queue.push(3);
+	ASSERT_TRUE(queue.contain(1));
+	ASSERT_FALSE(queue.contain(5));
 }
 TEST(QueueTests, InitializerListTest)
 {
-	//TODO
+	Queue<int> queue{ 1,2,3 };
+	ASSERT_EQ(queue.getLenght(), 3);
+	ASSERT_EQ(queue.peek(), 1);
+	ASSERT_TRUE(queue.contain(1));
+	ASSERT_TRUE(queue.contain(2));
+	ASSERT_TRUE(queue.contain(3));
 }
 TEST(QueueTests, PushTest)
 {
-	//TODO
+	Queue<int> queue;
+	queue.push(1);
+	ASSERT_TRUE(queue.contain(1));
+	ASSERT_EQ(queue.peek(), 1);
 }
 TEST(QueueTests, PopTest)
 {
-	//TODO
+	Queue<int> queue;
+	queue.push(1);
+	queue.push(2);
+	queue.push(3);
+	ASSERT_TRUE(queue.contain(1));
+	ASSERT_EQ(queue.peek(), 1);
+	queue.pop();
+	ASSERT_EQ(queue.peek(), 2);
 }
 TEST(QueueTests, IsEmptyTest)
 {
-	//TODO
+	Queue<int> queue;
+	ASSERT_TRUE(queue.isEmpty());
+	queue.push(1);
+	ASSERT_FALSE(queue.isEmpty());
 }
 TEST(QueueTests, CountTest)
 {
-	//TODO
+	Queue<int> queue;
+	queue.push(1);
+	queue.push(2);
+	queue.push(3);
+	ASSERT_EQ(queue.getLenght(), 3);
+	queue.pop();
+	ASSERT_EQ(queue.getLenght(), 2);
+	queue.clear();
+	ASSERT_EQ(queue.getLenght(), 0);
 }
 TEST(QueueTests, EmptyPopTest)
 {
-	//TODO
+	Queue<int> queue;
+	ASSERT_THROW(queue.pop(), QueueException);
+	queue.push(1);
+	ASSERT_NO_THROW(queue.pop());
 }
-TEST(QueueTests, IteratorTest)
+ 
+TEST(SparseMatrixTests, ConstructorTest)
 {
-	//TODO
+
 }
-TEST(QueueTests, MemoryTest)
+TEST(SparseMatrixTests, IsEmptyTest)
 {
-	//TODO
+
+}
+TEST(SparseMatrixTests, DimensionsTest)
+{
+
+}
+TEST(SparseMatrixTests, GetElementTest)
+{
+
+}
+TEST(SparseMatrixTests, SetTest)
+{
+
+}
+TEST(SparseMatrixTests, AssignTest)
+{
+
+}
+TEST(SparseMatrixTests, MatrixVectorMultiplyTest)
+{
+
+}
+TEST(SparseMatrixTests, MatrixMatrixMultiplyTest)
+{
+
+}
+TEST(SparseMatrixTests, AddTest)
+{
+
+}
+TEST(SparseMatrixTests, SubstractTest)
+{
+
+}
+TEST(SparseMatrixTests, ConstructTest)
+{
+
+}
+TEST(SparseMatrixTests, CopyTest)
+{
+
+}
+TEST(SparseMatrixTests, ValidateTest)
+{
+
+}
+TEST(SparseMatrixTests, InsertTest)
+{
+
+}
+TEST(SparseMatrixTests, RemoveTest)
+{
+
 }
 
-TEST(AVLTreeTests, ConstructorTest)
+TEST(BinaryHeapTests, ConstructorTest)
+{
+	BinaryHeap<int> heap;
+	ASSERT_EQ(heap.getSize(), 0);
+	ASSERT_TRUE(heap.isEmpty());
+}
+TEST(BinaryHeapTests, IsEmptyTest)
+{
+	BinaryHeap<int> heap;
+	ASSERT_TRUE(heap.isEmpty());
+	heap.addItem(5);
+	ASSERT_FALSE(heap.isEmpty());
+}
+TEST(BinaryHeapTests, AddItemTest)
+{
+	BinaryHeap<int> heap;
+	heap.addItem(5);
+	heap.addItem(50);
+	heap.addItem(3);
+	heap.addItem(7);
+	ASSERT_EQ(heap.peekMax(), 50);
+}
+TEST(BinaryHeapTests, RemoveMaxTest)
+{
+	BinaryHeap<int> heap;
+	heap.addItem(5);
+	heap.addItem(50);
+	heap.addItem(3);
+	heap.addItem(7);
+	ASSERT_EQ(heap.peekMax(), 50);
+	ASSERT_EQ(heap.getmax(), 50);
+	ASSERT_EQ(heap.getmax(), 7);
+	ASSERT_EQ(heap.getmax(), 5);	
+	ASSERT_EQ(heap.getmax(), 3);
+}
+
+TEST(BinaryHeapTests, PeekMaxTest)
+{
+	BinaryHeap<int> heap;
+	heap.addItem(5);
+	heap.addItem(50);
+	heap.addItem(3);
+	heap.addItem(7);
+	ASSERT_EQ(heap.peekMax(), 50);
+}
+
+
+
+TEST(BinarySearchTreeTests, ConstructorTest)
+{
+	BinarySearchTree<int> tree;
+	ASSERT_TRUE(tree.isEmpty());
+	ASSERT_THROW(tree.removeByKey(3), BinarySearchTreeException);
+}
+TEST(BinarySearchTreeTests, IsEmptyTest)
+{
+	BinarySearchTree<int> tree;
+	ASSERT_TRUE(tree.isEmpty());
+	ASSERT_THROW(tree.removeByKey(3), BinarySearchTreeException);
+	tree.addLeaf(5);
+	ASSERT_FALSE(tree.isEmpty());
+}
+TEST(BinarySearchTreeTests, AddLeafTest)
+{
+	BinarySearchTree<int> tree;
+	tree.addLeaf(5);
+	tree.addLeaf(6);
+	tree.addLeaf(4);
+	ASSERT_EQ(tree.findMin(), 4);
+	tree.addLeaf(1);
+	ASSERT_EQ(tree.findMin(), 1);
+}
+TEST(BinarySearchTreeTests, RemoveLeafTest)
+{
+	BinarySearchTree<int> tree;
+	tree.addLeaf(5);
+	tree.addLeaf(6);
+	tree.addLeaf(4);
+	ASSERT_EQ(tree.findMin(), 4);
+	tree.removeByKey(4);
+	ASSERT_EQ(tree.findMin(), 5);
+}
+TEST(BinarySearchTreeTests, RootKeyTest)
+{
+	BinarySearchTree<int> tree;
+	tree.addLeaf(5);
+	tree.addLeaf(6);
+	tree.addLeaf(4);
+	ASSERT_EQ(tree.returnRootKey(), 5);
+}
+TEST(BinarySearchTreeTests, FindMinTest )
+{
+	BinarySearchTree<int> tree;
+	tree.addLeaf(5);
+	tree.addLeaf(6);
+	tree.addLeaf(3);
+	tree.addLeaf(11);
+	tree.addLeaf(4);
+	tree.addLeaf(7);
+	tree.addLeaf(111);
+	tree.addLeaf(1);
+
+	ASSERT_EQ(tree.findMin(), 1);
+}
+
+TEST(AVLTreeTests, DefConstructorTest)
+{
+	AvlTree<int> tree;
+	ASSERT_TRUE(tree.isEmpty());
+}
+TEST(AVLTreeTests, ParamConstructorTest)
+{
+
+}
+TEST(AVLTreeTests, IsEmptyTest)
+{
+
+}
+TEST(AVLTreeTests, FindMinTest)
+{
+
+}
+TEST(AVLTreeTests, FindMaxTest)
+{
+
+}
+TEST(AVLTreeTests, GetRootTest)
+{
+
+}
+TEST(AVLTreeTests, InsertTest)
+{
+
+}
+TEST(AVLTreeTests, RemoveTest)
+{
+
+}
+TEST(RBTreeTests, DefConstructorTest)
+{
+
+}
+TEST(RBTreeTests, ParamConstructorTest)
+{
+
+}
+TEST(RBTreeTests, IsEmptyTest)
+{
+
+}
+TEST(RBTreeTests, AddItemTest)
+{
+
+}
+TEST(RBTreeTests, DeleteItemTest)
+{
+
+}
+TEST(RBTreeTests, GetRootTest)
+{
+
+}
+TEST(RBTreeTests, ColourTest)
+{
+
+}
+TEST(RBTreeTests, ClearTest)
 {
 
 }

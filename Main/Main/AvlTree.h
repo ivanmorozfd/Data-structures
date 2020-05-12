@@ -191,6 +191,15 @@ private:
 	}
 public:
 	/*!
+		Returns root key
+	*/
+	valueType getRoot() const {
+		if (!isEmpty())
+			return this->_root->key;
+		else
+			throw AvlTreeException("Tree is empty");
+	}
+	/*!
 		Insert value to the tree
 		\param[in] const_reference Key
 	*/

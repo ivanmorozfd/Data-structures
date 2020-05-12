@@ -4,6 +4,12 @@
 #include <list>
 using std::ostream;
 using std::iterator;
+
+template<typename _T>
+class DoubleLinkedList;
+template<typename _T>
+struct _ListNode;
+
 /*!
 	Iterator class for DoubleLinkedList
 	\brief Provide for DoubleLinkedList STL-like iterators
@@ -11,10 +17,6 @@ using std::iterator;
 	\version 1.0
 	\date April 2020
 */
-template<typename _T>
-class DoubleLinkedList;
-template<typename _T>
-struct _ListNode;
 template<typename _T>
 class DoubleLinkedListIterator : iterator<std::input_iterator_tag, _T> {
 	friend _ListNode<_T>;
