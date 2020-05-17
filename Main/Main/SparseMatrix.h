@@ -250,8 +250,10 @@ private:
 		}
 	}
 	bool validateCoordinates(size_t rows, size_t columns) {
-		if ( rows < 1 || columns < 1 || rows > this->m_nrows || columns > this->m_ncolumns) 
+		if (rows < 1 || columns < 1 || rows > this->m_nrows || columns > this->m_ncolumns)
 			throw SparseMatrixException("Invalid coordinates");
+		else
+			return true;
 	}
 	//Insert value to matrix	
 	void insert(size_t index,

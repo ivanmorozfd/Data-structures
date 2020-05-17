@@ -1,11 +1,14 @@
-#include <iostream>
-#include "Main/DoubleLinkedList.h"
+﻿#include <iostream>
+#include "Main/MultiDataList.h"
 #include <vector>
 int main() {
-	DoubleLinkedList<int> list = { 1,2,3,4,5 };
-	list.replase(5, 1);
- 
-	for (auto& i : list)
-		std::cout << i << " ";
+	MultiDataList list;
+	list.push({ "Ivan3","8902" });
+	list.push({ "Ivan2","8901" });
+
+	list.push({ "Ivan4","8903" });
+	list.push({ "Ivan1","8905" });
+	list.push({ "Ivan5","8904" });
+	list.printDebug();
 	return 0;
 }

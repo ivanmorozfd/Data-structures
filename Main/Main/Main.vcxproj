@@ -131,6 +131,7 @@
     <ClInclude Include="BinaryHeapExceptions.h" />
     <ClInclude Include="BinarySearchTree.h" />
     <ClInclude Include="BinarySearchTreeExceptions.h" />
+    <ClInclude Include="BTree.h" />
     <ClInclude Include="core.h" />
     <ClInclude Include="DoubleLinkedList.h" />
     <ClInclude Include="DoubleLinkedListExceptions.h" />
@@ -138,6 +139,8 @@
     <ClInclude Include="Container.h" />
     <ClInclude Include="MenuConsts.h" />
     <ClInclude Include="MenuHelper.h" />
+    <ClInclude Include="MultiDataList.h" />
+    <ClInclude Include="MultiDataListException.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="QueueException.h" />
     <ClInclude Include="RBTree.h" />

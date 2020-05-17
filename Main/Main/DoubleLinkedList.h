@@ -310,6 +310,11 @@ public:
 			count--;
 		}
 	}
+	/*!
+		Replase element in list
+		\param[in] item value
+		\param[in] position to replace
+	*/
 	void replase(const_reference item, size_t pos) {
 		NodePtr pNode = pFront;
 		//Pos must be positive number less than items count
@@ -328,6 +333,11 @@ public:
 
 		pNode->value = item;
 	}
+	/*!
+		Insert item to list
+		\param[in] item value
+		\param[in] position to insert
+	*/
 	void insert(const_reference item, size_t pos) {
 		NodePtr pNode = pFront;
 		//Pos must be positive number less than items count

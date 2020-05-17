@@ -75,7 +75,7 @@ private:
 	using reference = valueType&;//!< Reference element type
 	using const_reference = const _T&;//!< Const reference element type
 private:
-	NodePtr m_root;
+	NodePtr root;
 private:
 	// Left turn relative to the vertex
 	void rotateLeft(NodePtr ptr) {
@@ -88,7 +88,7 @@ private:
 		right_child->parent = ptr->parent;
 
 		if (!ptr->parent)
-			m_root = right_child;
+			root = right_child;
 		else if (ptr == ptr->parent->left)
 			ptr->parent->left = right_child;
 		else
@@ -108,7 +108,7 @@ private:
 		left_child->parent = ptr->parent;
 
 		if (!ptr->parent)
-			m_root = left_child;
+			root = left_child;
 		else if (ptr == ptr->parent->left)
 			ptr->parent->left = left_child;
 		else
@@ -117,13 +117,14 @@ private:
 		left_child->right = ptr;
 		ptr->parent = left_child;
 	}
+
 	//Fix tree after inserti
-	void fixInsertion(NodePtr ptr){
+	void fixInsertion(NodePtr ptr) {
 		NodePtr parent = nullptr;
 		NodePtr grandparent = nullptr;
-		while (ptr != m_root 
-		       && ptr->color == ELeafColor::RED
-		       && ptr->parent->color == ELeafColor::RED) {
+		while (ptr != root
+			&& ptr->color == ELeafColor::RED
+			&& ptr->parent->color == ELeafColor::RED) {
 			parent = ptr->parent;
 			grandparent = parent->parent;
 			if (parent == grandparent->left) {
@@ -147,7 +148,7 @@ private:
 			}
 			else {
 				NodePtr uncle = grandparent->left;
-				if (uncle && uncle->color == ELeafColor::RED ) {
+				if (uncle && uncle->color == ELeafColor::RED) {
 					uncle->color = ELeafColor::BLACK;
 					parent->color = ELeafColor::BLACK;
 					grandparent->color = ELeafColor::RED;
@@ -165,7 +166,7 @@ private:
 				}
 			}
 		}
-		m_root->color = ELeafColor::BLACK;
+		root->color = ELeafColor::BLACK;
 	}
 	//insert node to the tree
 	NodePtr insert_(NodePtr root, NodePtr ptr) {
@@ -182,38 +183,197 @@ private:
 		}
 		return root;
 	}
- 
-	void remove(const_reference key) {
-		NodePtr temp = m_root;
-		NodePtr temp2 = nullptr;
-		NodePtr temp3 = nullptr;
-		while (temp->data != key) {
-			if (temp->data < key)
-				temp = temp->right;
+	//Find min element in tree
+	valueType findMin_(NodePtr ptr) {
+		if (!root)
+			throw RBTreeException("Tree is empty");
+		else {
+			if (ptr->left)
+				return findMin_(ptr->left);
 			else
-				temp = temp->left;
-		}
-		//0 children
-		if (!temp->right && !temp->left)
-			delete temp;
-		//1 children
-		else if (temp->right && !temp->left) {
-			
-		}
-		else if (!temp->right && temp->left) {
+				return ptr->data;
 
 		}
-		//2 children
-		else if (temp->right && temp->left) {
-				
+	}
+	void fixDeleting(NodePtr pNode) {
+		while (pNode->color == ELeafColor::BLACK && pNode != root) {
+			//if pNode is right child
+			NodePtr brother = nullptr;
+			if (pNode->parent->right == pNode) {
+				brother = pNode->parent->right;
+				if (brother->color == ELeafColor::RED) {
+					brother->color = ELeafColor::BLACK;
+					pNode->parent->color = ELeafColor::BLACK;
+					rotateLeft(pNode->parent);
+					brother = brother = pNode->parent->right;
+					
+					if (brother->left->color == ELeafColor::BLACK
+						&& brother->right->color == ELeafColor::BLACK) {
+						brother->color = ELeafColor::RED;
+						pNode = pNode->parent;
+					}
+					else {
+						if (brother->left->color == ELeafColor::BLACK) {
+							brother->right->color = ELeafColor::BLACK;
+							brother->color = ELeafColor::RED;
+							rotateRight(brother);
+						}
+						brother->color = pNode->parent->color;
+						pNode->parent->color = ELeafColor::BLACK;
+						brother->right->color = ELeafColor::BLACK;
+						rotateLeft(pNode->parent);
+						pNode = root;
+					}
+				}
+			}
+			else {
+				brother = pNode->parent->left;
+				if (brother->color == ELeafColor::RED) {
+					brother->color = ELeafColor::BLACK;
+					pNode->parent->color = ELeafColor::BLACK;
+					rotateRight(pNode->parent);
+					brother = brother = pNode->parent->left;
+
+					if (brother->left->color == ELeafColor::BLACK
+						&& brother->right->color == ELeafColor::BLACK) {
+						brother->color = ELeafColor::RED;
+						pNode = pNode->parent;
+					}
+					else {
+						if (brother->left->color == ELeafColor::BLACK) {
+							brother->right->color = ELeafColor::BLACK;
+							brother->color = ELeafColor::RED;
+							rotateLeft(brother);
+						}
+						brother->color = pNode->parent->color;
+						pNode->parent->color = ELeafColor::BLACK;
+						brother->left->color = ELeafColor::BLACK;
+						rotateRight(pNode->parent);
+						pNode = root;
+					}
+				}
+			}
 		}
+		pNode->color = ELeafColor::BLACK;
+		root->color = ELeafColor::BLACK;
+	}
+	//Remove node from tree recursively
+	void removeNode_(const_reference key, NodePtr parent) {
+		if (root) {
+			if (root->data == key) {
+				removeRootMatch();
+			}
+			else {
+				if (key < parent->data
+					&& parent->left) {
+					parent->left->data == key
+						? removeMatch(parent, parent->left, true)
+						: removeNode_(key, parent->left);
+				}
+				else if (key > parent->data
+					&& parent->right) {
+					parent->right->data == key
+						? removeMatch(parent, parent->right, false)
+						: removeNode_(key, parent->right);
+				}
+				else
+					throw RBTreeException("This key is not exist");
+			}
+		}
+		else
+			throw RBTreeException("Tree is empty");
+	}
+	//Remove tree root
+	void removeRootMatch() {
+		if (root) {
+			NodePtr delPtr = root;
+			valueType rootK = root->data;
+			valueType smallInRghtSubtr;
+			// 0 children
+			if (!root->left && !root->right) {
+				root = nullptr;
+				delete delPtr;
+			}
+			// 1 child
+			else if (!root->left && root->right) {
+				root = root->right;
+				delPtr->right = nullptr;
+				delete delPtr;
+			}
+			else if (root->left && !root->right) {
+				root = root->left;
+				delPtr->left = nullptr;
+				delete delPtr;
+			}
+			else {
+				smallInRghtSubtr = findMin_(root->right);
+				removeNode_(smallInRghtSubtr, root);
+				root->data = smallInRghtSubtr;
+			}
+		}
+		else
+			throw RBTreeException("Tree is empty");
+	}
+	//Remove node match 
+	void removeMatch(NodePtr parent,
+		NodePtr match,
+		const bool& isLeft) {
+		if (root) {
+			NodePtr delPtr = nullptr;
+			valueType matchK = match->data;
+			valueType smallestInRightSub = valueType();
+			NodePtr child;
+			// zero child
+			if (!match->right
+				&& !match->left) {
+				delPtr = match;
+
+				isLeft == true
+					? parent->left = nullptr
+					: parent->right = nullptr;
+
+				delete delPtr;
+				
+			}
+			// 1 child
+			//if right child exist
+			else if (match->left
+				&& !match->right) {
+				delPtr = match;
+				isLeft == true
+					? parent->left = match->right, fixDeleting(parent->left)
+					: parent->right = match->right, fixDeleting(parent->right);
+				match->right = nullptr;
+				delete delPtr;
+			}
+			//if left child exist
+			else if (match->left
+				&& !match->right) {
+				delPtr = match;
+
+				isLeft == true
+					? parent->left = match->left, fixDeleting(parent->left)
+					: parent->right = match->left,fixDeleting(parent->right);
+
+				match->left = nullptr;
+				delete delPtr;
+			}
+			// 2 child
+			else {
+				smallestInRightSub = findMin_(match->right);
+				removeNode_(smallestInRightSub, match);
+				match->data = smallestInRightSub;
+			}
+		}
+		else
+			throw RBTreeException("Tree is empty");
 	}
 	// print tree in order travers
 	void inOrderTraverse(NodePtr ptr) {
 		if (!ptr)
 			return;
 		inOrderTraverse(ptr->left);
-		std::cout << ptr->data << " ";
+		std::cout << ptr->data << " " << ptr->colorToString();
 		inOrderTraverse(ptr->right);
 	}
 	// print tree in pre order travers
@@ -236,27 +396,27 @@ public:
 	/*!
 	Display tree data in order
 */
-	void  printInOrder() const {
-		this->inOrderTraverse(m_root);
+	void  printInOrder() {
+		this->inOrderTraverse(root);
 	}
 	/*!
 		Display tree data in post order
 	*/
-	void printPostOrder() const {
-		this->postOrderTraverse(m_root);
+	void printPostOrder() {
+		this->postOrderTraverse(root);
 	}
 	/*!
 		Display tree data in pre order
 	*/
-	void printPreOrder() const {
-		this->preOrderTraverse(m_root);
+	void printPreOrder() {
+		this->preOrderTraverse(root);
 	}
 	/*!
 		Is the RBTree empty
 		\param[out] bool True,if RBTree is empty
 	*/
 	bool isEmpty() const override {
-		return !m_root;
+		return !root;
 	}
 	/*!
 		Add item to the tree
@@ -269,14 +429,17 @@ public:
 			nullptr,
 			item);
 
-		m_root = insert_(m_root, node);
+		root = insert_(root, node);
 		fixInsertion(node);
+	}
+	void remove(const_reference key) {
+		removeNode_(key, root);
 	}
 public:
 	/*!
 		Default RBTree constructor
 	*/
-	RBTree() :m_root(nullptr) {}
+	RBTree() :root(nullptr) {}
 	/*!
 		Parameterized RBTree constructor
 		\param[in] initializer_list<valueType>list STL init list

@@ -40,9 +40,9 @@ public:
 	void addItem(const_reference item) {
 		//push item to the value vector
 		data.push_back(item);
-		//get counter and leaf parent
+		//get size and leaf parent
 		size_t i = getSize() - 1;
-		int parent = (i - 1) / 2;
+		size_t parent = (i - 1) / 2;
 		//the heap property may be violated
 		//while its violated we swap element with parent
 		while (i > 0 && data.at(parent) < data.at(i))	{
@@ -53,9 +53,9 @@ public:
 	}
 	//This method is recover general property of heap
 	void heapify(valueType i) {
-		int leftChild;
-		int rightChild;
-		int largestChild;
+		size_t leftChild;
+		size_t rightChild;
+		size_t largestChild;
 		//iterate while general property of heap is not true
 		for (;;) {
 			leftChild = 2 * i + 1; // left child have 2i + 1 position in array

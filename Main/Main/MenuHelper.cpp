@@ -1307,7 +1307,7 @@ void MenuHelper::createBstMenuInstance() {
 void MenuHelper::createRbTreeMenuInstance() {
 	clearConsole();
 	bool isActive = true;
-	RBTree<int>* rbtree = nullptr;
+
 	while (isActive) {
 		int answer = -1;
 		std::wcout << rbTreeMenuSelectAction

@@ -169,9 +169,11 @@ private:
 				delPtr->left = nullptr;
 				delete delPtr;
 			}
+			// 2 child
 			else {
 				smallInRghtSubtr = findMin_(root->right);
 				removeNode_(smallInRghtSubtr, root);
+				root->key = smallInRghtSubtr;
 			}
 		}
 		else
