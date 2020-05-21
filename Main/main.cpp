@@ -9,6 +9,8 @@ int main() {
 	list.push({ "Ivan4","8903" });
 	list.push({ "Ivan1","8905" });
 	list.push({ "Ivan5","8904" });
-	list.printDebug();
+	
+	list.removeBySecondName("Ivan5");
+	printOrderedBySecondName(&list);
 	return 0;
 }

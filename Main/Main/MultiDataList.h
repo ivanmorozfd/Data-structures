@@ -125,6 +125,22 @@ private:
 		pointer->prevSecondName = temp;
 		end_mark->prevSecondName = pointer;
 	}
+	void removeNode(FieldPtr node) {
+		auto prevNodeTel = node->prevTelephone;
+		auto nextNodeTel = node->nextTelephone;
+
+		prevNodeTel->nextTelephone = nextNodeTel;
+		nextNodeTel->prevTelephone = prevNodeTel;
+
+		auto prevNodeSecondName = node->prevSecondName;
+		auto nextNodeSecondName = node->nextSecondName;
+
+		prevNodeSecondName->nextSecondName = nextNodeSecondName;
+		nextNodeSecondName->prevSecondName = prevNodeSecondName;
+
+		delete node;
+
+	}
 public:
 	bool isEmpty() const override {
 		return !begin_mark;
@@ -166,17 +182,94 @@ public:
 		insertTelephone(fieldPointer);
 		insertSecondName(fieldPointer);
 	}
-	void printDebug() {
-		auto temp = begin_mark->nextTelephone;
+	std::string findBySecondName(std::string secondName) const {
+		auto temp = begin_mark->nextSecondName;
+		bool isFound = false;
 		while (temp != end_mark) {
-			std::cout << temp->telephone->getContent() << " " <<temp->secondName->getContent() << std::endl;
-			temp = temp->nextTelephone;
+			if (temp->secondName->getContent() == secondName) {
+				isFound = true;
+				break;
+			}
+			else 
+				temp = temp->nextSecondName;
 		}
-			// std::cout << begin_mark->telephone->getContent() << begin_mark->secondName->getContent() << std::endl;
-			// std::cout << end_mark->telephone->getContent() << end_mark->secondName->getContent() << std::endl;
+		if (isFound) 
+			return temp->telephone->getContent();
+		else {
+			std::cout << "Field does't exist" << std::endl;
+			return std::string();
+		}
+	}
+	std::string findByTelelephoneNumber(std::string telephone) const {
+		auto temp = begin_mark->nextTelephone;
+		bool isFound = false;
+		while (temp != end_mark) {
+			if (temp->telephone->getContent() == telephone) {
+				isFound = true;
+				break;
+			}
+			else
+				temp = temp->nextTelephone;
+		}
+		if (isFound)
+			return temp->secondName->getContent();
+		else {
+			std::cout << "Field does't exist" << std::endl;
+			return std::string();
+		}
+	}
+	void removeBySecondName(std::string secondName) {
+		auto temp = begin_mark->nextSecondName;
+		bool isFound = false;
+		while (temp != end_mark) {
+			if (temp->secondName->getContent() == secondName) {
+				isFound = true;
+				break;
+			}
+			else
+				temp = temp->nextSecondName;
+		}
+		if (isFound) {
+			removeNode(temp);
+		}
+		else {
+			std::cout << "Field does't exist" << std::endl;
+		}
+	}
+	void removeByTelephone(std::string telephone) {
+		auto temp = begin_mark->nextTelephone;
+		bool isFound = false;
+		while (temp != end_mark) {
+			if (temp->telephone->getContent() == telephone) {
+				isFound = true;
+				break;
+			}
+			else
+				temp = temp->nextTelephone;
+		}
+		if (isFound) {
+			removeNode(temp);
+		}
+		else {
+			std::cout << "Field does't exist" << std::endl;
+		}
 	}
 	void clear() {
 
+	}
+	friend void printOrderedBySecondName(MultiDataList* list) {
+		auto temp = list->begin_mark->nextSecondName;
+		while (temp != list->end_mark) {
+			std::cout << temp->telephone->getContent() << " " << temp->secondName->getContent() << std::endl;
+			temp = temp->nextSecondName;
+		}
+	}
+	friend void printOrderedByTelephone(MultiDataList* list) {
+		auto temp = list->begin_mark->nextTelephone;
+		while (temp != list->end_mark) {
+			std::cout << temp->telephone->getContent() << " " << temp->secondName->getContent() << std::endl;
+			temp = temp->nextTelephone;
+		}
 	}
 public:
 	MultiDataList():begin_mark(nullptr),
