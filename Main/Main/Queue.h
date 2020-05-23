@@ -47,6 +47,7 @@ public:
 */
 template<typename _T>
 class Queue : public Container{
+	friend class QueueHelper;
 	using valueType = _T;// Element Type
 	using reference = valueType&;// Reference element type
 	using const_reference = const _T&;// Reference element type

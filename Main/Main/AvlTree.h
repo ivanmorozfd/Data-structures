@@ -53,6 +53,7 @@ public:
 */
 template<typename _T>
 class AvlTree : public Container {
+	friend class AvlTreeHelper;
 private:
 	using valueType = _T;//value type
 	using reference = valueType&;//reference to value

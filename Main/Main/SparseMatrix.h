@@ -14,6 +14,8 @@ template<typename _T>
 	\date April 2020
 */
 class SparseMatrix : public Container {
+	friend class SparseMatrixHelper;
+private:
 	using valueType = _T;
 	using reference = valueType&;
 	using valueContainer = vector<_T>*;

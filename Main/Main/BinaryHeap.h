@@ -15,6 +15,7 @@ using std::initializer_list;
 */
 template<typename _T>
 class BinaryHeap : public Container {
+	friend class BinaryHeapHelper;
 	using valueType = _T;// Element type
 	using reference = valueType&;// Reference element type
 	using const_reference = const valueType&;// Const reference

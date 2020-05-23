@@ -47,6 +47,8 @@ public:
 */
 template<typename _T>	
 class BinarySearchTree : public Container {
+	friend class BinarySearchTreeHelper;
+private:
 	using valueType = _T;//Element type
 	using reference = valueType&;//Reference element type
 	using const_reference = const valueType&;//Const reference element type

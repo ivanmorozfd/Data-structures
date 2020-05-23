@@ -50,6 +50,7 @@ public:
 */
 template<typename _T>
 class DoubleLinkedList : public Container {	
+	friend class DoubleLinkedListHelper;
 private:
 	using valueType = _T;// Element type
 	using reference = valueType&;// Reference element type

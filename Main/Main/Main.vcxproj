@@ -129,30 +129,39 @@
     <ClInclude Include="AvlTreeExceptions.h" />
     <ClInclude Include="BinaryHeap.h" />
     <ClInclude Include="BinaryHeapExceptions.h" />
+    <ClInclude Include="BinaryHeapHelper.h" />
     <ClInclude Include="BinarySearchTree.h" />
     <ClInclude Include="BinarySearchTreeExceptions.h" />
-    <ClInclude Include="BTree.h" />
     <ClInclude Include="core.h" />
     <ClInclude Include="DoubleLinkedList.h" />
     <ClInclude Include="DoubleLinkedListExceptions.h" />
+    <ClInclude Include="DoubleLinkedListHelper.h" />
     <ClInclude Include="DoubleLinkedListIterator.h" />
     <ClInclude Include="Container.h" />
+    <ClInclude Include="HelperBase.h" />
     <ClInclude Include="MenuConsts.h" />
     <ClInclude Include="MenuHelper.h" />
     <ClInclude Include="MultiDataList.h" />
     <ClInclude Include="MultiDataListException.h" />
+    <ClInclude Include="MultiDataListHelper.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="QueueException.h" />
+    <ClInclude Include="QueueHelper.h" />
     <ClInclude Include="RBTree.h" />
     <ClInclude Include="RBTreeExceptions.h" />
     <ClInclude Include="SparseMatrix.h" />
     <ClInclude Include="SparseMatrixException.h" />
+    <ClInclude Include="SparseMatrixHelper.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="StackException.h" />
+    <ClInclude Include="StackHelper.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\main.cpp" />
+    <ClCompile Include="AvlTreeHelper.h" />
+    <ClCompile Include="BinarySearchTreeHelper.h" />
     <ClCompile Include="MenuHelper.cpp" />
+    <ClCompile Include="RBTreeHelper.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

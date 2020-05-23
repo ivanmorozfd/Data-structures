@@ -14,6 +14,7 @@ using std::string;
 */
 template<typename _T>
 class RBTree : public Container {
+	friend class RBTreeHelper;
 private:
 	/** @enum ELeafColor
 	  *  \brief is a strongly typed enum class representing the leaf color
@@ -397,6 +398,7 @@ public:
 	Display tree data in order
 */
 	void  printInOrder() {
+		std::cout << root->data << " " << root->colorToString();
 		this->inOrderTraverse(root);
 	}
 	/*!

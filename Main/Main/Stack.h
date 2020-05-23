@@ -47,6 +47,7 @@ public:
 */
 template<typename _T>
 class Stack : public Container {
+	friend class StackHelper;
 private:
 	using valueType = _T;// Element type
 	using reference = valueType&;// Reference element type
@@ -134,17 +135,6 @@ public:
 			}
 		} while (tmp = tmp->prev);
 		return isFound;
-	}
-	/*!
-		Display Stack data
-		\brief Friend function,help to print Stack data
-	*/
-	template<class _T>
-	friend void print_stack(Stack<valueType>* stack) {
-		NodePtr tmp = stack->_top;
-		do {
-			std::cout << tmp->data << " ";
-		} while (tmp = tmp->prev);
 	}
 public:
 	/*!	

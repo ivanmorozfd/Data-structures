@@ -10,6 +10,15 @@
 #include <fstream>
 #include <random>
 #include "MenuConsts.h"
+
+#include "StackHelper.h"
+#include "QueueHelper.h"
+#include "DoubleLinkedListHelper.h"
+#include "BinaryHeapHelper.h"
+#include "MultiDataListHelper.h"
+#include "BinarySearchTreeHelper.h"
+#include "AvlTree.h"
+#include "RBTreeHelper.h"
 void MenuHelper::createMainMenuInstance()
 {
 	{
@@ -122,7 +131,6 @@ void MenuHelper::createStackMenuInstance() {
 		}
 		case 3: {
 			clearConsole();
-
 			if (!stack)
 				std::wcout << stackNotCreated;
 			else {
@@ -157,71 +165,48 @@ void MenuHelper::createStackMenuInstance() {
 			}
 			break;
 		}
-		case 5:
-		{
-			if (!stack)
-			{
+		case 5:{
+			if (!stack){
 				clearConsole();
 				std::wcout << stackNotCreated;
 			}
-			else
-			{
-				try
-				{
-					clearConsole();
-
+			else{
+				clearConsole();
+				try {
 					stack->pop();
 					std::wcout << stackPopMessage;
 				}
-				catch (StackException & e)
-				{
-					clearConsole();
+				catch (StackException & e){
 					std::wcout << stackIsEmpty;
 				}
 			}
 			break;
 		}
-		case 6:
-		{
+		case 6: {
 			std::wcout << stackReadFileMessage;
 			std::wcout << enterAnswer;
 			std::string fileName;
 			std::cin >> fileName;
 			std::ifstream fin(fileName + ".txt");
-			if (!fin.is_open())
-			{
-				clearConsole();
+			clearConsole();
+			if (!fin.is_open()) {
 				std::wcout << stackReadFileErrMessage;
 				break;
 			}
 			else
 			{
-				if (stack)
-				{
+				if (stack) {
 					delete stack;
 					stack = nullptr;
 					stack = new Stack<int>();
 				}
-				else
-					stack = new Stack<int>();
-
-				while (!fin.eof())
-				{
-					int a;
-					fin >> a;
-					stack->push(a);
-
-				}
+				stack = StackHelper::readFromFile<int>(fin);
 			}
-			clearConsole();
-
 			std::wcout << stackReadFileSuccessMessage;
 			break;
 		}
-		case 7:
-		{
-			if (!stack)
-			{
+		case 7: {
+			if (!stack){
 				std::wcout << stackNotCreated;
 				break;
 			}
@@ -231,53 +216,40 @@ void MenuHelper::createStackMenuInstance() {
 			std::string fileName;
 			std::cin >> fileName;
 
-			int result;
 			std::ofstream out(fileName + ".txt", std::ios_base::trunc);
-			if (!out.is_open())
-			{
-				clearConsole();
+			
+			clearConsole();
+
+			if (!out.is_open()){
 				std::wcout << stackWriteFileErrMessage;
 				break;
 			}
-			else
-			{
-				while (!stack->isEmpty())
-				{
-					result = stack->peek();
-					stack->pop();
-					out << result;
-					out << " ";
-				}
-			}
+			else 
+				StackHelper::writeToFile(stack, out);
+
 			out.close();
 
 			std::wcout << stackWriteFileSuccess;
 			break;
 		}
-		case 8:
-		{
+		case 8: {
+			clearConsole();
 			stack->clear();
 			std::wcout << stackClearSucces;
 			break;
 		}
-		case 9:
-		{
-			if (stack)
-			{
+		case 9:{
+			clearConsole();
+			if (stack){
 				delete stack;
 				stack = nullptr;
-				clearConsole();
 				std::wcout << stackDestroyedMessage;
 			}
 			else
-			{
-				clearConsole();
 				std::wcout << stackNotCreated;
-			}
 			break;
 		}
-		case 10:
-		{
+		case 10: {
 			std::wcout << stackRandomizeMessage;
 			std::wcout << enterAnswer;
 			int stackSize = 0;
@@ -300,13 +272,12 @@ void MenuHelper::createStackMenuInstance() {
 			std::wcout<< stackRandomizeSuccess;
 			break;
 		}
-		case 11:
-		{
-			//todo	
+		case 11: {
+			clearConsole();
+			StackHelper::print_stack(stack);
 			break;
 		}
-		case 12:
-		{
+		case 12: {
 			isActive = false;
 			break;
 		}
@@ -341,35 +312,27 @@ void MenuHelper::createQueueMenuInstance()
 
 		std::cout << enterAnswer;
 		std::cin >> answer;
-		switch (answer)
-		{
-			case 1:
-			{
+		switch (answer){
+			case 1:{
+				clearConsole();
 				if (!queue) {
 					queue = new Queue<int>();
-					clearConsole();
 					std::cout << queueCreateSuccess;
 				}
-				else {
-					clearConsole();
+				else
 					std::cout << queueCreateFailure;
-				}
 				break;
 			}
 			case 2: {
+				clearConsole();
 				if (!queue) {
-					clearConsole();
 					std::cout << queueNotCreated;
 				}
 				else {
-					if (queue->isEmpty()) {
-						clearConsole();
+					if (queue->isEmpty()) 
 						std::cout << queueIsEmpty;
-					}
-					else {
-						clearConsole();
+					else 
 						std::cout << queueIsNotEmpty;
-					}
 				}
 				break;
 			}
@@ -396,17 +359,14 @@ void MenuHelper::createQueueMenuInstance()
 				break;
 			}	
 			case 4: {
+				clearConsole();
 				if (!queue) {
-					clearConsole();
 					std::cout << queueNotCreated;
 				}
 				else {
-					if (queue->isEmpty()) {
-						clearConsole();
+					if (queue->isEmpty())
 						std::cout << queueIsEmpty;
-					}
 					else {
-						clearConsole();
 						std::cout << queuePeekMessage
 							<< queue->peek();
 					}
@@ -414,63 +374,47 @@ void MenuHelper::createQueueMenuInstance()
 				break;
 			}
 			case 5: {
-				if (!queue) {
-					clearConsole();
+				clearConsole();
+				if (!queue) 
 					std::cout << queueNotCreated;
-				}
 				else {
-					clearConsole();
 					try {
 						queue->pop();
 					}
 					catch (QueueException & e) {
-
 						std::cout << queueIsEmpty;
 					}
 				}
 				break;
 			}
-			case 6:
-			{
+			case 6:{
 				std::wcout << queueReadFileMessage;
 				std::wcout << enterAnswer;
+				
 				std::string fileName;
 				std::cin >> fileName;
 				std::ifstream fin(fileName + ".txt");
-				if (!fin.is_open())
-				{
-					clearConsole();
+				
+				clearConsole();
+				
+				if (!fin.is_open()){
 					std::wcout << queueReadFileErrMessage;
 					break;
 				}
-				else
-				{
-					if (queue)
-					{
+				else{
+					if (queue){
 						delete queue;
 						queue = nullptr;
 						queue = new Queue<int>();
 					}
-					else
-						queue = new Queue<int>();
-
-					while (!fin.eof())
-					{
-						int a;
-						fin >> a;
-						queue->push(a);
-
-					}
+					queue = QueueHelper::readFromFile<int>(fin);
 				}
-				clearConsole();
-
 				std::wcout << queueReadFileSuccessMessage;
 				break;
 			}
-			case 7:
-			{
-				if (!queue)
-				{
+			case 7: {
+				if (!queue) {
+					clearConsole();
 					std::wcout << queueNotCreated;
 					break;
 				}
@@ -480,26 +424,16 @@ void MenuHelper::createQueueMenuInstance()
 				std::string fileName;
 				std::cin >> fileName;
 
-				int result;
 				std::ofstream out(fileName + ".txt", std::ios_base::trunc);
-				if (!out.is_open())
-				{
+				if (!out.is_open()) {
 					clearConsole();
 					std::wcout << queueWriteFileErrMessage;
 					break;
 				}
-				else
-				{
-					while (!queue->isEmpty())
-					{
-						result = queue->peek();
-						queue->pop();
-						out << result;
-						out << " ";
-					}
-				}
+				else 
+					QueueHelper::writeToFile<int>(queue,out);
+				
 				out.close();
-
 				std::wcout << queueWriteFileSuccess;
 				break;
 			}
@@ -518,38 +452,36 @@ void MenuHelper::createQueueMenuInstance()
 				std::wcout << enterAnswer;
 				int upValue;
 				std::cin >> upValue;
-				for (int i = 0; i < queueSize; ++i)
-				{
+				for (int i = 0; i < queueSize; ++i) {
 					queue->push(std::rand() % upValue);
 				}
 				clearConsole();
 				std::wcout << queueRandomizeSuccess;
 				break;
 			}
-		case 9:
-			break;
-		case 10: {
-			if (!queue) {
+			case 9: {
 				clearConsole();
+				QueueHelper::print_queue(queue);
+				break;
+			}
+		case 10: {
+			clearConsole();
+			if (!queue) {
 				std::cout << queueNotCreated;
 			}
-			else {
-				clearConsole();
+			else
 				queue->clear();
-			}
 			break;
 		}
 		case 11: {
+			clearConsole();
 			if (queue) {
-				clearConsole();
 				std::cout << queueDestroyedMessage;
 				delete queue;
 				queue = nullptr;
 			}
-			else {
-				clearConsole();
+			else 
 				std::cout << queueNotCreated;
-			}
 			break;
 		}
 		case 12:
@@ -559,6 +491,7 @@ void MenuHelper::createQueueMenuInstance()
 			break;	
 		}
 	}
+	clearConsole();
 }
 
 void MenuHelper::createDlistMenuInstance()
