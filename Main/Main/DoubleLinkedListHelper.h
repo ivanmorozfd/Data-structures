@@ -8,18 +8,26 @@ public:
 	template<class T>
 	static void print_list(DoubleLinkedList<T> * list) {
 		_ListNode<T>* temp = list->pFront;
-		
+		do {
+			std::cout << temp->value << " ";
+		} while (temp = temp->next);
+		std::cout << std::endl;
 	}
 	template<class T>
-	static void writeToFile(DoubleLinkedList<T> * list, std::ofstream& os) {
-
+	static void writeToFile(DoubleLinkedList<T> * list, std::ofstream& outStream) {
+		_ListNode<T>* tmp = list->pFront;
+		do {
+			outStream << tmp->value << " ";
+		} while (tmp = tmp->next);
 	}
 	template<class T>
 	static DoubleLinkedList<T>* readFromFile(std::ifstream& inputStream) {
-
-	}
-	template<class T>
-	static void sort_list(DoubleLinkedList<T>* list) {
-
+		DoubleLinkedList<T>* list = new DoubleLinkedList<T>();
+		while (!inputStream.eof()) {
+			T a;
+			inputStream >> a;
+			list->push_back(a);
+		}
+		return list;
 	}
 };

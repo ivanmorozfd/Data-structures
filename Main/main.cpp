@@ -1,9 +1,12 @@
 ﻿#include <iostream>
-#include "Main/Stack.h"
-#include "Main/StackHelper.h"
-#include  "Main/MenuHelper.h"
+#include <fstream>
+#include "Main/BinarySearchTree.h"
+#include "Main/BinarySearchTreeHelper.h"
 #include <vector>
 int main() {
-	MenuHelper menu;
+	BinarySearchTree<int>* tree;
+	std::ifstream in("OutTree.txt");
+	tree = BinarySearchTreeHelper::readFromFile<int>(in);
+	BinarySearchTreeHelper::printInOrder(tree);
 	return 0;
 }

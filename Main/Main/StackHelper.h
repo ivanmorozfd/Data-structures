@@ -18,16 +18,16 @@ public:
 	static void writeToFile(Stack<T>* stack,std::ofstream& outStream) {
 		_StackNode<T>* tmp = stack->_top;
 		do {
-			outStream << tmp->data;
+			outStream << tmp->data << " ";
 		} while (tmp = tmp->prev);
 	}
 	template<class T>
 	static Stack<T>* readFromFile(std::ifstream& inputStream) {
 		Stack<T>* stack = new Stack<T>();
 		while (inputStream.eof()) {
-			T a;
+			std::string a;
 			inputStream >> a;
-			stack->push(a);
+			stack->push(std::stoi(a));
 		}
 		return stack;
 	}

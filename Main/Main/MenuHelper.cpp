@@ -663,16 +663,7 @@ void MenuHelper::createDlistMenuInstance()
 					list = nullptr;
 					list = new DoubleLinkedList<int>();
 				}
-				else
-					list = new DoubleLinkedList<int>();
-
-				while (!fin.eof()) {
-					int a;
-					fin >> a;
-
-					list->push_back(a);
-
-				}
+				list = DoubleLinkedListHelper::readFromFile<int>(fin);
 			}
 
 			std::wcout << dlistReadFileSuccessMessage;
@@ -698,14 +689,7 @@ void MenuHelper::createDlistMenuInstance()
 				break;
 			}
 			else {
-				int result = 0;
-				while (!list->isEmpty()) {
-					result = list->front();
-					list->pop_back();
-
-					out << result;
-					out << " ";
-				}
+				DoubleLinkedListHelper::writeToFile(list, out);
 			}
 			out.close();
 
@@ -739,16 +723,12 @@ void MenuHelper::createDlistMenuInstance()
 		}
 		case 12: {
 			clearConsole();
-			for (DoubleLinkedList<int>::iterator it = list->begin(); it != list->end(); ++it) {
-				std::cout << *it;
-			}
+			DoubleLinkedListHelper::print_list(list);
 			break;
 		}
 		case 13: {
 			clearConsole();
-
 			list->clear();
-
 			std::cout << dlistClearSucces;
 			break;
 		}

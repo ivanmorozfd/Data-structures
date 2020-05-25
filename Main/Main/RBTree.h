@@ -5,6 +5,64 @@
 #include "RBTreeExceptions.h"
 using std::initializer_list;
 using std::string;
+
+/** @enum ELeafColor
+  *  \brief is a strongly typed enum class representing the leaf color
+  *  @var ELeafColor::BLACK
+  *  is coded as std::int8_t of value 0
+  *  @var ELeafColor::BLACK
+  *  is coded as std::int8_t of value 1
+  */
+enum class ELeafColor : std::int8_t {
+	BLACK,
+	RED
+};
+template <typename _T>
+struct _RBtreeNode {
+	typedef _RBtreeNode* NodePtr;//!< Node pointer type
+	using valueType = _T;//!< Element type
+	using reference = valueType&;//!< Reference element type
+	using const_reference = const _T&;//!< Const reference element type
+public:
+	NodePtr left;//!< Pointer to left child
+	NodePtr right;//!< Pointer to right child
+	NodePtr parent;//!< Pointer to parent node
+	valueType key;//!< Node key
+	ELeafColor color;//!< Leaf Color
+public:
+	/*!
+		Returns the color in string representation
+		\param[out] string Leaf color
+	*/
+	string colorToString() {
+		return this->color == ELeafColor::BLACK
+			? "Black"
+			: "Red";
+	}
+public:
+	/*!
+		Parameterized _RBtreeNode constructor
+		\param[in] ELeafColor Leaf color
+		\param[in] NodePtr Left child
+		\param[in] NodePtr Right child
+		\param[in] NodePtr Parent node
+	*/
+	_RBtreeNode(ELeafColor color,
+		NodePtr left,
+		NodePtr right,
+		NodePtr parent,
+		const_reference value) :
+		color(color),
+		key(value),
+		left(left),
+		right(right),
+		parent(parent)
+	{
+
+	}
+};
+
+
 /*!
 	RBTree class
 	\brief Use to store data in tree view
@@ -15,63 +73,8 @@ using std::string;
 template<typename _T>
 class RBTree : public Container {
 	friend class RBTreeHelper;
-private:
-	/** @enum ELeafColor
-	  *  \brief is a strongly typed enum class representing the leaf color
-	  *  @var ELeafColor::BLACK
-	  *  is coded as std::int8_t of value 0
-	  *  @var ELeafColor::BLACK
-	  *  is coded as std::int8_t of value 1
-	  */
-	enum class ELeafColor : std::int8_t {
-		BLACK,
-		RED
-	};
-	struct _RBtreeNode {
-		typedef _RBtreeNode* NodePtr;//!< Node pointer type
-		using valueType = _T;//!< Element type
-		using reference = valueType&;//!< Reference element type
-		using const_reference = const _T&;//!< Const reference element type
-	public:
-		NodePtr left;//!< Pointer to left child
-		NodePtr right;//!< Pointer to right child
-		NodePtr parent;//!< Pointer to parent node
-		valueType data;//!< Node key
-		ELeafColor color;//!< Leaf Color
-	public:
-		/*!
-			Returns the color in string representation
-			\param[out] string Leaf color
-		*/
-		string colorToString() {
-			return this->color == ELeafColor::BLACK
-				? "Black"
-				: "Red";
-		}
-	public:
-		/*!
-			Parameterized _RBtreeNode constructor
-			\param[in] ELeafColor Leaf color
-			\param[in] NodePtr Left child
-			\param[in] NodePtr Right child
-			\param[in] NodePtr Parent node
-		*/
-		_RBtreeNode(ELeafColor color,
-			NodePtr left,
-			NodePtr right,
-			NodePtr parent,
-			const_reference value):
-				color(color),
-				data(value), 
-				left(left),
-				right(right),
-				parent(parent) 
-		{
-
-		}
-	};
-	typedef _RBtreeNode* NodePtr;//!< Node pointer type
-	typedef _RBtreeNode NodeRef;//!< Node pointer type
+	typedef _RBtreeNode<_T>* NodePtr;//!< Node pointer type
+	typedef _RBtreeNode<_T> NodeRef;//!< Node pointer type
 	using valueType = _T;//!< Element type
 	using reference = valueType&;//!< Reference element type
 	using const_reference = const _T&;//!< Const reference element type
@@ -174,11 +177,11 @@ private:
 		if (!root)
 			return ptr;
 
-		if (ptr->data < root->data) {
+		if (ptr->key < root->key) {
 			root->left = insert_(root->left, ptr);
 			root->left->parent = root;
 		}
-		else if (ptr->data > root->data)  {
+		else if (ptr->key > root->key)  {
 			root->right = insert_(root->right, ptr);
 			root->right->parent = root;
 		}
@@ -192,7 +195,7 @@ private:
 			if (ptr->left)
 				return findMin_(ptr->left);
 			else
-				return ptr->data;
+				return ptr->key;
 
 		}
 	}
@@ -261,19 +264,19 @@ private:
 	//Remove node from tree recursively
 	void removeNode_(const_reference key, NodePtr parent) {
 		if (root) {
-			if (root->data == key) {
+			if (root->key == key) {
 				removeRootMatch();
 			}
 			else {
-				if (key < parent->data
+				if (key < parent->key
 					&& parent->left) {
-					parent->left->data == key
+					parent->left->key == key
 						? removeMatch(parent, parent->left, true)
 						: removeNode_(key, parent->left);
 				}
-				else if (key > parent->data
+				else if (key > parent->key
 					&& parent->right) {
-					parent->right->data == key
+					parent->right->key == key
 						? removeMatch(parent, parent->right, false)
 						: removeNode_(key, parent->right);
 				}
@@ -288,7 +291,7 @@ private:
 	void removeRootMatch() {
 		if (root) {
 			NodePtr delPtr = root;
-			valueType rootK = root->data;
+			valueType rootK = root->key;
 			valueType smallInRghtSubtr;
 			// 0 children
 			if (!root->left && !root->right) {
@@ -309,7 +312,7 @@ private:
 			else {
 				smallInRghtSubtr = findMin_(root->right);
 				removeNode_(smallInRghtSubtr, root);
-				root->data = smallInRghtSubtr;
+				root->key = smallInRghtSubtr;
 			}
 		}
 		else
@@ -321,7 +324,7 @@ private:
 		const bool& isLeft) {
 		if (root) {
 			NodePtr delPtr = nullptr;
-			valueType matchK = match->data;
+			valueType matchK = match->key;
 			valueType smallestInRightSub = valueType();
 			NodePtr child;
 			// zero child
@@ -363,7 +366,7 @@ private:
 			else {
 				smallestInRightSub = findMin_(match->right);
 				removeNode_(smallestInRightSub, match);
-				match->data = smallestInRightSub;
+				match->key = smallestInRightSub;
 			}
 		}
 		else
@@ -374,13 +377,13 @@ private:
 		if (!ptr)
 			return;
 		inOrderTraverse(ptr->left);
-		std::cout << ptr->data << " " << ptr->colorToString();
+		std::cout << ptr->key << " " << ptr->colorToString();
 		inOrderTraverse(ptr->right);
 	}
 	// print tree in pre order travers
 	void preOrderTraverse(NodePtr root) {
 		if (root) {
-			std::cout << root->data << " ";
+			std::cout << root->key << " ";
 			preOrderTraverse(root->left);
 			preOrderTraverse(root->right);
 		}
@@ -390,7 +393,7 @@ private:
 		if (root) {
 			postOrderTraverse(root->left);
 			postOrderTraverse(root->right);
-			std::cout << root->data << " ";
+			std::cout << root->key << " ";
 		}
 	}
 public:
@@ -398,7 +401,7 @@ public:
 	Display tree data in order
 */
 	void  printInOrder() {
-		std::cout << root->data << " " << root->colorToString();
+		std::cout << root->key << " " << root->colorToString();
 		this->inOrderTraverse(root);
 	}
 	/*!

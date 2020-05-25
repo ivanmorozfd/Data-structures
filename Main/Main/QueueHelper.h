@@ -18,7 +18,7 @@ public:
 	static void writeToFile(Queue<T>* queue, std::ofstream& os) {
 		_QueueNode<T>* temp = queue->pFront;
 		do {
-			os << temp->data;
+			os << temp->data << " ";
 		} while (temp = temp->next);
 	}
 	template<class T>
