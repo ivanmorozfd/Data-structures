@@ -24,7 +24,7 @@ public:
 		while (!inputStream.eof()) {
 			T a;
 			inputStream >> a;
-			tmpdata.push_back(a);
+			heap->addItem(a);
 		}
 		heap->data = tmpdata;
 		return heap;

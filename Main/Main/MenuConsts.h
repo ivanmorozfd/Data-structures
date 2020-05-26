@@ -258,9 +258,9 @@ const char* avlTreeRandomizeUpRangeMessge = "[ Система ] Верхний предел для случ
 const char* avlTreeRandomizeSuccess = "[ Система ] АВЛ-дерево успешно создано и заполнена случайными числами\n\n";
 const char* avlTreeClearSuccessMessage = "[ Система ] АВЛ-дерево успешно очищено\n\n";
 const char* avlTreePrintMessage01 = "[ Система ] Каким образом вывести дерево?\n\n";
-const char* avlTreePrintMessage02 = "[ Система ] Прямой обход\n\n";
-const char* avlTreePrintMessage03 = "[ Система ] Симметричный обход\n\n";
-const char* avlTreePrintMessage04 = "[ Система ] Обратный обход\n\n";
+const char* avlTreePrintMessage02 = "[ Система ] Прямой обход: 0\n\n";
+const char* avlTreePrintMessage03 = "[ Система ] Симметричный обход: 1\n\n";
+const char* avlTreePrintMessage04 = "[ Система ] Обратный обход: 2\n\n";
 const char* avlTreeClearMessage = "[ Система ] АВЛ-дерево очищено";
 const char* avlTreeDestroyMessage = "[ Система ] Объект АВЛ-дерева уничтожено";
 

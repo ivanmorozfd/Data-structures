@@ -102,6 +102,7 @@ private:
 		fixHeight(q);
 		return q;
 	}
+
 	// balance tree with root in node
 	NodePtr balance(NodePtr node) {
 		fixHeight(node);
@@ -143,16 +144,55 @@ private:
 		node->left = removeMin(node->left);
 		return balance(node);
 	}
+	void removeRootMatch() {
+		if (_root) {
+			NodePtr delPtr = _root;
+			valueType rootK = _root->key;
+			valueType smallInRghtSubtr;
+			// 0 children 
+			// just delete _root
+			if (!_root->left && !_root->right) {
+				_root = nullptr;
+				delete delPtr;
+			}
+			// 1 child
+			// just remove right or left child
+			else if (!_root->left && _root->right) {
+				_root = _root->right;
+				delPtr->right = nullptr;
+				delete delPtr;
+			}
+			else if (_root->left && !_root->right) {
+				_root = _root->left;
+				delPtr->left = nullptr;
+				delete delPtr;
+			}
+			// 2 child
+			// need find smallest key in right subtree
+			else {
+				smallInRghtSubtr = findMin(_root->right)->key;
+				remove(_root, smallInRghtSubtr);
+				_root->key = smallInRghtSubtr;
+			}
+		}
+		else
+			throw AvlTreeException("Tree is empty");
+	}
 	// remove node from tree
-	NodePtr remove(NodePtr node,const_reference key) {
-		if (!node) 
-			return nullptr;
-
+	//default bst deletion with avl rotate rebalance
+	NodePtr remove(NodePtr node, valueType key) {
+		if (!node) {
+			throw AvlTreeException("Key not exist");
+		}
 		if (key < node->key)
 			node->left = remove(node->left, key);
 		else if (key > node->key)
 			node->right = remove(node->right, key);
 		else {
+			if (node == _root) {
+				removeRootMatch();
+				return balance(findMin(_root->right));
+			}
 			NodePtr lft = node->left;
 			NodePtr rgt = node->right;
 			delete node;
@@ -168,6 +208,10 @@ private:
 		return balance(node);
 	}
 public:
+	void clear() {
+		while (!isEmpty())
+			removeRootMatch();
+	}
 	/*!
 		Returns root key
 	*/
@@ -181,14 +225,14 @@ public:
 		Insert value to the tree
 		\param[in] const_reference Key
 	*/
-	void insert(const_reference key) {
+	void insert(valueType key) {
 		_root = insert_(this->_root, key);
 	}
 	/*!
 		Remove element from the tree by key
 		\param[in] const_reference Key
 	*/
-	void remove(const_reference key) {
+	void remove(valueType key) {
 		_root = remove(this->_root, key);
 	}
 	/*!
@@ -197,6 +241,9 @@ public:
 	*/
 	bool isEmpty() const override {
 		return !_root;
+	}
+	_T getMin() {
+		return findMin(_root)->key;
 	}
 public:
 	/*!

@@ -64,7 +64,7 @@ public:
 		\param[in] size_t Column in SparseMatrix
 		\param[out] reference value
 	*/
-	void set(reference value, size_t row, size_t column) {
+	void set(valueType value, size_t row, size_t column) {
 		this->validateCoordinates(row, column);
 
 		size_t pos = (*(this->m_ptrs))[row - 1] - 1;
@@ -223,7 +223,6 @@ private:
 	//construct sparseMatrix 
 	void construct(size_t rows, size_t columns) {
 		this->validateCoordinates(rows, columns);
-			throw SparseMatrixException("Matrix dimensions cannot be zero or negative");
 		//Initialize dimensions
 		this->m_nrows = rows;
 		this->m_ncolumns = columns;
@@ -252,9 +251,6 @@ private:
 		}
 	}
 	bool validateCoordinates(size_t rows, size_t columns) {
-		if (rows < 1 || columns < 1 || rows > this->m_nrows || columns > this->m_ncolumns)
-			throw SparseMatrixException("Invalid coordinates");
-		else
 			return true;
 	}
 	//Insert value to matrix	

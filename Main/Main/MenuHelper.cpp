@@ -7,7 +7,6 @@
 #include "AvlTree.h"
 #include "BinarySearchTree.h"
 #include "RBTree.h"
-#include <fstream>
 #include <random>
 #include "MenuConsts.h"
 
@@ -17,7 +16,7 @@
 #include "BinaryHeapHelper.h"
 #include "MultiDataListHelper.h"
 #include "BinarySearchTreeHelper.h"
-#include "AvlTree.h"
+#include "AvlTreeHelper.h"
 #include "RBTreeHelper.h"
 void MenuHelper::createMainMenuInstance()
 {
@@ -853,23 +852,12 @@ void MenuHelper::createBheapMenuInstance()
 				std::wcout << bheapReadFileErrMessage;
 				break;
 			}
-			else {
-				if (heap) {
-					delete heap;
-					heap = nullptr;
-					heap = new BinaryHeap<int>();
-				}
-				else
-					heap = new BinaryHeap<int>();
-
-				while (!fin.eof()) {
-					int a;
-					fin >> a;
-
-					heap->addItem(a);
-
-				}
+			if (heap) {
+				delete heap;
+				heap = nullptr;
+				heap = new BinaryHeap<int>();
 			}
+			heap = BinaryHeapHelper::readFromFile<int>(fin);
 
 			std::wcout << bheapReadFileSuccessMessage;
 			break;
@@ -894,15 +882,7 @@ void MenuHelper::createBheapMenuInstance()
 				std::wcout << bheapWriteFileErrMessage;
 				break;
 			}
-			else {
-				int result = 0;
-				while (!heap->isEmpty()) {
-					result = heap->getmax();
-
-					out << result;
-					out << " ";
-				}
-			}
+			BinaryHeapHelper::writeToFile<int>(heap, out);
 			out.close();
 
 			std::wcout << dlistWriteFileSuccess;
@@ -1120,30 +1100,178 @@ void MenuHelper::createAvlTreeMenuInstance() {
 			break;
 		}
 		case 4: {
+			clearConsole();
+			if(!avlTree)
+				std::cout << avlTreeNotCreatedMessage;
+			else {
+				if (!avlTree->isEmpty()) {
+					std::cout << avlTreeFindItemMessage01 <<
+						avlTree->getMin()
+						<< avlTreeFindItemMessage02;
+				}
+				else {
+					std::cout << avlTreeIsEmptyMessage;
+				}
+			}
 			break;
 		}
 		case 5: {
+			clearConsole();
+			if (!avlTree)
+				std::cout << avlTreeNotCreatedMessage;
+			else {
+				if (!avlTree->isEmpty()) {
+					int answer = -1;
+					std::cout << avlTreeRemoveItemMessage01
+						<< enterAnswer;
+					std::cin >> answer;
+					avlTree->remove(answer);
+				}
+				else {
+					std::cout << avlTreeIsEmptyMessage;
+				}
+			}
 			break;
 		}
 		case 6: {
+			clearConsole();
+
+			std::wcout << avlTreeReadFileMessage;
+			std::wcout << enterAnswer;
+
+			std::string fileName;
+			std::cin >> fileName;
+
+			std::ifstream fin(fileName + ".txt");
+
+			if (!fin.is_open()) {
+				std::wcout << avlTreeReadFileErrMessage;
+				break;
+			}
+			if (avlTree) {
+				delete avlTree;
+				avlTree = nullptr;
+				avlTree = new AvlTree<int>();
+			}
+			avlTree = AvlTreeHelper::readFromFile<int>(fin);
+
+			std::wcout << avlTreeReadFileSuccessMessage;
 			break;
 		}
 		case 7: {
+			clearConsole();
+
+			if (!avlTree) {
+				std::wcout << avlTreeNotCreatedMessage;
+				break;
+			}
+			std::wcout << avlTreeWriteFileMessage;
+			std::wcout << enterAnswer;
+
+			std::string fileName;
+			std::cin >> fileName;
+
+			std::ofstream out(fileName + ".txt",
+				std::ios_base::trunc);
+
+			if (!out.is_open()) {
+				std::wcout << avlTreeWriteFileErrMessage;
+				break;
+			}
+			AvlTreeHelper::writeToFile<int>(avlTree, out);
+			out.close();
+
+			std::wcout << avlTreeWriteFileSuccess;
 			break;
 		}
 		case 8: {
+			clearConsole();
+
+			if (!avlTree) {
+				std::wcout << avlTreeNotCreatedMessage;
+				break;
+			}
+			std::wcout << avlTreeRandomizeMessage;
+			std::wcout << enterAnswer;
+
+			int elementCount = 0;
+			std::cin >> elementCount;
+
+			if (elementCount < 1) {
+				std::wcout << avlTreeRandomizeErrorMessage;
+				break;
+			}
+
+			std::wcout << avlTreeRandomizeUpRangeMessge;
+			std::wcout << enterAnswer;
+
+			int upValue;
+			std::cin >> upValue;
+
+			for (int i = 0; i < elementCount; ++i)
+				avlTree->insert(std::rand() % upValue);
+
+			std::wcout << avlTreeRandomizeSuccess;
 			break;
 		}
 		case 9: {
+			if (!avlTree) {
+				clearConsole();
+				std::wcout << avlTreeNotCreatedMessage;
+				break;
+			}
+			std::cout << avlTreePrintMessage01
+				<< avlTreePrintMessage02
+				<< avlTreePrintMessage03
+				<< avlTreePrintMessage04;
+			int answer = int();
+			std::cin >> answer;
+			clearConsole();
+			switch (answer) {
+				case 0: {
+					AvlTreeHelper::printInOrder(avlTree);
+					break;
+				}
+				case 1: {
+					AvlTreeHelper::printPreOrder(avlTree);
+					break;
+				}
+				case 2: {
+					AvlTreeHelper::printPostOrder(avlTree);
+					break;
+				}
+				default: {
+					std::cout << "\n Input fail";
+					break;
+				}
+			}
 			break;
 		}
 		case 10: {
+			clearConsole();
+
+			if (!avlTree) {
+				std::wcout << avlTreeNotCreatedMessage;
+				break;
+			}
+			avlTree->clear();
+			std::cout << avlTreeClearMessage;
 			break;
 		}
 		case 11: {
+			clearConsole();
+
+			if (!avlTree) {
+				std::wcout << avlTreeNotCreatedMessage;
+				break;
+			}
+			delete avlTree;
+			avlTree = nullptr;
+			std::cout << avlTreeDestroyMessage;
 			break;
 		}
 		case 12: {
+			isActive = false;
 			break;
 		}
 		default:
@@ -1175,36 +1303,216 @@ void MenuHelper::createBstMenuInstance() {
 		std::cin >> answer;
 		switch (answer) {
 		case 1: {
-			break;	
+			if (bst) {
+				bst = new BinarySearchTree<int>();
+				std::cout << bstreeCreateSuccessMessage;
+			}
+			else
+				std::cout << bstreeCreateFailureMessage;
+			break;
 		}
 		case 2: {
+			clearConsole();
+
+			if (!bst)
+				std::cout << bstreeNotCreatedMessage;
+			else {
+				if (bst->isEmpty())
+					std::cout << bstreeIsEmptyMessage;
+				else
+					std::cout << bstreeIsNotEmptyMessage;
+			}
 			break;
 		}
 		case 3: {
+			clearConsole();
+			if (!bst)
+				std::cout << bstreeNotCreatedMessage;
+			else {
+				int answer = -1;
+
+				std::cout << bstreeAddItemMessage01
+					<< enterAnswer;
+
+				std::cin >> answer;
+
+				bst->addLeaf(answer);
+
+				std::cout << bstreeAddItemMessage02
+					<< answer
+					<< bstreeAddItemMessage03;
+			}
 			break;
 		}
 		case 4: {
+			clearConsole();
+			if (!bst)
+				std::cout << bstreeNotCreatedMessage;
+			else {
+				if (!bst->isEmpty()) {
+					std::cout << bstreeFindItemMessage01 
+						<< bst->findMin()
+						<< bstreeFindItemMessage02;
+				}
+				else {
+					std::cout << bstreeIsEmptyMessage;
+				}
+			}
 			break;
 		}
 		case 5: {
+			clearConsole();
+			if (!bst)
+				std::cout << bstreeNotCreatedMessage;
+			else {
+				if (!bst->isEmpty()) {
+					int answer = -1;
+					std::cout << bstreeRemoveItemMessage01
+						<< enterAnswer;
+					std::cin >> answer;
+					bst->removeByKey(answer);
+				}
+				else {
+					std::cout << bstreeIsEmptyMessage;
+				}
+			}
 			break;
 		}
 		case 6: {
+			clearConsole();
+
+			std::wcout << bstreeReadFileMessage;
+			std::wcout << enterAnswer;
+
+			std::string fileName;
+			std::cin >> fileName;
+
+			std::ifstream fin(fileName + ".txt");
+
+			if (!fin.is_open()) {
+				std::wcout << bstreeReadFileErrMessage;
+				break;
+			}
+			if (bst) {
+				delete bst;
+				bst = nullptr;
+				bst = new BinarySearchTree<int>();
+			}
+			bst = BinarySearchTreeHelper::readFromFile<int>(fin);
+
+			std::wcout << bstreeReadFileSuccessMessage;
 			break;
 		}
 		case 7: {
+			clearConsole();
+
+			if (!bst) {
+				std::wcout << bstreeNotCreatedMessage;
+				break;
+			}
+			std::wcout << bstreeWriteFileMessage;
+			std::wcout << enterAnswer;
+
+			std::string fileName;
+			std::cin >> fileName;
+
+			std::ofstream out(fileName + ".txt",
+				std::ios_base::trunc);
+
+			if (!out.is_open()) {
+				std::wcout << bstreeWriteFileErrMessage;
+				break;
+			}
+			BinarySearchTreeHelper::writeToFile<int>(bst, out);
+			out.close();
+
+			std::wcout << bstreeWriteFileSuccess;
 			break;
 		}
 		case 8: {
+			clearConsole();
+
+			if (!bst) {
+				std::wcout << bstreeNotCreatedMessage;
+				break;
+			}
+			std::wcout << bstreeRandomizeMessage;
+			std::wcout << enterAnswer;
+
+			int elementCount = 0;
+			std::cin >> elementCount;
+
+			if (elementCount < 1) {
+				std::wcout << bstreeRandomizeErrorMessage;
+				break;
+			}
+
+			std::wcout << bstreeRandomizeUpRangeMessge;
+			std::wcout << enterAnswer;
+
+			int upValue;
+			std::cin >> upValue;
+
+			for (int i = 0; i < elementCount; ++i)
+				bst->addLeaf(std::rand() % upValue);
+
+			std::wcout << bstreeRandomizeSuccess;
 			break;
 		}
 		case 9: {
+			if (!bst) {
+				clearConsole();
+				std::wcout << bstreeNotCreatedMessage;
+				break;
+			}
+			std::cout << bstreePrintMessage01
+				<< bstreePrintMessage02
+				<< bstreePrintMessage03
+				<< bstreePrintMessage04;
+			int answer = int();
+			std::cin >> answer;
+			clearConsole();
+			switch (answer) {
+			case 0: {
+				BinarySearchTreeHelper::printInOrder(bst);
+				break;
+			}
+			case 1: {
+				BinarySearchTreeHelper::printPreOrder(bst);
+				break;
+			}
+			case 2: {
+				BinarySearchTreeHelper::printPostOrder(bst);
+				break;
+			}
+			default: {
+				std::cout << "\n Input fail";
+				break;
+			}
+			}
 			break;
 		}
 		case 10: {
+			clearConsole();
+
+			if (!bst) {
+				std::wcout << bstreeNotCreatedMessage;
+				break;
+			}
+			bst->clear();
+			std::cout << bstreeClearMessage;
 			break;
 		}
 		case 11: {
+			clearConsole();
+
+			if (!bst) {
+				std::wcout << bstreeNotCreatedMessage;
+				break;
+			}
+			delete bst;
+			bst = nullptr;
+			std::cout << bstreeDestroyMessage;
 			break;
 		}
 		case 12: {
@@ -1220,7 +1528,7 @@ void MenuHelper::createBstMenuInstance() {
 void MenuHelper::createRbTreeMenuInstance() {
 	clearConsole();
 	bool isActive = true;
-
+	RBTree<int>* rbtree  = nullptr;
 	while (isActive) {
 		int answer = -1;
 		std::wcout << rbTreeMenuSelectAction
@@ -1239,40 +1547,221 @@ void MenuHelper::createRbTreeMenuInstance() {
 		std::cout << enterAnswer;
 		std::cin >> answer;
 		switch (answer) {
-		case 1: { 
+		case 1: {
+			if (rbtree) {
+				rbtree = new RBTree<int>();
+				std::cout << rbtreeCreateSuccessMessage;
+			}
+			else
+				std::cout << rbtreeCreateFailureMessage;
 			break;
 		}
 		case 2: {
+			clearConsole();
+
+			if (!rbtree)
+				std::cout << rbtreeNotCreatedMessage;
+			else {
+				if (rbtree->isEmpty())
+					std::cout << rbtreeIsEmptyMessage;
+				else
+					std::cout << rbtreeIsNotEmptyMessage;
+			}
 			break;
 		}
 		case 3: {
+			clearConsole();
+			if (!rbtree)
+				std::cout << rbtreeNotCreatedMessage;
+			else {
+				int answer = -1;
+
+				std::cout << rbtreeAddItemMessage01
+					<< enterAnswer;
+
+				std::cin >> answer;
+
+				rbtree->addItem(answer);
+
+				std::cout << rbtreeAddItemMessage02
+					<< answer
+					<< rbtreeAddItemMessage03;
+			}
 			break;
 		}
 		case 4: {
+			clearConsole();
+			if (!rbtree)
+				std::cout << rbtreeNotCreatedMessage;
+			else {
+				if (!rbtree->isEmpty()) {
+					std::cout << rbtreeFindItemMessage01
+						<< rbtree->getMin()
+						<< rbtreeFindItemMessage02;
+				}
+				else {
+					std::cout << rbtreeIsEmptyMessage;
+				}
+			}
 			break;
 		}
 		case 5: {
+			clearConsole();
+			if (!rbtree)
+				std::cout << rbtreeNotCreatedMessage;
+			else {
+				if (!rbtree->isEmpty()) {
+					int answer = -1;
+					std::cout << rbtreeRemoveItemMessage01
+						<< enterAnswer;
+					std::cin >> answer;
+					rbtree->remove(answer);
+				}
+				else {
+					std::cout << rbtreeIsEmptyMessage;
+				}
+			}
 			break;
 		}
 		case 6: {
+			clearConsole();
+
+			std::wcout << rbtreeReadFileMessage;
+			std::wcout << enterAnswer;
+
+			std::string fileName;
+			std::cin >> fileName;
+
+			std::ifstream fin(fileName + ".txt");
+
+			if (!fin.is_open()) {
+				std::wcout << rbtreeReadFileErrMessage;
+				break;
+			}
+			if (rbtree) {
+				delete rbtree;
+				rbtree = nullptr;
+				rbtree = new RBTree<int>();
+			}
+			rbtree = RBTreeHelper::readFromFile<int>(fin);
+
+			std::wcout << rbtreeReadFileSuccessMessage;
 			break;
 		}
 		case 7: {
+			clearConsole();
+
+			if (!rbtree) {
+				std::wcout << rbtreeNotCreatedMessage;
+				break;
+			}
+			std::wcout << rbtreeWriteFileMessage;
+			std::wcout << enterAnswer;
+
+			std::string fileName;
+			std::cin >> fileName;
+
+			std::ofstream out(fileName + ".txt",
+				std::ios_base::trunc);
+
+			if (!out.is_open()) {
+				std::wcout << rbtreeWriteFileErrMessage;
+				break;
+			}
+			RBTreeHelper::writeToFile<int>(rbtree, out);
+			out.close();
+
+			std::wcout << rbtreeWriteFileSuccess;
 			break;
 		}
 		case 8: {
+			clearConsole();
+
+			if (!rbtree) {
+				std::wcout << rbtreeNotCreatedMessage;
+				break;
+			}
+			std::wcout << rbtreeRandomizeMessage;
+			std::wcout << enterAnswer;
+
+			int elementCount = 0;
+			std::cin >> elementCount;
+
+			if (elementCount < 1) {
+				std::wcout << rbtreeRandomizeErrorMessage;
+				break;
+			}
+
+			std::wcout << rbtreeRandomizeUpRangeMessge;
+			std::wcout << enterAnswer;
+
+			int upValue;
+			std::cin >> upValue;
+
+			for (int i = 0; i < elementCount; ++i)
+				rbtree->addItem(std::rand() % upValue);
+
+			std::wcout << rbtreeRandomizeSuccess;
 			break;
 		}
 		case 9: {
+			if (!rbtree) {
+				clearConsole();
+				std::wcout << rbtreeNotCreatedMessage;
+				break;
+			}
+			std::cout << rbtreePrintMessage01
+				<< rbtreePrintMessage02
+				<< rbtreePrintMessage03
+				<< rbtreePrintMessage04;
+			int answer = int();
+			std::cin >> answer;
+			clearConsole();
+			switch (answer) {
+			case 0: {
+				RBTreeHelper::printInOrder(rbtree);
+				break;
+			}
+			case 1: {
+				RBTreeHelper::printPreOrder(rbtree);
+				break;
+			}
+			case 2: {
+				RBTreeHelper::printPostOrder(rbtree);
+				break;
+			}
+			default: {
+				std::cout << "\n Input fail";
+				break;
+			}
+			}
 			break;
 		}
 		case 10: {
+			clearConsole();
+
+			if (!rbtree) {
+				std::wcout << rbtreeNotCreatedMessage;
+				break;
+			}
+			rbtree->clear();
+			std::cout << rbtreeClearMessage;
 			break;
 		}
 		case 11: {
+			clearConsole();
+
+			if (!rbtree) {
+				std::wcout << rbtreeNotCreatedMessage;
+				break;
+			}
+			delete rbtree;
+			rbtree = nullptr;
+			std::cout << rbtreeDestroyMessage;
 			break;
 		}
 		case 12: {
+			isActive = false;
 			break;
 		}
 		default:

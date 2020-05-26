@@ -228,6 +228,10 @@ private:
 		return returnNode_(key, root);
 	}
 public:
+	void clear() {
+		while (!isEmpty())
+			removeRootMatch();
+	}
 	/*!
 		Is the BinarySearchTree empty
 		\param[out] bool True,if BinarySearchTree is empty

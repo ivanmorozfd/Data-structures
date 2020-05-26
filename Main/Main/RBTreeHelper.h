@@ -9,10 +9,14 @@ private:
 	template<typename T>
 	static void _serialize(_RBtreeNode<T>* node, std::stringstream& strStream) {
 		if (!node) {
-			strStream << "NULL" << " ";
+			strStream << "[ NULL ]" << " ";
 			return;
 		}
-		strStream << node->key << " ";
+		strStream << "[ "<< node->key << " " << "COLOR: "<<  node->colorToString() << " ";// TODO
+		if (node->parent) {
+			strStream << "Parent : " <<node->parent->key << " ";
+		}
+		strStream << "] ";
 		_serialize(node->left, strStream);
 		_serialize(node->right, strStream);
 

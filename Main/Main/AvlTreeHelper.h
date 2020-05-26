@@ -12,7 +12,7 @@ private:
 			strStream << "NULL" << " ";
 			return;
 		}
-		strStream << node->key << " ";
+		strStream << node->key << " " << node->height << " "; // TODO
 		_serialize(node->left, strStream);
 		_serialize(node->right, strStream);
 
@@ -32,7 +32,6 @@ public:
 			stack_node->pop();
 
 			result = result + std::to_string(curr->key) + " ";
-
 			curr = curr->right;
 		}
 		return result;
@@ -59,7 +58,7 @@ public:
 	template<typename T>
 	static std::string getPostOrderTraverse(AvlTree<T>* tree) {
 		std::stack<_AvlTreeNode<T>*>* stack_node = new std::stack<_AvlTreeNode<T>*>();
-		_AvlTreeNode<T>* curr = tree->root;
+		_AvlTreeNode<T>* curr = tree->_root;
 		std::string result = "";
 		while (curr || !stack_node->empty()) {
 			while (curr) {

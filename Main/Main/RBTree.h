@@ -60,6 +60,13 @@ public:
 	{
 
 	}
+	_RBtreeNode() : color(ELeafColor::RED),
+		key(valueType()),
+		left(nullptr),
+		right(nullptr),
+		parent(nullptr) {
+
+	}
 };
 
 
@@ -121,16 +128,24 @@ private:
 		left_child->right = ptr;
 		ptr->parent = left_child;
 	}
-
 	//Fix tree after inserti
 	void fixInsertion(NodePtr ptr) {
+		//if ptr is root just set black color and return
+		if (ptr == root) {
+			ptr->color = ELeafColor::BLACK;
+			return;
+		}
 		NodePtr parent = nullptr;
 		NodePtr grandparent = nullptr;
+		//while father is red 
+		//property 3 is violated
 		while (ptr != root
 			&& ptr->color == ELeafColor::RED
 			&& ptr->parent->color == ELeafColor::RED) {
 			parent = ptr->parent;
 			grandparent = parent->parent;
+			//if father left child and uncle exist and have red color
+			//set black color to uncle and parent
 			if (parent == grandparent->left) {
 				NodePtr uncle = grandparent->right;
 				if (uncle && uncle->color == ELeafColor::RED) {
@@ -139,18 +154,21 @@ private:
 					grandparent->color = ELeafColor::RED;
 					ptr = grandparent;
 				}
-				else {
+				//if uncle not exist
+				else {\
+					//if right child need left rotate
 					if (ptr == parent->right) {
 						rotateLeft(parent);
 						ptr = parent;
 						parent = ptr->parent;
 					}
+					//other wise right chidl
 					rotateRight(grandparent);
 					std::swap(parent->color, grandparent->color);
 					ptr = parent;
 				}
 			}
-			else {
+			else {//if father right child
 				NodePtr uncle = grandparent->left;
 				if (uncle && uncle->color == ELeafColor::RED) {
 					uncle->color = ELeafColor::BLACK;
@@ -173,6 +191,7 @@ private:
 		root->color = ELeafColor::BLACK;
 	}
 	//insert node to the tree
+	//works like default BST insert
 	NodePtr insert_(NodePtr root, NodePtr ptr) {
 		if (!root)
 			return ptr;
@@ -344,9 +363,14 @@ private:
 			else if (match->left
 				&& !match->right) {
 				delPtr = match;
-				isLeft == true
-					? parent->left = match->right, fixDeleting(parent->left)
-					: parent->right = match->right, fixDeleting(parent->right);
+				if (isLeft) {
+					parent->left = match->left;
+					fixDeleting(parent->left);
+				}
+				else {
+					parent->right = match->left;
+					fixDeleting(parent->right);
+				}
 				match->right = nullptr;
 				delete delPtr;
 			}
@@ -355,10 +379,14 @@ private:
 				&& !match->right) {
 				delPtr = match;
 
-				isLeft == true
-					? parent->left = match->left, fixDeleting(parent->left)
-					: parent->right = match->left,fixDeleting(parent->right);
-
+				if (isLeft) {
+					parent->left = match->left;
+					fixDeleting(parent->left);
+				}
+				else {
+					parent->right = match->left; 
+					fixDeleting(parent->right);
+				}
 				match->left = nullptr;
 				delete delPtr;
 			}
@@ -373,6 +401,13 @@ private:
 			throw RBTreeException("Tree is empty");
 	}
 public:
+	void clear() {
+		while (!isEmpty())
+			removeRootMatch();
+	}
+	valueType getMin() {
+		return findMin_(root);
+	}
 	/*!
 		Is the RBTree empty
 		\param[out] bool True,if RBTree is empty
