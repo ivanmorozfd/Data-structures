@@ -372,50 +372,7 @@ private:
 		else
 			throw RBTreeException("Tree is empty");
 	}
-	// print tree in order travers
-	void inOrderTraverse(NodePtr ptr) {
-		if (!ptr)
-			return;
-		inOrderTraverse(ptr->left);
-		std::cout << ptr->key << " " << ptr->colorToString();
-		inOrderTraverse(ptr->right);
-	}
-	// print tree in pre order travers
-	void preOrderTraverse(NodePtr root) {
-		if (root) {
-			std::cout << root->key << " ";
-			preOrderTraverse(root->left);
-			preOrderTraverse(root->right);
-		}
-	}
-	// print tree in post order travers
-	void postOrderTraverse(NodePtr root) {
-		if (root) {
-			postOrderTraverse(root->left);
-			postOrderTraverse(root->right);
-			std::cout << root->key << " ";
-		}
-	}
 public:
-	/*!
-	Display tree data in order
-*/
-	void  printInOrder() {
-		std::cout << root->key << " " << root->colorToString();
-		this->inOrderTraverse(root);
-	}
-	/*!
-		Display tree data in post order
-	*/
-	void printPostOrder() {
-		this->postOrderTraverse(root);
-	}
-	/*!
-		Display tree data in pre order
-	*/
-	void printPreOrder() {
-		this->preOrderTraverse(root);
-	}
 	/*!
 		Is the RBTree empty
 		\param[out] bool True,if RBTree is empty

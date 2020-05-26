@@ -167,29 +167,6 @@ private:
 		}
 		return balance(node);
 	}
-	// print tree in order
-	void inOrderTravers(NodePtr ptr) {
-		if (!ptr)
-			return;
-		inOrderTravers(ptr->left);
-		std::cout << ptr->key << " ";
-		inOrderTravers(ptr->right);
-	}
-	void preOrderTravers(NodePtr root) {
-		if (root) {
-			std::cout << root->key << " ";
-			preOrderTravers(root->left);
-			preOrderTravers(root->right);
-		}
-	}
-
-	void postOrderTravers(NodePtr root) {
-		if (root) {
-			postOrderTravers(root->left);
-			postOrderTravers(root->right);
-			std::cout << root->key << " ";
-		}
-	}
 public:
 	/*!
 		Returns root key
@@ -220,24 +197,6 @@ public:
 	*/
 	bool isEmpty() const override {
 		return !_root;
-	}
-	/*!
-		Display tree in order
-	*/
-	void displayInOrder() {
-		inOrderTravers(_root);
-	}
-	/*!
-		Display tree in pre order
-	*/
-	void displayPreOrder() {
-		preOrderTravers(_root);
-	}
-	/*!
-		Display tree in post order
-	*/
-	void displayPostOrder() {
-		postOrderTravers(_root);
 	}
 public:
 	/*!

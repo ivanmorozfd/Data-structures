@@ -75,30 +75,6 @@ private:
 		else
 			throw BinarySearchTreeException("This key just avialable");
 	}
-	// print tree in order
-	void inOrderTravers(NodePtr ptr) {
-		if (!ptr)
-			return;
-		inOrderTravers(ptr->left);
-		std::cout << ptr->key << " ";
-		inOrderTravers(ptr->right);
-	}
-	//
-	void preOrderTravers(NodePtr root) {
-		if (root) {
-			std::cout << root->key << " ";
-			preOrderTravers(root->left);
-			preOrderTravers(root->right);
-		}
-	}
-	//
-	void postOrderTravers(NodePtr root) {
-		if (root) {
-			postOrderTravers(root->left);
-			postOrderTravers(root->right);
-			std::cout << root->key << " ";
-		}
-	}
 	//Return node by key
 	NodePtr returnNode_(const_reference key, NodePtr ptr) {
 		if (ptr) {
@@ -149,18 +125,20 @@ private:
 		else
 			throw BinarySearchTreeException("Tree is empty");
 	}
-	//Remove tree root
+	//if we need remove tree root
 	void removeRootMatch() {
 		if (root) {
 			NodePtr delPtr = root;
 			valueType rootK = root->key;
 			valueType smallInRghtSubtr;
-			// 0 children
+			// 0 children 
+			// just delete root
 			if (!root->left && !root->right) {
 				root = nullptr;
 				delete delPtr;
 			}
 			// 1 child
+			// just remove right or left child
 			else if (!root->left && root->right) {
 				root = root->right;
 				delPtr->right = nullptr;
@@ -172,6 +150,7 @@ private:
 				delete delPtr;
 			}
 			// 2 child
+			// need find smallest key in right subtree
 			else {
 				smallInRghtSubtr = findMin_(root->right);
 				removeNode_(smallInRghtSubtr, root);
@@ -190,6 +169,7 @@ private:
 			valueType matchK = match->key;
 			valueType smallestInRightSub = valueType();
 			// zero child
+			// just delete pointers
 			if (!match->right 
 			    && !match->left) {
 				delPtr = match;
@@ -234,7 +214,8 @@ private:
 		else
 			throw BinarySearchTreeException("Tree is empty");
 	}
-	//Create leaf method
+	//Create leaf
+	//returns pointer for new node
 	NodePtr createLeaf(const_reference key) {
 		NodePtr leaf = new NodeRef();
 		leaf->key = key;
@@ -260,24 +241,6 @@ public:
 	*/
 	void  addLeaf(const_reference key) {
 		addLeaf_(key, root);
-	}
-	/*!
-		Display tree data in order
-	*/
-	void  printInOrder() {
-		inOrderTravers(root);
-	}
-	/*!
-		Display tree data in post order
-	*/
-	void printPostOrder() {
-		postOrderTravers(root);
-	}
-	/*!
-		Display tree data in pre order
-	*/
-	void printPreOrder() {
-		preOrderTravers(root);
 	}
 	/*!
 		Returns the value in the root
