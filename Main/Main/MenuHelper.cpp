@@ -140,7 +140,7 @@ void MenuHelper::createStackMenuInstance() {
 				std::cin >> answer;
 
 				stack->push(answer);
-
+				clearConsole();
 				std::wcout << stackPushMessage02
 					<< answer
 					<< stackPushMessage03;
@@ -510,6 +510,8 @@ void MenuHelper::createMultiDataListInstance()
 			<< mlistMenuPush
 			<< mlistMenuRemoveBySecondName
 			<< mlistMenuRemoveByTelephone
+			<< mlistMenuFindFieldBySecondName
+			<< mlistMenuFindFieldByTelephone
 			<< mlistMenuPrintOrderBySecondNameDec
 			<< mlistMenuPrintOrderBySecondNameInc
 			<< mlistMenuPrintOrderByTelephoneDec
@@ -607,9 +609,61 @@ void MenuHelper::createMultiDataListInstance()
 			break;
 		}
 		case 6: {
+			if (!list) {
+				clearConsole();
+				std::cout << mlistNotCreated;
+			}
+			else {
+				std::string secondName = "";
+				std::cout << mlistFindFieldBySecondName;
+				std::cout << enterAnswer;
+
+				std::cin >> secondName;
+
+				if (list->isEmpty()) {
+					clearConsole();
+					std::cout << mlistIsEmpty;
+				}
+				else {
+					clearConsole();
+					try {
+						std::cout << secondName << list->findBySecondName(secondName);
+					}
+					catch (MultiDataListException & e) {
+						std::cout << e.what();
+						break;
+					}
+				}
+			}
 			break;
 		}
 		case 7: {
+			if (!list) {
+				clearConsole();
+				std::cout << mlistNotCreated;
+			}
+			else {
+				std::string telephone = "";
+				std::cout << mlistFindFieldByTelephone;
+				std::cout << enterAnswer;
+
+				std::cin >> telephone;
+
+				if (list->isEmpty()) {
+					clearConsole();
+					std::cout << mlistIsEmpty;
+				}
+				else {
+					clearConsole();
+					try {
+						std::cout << telephone << list->findByTelelephoneNumber(telephone);
+					}
+					catch (MultiDataListException & e) {
+						std::cout << e.what();
+						break;
+					}
+				}
+			}
 			break;
 		}
 		case 8: {
