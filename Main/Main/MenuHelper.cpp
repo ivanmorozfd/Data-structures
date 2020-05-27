@@ -13,6 +13,7 @@
 #include "StackHelper.h"
 #include "QueueHelper.h"
 #include "DoubleLinkedListHelper.h"
+#include "SparseMatrixHelper.h"
 #include "BinaryHeapHelper.h"
 #include "MultiDataListHelper.h"
 #include "BinarySearchTreeHelper.h"
@@ -29,8 +30,7 @@ void MenuHelper::createMainMenuInstance()
 			std::wcout << menuTitle 
 				<< menuStackName 
 				<< menuQueueName 
-				<< menuDequeName 
-				<< menuSListName  
+				<< menuMListName  
 				<< menuDListName 
 				<< menuBHeapName 
 				<< menuMatrixName 
@@ -49,27 +49,27 @@ void MenuHelper::createMainMenuInstance()
 				this->createQueueMenuInstance();
 				break;
 			case 3:
-				//
+				this->createMultiDataListInstance();
 				break;
-			case 5:
+			case 4:
 				this->createDlistMenuInstance();
 				break;
-			case 6:
+			case 5:
 				this->createBheapMenuInstance();
 				break;
-			case 7:
+			case 6:
 				this->createMatrixMenuInstance();
 				break;
-			case 8:
+			case 7:
 				this->createAvlTreeMenuInstance();
 				break;
-			case 9:
+			case 8:
 				this->createBstMenuInstance();
 				break;
-			case 10:
+			case 9:
 				this->createRbTreeMenuInstance();
 				break;
-			case 11:
+			case 10:
 				exit(EXIT_SUCCESS);
 			default:
 				clearConsole();
@@ -277,6 +277,8 @@ void MenuHelper::createStackMenuInstance() {
 			break;
 		}
 		case 12: {
+			clearConsole();
+			delete stack;
 			isActive = false;
 			break;
 		}
@@ -484,6 +486,8 @@ void MenuHelper::createQueueMenuInstance()
 			break;
 		}
 		case 12:
+			clearConsole();
+			delete queue;
 			isActive = false;
 			break;
 		default:
@@ -491,6 +495,272 @@ void MenuHelper::createQueueMenuInstance()
 		}
 	}
 	clearConsole();
+}
+
+void MenuHelper::createMultiDataListInstance()
+{
+	clearConsole();
+	bool isActive = true;
+	MultiDataList* list = nullptr;
+	while (isActive) {
+		int answer = -1;
+		std::cout << mlistMenuSelectAction
+			<< mlistMenuCreate
+			<< mlistMenuIsEmpty
+			<< mlistMenuPush
+			<< mlistMenuRemoveBySecondName
+			<< mlistMenuRemoveByTelephone
+			<< mlistMenuPrintOrderBySecondNameDec
+			<< mlistMenuPrintOrderBySecondNameInc
+			<< mlistMenuPrintOrderByTelephoneDec
+			<< mlistMenuPrintOrderByTelephoneInc
+			<< mlistMenuReadFromFile
+			<< mlistMenuWriteToFile
+			<< mlistMenuClear
+			<< mlistMenuDestroy
+			<< mlistMenuExit;
+		std::cout << enterAnswer;
+		std::cin >> answer;
+		switch (answer) {
+		case 1: {
+			clearConsole();
+			if (list)
+				std::cout << mlistCreateFailure;
+			else {
+				std::cout << mlistCreateSuccess;
+				list = new MultiDataList();
+			}
+			break;
+		}
+		case 2: {
+			clearConsole();
+			if (!list)
+				std::cout << mlistNotCreated;
+			else {
+				if (list->isEmpty())
+					std::cout << mlistIsEmpty;
+				else
+					std::cout << mlistIsNotEmpty;
+			}
+			break;
+		}
+		case 3: {
+			if (!list)
+				std::cout << mlistNotCreated;
+			else {
+				std::string name = "";
+				std::string telephone = "";
+
+				std::cout << mlistPushMessage01;
+				std::cout << enterAnswer;
+				std::cin >> name >> telephone;
+				
+				clearConsole();
+
+				list->push({ name, telephone });
+
+				std::cout << name 
+					<< " : " 
+					<< telephone 
+					<< mlistPushMessage02;
+			}
+			break;
+		}
+		case 4: {
+			if (!list)
+				std::cout << mlistNotCreated;
+			else {
+				std::string secName = "";
+
+				std::cout << mlistRemoveBySecondNameMessage01
+					<< enterAnswer;
+
+				std::cin >> secName;
+				try {
+					list->removeBySecondName(secName);
+					std::cout << mlistRemoveBySecondNameMessage02;
+				}
+				catch (MultiDataListException & e) {
+					break;
+				}
+			}
+			break;
+		}
+		case 5: {
+			if (!list)
+				std::cout << mlistNotCreated;
+			else {
+				std::string telephone = "";
+
+				std::cout << mlistRemoveByTelephoneMessage01
+					<< enterAnswer;
+
+				std::cin >> telephone;
+				try {
+					list->removeBySecondName(telephone);
+					std::cout << mlistRemoveByTelephoneMessage02;
+				}
+				catch (MultiDataListException & e) {
+					break;
+				}
+			}
+			break;
+		}
+		case 6: {
+			break;
+		}
+		case 7: {
+			break;
+		}
+		case 8: {
+			clearConsole();
+			if (!list)
+				std::cout << mlistNotCreated;
+			else {
+				try {
+					std::cout << mlistPrintOrderBySecondName << mlistPrintDec;
+					MultiDataListHelper::printOrderBySecondNameDec(list);
+				}
+				catch (MultiDataListException & e) {
+					break;
+				}
+			}
+			break;
+		}
+		case 9: {
+			clearConsole();
+			if (!list)
+				std::cout << mlistNotCreated;
+			else {
+				try {
+					std::cout << mlistPrintOrderBySecondName << mlistPrintInc;
+					MultiDataListHelper::printOrderBySecondNameInc(list);
+				}
+				catch (MultiDataListException & e) {
+					break;
+				}
+			}
+			break;
+		}
+		case 10: {
+			clearConsole();
+			if (!list)
+				std::cout << mlistNotCreated;
+			else {
+				try {
+					std::cout << mlistPrintOrderByTelephone << mlistPrintDec;
+					MultiDataListHelper::printOrderByTelephoneDec(list);
+				}
+				catch (MultiDataListException & e) {
+					break;
+				}
+			}
+			break;
+		}
+		case 11: {
+			clearConsole();
+			if (!list)
+				std::cout << mlistNotCreated;
+			else {
+				try {
+					std::cout << mlistPrintOrderByTelephone << mlistPrintInc;
+					MultiDataListHelper::printOrderByTelephoneInc(list);
+				}
+				catch (MultiDataListException & e) {
+					break;
+				}
+			}
+			break;
+		}
+		case 12: {
+			if (!list)
+				std::cout << mlistNotCreated;
+			else {
+				std::wcout << mlistReadFileMessage;
+				std::wcout << enterAnswer;
+
+				std::string fileName;
+				std::cin >> fileName;
+
+				std::ifstream fin(fileName + ".txt");
+
+				if (!fin.is_open()) {
+					std::wcout << mlistReadFileErrMessage;
+					break;
+				}
+				else {
+					if (list) {
+						delete list;
+						list = nullptr;
+						list = new MultiDataList;
+					}
+					list = MultiDataListHelper::readMultiDataListFromFile(fin);
+				}
+
+				std::wcout << mlistReadFileSuccessMessage;
+			}
+			break;
+		}
+		case 13: {
+			clearConsole();
+			if (!list) {
+				std::wcout << mlistNotCreated;
+				break;
+			}
+			std::wcout << mlistWriteFileMessage;
+			std::wcout << enterAnswer;
+
+			std::string fileName;
+			std::cin >> fileName;
+
+			std::ofstream out(fileName + ".txt",
+				std::ios_base::trunc);
+
+			if (!out.is_open()) {
+				std::wcout << mlistWriteFileErrMessage;
+				break;
+			}
+			else {
+				MultiDataListHelper::writeMultiDataListToFile(list, out);
+			}
+			out.close();
+
+			std::wcout << mlistWriteFileSuccess;
+			break;
+		}
+		case 14: {
+			clearConsole();
+			if (!list) {
+				std::wcout << mlistNotCreated;
+				break;
+			}
+			list->clear();
+			std::cout << mlistClearSucces;
+			break;
+		}
+		case 15: {
+			clearConsole();
+			if (!list) {
+				std::wcout << mlistNotCreated;
+				break;
+			}
+			else {
+				std::cout << mlistDestroyedMessage;
+				delete list;
+				list = nullptr;
+			}
+			break;
+		}
+		case 16: {
+			clearConsole();
+			delete list;
+			isActive = false;
+			break;
+		}
+		default:
+			break;
+		}
+	}
 }
 
 void MenuHelper::createDlistMenuInstance()
@@ -693,6 +963,7 @@ void MenuHelper::createDlistMenuInstance()
 			out.close();
 
 			std::wcout << dlistWriteFileSuccess;
+			break;
 		}
 		case 11: {
 			clearConsole();
@@ -732,12 +1003,11 @@ void MenuHelper::createDlistMenuInstance()
 			break;
 		}
 		case 14: {
+			clearConsole();
 			if (!list) {
-				clearConsole();
 				std::cout << dlistNotCreated;
 			}
 			else {
-				clearConsole();
 				std::cout << dlistDestroyedMessage;
 				delete list;
 				list = nullptr;
@@ -745,6 +1015,8 @@ void MenuHelper::createDlistMenuInstance()
 			break;
 		}
 		case 15: {
+			clearConsole();
+			delete list;
 			isActive = false;
 			break;
 		}
@@ -942,10 +1214,12 @@ void MenuHelper::createBheapMenuInstance()
 			break;
 		}
 		case 12: {
+			clearConsole();
 			isActive = false;
 			break;
 		}
 		default:
+			delete heap;
 			break;
 		}
 	}
@@ -966,7 +1240,6 @@ void MenuHelper::createMatrixMenuInstance() {
 			<< sMatrixMenuRemoveByPos
 			<< sMatrixMenuReadFromFile
 			<< sMatrixMenuWriteToFile
-			<< sMatrixMenuRandomize
 			<< sMatrixMenuPrint
 			<< sMatrixMenuClear
 			<< sMatrixMenuDestroy
@@ -986,47 +1259,184 @@ void MenuHelper::createMatrixMenuInstance() {
 			break;
 		}
 		case 2: {
-			
+			if (!matrix) {
+				std::wcout << matrixNotCreatedMessage;
+				break;
+			}
+			else {
+				if (matrix->isEmpty())
+					std::cout << matrixIsEmptyMessage;
+				else
+					std::cout << matrixIsNotEmptyMessage;
+			}
 			break;
 		}
 		case 3: {
-
+			if (!matrix) {
+				std::wcout << matrixNotCreatedMessage;
+				break;
+			}
+			else {
+				std::wcout << matrixAddItemMessage01;
+				
+				int answer = -1;
+				int i = -1;
+				int j = -1;
+			
+				std::cin >> answer >> i >> j;
+				clearConsole();
+				try {
+					matrix->set(answer, i, j);
+				}
+				catch (SparseMatrixException & e) {
+					break;
+				}
+				std::cout << matrixAddItemMessage02
+					<< answer
+					<< matrixAddItemMessage03
+					<<i << " " << j << "\n\n";
+			}
 			break;
 		}
 		case 4: {
-
+			if (!matrix) {
+				clearConsole();
+				std::wcout << matrixNotCreatedMessage;
+				break;
+			}
+			else {
+				int i = 0;
+				int j = 0;
+				std::wcout << matrixGetByPos01;
+				std::cin >> i >> j;
+				clearConsole();
+				try {
+					std::cout << matrixGetByPos02
+						<< i << " " << j
+						<< matrixGetByPos03
+						<< matrix->get(i, j);
+				}
+				catch (SparseMatrixException& e) {
+					break;
+				}
+			}
 			break;
 		}
 		case 5: {
-
+			if (!matrix) {
+				clearConsole();
+				std::wcout << matrixNotCreatedMessage;
+				break;
+			}
+			else {
+				int i = 0;
+				int j = 0;
+				std::wcout << matrixRemoveByPosMessage01;
+				std::cin >> i >> j;
+				clearConsole();
+				try {
+					matrix->set(0, i, j);
+					std::cout << matrixRemoveByPosMessage02
+						<< matrix->get(i, j)
+						<< matrixGetByPos03
+						<< i << j;
+				}
+				catch (SparseMatrixException & e) {
+					break;
+				}
+			}
 			break;
 		}
 		case 6: {
+			clearConsole();
 
+			std::wcout << matrixReadFileMessage;
+			std::wcout << enterAnswer;
+
+			std::string fileName;
+			std::cin >> fileName;
+
+			std::ifstream fin(fileName + ".txt");
+
+			if (!fin.is_open()) {
+				std::wcout << matrixReadFileErrMessage;
+				break;
+			}
+			if (matrix) {
+				delete matrix;
+				matrix = nullptr;
+				matrix = new SparseMatrix<int>();
+			}
+			matrix = SparseMatrixHelper::readFromFile<int>(fin);
+
+			std::wcout << matrixReadFileSuccessMessage;
 			break;
 		}
 		case 7: {
+			clearConsole();
 
+			if (!matrix) {
+				std::wcout << matrixNotCreatedMessage;
+				break;
+			}
+			std::wcout << matrixWriteFileMessage;
+			std::wcout << enterAnswer;
+
+			std::string fileName;
+			std::cin >> fileName;
+
+			std::ofstream out(fileName + ".txt",
+				std::ios_base::trunc);
+
+			if (!out.is_open()) {
+				std::wcout << matrixWriteFileErrMessage;
+				break;
+			}
+			SparseMatrixHelper::writeToFile<int>(matrix, out);
+			out.close();
+
+			std::wcout << matrixWriteFileSuccess;
 			break;
 		}
 		case 8: {
+			clearConsole();
 
+			if (!matrix) {
+				std::wcout << matrixNotCreatedMessage;
+				break;
+			}
+			else {
+				SparseMatrixHelper::print_matrix(matrix);
+			}
 			break;
 		}
 		case 9: {
+			clearConsole();
 
+			if (!matrix) {
+				std::wcout << matrixNotCreatedMessage;
+				break;
+			}
+			matrix->clear();
+			std::cout << matrixClearSuccess;
 			break;
 		}
 		case 10: {
+			clearConsole();
 
+			if (!matrix) {
+				std::wcout << matrixNotCreatedMessage;
+				break;
+			}
+			delete matrix;
+			matrix = nullptr;
+			std::cout << matrixDestroySuccess;
 			break;
 		}
 		case 11: {
-
-			break;
-		}
-		case 12: {
-
+			clearConsole();
+			delete matrix;
+			isActive = false;
 			break;
 		}
 		default:
@@ -1271,6 +1681,8 @@ void MenuHelper::createAvlTreeMenuInstance() {
 			break;
 		}
 		case 12: {
+			clearConsole();
+			delete avlTree;
 			isActive = false;
 			break;
 		}
@@ -1516,6 +1928,8 @@ void MenuHelper::createBstMenuInstance() {
 			break;
 		}
 		case 12: {
+			clearConsole();
+			delete bst;
 			isActive = false;
 			break;
 		}
@@ -1761,6 +2175,8 @@ void MenuHelper::createRbTreeMenuInstance() {
 			break;
 		}
 		case 12: {
+			clearConsole();
+			delete rbtree;
 			isActive = false;
 			break;
 		}

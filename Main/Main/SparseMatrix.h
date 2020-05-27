@@ -98,6 +98,11 @@ public:
 	size_t getColumns() const {
 		return this->m_ncolumns; 
 	}
+	void clear() {
+		this->m_data->clear();
+		this->m_cols->clear();
+		this->m_ptrs->clear();
+	}
 public:
 	/*!
 		Basic assignment operator

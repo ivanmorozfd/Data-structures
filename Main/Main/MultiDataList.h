@@ -2,8 +2,8 @@
 #include "core.h"
 #include "Container.h"
 #include <algorithm>
+#include "MultiDataListException.h"
 #include <string>
-#include <regex>
 /*!
 	Data field in multiDataList
 	\author ivanmorozfd
@@ -243,6 +243,9 @@ public:
 		\param[in] string secondName
 	*/
 	std::string findBySecondName(std::string secondName) const {
+		if (isEmpty())
+			throw MultiDataListException("List is empty");
+
 		auto temp = begin_mark->nextSecondName;
 		bool isFound = false;
 		while (temp != end_mark) {
@@ -256,8 +259,7 @@ public:
 		if (isFound) 
 			return temp->telephone->getContent();
 		else {
-			std::cout << "Field does't exist" << std::endl;
-			return std::string();
+			throw MultiDataListException("Field not exist");
 		}
 	}
 	/*!
@@ -266,6 +268,9 @@ public:
 		\param[in] string telephone
 	*/
 	std::string findByTelelephoneNumber(std::string telephone) const {
+		if (isEmpty())
+			throw MultiDataListException("List is empty");
+
 		auto temp = begin_mark->nextTelephone;
 		bool isFound = false;
 		while (temp != end_mark) {
@@ -279,8 +284,7 @@ public:
 		if (isFound)
 			return temp->secondName->getContent();
 		else {
-			std::cout << "Field does't exist" << std::endl;
-			return std::string();
+			throw MultiDataListException("Field not exist");
 		}
 	}
 	/*!
@@ -288,6 +292,8 @@ public:
 		\param[in] string second name
 	*/
 	void removeBySecondName(std::string secondName) {
+		if (isEmpty())
+			throw MultiDataListException("List is empty");
 		auto temp = begin_mark->nextSecondName;
 		bool isFound = false;
 		while (temp != end_mark) {
@@ -302,7 +308,7 @@ public:
 			removeNode(temp);
 		}
 		else {
-			std::cout << "Field does't exist" << std::endl;
+			throw MultiDataListException("Field not exist");
 		}
 	}
 	/*!
@@ -310,6 +316,8 @@ public:
 		\param[in] string telephone
 	*/
 	void removeByTelephone(std::string telephone) {
+		if (isEmpty())
+			throw MultiDataListException("List is empty");
 		auto temp = begin_mark->nextTelephone;
 		bool isFound = false;
 		while (temp != end_mark) {
@@ -324,7 +332,7 @@ public:
 			removeNode(temp);
 		}
 		else {
-			std::cout << "Field does't exist" << std::endl;
+			throw MultiDataListException("Field not exist");
 		}
 	}
 	/*!
