@@ -95,14 +95,16 @@ public:
 	template<typename T>
 	static void deserialize(_AvlTreeNode<T>*& node, std::ifstream& inputStream) {
 		std::string value = "";
-
+		std::string nodeHeight = "";
 		inputStream >> value;
-
+		
 		if (value == "NULL" || value == " ")
 			return;
+		inputStream >> nodeHeight;
 
 		node = new _AvlTreeNode<T>();
 		node->key = std::stoi(value);
+		node->height = std::stoi(nodeHeight);
 
 		deserialize(node->left, inputStream);
 		deserialize(node->right, inputStream);

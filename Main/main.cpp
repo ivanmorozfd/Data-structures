@@ -8,12 +8,10 @@
 #include "Main/SparseMatrixHelper.h"
 #include <vector>
 int main() {
-	RBTree<int> tree;
-	tree.addItem(5);
-	tree.addItem(4);
-	tree.addItem(6);
-	tree.addItem(3);
-	std::ofstream out("rb.txt");
-	RBTreeHelper::writeToFile<int>(&tree, out);
+	SparseMatrix<int>* matrix;
+
+	std::ifstream fin("matrix.txt");
+	matrix = SparseMatrixHelper::readFromFile<int>(fin);
+	SparseMatrixHelper::print_matrix<int>(matrix);
 	return 0;
 }

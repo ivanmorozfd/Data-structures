@@ -53,7 +53,7 @@ public:
 		}
 	}
 	//This method is recover general property of heap
-	void heapify(valueType i) {
+	void heapify(size_t i) {
 		size_t leftChild;
 		size_t rightChild;
 		size_t largestChild;

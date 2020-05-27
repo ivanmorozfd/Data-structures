@@ -9,14 +9,11 @@ private:
 	template<typename T>
 	static void _serialize(_RBtreeNode<T>* node, std::stringstream& strStream) {
 		if (!node) {
-			strStream << "[ NULL ]" << " ";
+			strStream << "NULL" << " ";
+			strStream << "NULLCOLOR" << " ";
 			return;
 		}
-		strStream << "[ "<< node->key << " " << "COLOR: "<<  node->colorToString() << " ";// TODO
-		if (node->parent) {
-			strStream << "Parent : " <<node->parent->key << " ";
-		}
-		strStream << "] ";
+		strStream << node->key << " " <<  node->colorToString() << " ";// TODO
 		_serialize(node->left, strStream);
 		_serialize(node->right, strStream);
 
@@ -98,20 +95,26 @@ public:
 		return strStream.str();
 	}
 	template<typename T>
-	static void deserialize(_RBtreeNode<T>*& node, std::ifstream& inputStream) {
+	static void deserialize(_RBtreeNode<T>* parent,_RBtreeNode<T>*& node, std::ifstream& inputStream) {
 		std::string value = "";
-
+		std::string color = "";
 		inputStream >> value;
-
 		if (value == "NULL" || value == " ")
 			return;
+		inputStream >> color;
 
 		node = new _RBtreeNode<T>();
 		node->key = std::stoi(value);
+		node->parent = parent;
+		color == "Black"
+			? node->color = ELeafColor::BLACK
+			: node->color = ELeafColor::RED;
 
-		deserialize(node->left, inputStream);
-		deserialize(node->right, inputStream);
+		deserialize(node,node->left, inputStream);
+		deserialize(node,node->right, inputStream);
 	}
+	//Data format in out file
+	// [KEY COLOR PARENT]
 	template<typename T>
 	static void writeToFile(RBTree<T>* tree, std::ofstream& outputStream) {
 		outputStream << serialize(tree);
@@ -123,7 +126,7 @@ public:
 	template<typename T>
 	static RBTree<T>* readFromFile(std::ifstream& inputStream) {
 		RBTree<T>* tree = new RBTree<T>();
-		deserialize<int>(tree->root, inputStream);
+		deserialize<int>(nullptr,tree->root, inputStream);
 		return tree;
 	}
 };
