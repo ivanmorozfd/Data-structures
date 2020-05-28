@@ -5,6 +5,8 @@
 #include "Main/MultiDataListHelper.h"
 #include <vector>
 int main() {
+	system("start ..\\x64\\Release\\Tests.exe -k");
 	MenuHelper menu;
+	system("pause");
 	return 0;
 }

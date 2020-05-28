@@ -20,3 +20,6 @@
 /Main/Main/build-untitled4-Desktop_Qt_5_14_1_MSVC2017_32bit-Debug/debug
 /Main/Main/build-untitled4-Desktop_Qt_5_14_1_MSVC2017_32bit-Debug
 *.txt
+/Main/Main/x64/Release
+/Main/Tests/x64/Release
+/Main/x64/Release
