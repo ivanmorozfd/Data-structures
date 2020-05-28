@@ -66,7 +66,7 @@ private:
 			else
 				ptr->left = createLeaf(key);
 		}
-		else if (key > ptr->key) {
+		else if (key >= ptr->key) {
 			if (ptr->right)
 				addLeaf_(key, ptr->right);
 			else

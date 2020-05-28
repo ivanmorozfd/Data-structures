@@ -1,6 +1,13 @@
 #pragma once
 #include "SparseMatrix.h"
 #include "HelperBase.h"
+/*!
+	Static class functions library
+	\brief Use to work with SparseMatrix
+	\author ivanmorozfd
+	\version 1.0
+	\date April 2020
+*/
 class SparseMatrixHelper : public virtual HelperBase {
 private:
 	SparseMatrixHelper() = default;

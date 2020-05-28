@@ -551,7 +551,7 @@ void MenuHelper::createMultiDataListInstance()
 				std::cout << mlistNotCreated;
 			else {
 				std::string name = "";
-				std::string telephone = "";
+				size_t telephone = size_t();
 
 				std::cout << mlistPushMessage01;
 				std::cout << enterAnswer;
@@ -643,7 +643,7 @@ void MenuHelper::createMultiDataListInstance()
 				std::cout << mlistNotCreated;
 			}
 			else {
-				std::string telephone = "";
+				size_t telephone = size_t();
 				std::cout << mlistFindFieldByTelephone;
 				std::cout << enterAnswer;
 
@@ -1217,6 +1217,11 @@ void MenuHelper::createBheapMenuInstance()
 		case 8: {
 			clearConsole();
 
+			if (!heap) {
+				std::wcout << bheapNotCreatedMessage;
+				break;
+			}
+
 			std::wcout << bheapRandomizeMessage;
 			std::wcout << enterAnswer;
 
@@ -1241,7 +1246,19 @@ void MenuHelper::createBheapMenuInstance()
 			break;
 		}
 		case 9: {
-			//
+			clearConsole();
+
+			if (!heap) {
+				std::wcout << bheapNotCreatedMessage;
+				break;
+			}
+			else {
+				if (heap->isEmpty()) {
+					std::cout << bheapIsEmptyMessage;
+					break;
+				}
+				BinaryHeapHelper::print_heap(heap);
+			}
 			break;
 		}
 		case 10: {
@@ -1313,6 +1330,7 @@ void MenuHelper::createMatrixMenuInstance() {
 			break;
 		}
 		case 2: {
+			clearConsole();
 			if (!matrix) {
 				std::wcout << matrixNotCreatedMessage;
 				break;
@@ -1327,6 +1345,7 @@ void MenuHelper::createMatrixMenuInstance() {
 		}
 		case 3: {
 			if (!matrix) {
+				clearConsole();
 				std::wcout << matrixNotCreatedMessage;
 				break;
 			}
@@ -1522,7 +1541,8 @@ void MenuHelper::createAvlTreeMenuInstance() {
 		std::cin >> answer;
 		switch (answer) {
 		case 1: {
-			if (avlTree) {
+			clearConsole();
+			if (!avlTree) {
 				avlTree = new AvlTree<int>();
 				std::cout << avlTreeCreateSuccessMessage;
 			}
@@ -1769,7 +1789,8 @@ void MenuHelper::createBstMenuInstance() {
 		std::cin >> answer;
 		switch (answer) {
 		case 1: {
-			if (bst) {
+			clearConsole();
+			if (!bst) {
 				bst = new BinarySearchTree<int>();
 				std::cout << bstreeCreateSuccessMessage;
 			}
@@ -1801,9 +1822,14 @@ void MenuHelper::createBstMenuInstance() {
 					<< enterAnswer;
 
 				std::cin >> answer;
-
-				bst->addLeaf(answer);
-
+				try {
+					bst->addLeaf(answer);
+				}
+				catch (BinarySearchTreeException & e) {
+					clearConsole();
+					std::cout << e.what();
+					break;
+				}
 				std::cout << bstreeAddItemMessage02
 					<< answer
 					<< bstreeAddItemMessage03;
@@ -1836,7 +1862,13 @@ void MenuHelper::createBstMenuInstance() {
 					std::cout << bstreeRemoveItemMessage01
 						<< enterAnswer;
 					std::cin >> answer;
-					bst->removeByKey(answer);
+					try {
+						bst->removeByKey(answer);
+					}
+					catch (BinarySearchTreeException & e) {
+						std::cout << e.what();
+						break;
+					}
 				}
 				else {
 					std::cout << bstreeIsEmptyMessage;
@@ -1918,10 +1950,15 @@ void MenuHelper::createBstMenuInstance() {
 
 			int upValue;
 			std::cin >> upValue;
-
-			for (int i = 0; i < elementCount; ++i)
-				bst->addLeaf(std::rand() % upValue);
-
+			try {
+				for (int i = 0; i < elementCount; ++i)
+					bst->addLeaf(std::rand() % upValue);
+			}
+			catch (BinarySearchTreeException & e) {
+				clearConsole();
+				std::cout << e.what();
+				break;
+			}
 			std::wcout << bstreeRandomizeSuccess;
 			break;
 		}
@@ -2016,7 +2053,8 @@ void MenuHelper::createRbTreeMenuInstance() {
 		std::cin >> answer;
 		switch (answer) {
 		case 1: {
-			if (rbtree) {
+			clearConsole();
+			if (!rbtree) {
 				rbtree = new RBTree<int>();
 				std::cout << rbtreeCreateSuccessMessage;
 			}
@@ -2038,7 +2076,6 @@ void MenuHelper::createRbTreeMenuInstance() {
 			break;
 		}
 		case 3: {
-			clearConsole();
 			if (!rbtree)
 				std::cout << rbtreeNotCreatedMessage;
 			else {
@@ -2049,6 +2086,7 @@ void MenuHelper::createRbTreeMenuInstance() {
 
 				std::cin >> answer;
 
+				clearConsole();
 				rbtree->addItem(answer);
 
 				std::cout << rbtreeAddItemMessage02
@@ -2063,8 +2101,7 @@ void MenuHelper::createRbTreeMenuInstance() {
 				std::cout << rbtreeNotCreatedMessage;
 			else {
 				if (!rbtree->isEmpty()) {
-					std::cout << rbtreeFindItemMessage01
-						<< rbtree->getMin()
+					std::cout << rbtree->getMin()
 						<< rbtreeFindItemMessage02;
 				}
 				else {
@@ -2074,7 +2111,6 @@ void MenuHelper::createRbTreeMenuInstance() {
 			break;
 		}
 		case 5: {
-			clearConsole();
 			if (!rbtree)
 				std::cout << rbtreeNotCreatedMessage;
 			else {
@@ -2083,6 +2119,7 @@ void MenuHelper::createRbTreeMenuInstance() {
 					std::cout << rbtreeRemoveItemMessage01
 						<< enterAnswer;
 					std::cin >> answer;
+					clearConsole();
 					rbtree->remove(answer);
 				}
 				else {
@@ -2092,8 +2129,6 @@ void MenuHelper::createRbTreeMenuInstance() {
 			break;
 		}
 		case 6: {
-			clearConsole();
-
 			std::wcout << rbtreeReadFileMessage;
 			std::wcout << enterAnswer;
 
@@ -2113,12 +2148,11 @@ void MenuHelper::createRbTreeMenuInstance() {
 			}
 			rbtree = RBTreeHelper::readFromFile<int>(fin);
 
+			clearConsole();
 			std::wcout << rbtreeReadFileSuccessMessage;
 			break;
 		}
 		case 7: {
-			clearConsole();
-
 			if (!rbtree) {
 				std::wcout << rbtreeNotCreatedMessage;
 				break;
@@ -2138,13 +2172,11 @@ void MenuHelper::createRbTreeMenuInstance() {
 			}
 			RBTreeHelper::writeToFile<int>(rbtree, out);
 			out.close();
-
+			clearConsole();
 			std::wcout << rbtreeWriteFileSuccess;
 			break;
 		}
 		case 8: {
-			clearConsole();
-
 			if (!rbtree) {
 				std::wcout << rbtreeNotCreatedMessage;
 				break;
@@ -2169,6 +2201,7 @@ void MenuHelper::createRbTreeMenuInstance() {
 			for (int i = 0; i < elementCount; ++i)
 				rbtree->addItem(std::rand() % upValue);
 
+			clearConsole();
 			std::wcout << rbtreeRandomizeSuccess;
 			break;
 		}

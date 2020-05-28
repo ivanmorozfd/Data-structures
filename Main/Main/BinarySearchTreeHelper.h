@@ -1,6 +1,13 @@
 #pragma once
 #include "HelperBase.h"
 #include "BinarySearchTree.h"
+/*!
+	Static class functions library
+	\brief Use to work with BinarySearchTree
+	\author ivanmorozfd
+	\version 1.0
+	\date April 2020
+*/
 class BinarySearchTreeHelper:public virtual HelperBase {
 private:
 	BinarySearchTreeHelper() = default;

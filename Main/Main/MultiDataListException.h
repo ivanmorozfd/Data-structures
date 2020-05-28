@@ -5,8 +5,8 @@
 using std::exception;
 using std::string;
 /*!
-	Exception class for DoubleLinkedList
-	\brief Provide for DoubleLinkedList throw mechanism
+	Exception class for MultiDataList 
+	\brief Provide for MultiDataList throw mechanism
 	\author ivanmorozfd
 	\version 1.0
 	\date April 2020

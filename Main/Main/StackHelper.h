@@ -1,6 +1,13 @@
 #pragma once
 #include "Stack.h"
 #include "HelperBase.h"
+/*!
+	Static class functions library
+	\brief Use to work with Stack
+	\author ivanmorozfd
+	\version 1.0
+	\date April 2020
+*/
 class StackHelper: virtual public HelperBase {
 private:
 	StackHelper() = default;

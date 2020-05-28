@@ -1,6 +1,13 @@
 #pragma once
 #include "Queue.h"
 #include "HelperBase.h"
+/*!
+	Static class functions library
+	\brief Use to work with Queue
+	\author ivanmorozfd
+	\version 1.0
+	\date April 2020
+*/
 class QueueHelper:virtual public HelperBase {
 private:
 	QueueHelper() = default;

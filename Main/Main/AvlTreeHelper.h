@@ -1,6 +1,13 @@
 #pragma once
 #include "HelperBase.h"
 #include "AvlTree.h"
+/*!
+	Static class functions library
+	\brief Use to work with AvlTree
+	\author ivanmorozfd
+	\version 1.0
+	\date April 2020
+*/
 class AvlTreeHelper : public virtual HelperBase {
 private:
 	AvlTreeHelper() = default;
@@ -109,6 +116,7 @@ public:
 		deserialize(node->left, inputStream);
 		deserialize(node->right, inputStream);
 	}
+	// data store in KEY HEIGHT Format
 	template<typename T>
 	static void writeToFile(AvlTree<T>* tree, std::ofstream& outputStream) {
 		outputStream << serialize(tree);

@@ -20,13 +20,13 @@ struct Field {
 	*/
 	struct TelephoneNumber {
 	private:
-		std::string content;//!< use to storage number
+		size_t content;//!< use to storage number
 	public:
-		void setContent(std::string content) { this->content = content; }
-		std::string getContent() const { return this->content; }
+		void setContent(size_t content) { this->content = content; }
+		size_t getContent() const { return this->content; }
 		static void swap (TelephoneNumber* lhs, TelephoneNumber* rhs) { std::swap(lhs->content, rhs->content); }
 	public:
-		TelephoneNumber() :content(std::string())  { }
+		TelephoneNumber() :content(size_t())  { }
 	}*telephone;
 	/*!
 		Second name field
@@ -81,19 +81,18 @@ private:
 		\param[in] pointer to placement
 	*/
 	void insertTelephone(FieldPtr pointer) {
+		//method works like telephone insert
 		FieldPtr temp = begin_mark->nextTelephone;
 		if (temp->telephone->getContent() > pointer->telephone->getContent()) {
-			// check for first item
+
 			pointer->nextTelephone = temp;
 			pointer->prevTelephone = begin_mark;
 
-			temp->nextTelephone = end_mark;
 			temp->prevTelephone = pointer;
-			
+
 			begin_mark->nextTelephone = pointer;
 			return;
 		}
-		//iter by list and compare items
 		while (temp->nextTelephone != end_mark) {
 			if (temp->telephone->getContent() > pointer->telephone->getContent()) {
 
@@ -116,7 +115,6 @@ private:
 			temp->nextTelephone->prevTelephone = pointer;
 			return;
 		}
-		//we reach end,need new end mark
 		temp->nextTelephone = pointer;
 		pointer->nextTelephone = end_mark;
 		pointer->prevTelephone = temp;
@@ -200,7 +198,7 @@ public:
 		push new field to MultiDataList
 		\param[in] pair<name,number> data
 	*/
-	void push(std::pair<std::string, std::string> data) {
+	void push(std::pair<std::string, size_t> data) {
 		//allocate memory for new field
 		FieldPtr fieldPointer = new Field();
 		//allocate memory for secondname and telephone subfields
@@ -242,7 +240,7 @@ public:
 		\param[out] string telephone
 		\param[in] string secondName
 	*/
-	std::string findBySecondName(std::string secondName) const {
+	size_t findBySecondName(std::string secondName) const {
 		if (isEmpty())
 			throw MultiDataListException("List is empty");
 
@@ -267,7 +265,7 @@ public:
 		\param[out] string second name
 		\param[in] string telephone
 	*/
-	std::string findByTelelephoneNumber(std::string telephone) const {
+	std::string findByTelelephoneNumber(size_t telephone) const {
 		if (isEmpty())
 			throw MultiDataListException("List is empty");
 
@@ -315,7 +313,7 @@ public:
 		Remove field by telephone
 		\param[in] string telephone
 	*/
-	void removeByTelephone(std::string telephone) {
+	void removeByTelephone(size_t telephone) {
 		if (isEmpty())
 			throw MultiDataListException("List is empty");
 		auto temp = begin_mark->nextTelephone;
@@ -371,7 +369,7 @@ public:
 		count(0) {
 
 	}
-	MultiDataList(std::initializer_list<std::pair<std::string,std::string>>& data) :begin_mark(nullptr),
+	MultiDataList(std::initializer_list<std::pair<std::string, size_t>>& data) :begin_mark(nullptr),
 		end_mark(nullptr),
 		count(0) {
 		for (auto& i : data) {

@@ -1,6 +1,13 @@
 #pragma once
 #include "RBTree.h"
 #include "HelperBase.h"
+/*!
+	Static class functions library
+	\brief Use to work with RBTree
+	\author ivanmorozfd
+	\version 1.0
+	\date April 2020
+*/
 class RBTreeHelper : public virtual HelperBase {
 private:
 	RBTreeHelper() = default;

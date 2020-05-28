@@ -200,7 +200,7 @@ private:
 			root->left = insert_(root->left, ptr);
 			root->left->parent = root;
 		}
-		else if (ptr->key > root->key)  {
+		else if (ptr->key >= root->key)  {
 			root->right = insert_(root->right, ptr);
 			root->right->parent = root;
 		}

@@ -1,6 +1,13 @@
 #pragma once
 #include "DoubleLinkedList.h"
 #include "HelperBase.h"
+/*!
+	Static class functions library
+	\brief Use to work with DoubleLinkedList
+	\author ivanmorozfd
+	\version 1.0
+	\date April 2020
+*/
 class DoubleLinkedListHelper:public virtual HelperBase {
 	DoubleLinkedListHelper() = default;
 	~DoubleLinkedListHelper() = default;
