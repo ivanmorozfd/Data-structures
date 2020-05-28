@@ -1320,10 +1320,19 @@ void MenuHelper::createMatrixMenuInstance() {
 		switch (answer) {
 		case 1: {
 			clearConsole();
-
 			if (!matrix) {
-				matrix = new SparseMatrix<int>();
-				matrixCreateSuccessMessage;
+				std::cout << "\b ¬ведите количество строк и столбцов \n";
+				std::cout << enterAnswer;
+				int i = 0;
+				int j = 0;
+				std::wcin >> i >> j;
+				if (i < 1 || j < 1) {
+					clearConsole();
+					std::cout << "\n ќшибка ввода";
+					}
+				clearConsole();
+				matrix = new SparseMatrix<int>(i,j);
+				std::cout << matrixCreateSuccessMessage;
 			}
 			else 
 				std::cout << matrixCreateFailureMessage;

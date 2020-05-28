@@ -1,0 +1,252 @@
+\hypertarget{class_queue}{}\doxysection{Queue$<$ \+\_\+T $>$ Class Template Reference}
+\label{class_queue}\index{Queue$<$ \_T $>$@{Queue$<$ \_T $>$}}
+
+
+Use to store data.  
+
+
+
+
+{\ttfamily \#include $<$Queue.\+h$>$}
+
+
+
+Inheritance diagram for Queue$<$ \+\_\+T $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=154pt]{class_queue__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Queue$<$ \+\_\+T $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=154pt]{class_queue__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{class_queue_a3de7b5dcf1273b3d63e6797dee28c100}{get\+Lenght}} () const
+\item 
+void \mbox{\hyperlink{class_queue_aa3fcb1535c5c71d50437ce4418e4102b}{pop}} ()
+\item 
+void \mbox{\hyperlink{class_queue_a1c46db717b86b146603f890994a7b74c}{push}} (const\+\_\+reference item)
+\item 
+bool \mbox{\hyperlink{class_queue_ade4b5f47fc892805af1308c61e648b53}{is\+Empty}} () const override
+\item 
+void \mbox{\hyperlink{class_queue_ab966558c7bb80890580cccffc40cc930}{clear}} ()
+\item 
+reference \mbox{\hyperlink{class_queue_a2bb5479da36100d39410b86e7da47d4b}{peek}} ()
+\item 
+bool \mbox{\hyperlink{class_queue_ae87fd8dd8045b5cc3c7472acef412c89}{contain}} (const\+\_\+reference item) const
+\item 
+\mbox{\hyperlink{class_queue_a5430514ffb541eff936880298500d383}{Queue}} ()
+\item 
+\mbox{\hyperlink{class_queue_ad03e7178786b3ad5caee4a1d4b43f82c}{Queue}} (const std\+::initializer\+\_\+list$<$ \+\_\+T $>$ \&data)
+\item 
+\mbox{\hyperlink{class_queue_a8b3b40ce4dac14acad8eec34de05c695}{$\sim$\+Queue}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_queue_a918589cd06dc71786f817562f6cab02a}\label{class_queue_a918589cd06dc71786f817562f6cab02a}} 
+class {\bfseries Queue\+Helper}
+\item 
+{\footnotesize template$<$class \+\_\+T $>$ }\\void \mbox{\hyperlink{class_queue_a49901f30c8f4b0cacc09aecd09ec9fa4}{print\+\_\+queue}} (\mbox{\hyperlink{class_queue}{Queue}}$<$ \+\_\+T $>$ $\ast$queue)
+\begin{DoxyCompactList}\small\item\em Friend function,help to print \mbox{\hyperlink{class_queue}{Queue}} data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+T$>$\newline
+class Queue$<$ \+\_\+\+T $>$}
+
+Use to store data. 
+
+\mbox{\hyperlink{class_queue}{Queue}} class \begin{DoxyAuthor}{Author}
+ivanmorozfd 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+April 2020 
+\end{DoxyDate}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_queue_a5430514ffb541eff936880298500d383}\label{class_queue_a5430514ffb541eff936880298500d383}} 
+\index{Queue$<$ \_T $>$@{Queue$<$ \_T $>$}!Queue@{Queue}}
+\index{Queue@{Queue}!Queue$<$ \_T $>$@{Queue$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{Queue()}{Queue()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+\mbox{\hyperlink{class_queue}{Queue}}$<$ \+\_\+T $>$\+::\mbox{\hyperlink{class_queue}{Queue}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default \mbox{\hyperlink{class_queue}{Queue}} constructor \mbox{\Hypertarget{class_queue_ad03e7178786b3ad5caee4a1d4b43f82c}\label{class_queue_ad03e7178786b3ad5caee4a1d4b43f82c}} 
+\index{Queue$<$ \_T $>$@{Queue$<$ \_T $>$}!Queue@{Queue}}
+\index{Queue@{Queue}!Queue$<$ \_T $>$@{Queue$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{Queue()}{Queue()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+\mbox{\hyperlink{class_queue}{Queue}}$<$ \+\_\+T $>$\+::\mbox{\hyperlink{class_queue}{Queue}} (\begin{DoxyParamCaption}\item[{const std\+::initializer\+\_\+list$<$ \+\_\+T $>$ \&}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Parameterized \mbox{\hyperlink{class_queue}{Queue}} constructor 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em initializer\+\_\+list$<$value\+Type$>$list} & S\+TL init list \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+% FIG 0
+\mbox{\Hypertarget{class_queue_a8b3b40ce4dac14acad8eec34de05c695}\label{class_queue_a8b3b40ce4dac14acad8eec34de05c695}} 
+\index{Queue$<$ \_T $>$@{Queue$<$ \_T $>$}!````~Queue@{$\sim$Queue}}
+\index{````~Queue@{$\sim$Queue}!Queue$<$ \_T $>$@{Queue$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$Queue()}{~Queue()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+\mbox{\hyperlink{class_queue}{Queue}}$<$ \+\_\+T $>$\+::$\sim$\mbox{\hyperlink{class_queue}{Queue}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\hyperlink{class_queue}{Queue}} destructor Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_queue_a8b3b40ce4dac14acad8eec34de05c695_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_queue_ab966558c7bb80890580cccffc40cc930}\label{class_queue_ab966558c7bb80890580cccffc40cc930}} 
+\index{Queue$<$ \_T $>$@{Queue$<$ \_T $>$}!clear@{clear}}
+\index{clear@{clear}!Queue$<$ \_T $>$@{Queue$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+void \mbox{\hyperlink{class_queue}{Queue}}$<$ \+\_\+T $>$\+::clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Remove all elements from the \mbox{\hyperlink{class_queue}{Queue}} Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_queue_ab966558c7bb80890580cccffc40cc930_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=274pt]{class_queue_ab966558c7bb80890580cccffc40cc930_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_queue_ae87fd8dd8045b5cc3c7472acef412c89}\label{class_queue_ae87fd8dd8045b5cc3c7472acef412c89}} 
+\index{Queue$<$ \_T $>$@{Queue$<$ \_T $>$}!contain@{contain}}
+\index{contain@{contain}!Queue$<$ \_T $>$@{Queue$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{contain()}{contain()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+bool \mbox{\hyperlink{class_queue}{Queue}}$<$ \+\_\+T $>$\+::contain (\begin{DoxyParamCaption}\item[{const\+\_\+reference}]{item }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Does the item exist in the \mbox{\hyperlink{class_queue}{Queue}},otherwise false 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em bool} & True, if elem exist \\
+\hline
+\mbox{\texttt{ in}}  & {\em value\+Type} & Checked value \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_queue_a3de7b5dcf1273b3d63e6797dee28c100}\label{class_queue_a3de7b5dcf1273b3d63e6797dee28c100}} 
+\index{Queue$<$ \_T $>$@{Queue$<$ \_T $>$}!getLenght@{getLenght}}
+\index{getLenght@{getLenght}!Queue$<$ \_T $>$@{Queue$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{getLenght()}{getLenght()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+size\+\_\+t \mbox{\hyperlink{class_queue}{Queue}}$<$ \+\_\+T $>$\+::get\+Lenght (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns the \mbox{\hyperlink{class_queue}{Queue}} size 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em size\+\_\+t} & \mbox{\hyperlink{class_queue}{Queue}} size \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_queue_ade4b5f47fc892805af1308c61e648b53}\label{class_queue_ade4b5f47fc892805af1308c61e648b53}} 
+\index{Queue$<$ \_T $>$@{Queue$<$ \_T $>$}!isEmpty@{isEmpty}}
+\index{isEmpty@{isEmpty}!Queue$<$ \_T $>$@{Queue$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{isEmpty()}{isEmpty()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+bool \mbox{\hyperlink{class_queue}{Queue}}$<$ \+\_\+T $>$\+::is\+Empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Checking the \mbox{\hyperlink{class_queue}{Queue}} for empty space 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em bool} & True,if \mbox{\hyperlink{class_queue}{Queue}} is empty \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_container}{Container}}.
+
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{class_queue_a2bb5479da36100d39410b86e7da47d4b}\label{class_queue_a2bb5479da36100d39410b86e7da47d4b}} 
+\index{Queue$<$ \_T $>$@{Queue$<$ \_T $>$}!peek@{peek}}
+\index{peek@{peek}!Queue$<$ \_T $>$@{Queue$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{peek()}{peek()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+reference \mbox{\hyperlink{class_queue}{Queue}}$<$ \+\_\+T $>$\+::peek (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns an element at the beginning of the \mbox{\hyperlink{class_queue}{Queue}} 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em value\+Type} & \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{class_queue_aa3fcb1535c5c71d50437ce4418e4102b}\label{class_queue_aa3fcb1535c5c71d50437ce4418e4102b}} 
+\index{Queue$<$ \_T $>$@{Queue$<$ \_T $>$}!pop@{pop}}
+\index{pop@{pop}!Queue$<$ \_T $>$@{Queue$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{pop()}{pop()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+void \mbox{\hyperlink{class_queue}{Queue}}$<$ \+\_\+T $>$\+::pop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Remove item from the queue Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=270pt]{class_queue_aa3fcb1535c5c71d50437ce4418e4102b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_queue_aa3fcb1535c5c71d50437ce4418e4102b_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_queue_a1c46db717b86b146603f890994a7b74c}\label{class_queue_a1c46db717b86b146603f890994a7b74c}} 
+\index{Queue$<$ \_T $>$@{Queue$<$ \_T $>$}!push@{push}}
+\index{push@{push}!Queue$<$ \_T $>$@{Queue$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{push()}{push()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+void \mbox{\hyperlink{class_queue}{Queue}}$<$ \+\_\+T $>$\+::push (\begin{DoxyParamCaption}\item[{const\+\_\+reference}]{item }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Add item to the queue 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em value\+Type} & item \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:
+% FIG 3
+
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class_queue_a49901f30c8f4b0cacc09aecd09ec9fa4}\label{class_queue_a49901f30c8f4b0cacc09aecd09ec9fa4}} 
+\index{Queue$<$ \_T $>$@{Queue$<$ \_T $>$}!print\_queue@{print\_queue}}
+\index{print\_queue@{print\_queue}!Queue$<$ \_T $>$@{Queue$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{print\_queue}{print\_queue}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+template$<$class \+\_\+T $>$ \\
+void print\+\_\+queue (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_queue}{Queue}}$<$ \+\_\+T $>$ $\ast$}]{queue }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Friend function,help to print \mbox{\hyperlink{class_queue}{Queue}} data. 
+
+Display \mbox{\hyperlink{class_queue}{Queue}} data 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+source/repos/\+Data-\/structures/\+Main/\+Main/Queue.\+h\end{DoxyCompactItemize}

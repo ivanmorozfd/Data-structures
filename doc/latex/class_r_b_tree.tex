@@ -1,0 +1,144 @@
+\hypertarget{class_r_b_tree}{}\doxysection{R\+B\+Tree$<$ \+\_\+T $>$ Class Template Reference}
+\label{class_r_b_tree}\index{RBTree$<$ \_T $>$@{RBTree$<$ \_T $>$}}
+
+
+Use to store data in tree view.  
+
+
+
+
+{\ttfamily \#include $<$R\+B\+Tree.\+h$>$}
+
+
+
+Inheritance diagram for R\+B\+Tree$<$ \+\_\+T $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=157pt]{class_r_b_tree__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for R\+B\+Tree$<$ \+\_\+T $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=157pt]{class_r_b_tree__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_r_b_tree_ae2bdcddda639bf0ac3b91fc1b0d04258}\label{class_r_b_tree_ae2bdcddda639bf0ac3b91fc1b0d04258}} 
+void {\bfseries clear} ()
+\item 
+\mbox{\Hypertarget{class_r_b_tree_ab669d7225052c6ff67216f56944bfe28}\label{class_r_b_tree_ab669d7225052c6ff67216f56944bfe28}} 
+value\+Type {\bfseries get\+Min} ()
+\item 
+bool \mbox{\hyperlink{class_r_b_tree_a36a1a8f1ff50a440d9aff91f79f8c2a5}{is\+Empty}} () const override
+\item 
+void \mbox{\hyperlink{class_r_b_tree_a967956cd13f82dc025df43283c9a9100}{add\+Item}} (const\+\_\+reference item)
+\item 
+\mbox{\Hypertarget{class_r_b_tree_ac9e44f08a6403eeef2ef53bb3afdeb7b}\label{class_r_b_tree_ac9e44f08a6403eeef2ef53bb3afdeb7b}} 
+void {\bfseries remove} (const\+\_\+reference key)
+\item 
+\mbox{\hyperlink{class_r_b_tree_a8e66e1f288e0adcef686d53223095240}{R\+B\+Tree}} ()
+\item 
+\mbox{\hyperlink{class_r_b_tree_ae9bcc1bcbfe7f593a4a28157b4a938c1}{R\+B\+Tree}} (const initializer\+\_\+list$<$ \+\_\+T $>$ \&data)
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_r_b_tree_a8639479a7ce969aab071258b07956a4c}\label{class_r_b_tree_a8639479a7ce969aab071258b07956a4c}} 
+class {\bfseries R\+B\+Tree\+Helper}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+T$>$\newline
+class R\+B\+Tree$<$ \+\_\+\+T $>$}
+
+Use to store data in tree view. 
+
+\mbox{\hyperlink{class_r_b_tree}{R\+B\+Tree}} class \begin{DoxyAuthor}{Author}
+ivanmorozfd 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+April 2020 
+\end{DoxyDate}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_r_b_tree_a8e66e1f288e0adcef686d53223095240}\label{class_r_b_tree_a8e66e1f288e0adcef686d53223095240}} 
+\index{RBTree$<$ \_T $>$@{RBTree$<$ \_T $>$}!RBTree@{RBTree}}
+\index{RBTree@{RBTree}!RBTree$<$ \_T $>$@{RBTree$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{RBTree()}{RBTree()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+\mbox{\hyperlink{class_r_b_tree}{R\+B\+Tree}}$<$ \+\_\+T $>$\+::\mbox{\hyperlink{class_r_b_tree}{R\+B\+Tree}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default \mbox{\hyperlink{class_r_b_tree}{R\+B\+Tree}} constructor \mbox{\Hypertarget{class_r_b_tree_ae9bcc1bcbfe7f593a4a28157b4a938c1}\label{class_r_b_tree_ae9bcc1bcbfe7f593a4a28157b4a938c1}} 
+\index{RBTree$<$ \_T $>$@{RBTree$<$ \_T $>$}!RBTree@{RBTree}}
+\index{RBTree@{RBTree}!RBTree$<$ \_T $>$@{RBTree$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{RBTree()}{RBTree()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+\mbox{\hyperlink{class_r_b_tree}{R\+B\+Tree}}$<$ \+\_\+T $>$\+::\mbox{\hyperlink{class_r_b_tree}{R\+B\+Tree}} (\begin{DoxyParamCaption}\item[{const initializer\+\_\+list$<$ \+\_\+T $>$ \&}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Parameterized \mbox{\hyperlink{class_r_b_tree}{R\+B\+Tree}} constructor 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em initializer\+\_\+list$<$value\+Type$>$list} & S\+TL init list \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=292pt]{class_r_b_tree_ae9bcc1bcbfe7f593a4a28157b4a938c1_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_r_b_tree_a967956cd13f82dc025df43283c9a9100}\label{class_r_b_tree_a967956cd13f82dc025df43283c9a9100}} 
+\index{RBTree$<$ \_T $>$@{RBTree$<$ \_T $>$}!addItem@{addItem}}
+\index{addItem@{addItem}!RBTree$<$ \_T $>$@{RBTree$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{addItem()}{addItem()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+void \mbox{\hyperlink{class_r_b_tree}{R\+B\+Tree}}$<$ \+\_\+T $>$\+::add\+Item (\begin{DoxyParamCaption}\item[{const\+\_\+reference}]{item }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Add item to the tree 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em const\+\_\+reference} & item \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=292pt]{class_r_b_tree_a967956cd13f82dc025df43283c9a9100_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_r_b_tree_a36a1a8f1ff50a440d9aff91f79f8c2a5}\label{class_r_b_tree_a36a1a8f1ff50a440d9aff91f79f8c2a5}} 
+\index{RBTree$<$ \_T $>$@{RBTree$<$ \_T $>$}!isEmpty@{isEmpty}}
+\index{isEmpty@{isEmpty}!RBTree$<$ \_T $>$@{RBTree$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{isEmpty()}{isEmpty()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+bool \mbox{\hyperlink{class_r_b_tree}{R\+B\+Tree}}$<$ \+\_\+T $>$\+::is\+Empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Is the \mbox{\hyperlink{class_r_b_tree}{R\+B\+Tree}} empty 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em bool} & True,if \mbox{\hyperlink{class_r_b_tree}{R\+B\+Tree}} is empty \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_container}{Container}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+source/repos/\+Data-\/structures/\+Main/\+Main/R\+B\+Tree.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,104 @@
+\hypertarget{struct___stack_node}{}\doxysection{\+\_\+\+Stack\+Node$<$ \+\_\+T $>$ Struct Template Reference}
+\label{struct___stack_node}\index{\_StackNode$<$ \_T $>$@{\_StackNode$<$ \_T $>$}}
+
+
+\mbox{\hyperlink{class_stack}{Stack}} element wrapper.  
+
+
+
+
+{\ttfamily \#include $<$Stack.\+h$>$}
+
+
+
+Collaboration diagram for \+\_\+\+Stack\+Node$<$ \+\_\+T $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=217pt]{struct___stack_node__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct___stack_node_ae6c647921ebef97f19a8bf36cb9a8c81}\label{struct___stack_node_ae6c647921ebef97f19a8bf36cb9a8c81}} 
+typedef \mbox{\hyperlink{struct___stack_node}{\+\_\+\+Stack\+Node}} $\ast$ \mbox{\hyperlink{struct___stack_node_ae6c647921ebef97f19a8bf36cb9a8c81}{Node\+Ptr}}
+\begin{DoxyCompactList}\small\item\em Node pointer type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct___stack_node_aadaae4a9ba5c84037075b49d735c4996}\label{struct___stack_node_aadaae4a9ba5c84037075b49d735c4996}} 
+typedef \mbox{\hyperlink{struct___stack_node}{\+\_\+\+Stack\+Node}} \& \mbox{\hyperlink{struct___stack_node_aadaae4a9ba5c84037075b49d735c4996}{Node\+Ref}}
+\begin{DoxyCompactList}\small\item\em Node reference type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct___stack_node_a65ba09f2d38b6c10f79a2d764acce86f}\label{struct___stack_node_a65ba09f2d38b6c10f79a2d764acce86f}} 
+using \mbox{\hyperlink{struct___stack_node_a65ba09f2d38b6c10f79a2d764acce86f}{value\+Type}} = \+\_\+T
+\begin{DoxyCompactList}\small\item\em Element type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct___stack_node_aa9fe6bab18fd00a4ed9d0a4953c36789}\label{struct___stack_node_aa9fe6bab18fd00a4ed9d0a4953c36789}} 
+using \mbox{\hyperlink{struct___stack_node_aa9fe6bab18fd00a4ed9d0a4953c36789}{reference}} = \mbox{\hyperlink{struct___stack_node_a65ba09f2d38b6c10f79a2d764acce86f}{value\+Type}} \&
+\begin{DoxyCompactList}\small\item\em Reference element type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct___stack_node_a5fa2c88faf2c6254c6981bc9c79d1a9c}\label{struct___stack_node_a5fa2c88faf2c6254c6981bc9c79d1a9c}} 
+using {\bfseries const\+\_\+reference} = const \+\_\+T \&
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct___stack_node_ac4e90b3118022527e81399822a69eb6d}\label{struct___stack_node_ac4e90b3118022527e81399822a69eb6d}} 
+{\bfseries \+\_\+\+Stack\+Node} (const \mbox{\hyperlink{struct___stack_node_aadaae4a9ba5c84037075b49d735c4996}{Node\+Ref}})=delete
+\item 
+\mbox{\Hypertarget{struct___stack_node_ab40bb206b69d2efbeef47213992e3d14}\label{struct___stack_node_ab40bb206b69d2efbeef47213992e3d14}} 
+\mbox{\hyperlink{struct___stack_node}{\+\_\+\+Stack\+Node}} \& {\bfseries operator=} (const \mbox{\hyperlink{struct___stack_node_aadaae4a9ba5c84037075b49d735c4996}{Node\+Ref}})=delete
+\item 
+\mbox{\hyperlink{struct___stack_node_a658573b111782da0a8e92acbb312474f}{\+\_\+\+Stack\+Node}} ()=default
+\item 
+\mbox{\hyperlink{struct___stack_node_a747dd674de47b31cae6b28b6967d6a77}{\+\_\+\+Stack\+Node}} (const\+\_\+reference \mbox{\hyperlink{struct___stack_node_aeabad8462f17b6c656473352f67de57c}{data}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct___stack_node_aeabad8462f17b6c656473352f67de57c}\label{struct___stack_node_aeabad8462f17b6c656473352f67de57c}} 
+\mbox{\hyperlink{struct___stack_node_a65ba09f2d38b6c10f79a2d764acce86f}{value\+Type}} \mbox{\hyperlink{struct___stack_node_aeabad8462f17b6c656473352f67de57c}{data}}
+\begin{DoxyCompactList}\small\item\em Node value. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct___stack_node_a263d5a17e0bf71173df5ee1d920c3f53}\label{struct___stack_node_a263d5a17e0bf71173df5ee1d920c3f53}} 
+\mbox{\hyperlink{struct___stack_node_ae6c647921ebef97f19a8bf36cb9a8c81}{Node\+Ptr}} \mbox{\hyperlink{struct___stack_node_a263d5a17e0bf71173df5ee1d920c3f53}{prev}}
+\begin{DoxyCompactList}\small\item\em Pointer to previous Node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+T$>$\newline
+struct \+\_\+\+Stack\+Node$<$ \+\_\+\+T $>$}
+
+\mbox{\hyperlink{class_stack}{Stack}} element wrapper. 
+
+Data representation in \mbox{\hyperlink{class_stack}{Stack}} Contain pointer to previous element,and data \begin{DoxyAuthor}{Author}
+ivanmorozfd 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+April 2020 
+\end{DoxyDate}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{struct___stack_node_a658573b111782da0a8e92acbb312474f}\label{struct___stack_node_a658573b111782da0a8e92acbb312474f}} 
+\index{\_StackNode$<$ \_T $>$@{\_StackNode$<$ \_T $>$}!\_StackNode@{\_StackNode}}
+\index{\_StackNode@{\_StackNode}!\_StackNode$<$ \_T $>$@{\_StackNode$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{\_StackNode()}{\_StackNode()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+\mbox{\hyperlink{struct___stack_node}{\+\_\+\+Stack\+Node}}$<$ \+\_\+T $>$\+::\mbox{\hyperlink{struct___stack_node}{\+\_\+\+Stack\+Node}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+Default \mbox{\hyperlink{struct___stack_node}{\+\_\+\+Stack\+Node}} constructor \mbox{\Hypertarget{struct___stack_node_a747dd674de47b31cae6b28b6967d6a77}\label{struct___stack_node_a747dd674de47b31cae6b28b6967d6a77}} 
+\index{\_StackNode$<$ \_T $>$@{\_StackNode$<$ \_T $>$}!\_StackNode@{\_StackNode}}
+\index{\_StackNode@{\_StackNode}!\_StackNode$<$ \_T $>$@{\_StackNode$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{\_StackNode()}{\_StackNode()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+\mbox{\hyperlink{struct___stack_node}{\+\_\+\+Stack\+Node}}$<$ \+\_\+T $>$\+::\mbox{\hyperlink{struct___stack_node}{\+\_\+\+Stack\+Node}} (\begin{DoxyParamCaption}\item[{const\+\_\+reference}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Parameterized \mbox{\hyperlink{struct___stack_node}{\+\_\+\+Stack\+Node}} constructor 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em value\+Type\&} & Node data \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+source/repos/\+Data-\/structures/\+Main/\+Main/Stack.\+h\end{DoxyCompactItemize}

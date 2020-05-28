@@ -1,0 +1,173 @@
+\hypertarget{class_multi_data_list}{}\doxysection{Multi\+Data\+List Class Reference}
+\label{class_multi_data_list}\index{MultiDataList@{MultiDataList}}
+
+
+{\ttfamily \#include $<$Multi\+Data\+List.\+h$>$}
+
+
+
+Inheritance diagram for Multi\+Data\+List\+:
+% FIG 0
+
+
+Collaboration diagram for Multi\+Data\+List\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_multi_data_list_a5e041d716d401667978bdc9c5f812349}{is\+Empty}} () const override
+\item 
+void \mbox{\hyperlink{class_multi_data_list_af5f8dac283a56b581a1727f7959753d1}{push}} (std\+::pair$<$ std\+::string, size\+\_\+t $>$ data)
+\item 
+size\+\_\+t \mbox{\hyperlink{class_multi_data_list_aee801f99484e93a6a2ae120249737dbe}{find\+By\+Second\+Name}} (std\+::string second\+Name) const
+\item 
+std\+::string \mbox{\hyperlink{class_multi_data_list_ad52226e5b67accc2ded2b26afd4c4c19}{find\+By\+Telelephone\+Number}} (size\+\_\+t telephone) const
+\item 
+void \mbox{\hyperlink{class_multi_data_list_af4247dfbc8b68173a1cec6fcc1af3093}{remove\+By\+Second\+Name}} (std\+::string second\+Name)
+\item 
+void \mbox{\hyperlink{class_multi_data_list_ab28a539b1389ba64a409413d7d1ad4a0}{remove\+By\+Telephone}} (size\+\_\+t telephone)
+\item 
+void \mbox{\hyperlink{class_multi_data_list_ad101802b104e443a861d4d8aed1ac3d1}{clear}} ()
+\item 
+\mbox{\Hypertarget{class_multi_data_list_a8879e5dcc31979955a3c247efa892e45}\label{class_multi_data_list_a8879e5dcc31979955a3c247efa892e45}} 
+{\bfseries Multi\+Data\+List} (std\+::initializer\+\_\+list$<$ std\+::pair$<$ std\+::string, size\+\_\+t $>$$>$ \&data)
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_multi_data_list_ad3916814fd07dbcae2e6a8f1ee7895b9}\label{class_multi_data_list_ad3916814fd07dbcae2e6a8f1ee7895b9}} 
+class {\bfseries Multi\+Data\+List\+Helper}
+\item 
+void \mbox{\hyperlink{class_multi_data_list_afb7bf20f5a0acf84658b05b57a210d11}{print\+Ordered\+By\+Second\+Name}} (\mbox{\hyperlink{class_multi_data_list}{Multi\+Data\+List}} $\ast$list)
+\item 
+void \mbox{\hyperlink{class_multi_data_list_ae61d1ddada644ef6ad9cb0ca6f088fe1}{print\+Ordered\+By\+Telephone}} (\mbox{\hyperlink{class_multi_data_list}{Multi\+Data\+List}} $\ast$list)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_multi_data_list}{Multi\+Data\+List}} use to store two sorted data lists \begin{DoxyAuthor}{Author}
+ivanmorozfd 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+April 2020 
+\end{DoxyDate}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_multi_data_list_ad101802b104e443a861d4d8aed1ac3d1}\label{class_multi_data_list_ad101802b104e443a861d4d8aed1ac3d1}} 
+\index{MultiDataList@{MultiDataList}!clear@{clear}}
+\index{clear@{clear}!MultiDataList@{MultiDataList}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily void Multi\+Data\+List\+::clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Clear \mbox{\hyperlink{class_multi_data_list}{Multi\+Data\+List}} Here is the call graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{class_multi_data_list_aee801f99484e93a6a2ae120249737dbe}\label{class_multi_data_list_aee801f99484e93a6a2ae120249737dbe}} 
+\index{MultiDataList@{MultiDataList}!findBySecondName@{findBySecondName}}
+\index{findBySecondName@{findBySecondName}!MultiDataList@{MultiDataList}}
+\doxysubsubsection{\texorpdfstring{findBySecondName()}{findBySecondName()}}
+{\footnotesize\ttfamily size\+\_\+t Multi\+Data\+List\+::find\+By\+Second\+Name (\begin{DoxyParamCaption}\item[{std\+::string}]{second\+Name }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Find telephone by second name in sorted thread 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em string} & telephone \\
+\hline
+\mbox{\texttt{ in}}  & {\em string} & second\+Name \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{class_multi_data_list_ad52226e5b67accc2ded2b26afd4c4c19}\label{class_multi_data_list_ad52226e5b67accc2ded2b26afd4c4c19}} 
+\index{MultiDataList@{MultiDataList}!findByTelelephoneNumber@{findByTelelephoneNumber}}
+\index{findByTelelephoneNumber@{findByTelelephoneNumber}!MultiDataList@{MultiDataList}}
+\doxysubsubsection{\texorpdfstring{findByTelelephoneNumber()}{findByTelelephoneNumber()}}
+{\footnotesize\ttfamily std\+::string Multi\+Data\+List\+::find\+By\+Telelephone\+Number (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{telephone }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Find second name by telephone in sorted thread 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em string} & second name \\
+\hline
+\mbox{\texttt{ in}}  & {\em string} & telephone \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+% FIG 4
+\mbox{\Hypertarget{class_multi_data_list_a5e041d716d401667978bdc9c5f812349}\label{class_multi_data_list_a5e041d716d401667978bdc9c5f812349}} 
+\index{MultiDataList@{MultiDataList}!isEmpty@{isEmpty}}
+\index{isEmpty@{isEmpty}!MultiDataList@{MultiDataList}}
+\doxysubsubsection{\texorpdfstring{isEmpty()}{isEmpty()}}
+{\footnotesize\ttfamily bool Multi\+Data\+List\+::is\+Empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Checks whether the container is empty 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em bool} & True,if \mbox{\hyperlink{class_multi_data_list}{Multi\+Data\+List}} is empty,otherwise False \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_container}{Container}}.
+
+Here is the caller graph for this function\+:
+% FIG 5
+\mbox{\Hypertarget{class_multi_data_list_af5f8dac283a56b581a1727f7959753d1}\label{class_multi_data_list_af5f8dac283a56b581a1727f7959753d1}} 
+\index{MultiDataList@{MultiDataList}!push@{push}}
+\index{push@{push}!MultiDataList@{MultiDataList}}
+\doxysubsubsection{\texorpdfstring{push()}{push()}}
+{\footnotesize\ttfamily void Multi\+Data\+List\+::push (\begin{DoxyParamCaption}\item[{std\+::pair$<$ std\+::string, size\+\_\+t $>$}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+push new field to \mbox{\hyperlink{class_multi_data_list}{Multi\+Data\+List}} 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em pair$<$name,number$>$} & data \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_multi_data_list_af4247dfbc8b68173a1cec6fcc1af3093}\label{class_multi_data_list_af4247dfbc8b68173a1cec6fcc1af3093}} 
+\index{MultiDataList@{MultiDataList}!removeBySecondName@{removeBySecondName}}
+\index{removeBySecondName@{removeBySecondName}!MultiDataList@{MultiDataList}}
+\doxysubsubsection{\texorpdfstring{removeBySecondName()}{removeBySecondName()}}
+{\footnotesize\ttfamily void Multi\+Data\+List\+::remove\+By\+Second\+Name (\begin{DoxyParamCaption}\item[{std\+::string}]{second\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Remove field by second name 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em string} & second name \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+% FIG 6
+Here is the caller graph for this function\+:
+% FIG 7
+\mbox{\Hypertarget{class_multi_data_list_ab28a539b1389ba64a409413d7d1ad4a0}\label{class_multi_data_list_ab28a539b1389ba64a409413d7d1ad4a0}} 
+\index{MultiDataList@{MultiDataList}!removeByTelephone@{removeByTelephone}}
+\index{removeByTelephone@{removeByTelephone}!MultiDataList@{MultiDataList}}
+\doxysubsubsection{\texorpdfstring{removeByTelephone()}{removeByTelephone()}}
+{\footnotesize\ttfamily void Multi\+Data\+List\+::remove\+By\+Telephone (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{telephone }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Remove field by telephone 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em string} & telephone \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+% FIG 8
+
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class_multi_data_list_afb7bf20f5a0acf84658b05b57a210d11}\label{class_multi_data_list_afb7bf20f5a0acf84658b05b57a210d11}} 
+\index{MultiDataList@{MultiDataList}!printOrderedBySecondName@{printOrderedBySecondName}}
+\index{printOrderedBySecondName@{printOrderedBySecondName}!MultiDataList@{MultiDataList}}
+\doxysubsubsection{\texorpdfstring{printOrderedBySecondName}{printOrderedBySecondName}}
+{\footnotesize\ttfamily void print\+Ordered\+By\+Second\+Name (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_multi_data_list}{Multi\+Data\+List}} $\ast$}]{list }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+Print second name thread \mbox{\Hypertarget{class_multi_data_list_ae61d1ddada644ef6ad9cb0ca6f088fe1}\label{class_multi_data_list_ae61d1ddada644ef6ad9cb0ca6f088fe1}} 
+\index{MultiDataList@{MultiDataList}!printOrderedByTelephone@{printOrderedByTelephone}}
+\index{printOrderedByTelephone@{printOrderedByTelephone}!MultiDataList@{MultiDataList}}
+\doxysubsubsection{\texorpdfstring{printOrderedByTelephone}{printOrderedByTelephone}}
+{\footnotesize\ttfamily void print\+Ordered\+By\+Telephone (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_multi_data_list}{Multi\+Data\+List}} $\ast$}]{list }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+Print telephone thread 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+source/repos/\+Data-\/structures/\+Main/\+Main/Multi\+Data\+List.\+h\end{DoxyCompactItemize}

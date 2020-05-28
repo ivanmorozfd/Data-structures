@@ -1,0 +1,169 @@
+\hypertarget{class_avl_tree}{}\doxysection{Avl\+Tree$<$ \+\_\+T $>$ Class Template Reference}
+\label{class_avl_tree}\index{AvlTree$<$ \_T $>$@{AvlTree$<$ \_T $>$}}
+
+
+Use to store data in tree view ~\newline
+  
+
+
+
+
+{\ttfamily \#include $<$Avl\+Tree.\+h$>$}
+
+
+
+Inheritance diagram for Avl\+Tree$<$ \+\_\+T $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=157pt]{class_avl_tree__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Avl\+Tree$<$ \+\_\+T $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=157pt]{class_avl_tree__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_avl_tree_adf9fea59c7d395a9ac4cd2aaf8be735c}\label{class_avl_tree_adf9fea59c7d395a9ac4cd2aaf8be735c}} 
+void {\bfseries clear} ()
+\item 
+value\+Type \mbox{\hyperlink{class_avl_tree_a527a42be5de79ae69c343002b60832dd}{get\+Root}} () const
+\item 
+void \mbox{\hyperlink{class_avl_tree_a32018e6d7a99cf937d74e3def74dc399}{insert}} (value\+Type key)
+\item 
+void \mbox{\hyperlink{class_avl_tree_ab6b8ccdb2c3f2a52f342ec83df610c33}{remove}} (value\+Type key)
+\item 
+bool \mbox{\hyperlink{class_avl_tree_a419d59f6d8e882e3e05d6ffb613971ce}{is\+Empty}} () const override
+\item 
+\mbox{\Hypertarget{class_avl_tree_a40ef571413fbcaa20976e1436d13f50f}\label{class_avl_tree_a40ef571413fbcaa20976e1436d13f50f}} 
+\+\_\+T {\bfseries get\+Min} ()
+\item 
+\mbox{\hyperlink{class_avl_tree_a2da962a9bb794195bbc4cf1ece2c5737}{Avl\+Tree}} ()
+\item 
+\mbox{\hyperlink{class_avl_tree_a6b98cb8fd84360ee2519bf9930cfd913}{Avl\+Tree}} (std\+::initializer\+\_\+list$<$ value\+Type $>$ \&data)
+\item 
+\mbox{\hyperlink{class_avl_tree_a41ea0da4d54d85629904084ecea62086}{$\sim$\+Avl\+Tree}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_avl_tree_a2ec931950edf2a1eaa249f668699ea0b}\label{class_avl_tree_a2ec931950edf2a1eaa249f668699ea0b}} 
+class {\bfseries Avl\+Tree\+Helper}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+T$>$\newline
+class Avl\+Tree$<$ \+\_\+\+T $>$}
+
+Use to store data in tree view ~\newline
+ 
+
+\mbox{\hyperlink{class_avl_tree}{Avl\+Tree}} class \begin{DoxyAuthor}{Author}
+ivanmorozfd 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+April 2020 
+\end{DoxyDate}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_avl_tree_a2da962a9bb794195bbc4cf1ece2c5737}\label{class_avl_tree_a2da962a9bb794195bbc4cf1ece2c5737}} 
+\index{AvlTree$<$ \_T $>$@{AvlTree$<$ \_T $>$}!AvlTree@{AvlTree}}
+\index{AvlTree@{AvlTree}!AvlTree$<$ \_T $>$@{AvlTree$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{AvlTree()}{AvlTree()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+\mbox{\hyperlink{class_avl_tree}{Avl\+Tree}}$<$ \+\_\+T $>$\+::\mbox{\hyperlink{class_avl_tree}{Avl\+Tree}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default \mbox{\hyperlink{class_avl_tree}{Avl\+Tree}} constructor \mbox{\Hypertarget{class_avl_tree_a6b98cb8fd84360ee2519bf9930cfd913}\label{class_avl_tree_a6b98cb8fd84360ee2519bf9930cfd913}} 
+\index{AvlTree$<$ \_T $>$@{AvlTree$<$ \_T $>$}!AvlTree@{AvlTree}}
+\index{AvlTree@{AvlTree}!AvlTree$<$ \_T $>$@{AvlTree$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{AvlTree()}{AvlTree()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+\mbox{\hyperlink{class_avl_tree}{Avl\+Tree}}$<$ \+\_\+T $>$\+::\mbox{\hyperlink{class_avl_tree}{Avl\+Tree}} (\begin{DoxyParamCaption}\item[{std\+::initializer\+\_\+list$<$ value\+Type $>$ \&}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Parameterized \mbox{\hyperlink{class_avl_tree}{Avl\+Tree}} constructor 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em initializer\+\_\+list$<$value\+Type$>$list} & S\+TL init list \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+% FIG 0
+\mbox{\Hypertarget{class_avl_tree_a41ea0da4d54d85629904084ecea62086}\label{class_avl_tree_a41ea0da4d54d85629904084ecea62086}} 
+\index{AvlTree$<$ \_T $>$@{AvlTree$<$ \_T $>$}!````~AvlTree@{$\sim$AvlTree}}
+\index{````~AvlTree@{$\sim$AvlTree}!AvlTree$<$ \_T $>$@{AvlTree$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$AvlTree()}{~AvlTree()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+\mbox{\hyperlink{class_avl_tree}{Avl\+Tree}}$<$ \+\_\+T $>$\+::$\sim$\mbox{\hyperlink{class_avl_tree}{Avl\+Tree}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\hyperlink{class_avl_tree}{Avl\+Tree}} destructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_avl_tree_a527a42be5de79ae69c343002b60832dd}\label{class_avl_tree_a527a42be5de79ae69c343002b60832dd}} 
+\index{AvlTree$<$ \_T $>$@{AvlTree$<$ \_T $>$}!getRoot@{getRoot}}
+\index{getRoot@{getRoot}!AvlTree$<$ \_T $>$@{AvlTree$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{getRoot()}{getRoot()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+value\+Type \mbox{\hyperlink{class_avl_tree}{Avl\+Tree}}$<$ \+\_\+T $>$\+::get\+Root (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns root key Here is the call graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{class_avl_tree_a32018e6d7a99cf937d74e3def74dc399}\label{class_avl_tree_a32018e6d7a99cf937d74e3def74dc399}} 
+\index{AvlTree$<$ \_T $>$@{AvlTree$<$ \_T $>$}!insert@{insert}}
+\index{insert@{insert}!AvlTree$<$ \_T $>$@{AvlTree$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{insert()}{insert()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+void \mbox{\hyperlink{class_avl_tree}{Avl\+Tree}}$<$ \+\_\+T $>$\+::insert (\begin{DoxyParamCaption}\item[{value\+Type}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Insert value to the tree 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em const\+\_\+reference} & Key \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{class_avl_tree_a419d59f6d8e882e3e05d6ffb613971ce}\label{class_avl_tree_a419d59f6d8e882e3e05d6ffb613971ce}} 
+\index{AvlTree$<$ \_T $>$@{AvlTree$<$ \_T $>$}!isEmpty@{isEmpty}}
+\index{isEmpty@{isEmpty}!AvlTree$<$ \_T $>$@{AvlTree$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{isEmpty()}{isEmpty()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+bool \mbox{\hyperlink{class_avl_tree}{Avl\+Tree}}$<$ \+\_\+T $>$\+::is\+Empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Insert value to the tree 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em bool} & True,if tree contain any elements \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_container}{Container}}.
+
+Here is the caller graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{class_avl_tree_ab6b8ccdb2c3f2a52f342ec83df610c33}\label{class_avl_tree_ab6b8ccdb2c3f2a52f342ec83df610c33}} 
+\index{AvlTree$<$ \_T $>$@{AvlTree$<$ \_T $>$}!remove@{remove}}
+\index{remove@{remove}!AvlTree$<$ \_T $>$@{AvlTree$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{remove()}{remove()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+void \mbox{\hyperlink{class_avl_tree}{Avl\+Tree}}$<$ \+\_\+T $>$\+::remove (\begin{DoxyParamCaption}\item[{value\+Type}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Remove element from the tree by key 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em const\+\_\+reference} & Key \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+source/repos/\+Data-\/structures/\+Main/\+Main/Avl\+Tree.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,101 @@
+\hypertarget{struct___bst_node}{}\doxysection{\+\_\+\+Bst\+Node$<$ \+\_\+T $>$ Struct Template Reference}
+\label{struct___bst_node}\index{\_BstNode$<$ \_T $>$@{\_BstNode$<$ \_T $>$}}
+
+
+\mbox{\hyperlink{class_stack}{Stack}} element wrapper.  
+
+
+
+
+{\ttfamily \#include $<$Binary\+Search\+Tree.\+h$>$}
+
+
+
+Collaboration diagram for \+\_\+\+Bst\+Node$<$ \+\_\+T $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=208pt]{struct___bst_node__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct___bst_node_a273fe4b75c266fc3aaf053f85e4b634c}\label{struct___bst_node_a273fe4b75c266fc3aaf053f85e4b634c}} 
+typedef \mbox{\hyperlink{struct___bst_node}{\+\_\+\+Bst\+Node}} $\ast$ \mbox{\hyperlink{struct___bst_node_a273fe4b75c266fc3aaf053f85e4b634c}{Node\+Ptr}}
+\begin{DoxyCompactList}\small\item\em Node pointer type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct___bst_node_a0867027d84616eea23b6ce800a4af91f}\label{struct___bst_node_a0867027d84616eea23b6ce800a4af91f}} 
+using \mbox{\hyperlink{struct___bst_node_a0867027d84616eea23b6ce800a4af91f}{value\+Type}} = \+\_\+T
+\begin{DoxyCompactList}\small\item\em Element type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct___bst_node_ae47ed3a00998ced845f7ca53b230e622}\label{struct___bst_node_ae47ed3a00998ced845f7ca53b230e622}} 
+using {\bfseries reference} = \mbox{\hyperlink{struct___bst_node_a0867027d84616eea23b6ce800a4af91f}{value\+Type}} \&
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct___bst_node_aef9a070d41ccb4f5026e348dd8066b06}\label{struct___bst_node_aef9a070d41ccb4f5026e348dd8066b06}} 
+{\bfseries \+\_\+\+Bst\+Node} (const \mbox{\hyperlink{struct___bst_node}{\+\_\+\+Bst\+Node}} \&)=delete
+\item 
+\mbox{\Hypertarget{struct___bst_node_adc570e9e00f334d7649f08557d293697}\label{struct___bst_node_adc570e9e00f334d7649f08557d293697}} 
+\mbox{\hyperlink{struct___bst_node}{\+\_\+\+Bst\+Node}} \& {\bfseries operator=} (const \mbox{\hyperlink{struct___bst_node}{\+\_\+\+Bst\+Node}} \&)=delete
+\item 
+\mbox{\hyperlink{struct___bst_node_aeef6e5ea41e262ad1d9b9111aa902ad2}{\+\_\+\+Bst\+Node}} ()=default
+\item 
+\mbox{\hyperlink{struct___bst_node_a8dff1adc759ad9829cc45a9015a7d06d}{\+\_\+\+Bst\+Node}} (\mbox{\hyperlink{struct___bst_node_a0867027d84616eea23b6ce800a4af91f}{value\+Type}} \mbox{\hyperlink{struct___bst_node_a7d5a773ddad6e9b526eebd3840dedb03}{key}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct___bst_node_a7d5a773ddad6e9b526eebd3840dedb03}\label{struct___bst_node_a7d5a773ddad6e9b526eebd3840dedb03}} 
+\mbox{\hyperlink{struct___bst_node_a0867027d84616eea23b6ce800a4af91f}{value\+Type}} \mbox{\hyperlink{struct___bst_node_a7d5a773ddad6e9b526eebd3840dedb03}{key}}
+\begin{DoxyCompactList}\small\item\em Node key. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct___bst_node_aea24306a248b01f4b9c64cfc0e014120}\label{struct___bst_node_aea24306a248b01f4b9c64cfc0e014120}} 
+\mbox{\hyperlink{struct___bst_node_a273fe4b75c266fc3aaf053f85e4b634c}{Node\+Ptr}} \mbox{\hyperlink{struct___bst_node_aea24306a248b01f4b9c64cfc0e014120}{left}}
+\begin{DoxyCompactList}\small\item\em Pointer to left child. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct___bst_node_ad59ebdaf940b5c784a67b5443bff7cb9}\label{struct___bst_node_ad59ebdaf940b5c784a67b5443bff7cb9}} 
+\mbox{\hyperlink{struct___bst_node_a273fe4b75c266fc3aaf053f85e4b634c}{Node\+Ptr}} \mbox{\hyperlink{struct___bst_node_ad59ebdaf940b5c784a67b5443bff7cb9}{right}}
+\begin{DoxyCompactList}\small\item\em Pointer to right child. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+T$>$\newline
+struct \+\_\+\+Bst\+Node$<$ \+\_\+\+T $>$}
+
+\mbox{\hyperlink{class_stack}{Stack}} element wrapper. 
+
+Data representation in \mbox{\hyperlink{class_binary_search_tree}{Binary\+Search\+Tree}} Contain pointer to next and right child,node key \begin{DoxyAuthor}{Author}
+ivanmorozfd 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+April 2020 
+\end{DoxyDate}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{struct___bst_node_aeef6e5ea41e262ad1d9b9111aa902ad2}\label{struct___bst_node_aeef6e5ea41e262ad1d9b9111aa902ad2}} 
+\index{\_BstNode$<$ \_T $>$@{\_BstNode$<$ \_T $>$}!\_BstNode@{\_BstNode}}
+\index{\_BstNode@{\_BstNode}!\_BstNode$<$ \_T $>$@{\_BstNode$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{\_BstNode()}{\_BstNode()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+\mbox{\hyperlink{struct___bst_node}{\+\_\+\+Bst\+Node}}$<$ \+\_\+T $>$\+::\mbox{\hyperlink{struct___bst_node}{\+\_\+\+Bst\+Node}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+Default \mbox{\hyperlink{struct___bst_node}{\+\_\+\+Bst\+Node}} constructor \mbox{\Hypertarget{struct___bst_node_a8dff1adc759ad9829cc45a9015a7d06d}\label{struct___bst_node_a8dff1adc759ad9829cc45a9015a7d06d}} 
+\index{\_BstNode$<$ \_T $>$@{\_BstNode$<$ \_T $>$}!\_BstNode@{\_BstNode}}
+\index{\_BstNode@{\_BstNode}!\_BstNode$<$ \_T $>$@{\_BstNode$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{\_BstNode()}{\_BstNode()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+\mbox{\hyperlink{struct___bst_node}{\+\_\+\+Bst\+Node}}$<$ \+\_\+T $>$\+::\mbox{\hyperlink{struct___bst_node}{\+\_\+\+Bst\+Node}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___bst_node_a0867027d84616eea23b6ce800a4af91f}{value\+Type}}}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Parameterized \mbox{\hyperlink{struct___bst_node}{\+\_\+\+Bst\+Node}} constructor 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em value\+Type\&} & Node data \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+source/repos/\+Data-\/structures/\+Main/\+Main/Binary\+Search\+Tree.\+h\end{DoxyCompactItemize}

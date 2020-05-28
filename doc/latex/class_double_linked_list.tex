@@ -1,0 +1,380 @@
+\hypertarget{class_double_linked_list}{}\doxysection{Double\+Linked\+List$<$ \+\_\+T $>$ Class Template Reference}
+\label{class_double_linked_list}\index{DoubleLinkedList$<$ \_T $>$@{DoubleLinkedList$<$ \_T $>$}}
+
+
+Use to store data.  
+
+
+
+
+{\ttfamily \#include $<$Double\+Linked\+List.\+h$>$}
+
+
+
+Inheritance diagram for Double\+Linked\+List$<$ \+\_\+T $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=199pt]{class_double_linked_list__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Double\+Linked\+List$<$ \+\_\+T $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=199pt]{class_double_linked_list__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_double_linked_list_a395a321fadc90c25eebb2127a5f97b74}\label{class_double_linked_list_a395a321fadc90c25eebb2127a5f97b74}} 
+typedef \mbox{\hyperlink{class_double_linked_list_iterator}{Double\+Linked\+List\+Iterator}}$<$ \+\_\+T $>$ \mbox{\hyperlink{class_double_linked_list_a395a321fadc90c25eebb2127a5f97b74}{iterator}}
+\begin{DoxyCompactList}\small\item\em iterator for \mbox{\hyperlink{class_double_linked_list}{Double\+Linked\+List}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_double_linked_list_a487d8ecf00bb6893c922659a9eb7f889}\label{class_double_linked_list_a487d8ecf00bb6893c922659a9eb7f889}} 
+typedef \mbox{\hyperlink{class_double_linked_list_iterator}{Double\+Linked\+List\+Iterator}}$<$ const \+\_\+T $>$ \mbox{\hyperlink{class_double_linked_list_a487d8ecf00bb6893c922659a9eb7f889}{const\+\_\+iterator}}
+\begin{DoxyCompactList}\small\item\em const iterator for \mbox{\hyperlink{class_double_linked_list}{Double\+Linked\+List}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_double_linked_list}{Double\+Linked\+List}}$<$ \+\_\+T $>$\+::\mbox{\hyperlink{class_double_linked_list_a395a321fadc90c25eebb2127a5f97b74}{iterator}} \mbox{\hyperlink{class_double_linked_list_a5ce0a3ba570be5e075b8ead3cbaf6cc6}{begin}} ()
+\item 
+\mbox{\hyperlink{class_double_linked_list}{Double\+Linked\+List}}$<$ \+\_\+T $>$\+::\mbox{\hyperlink{class_double_linked_list_a395a321fadc90c25eebb2127a5f97b74}{iterator}} \mbox{\hyperlink{class_double_linked_list_aee32ffcad5db306baf9e37ade157f5e5}{end}} ()
+\item 
+\mbox{\hyperlink{class_double_linked_list}{Double\+Linked\+List}}$<$ \+\_\+T $>$\+::\mbox{\hyperlink{class_double_linked_list_a487d8ecf00bb6893c922659a9eb7f889}{const\+\_\+iterator}} \mbox{\hyperlink{class_double_linked_list_affb182c101de74daa3c2f335a892d5b0}{begin}} () const
+\item 
+\mbox{\hyperlink{class_double_linked_list}{Double\+Linked\+List}}$<$ \+\_\+T $>$\+::\mbox{\hyperlink{class_double_linked_list_a487d8ecf00bb6893c922659a9eb7f889}{const\+\_\+iterator}} \mbox{\hyperlink{class_double_linked_list_a4841128eb8a71df229e3c725285c8549}{end}} () const
+\item 
+\mbox{\hyperlink{class_double_linked_list}{Double\+Linked\+List}}$<$ \+\_\+T $>$\+::\mbox{\hyperlink{class_double_linked_list_a395a321fadc90c25eebb2127a5f97b74}{iterator}} \mbox{\hyperlink{class_double_linked_list_a154b3e7db16f33404e855a4b12b72fb1}{rbegin}} ()
+\item 
+\mbox{\hyperlink{class_double_linked_list}{Double\+Linked\+List}}$<$ \+\_\+T $>$\+::\mbox{\hyperlink{class_double_linked_list_a395a321fadc90c25eebb2127a5f97b74}{iterator}} \mbox{\hyperlink{class_double_linked_list_aadf75498eafb2a670794ab219bde4daa}{rend}} ()
+\item 
+\mbox{\Hypertarget{class_double_linked_list_a384689e72268fbc0629555095f2d4c55}\label{class_double_linked_list_a384689e72268fbc0629555095f2d4c55}} 
+size\+\_\+t {\bfseries get\+Size} () const
+\item 
+bool \mbox{\hyperlink{class_double_linked_list_a292cfb933899a205c6f1295ec401a22f}{is\+Empty}} () const override
+\item 
+value\+Type \mbox{\hyperlink{class_double_linked_list_ad7213e06b94f3cbf6d123a20611e4212}{front}} () const
+\item 
+value\+Type \mbox{\hyperlink{class_double_linked_list_ac8a82e9f74c04f6109a52e3bb390eef8}{back}} () const
+\item 
+void \mbox{\hyperlink{class_double_linked_list_a0146659bf107430d9d3705ca1de5c986}{pop\+\_\+back}} ()
+\item 
+void \mbox{\hyperlink{class_double_linked_list_a7ef6f0cbb3b088654d00eb41565d7848}{pop\+\_\+front}} ()
+\item 
+void \mbox{\hyperlink{class_double_linked_list_aac5afa4d0ee5a3216a4805d5cc73067c}{push\+\_\+back}} (const\+\_\+reference item)
+\item 
+void \mbox{\hyperlink{class_double_linked_list_a87126edca55d27e8484d77c6a91ef923}{push\+\_\+front}} (const\+\_\+reference item)
+\item 
+void \mbox{\hyperlink{class_double_linked_list_a2bcb539c4e7af6684f85a5052c6a4777}{clear}} ()
+\item 
+void \mbox{\hyperlink{class_double_linked_list_a0d4b06f0fc9d43a31e186a20dc9d29a5}{reverse}} ()
+\item 
+void \mbox{\hyperlink{class_double_linked_list_a326fe8a64b66a9fbdd7798141bbf146a}{erase}} (size\+\_\+t pos)
+\item 
+void \mbox{\hyperlink{class_double_linked_list_a4bece4ec238e77d23fa9550afed63e3f}{erase}} (size\+\_\+t beg, size\+\_\+t \mbox{\hyperlink{class_double_linked_list_aee32ffcad5db306baf9e37ade157f5e5}{end}})
+\item 
+void \mbox{\hyperlink{class_double_linked_list_abfcf60c3575b68f52b5e335bc6ab7f61}{replase}} (const\+\_\+reference item, size\+\_\+t pos)
+\item 
+void \mbox{\hyperlink{class_double_linked_list_a064c5d4e1401b3b39b512fa675f52cdc}{insert}} (const\+\_\+reference item, size\+\_\+t pos)
+\item 
+\mbox{\Hypertarget{class_double_linked_list_a528783686fcfb7133c54dec2e6a61dea}\label{class_double_linked_list_a528783686fcfb7133c54dec2e6a61dea}} 
+{\bfseries Double\+Linked\+List} (const std\+::initializer\+\_\+list$<$ value\+Type $>$ \&data)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_double_linked_list_a50a3acc7aec4f208e81ede2d5286e2d4}\label{class_double_linked_list_a50a3acc7aec4f208e81ede2d5286e2d4}} 
+friend {\bfseries Double\+Linked\+List\+Iterator$<$ \+\_\+\+T $>$}
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_double_linked_list_a0a9a6058d57d87846d7c06f4255f80d9}\label{class_double_linked_list_a0a9a6058d57d87846d7c06f4255f80d9}} 
+class {\bfseries Double\+Linked\+List\+Helper}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+T$>$\newline
+class Double\+Linked\+List$<$ \+\_\+\+T $>$}
+
+Use to store data. 
+
+\mbox{\hyperlink{class_double_linked_list}{Double\+Linked\+List}} class \begin{DoxyAuthor}{Author}
+ivanmorozfd 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+April 2020 
+\end{DoxyDate}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_double_linked_list_ac8a82e9f74c04f6109a52e3bb390eef8}\label{class_double_linked_list_ac8a82e9f74c04f6109a52e3bb390eef8}} 
+\index{DoubleLinkedList$<$ \_T $>$@{DoubleLinkedList$<$ \_T $>$}!back@{back}}
+\index{back@{back}!DoubleLinkedList$<$ \_T $>$@{DoubleLinkedList$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{back()}{back()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+value\+Type \mbox{\hyperlink{class_double_linked_list}{Double\+Linked\+List}}$<$ \+\_\+T $>$\+::back (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns the last element 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em value\+Type} & \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+% FIG 0
+\mbox{\Hypertarget{class_double_linked_list_a5ce0a3ba570be5e075b8ead3cbaf6cc6}\label{class_double_linked_list_a5ce0a3ba570be5e075b8ead3cbaf6cc6}} 
+\index{DoubleLinkedList$<$ \_T $>$@{DoubleLinkedList$<$ \_T $>$}!begin@{begin}}
+\index{begin@{begin}!DoubleLinkedList$<$ \_T $>$@{DoubleLinkedList$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{begin()}{begin()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+\mbox{\hyperlink{class_double_linked_list}{Double\+Linked\+List}}$<$\+\_\+T$>$\+::\mbox{\hyperlink{class_double_linked_list_a395a321fadc90c25eebb2127a5f97b74}{iterator}} \mbox{\hyperlink{class_double_linked_list}{Double\+Linked\+List}}$<$ \+\_\+T $>$\+::begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns an const iterator to the beginning Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{class_double_linked_list_affb182c101de74daa3c2f335a892d5b0}\label{class_double_linked_list_affb182c101de74daa3c2f335a892d5b0}} 
+\index{DoubleLinkedList$<$ \_T $>$@{DoubleLinkedList$<$ \_T $>$}!begin@{begin}}
+\index{begin@{begin}!DoubleLinkedList$<$ \_T $>$@{DoubleLinkedList$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{begin()}{begin()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+\mbox{\hyperlink{class_double_linked_list}{Double\+Linked\+List}}$<$\+\_\+T$>$\+::\mbox{\hyperlink{class_double_linked_list_a487d8ecf00bb6893c922659a9eb7f889}{const\+\_\+iterator}} \mbox{\hyperlink{class_double_linked_list}{Double\+Linked\+List}}$<$ \+\_\+T $>$\+::begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns an const iterator to the beginning Here is the call graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{class_double_linked_list_a2bcb539c4e7af6684f85a5052c6a4777}\label{class_double_linked_list_a2bcb539c4e7af6684f85a5052c6a4777}} 
+\index{DoubleLinkedList$<$ \_T $>$@{DoubleLinkedList$<$ \_T $>$}!clear@{clear}}
+\index{clear@{clear}!DoubleLinkedList$<$ \_T $>$@{DoubleLinkedList$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+void \mbox{\hyperlink{class_double_linked_list}{Double\+Linked\+List}}$<$ \+\_\+T $>$\+::clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Clear the contents Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_double_linked_list_a2bcb539c4e7af6684f85a5052c6a4777_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_double_linked_list_aee32ffcad5db306baf9e37ade157f5e5}\label{class_double_linked_list_aee32ffcad5db306baf9e37ade157f5e5}} 
+\index{DoubleLinkedList$<$ \_T $>$@{DoubleLinkedList$<$ \_T $>$}!end@{end}}
+\index{end@{end}!DoubleLinkedList$<$ \_T $>$@{DoubleLinkedList$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{end()}{end()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+\mbox{\hyperlink{class_double_linked_list}{Double\+Linked\+List}}$<$\+\_\+T$>$\+::\mbox{\hyperlink{class_double_linked_list_a395a321fadc90c25eebb2127a5f97b74}{iterator}} \mbox{\hyperlink{class_double_linked_list}{Double\+Linked\+List}}$<$ \+\_\+T $>$\+::end (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns an iterator to the end Here is the caller graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{class_double_linked_list_a4841128eb8a71df229e3c725285c8549}\label{class_double_linked_list_a4841128eb8a71df229e3c725285c8549}} 
+\index{DoubleLinkedList$<$ \_T $>$@{DoubleLinkedList$<$ \_T $>$}!end@{end}}
+\index{end@{end}!DoubleLinkedList$<$ \_T $>$@{DoubleLinkedList$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{end()}{end()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+\mbox{\hyperlink{class_double_linked_list}{Double\+Linked\+List}}$<$\+\_\+T$>$\+::\mbox{\hyperlink{class_double_linked_list_a487d8ecf00bb6893c922659a9eb7f889}{const\+\_\+iterator}} \mbox{\hyperlink{class_double_linked_list}{Double\+Linked\+List}}$<$ \+\_\+T $>$\+::end (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns an const iterator to the end Here is the call graph for this function\+:
+% FIG 4
+\mbox{\Hypertarget{class_double_linked_list_a4bece4ec238e77d23fa9550afed63e3f}\label{class_double_linked_list_a4bece4ec238e77d23fa9550afed63e3f}} 
+\index{DoubleLinkedList$<$ \_T $>$@{DoubleLinkedList$<$ \_T $>$}!erase@{erase}}
+\index{erase@{erase}!DoubleLinkedList$<$ \_T $>$@{DoubleLinkedList$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{erase()}{erase()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+void \mbox{\hyperlink{class_double_linked_list}{Double\+Linked\+List}}$<$ \+\_\+T $>$\+::erase (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{beg,  }\item[{size\+\_\+t}]{end }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Remove element from list by positions 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em beg} & Begin position \\
+\hline
+\mbox{\texttt{ in}}  & {\em end} & End position \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+% FIG 5
+\mbox{\Hypertarget{class_double_linked_list_a326fe8a64b66a9fbdd7798141bbf146a}\label{class_double_linked_list_a326fe8a64b66a9fbdd7798141bbf146a}} 
+\index{DoubleLinkedList$<$ \_T $>$@{DoubleLinkedList$<$ \_T $>$}!erase@{erase}}
+\index{erase@{erase}!DoubleLinkedList$<$ \_T $>$@{DoubleLinkedList$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{erase()}{erase()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+void \mbox{\hyperlink{class_double_linked_list}{Double\+Linked\+List}}$<$ \+\_\+T $>$\+::erase (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Remove element from list by position 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em size\+\_\+t} & Position in list \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+% FIG 6
+Here is the caller graph for this function\+:
+% FIG 7
+\mbox{\Hypertarget{class_double_linked_list_ad7213e06b94f3cbf6d123a20611e4212}\label{class_double_linked_list_ad7213e06b94f3cbf6d123a20611e4212}} 
+\index{DoubleLinkedList$<$ \_T $>$@{DoubleLinkedList$<$ \_T $>$}!front@{front}}
+\index{front@{front}!DoubleLinkedList$<$ \_T $>$@{DoubleLinkedList$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{front()}{front()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+value\+Type \mbox{\hyperlink{class_double_linked_list}{Double\+Linked\+List}}$<$ \+\_\+T $>$\+::front (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns the first element 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em value\+Type} & \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+% FIG 8
+\mbox{\Hypertarget{class_double_linked_list_a064c5d4e1401b3b39b512fa675f52cdc}\label{class_double_linked_list_a064c5d4e1401b3b39b512fa675f52cdc}} 
+\index{DoubleLinkedList$<$ \_T $>$@{DoubleLinkedList$<$ \_T $>$}!insert@{insert}}
+\index{insert@{insert}!DoubleLinkedList$<$ \_T $>$@{DoubleLinkedList$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{insert()}{insert()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+void \mbox{\hyperlink{class_double_linked_list}{Double\+Linked\+List}}$<$ \+\_\+T $>$\+::insert (\begin{DoxyParamCaption}\item[{const\+\_\+reference}]{item,  }\item[{size\+\_\+t}]{pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Insert item to list 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em item} & value \\
+\hline
+\mbox{\texttt{ in}}  & {\em position} & to insert \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+% FIG 9
+\mbox{\Hypertarget{class_double_linked_list_a292cfb933899a205c6f1295ec401a22f}\label{class_double_linked_list_a292cfb933899a205c6f1295ec401a22f}} 
+\index{DoubleLinkedList$<$ \_T $>$@{DoubleLinkedList$<$ \_T $>$}!isEmpty@{isEmpty}}
+\index{isEmpty@{isEmpty}!DoubleLinkedList$<$ \_T $>$@{DoubleLinkedList$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{isEmpty()}{isEmpty()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+bool \mbox{\hyperlink{class_double_linked_list}{Double\+Linked\+List}}$<$ \+\_\+T $>$\+::is\+Empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Checks whether the list is empty 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em bool} & True,if \mbox{\hyperlink{class_double_linked_list}{Double\+Linked\+List}} is empty,otherwise False \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_container}{Container}}.
+
+Here is the caller graph for this function\+:
+% FIG 10
+\mbox{\Hypertarget{class_double_linked_list_a0146659bf107430d9d3705ca1de5c986}\label{class_double_linked_list_a0146659bf107430d9d3705ca1de5c986}} 
+\index{DoubleLinkedList$<$ \_T $>$@{DoubleLinkedList$<$ \_T $>$}!pop\_back@{pop\_back}}
+\index{pop\_back@{pop\_back}!DoubleLinkedList$<$ \_T $>$@{DoubleLinkedList$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{pop\_back()}{pop\_back()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+void \mbox{\hyperlink{class_double_linked_list}{Double\+Linked\+List}}$<$ \+\_\+T $>$\+::pop\+\_\+back (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Removes the last element Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_double_linked_list_a0146659bf107430d9d3705ca1de5c986_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_double_linked_list_a0146659bf107430d9d3705ca1de5c986_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_double_linked_list_a7ef6f0cbb3b088654d00eb41565d7848}\label{class_double_linked_list_a7ef6f0cbb3b088654d00eb41565d7848}} 
+\index{DoubleLinkedList$<$ \_T $>$@{DoubleLinkedList$<$ \_T $>$}!pop\_front@{pop\_front}}
+\index{pop\_front@{pop\_front}!DoubleLinkedList$<$ \_T $>$@{DoubleLinkedList$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{pop\_front()}{pop\_front()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+void \mbox{\hyperlink{class_double_linked_list}{Double\+Linked\+List}}$<$ \+\_\+T $>$\+::pop\+\_\+front (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Removes the first element Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_double_linked_list_a7ef6f0cbb3b088654d00eb41565d7848_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_double_linked_list_aac5afa4d0ee5a3216a4805d5cc73067c}\label{class_double_linked_list_aac5afa4d0ee5a3216a4805d5cc73067c}} 
+\index{DoubleLinkedList$<$ \_T $>$@{DoubleLinkedList$<$ \_T $>$}!push\_back@{push\_back}}
+\index{push\_back@{push\_back}!DoubleLinkedList$<$ \_T $>$@{DoubleLinkedList$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{push\_back()}{push\_back()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+void \mbox{\hyperlink{class_double_linked_list}{Double\+Linked\+List}}$<$ \+\_\+T $>$\+::push\+\_\+back (\begin{DoxyParamCaption}\item[{const\+\_\+reference}]{item }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Adds element to the end 
+\begin{DoxyParams}{Parameters}
+{\em value\+Type} & item \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:
+% FIG 11
+\mbox{\Hypertarget{class_double_linked_list_a87126edca55d27e8484d77c6a91ef923}\label{class_double_linked_list_a87126edca55d27e8484d77c6a91ef923}} 
+\index{DoubleLinkedList$<$ \_T $>$@{DoubleLinkedList$<$ \_T $>$}!push\_front@{push\_front}}
+\index{push\_front@{push\_front}!DoubleLinkedList$<$ \_T $>$@{DoubleLinkedList$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{push\_front()}{push\_front()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+void \mbox{\hyperlink{class_double_linked_list}{Double\+Linked\+List}}$<$ \+\_\+T $>$\+::push\+\_\+front (\begin{DoxyParamCaption}\item[{const\+\_\+reference}]{item }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Adds element to the beginning 
+\begin{DoxyParams}{Parameters}
+{\em value\+Type} & item \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:
+% FIG 12
+\mbox{\Hypertarget{class_double_linked_list_a154b3e7db16f33404e855a4b12b72fb1}\label{class_double_linked_list_a154b3e7db16f33404e855a4b12b72fb1}} 
+\index{DoubleLinkedList$<$ \_T $>$@{DoubleLinkedList$<$ \_T $>$}!rbegin@{rbegin}}
+\index{rbegin@{rbegin}!DoubleLinkedList$<$ \_T $>$@{DoubleLinkedList$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{rbegin()}{rbegin()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+\mbox{\hyperlink{class_double_linked_list}{Double\+Linked\+List}}$<$\+\_\+T$>$\+::\mbox{\hyperlink{class_double_linked_list_a395a321fadc90c25eebb2127a5f97b74}{iterator}} \mbox{\hyperlink{class_double_linked_list}{Double\+Linked\+List}}$<$ \+\_\+T $>$\+::rbegin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns an reversed iterator to the beginning Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_double_linked_list_a154b3e7db16f33404e855a4b12b72fb1_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_double_linked_list_aadf75498eafb2a670794ab219bde4daa}\label{class_double_linked_list_aadf75498eafb2a670794ab219bde4daa}} 
+\index{DoubleLinkedList$<$ \_T $>$@{DoubleLinkedList$<$ \_T $>$}!rend@{rend}}
+\index{rend@{rend}!DoubleLinkedList$<$ \_T $>$@{DoubleLinkedList$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{rend()}{rend()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+\mbox{\hyperlink{class_double_linked_list}{Double\+Linked\+List}}$<$\+\_\+T$>$\+::\mbox{\hyperlink{class_double_linked_list_a395a321fadc90c25eebb2127a5f97b74}{iterator}} \mbox{\hyperlink{class_double_linked_list}{Double\+Linked\+List}}$<$ \+\_\+T $>$\+::rend (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns an reversed iterator to the end Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_double_linked_list_aadf75498eafb2a670794ab219bde4daa_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_double_linked_list_abfcf60c3575b68f52b5e335bc6ab7f61}\label{class_double_linked_list_abfcf60c3575b68f52b5e335bc6ab7f61}} 
+\index{DoubleLinkedList$<$ \_T $>$@{DoubleLinkedList$<$ \_T $>$}!replase@{replase}}
+\index{replase@{replase}!DoubleLinkedList$<$ \_T $>$@{DoubleLinkedList$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{replase()}{replase()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+void \mbox{\hyperlink{class_double_linked_list}{Double\+Linked\+List}}$<$ \+\_\+T $>$\+::replase (\begin{DoxyParamCaption}\item[{const\+\_\+reference}]{item,  }\item[{size\+\_\+t}]{pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Replase element in list 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em item} & value \\
+\hline
+\mbox{\texttt{ in}}  & {\em position} & to replace \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+% FIG 13
+\mbox{\Hypertarget{class_double_linked_list_a0d4b06f0fc9d43a31e186a20dc9d29a5}\label{class_double_linked_list_a0d4b06f0fc9d43a31e186a20dc9d29a5}} 
+\index{DoubleLinkedList$<$ \_T $>$@{DoubleLinkedList$<$ \_T $>$}!reverse@{reverse}}
+\index{reverse@{reverse}!DoubleLinkedList$<$ \_T $>$@{DoubleLinkedList$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{reverse()}{reverse()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+void \mbox{\hyperlink{class_double_linked_list}{Double\+Linked\+List}}$<$ \+\_\+T $>$\+::reverse (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Reverse list content 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+source/repos/\+Data-\/structures/\+Main/\+Main/Double\+Linked\+List.\+h\end{DoxyCompactItemize}

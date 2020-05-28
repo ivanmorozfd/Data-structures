@@ -1,0 +1,104 @@
+\hypertarget{struct___queue_node}{}\doxysection{\+\_\+\+Queue\+Node$<$ \+\_\+T $>$ Struct Template Reference}
+\label{struct___queue_node}\index{\_QueueNode$<$ \_T $>$@{\_QueueNode$<$ \_T $>$}}
+
+
+\mbox{\hyperlink{class_queue}{Queue}} element wrapper.  
+
+
+
+
+{\ttfamily \#include $<$Queue.\+h$>$}
+
+
+
+Collaboration diagram for \+\_\+\+Queue\+Node$<$ \+\_\+T $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=221pt]{struct___queue_node__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct___queue_node_aeba86bd7f9c266eb07331afe824e6d3a}\label{struct___queue_node_aeba86bd7f9c266eb07331afe824e6d3a}} 
+typedef \mbox{\hyperlink{struct___queue_node}{\+\_\+\+Queue\+Node}} $\ast$ \mbox{\hyperlink{struct___queue_node_aeba86bd7f9c266eb07331afe824e6d3a}{Node\+Ptr}}
+\begin{DoxyCompactList}\small\item\em Node pointer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct___queue_node_a29f3344b542a4ff8b75569ac20793ea7}\label{struct___queue_node_a29f3344b542a4ff8b75569ac20793ea7}} 
+typedef \mbox{\hyperlink{struct___queue_node}{\+\_\+\+Queue\+Node}} \& \mbox{\hyperlink{struct___queue_node_a29f3344b542a4ff8b75569ac20793ea7}{Node\+Ref}}
+\begin{DoxyCompactList}\small\item\em Node reference. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct___queue_node_aab9f7dcbad90c0ba14fb2759fc3fe51b}\label{struct___queue_node_aab9f7dcbad90c0ba14fb2759fc3fe51b}} 
+using \mbox{\hyperlink{struct___queue_node_aab9f7dcbad90c0ba14fb2759fc3fe51b}{value\+Type}} = \+\_\+T
+\begin{DoxyCompactList}\small\item\em Element type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct___queue_node_a3993e0b217e65f49e88fe50f9304a0b2}\label{struct___queue_node_a3993e0b217e65f49e88fe50f9304a0b2}} 
+using \mbox{\hyperlink{struct___queue_node_a3993e0b217e65f49e88fe50f9304a0b2}{reference}} = \mbox{\hyperlink{struct___queue_node_aab9f7dcbad90c0ba14fb2759fc3fe51b}{value\+Type}} \&
+\begin{DoxyCompactList}\small\item\em Reference element type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct___queue_node_a42825bf8f8fb29dc69005c305cf0456e}\label{struct___queue_node_a42825bf8f8fb29dc69005c305cf0456e}} 
+using \mbox{\hyperlink{struct___queue_node_a42825bf8f8fb29dc69005c305cf0456e}{const\+\_\+reference}} = const \+\_\+T \&
+\begin{DoxyCompactList}\small\item\em Reference element type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct___queue_node_a3be41b0ff716e3a4423b36515ee0527a}\label{struct___queue_node_a3be41b0ff716e3a4423b36515ee0527a}} 
+{\bfseries \+\_\+\+Queue\+Node} (const \mbox{\hyperlink{struct___queue_node_a29f3344b542a4ff8b75569ac20793ea7}{Node\+Ref}} \&)=delete
+\item 
+\mbox{\Hypertarget{struct___queue_node_abd17505de3527da74c2b38259bbb8367}\label{struct___queue_node_abd17505de3527da74c2b38259bbb8367}} 
+\mbox{\hyperlink{struct___queue_node}{\+\_\+\+Queue\+Node}} \& {\bfseries operator=} (const \mbox{\hyperlink{struct___queue_node_a29f3344b542a4ff8b75569ac20793ea7}{Node\+Ref}} \&)=delete
+\item 
+\mbox{\hyperlink{struct___queue_node_a26632c44159b12d9bc43189194634a79}{\+\_\+\+Queue\+Node}} ()=default
+\item 
+\mbox{\hyperlink{struct___queue_node_a476a77d02a76319a28792f25c6e08f6a}{\+\_\+\+Queue\+Node}} (\mbox{\hyperlink{struct___queue_node_a42825bf8f8fb29dc69005c305cf0456e}{const\+\_\+reference}} \mbox{\hyperlink{struct___queue_node_ac91ce46fb548618962c94e997c60a2e9}{data}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct___queue_node_ac91ce46fb548618962c94e997c60a2e9}\label{struct___queue_node_ac91ce46fb548618962c94e997c60a2e9}} 
+\mbox{\hyperlink{struct___queue_node_aab9f7dcbad90c0ba14fb2759fc3fe51b}{value\+Type}} \mbox{\hyperlink{struct___queue_node_ac91ce46fb548618962c94e997c60a2e9}{data}}
+\begin{DoxyCompactList}\small\item\em Node value. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct___queue_node_af713303f47aad7ec114228351b1e7b80}\label{struct___queue_node_af713303f47aad7ec114228351b1e7b80}} 
+\mbox{\hyperlink{struct___queue_node_aeba86bd7f9c266eb07331afe824e6d3a}{Node\+Ptr}} \mbox{\hyperlink{struct___queue_node_af713303f47aad7ec114228351b1e7b80}{next}}
+\begin{DoxyCompactList}\small\item\em Pointer to previous Node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+T$>$\newline
+struct \+\_\+\+Queue\+Node$<$ \+\_\+\+T $>$}
+
+\mbox{\hyperlink{class_queue}{Queue}} element wrapper. 
+
+Data representation in queue Contain pointer to next element,and data \begin{DoxyAuthor}{Author}
+ivanmorozfd 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+April 2020 
+\end{DoxyDate}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{struct___queue_node_a26632c44159b12d9bc43189194634a79}\label{struct___queue_node_a26632c44159b12d9bc43189194634a79}} 
+\index{\_QueueNode$<$ \_T $>$@{\_QueueNode$<$ \_T $>$}!\_QueueNode@{\_QueueNode}}
+\index{\_QueueNode@{\_QueueNode}!\_QueueNode$<$ \_T $>$@{\_QueueNode$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{\_QueueNode()}{\_QueueNode()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+\mbox{\hyperlink{struct___queue_node}{\+\_\+\+Queue\+Node}}$<$ \+\_\+T $>$\+::\mbox{\hyperlink{struct___queue_node}{\+\_\+\+Queue\+Node}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+Default \mbox{\hyperlink{struct___queue_node}{\+\_\+\+Queue\+Node}} constructor \mbox{\Hypertarget{struct___queue_node_a476a77d02a76319a28792f25c6e08f6a}\label{struct___queue_node_a476a77d02a76319a28792f25c6e08f6a}} 
+\index{\_QueueNode$<$ \_T $>$@{\_QueueNode$<$ \_T $>$}!\_QueueNode@{\_QueueNode}}
+\index{\_QueueNode@{\_QueueNode}!\_QueueNode$<$ \_T $>$@{\_QueueNode$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{\_QueueNode()}{\_QueueNode()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+\mbox{\hyperlink{struct___queue_node}{\+\_\+\+Queue\+Node}}$<$ \+\_\+T $>$\+::\mbox{\hyperlink{struct___queue_node}{\+\_\+\+Queue\+Node}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___queue_node_a42825bf8f8fb29dc69005c305cf0456e}{const\+\_\+reference}}}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Parameterized \mbox{\hyperlink{struct___queue_node}{\+\_\+\+Queue\+Node}} constructor 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em value\+Type\&} & Node data \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+source/repos/\+Data-\/structures/\+Main/\+Main/Queue.\+h\end{DoxyCompactItemize}

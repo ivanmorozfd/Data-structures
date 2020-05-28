@@ -1,0 +1,250 @@
+\hypertarget{class_stack}{}\doxysection{Stack$<$ \+\_\+T $>$ Class Template Reference}
+\label{class_stack}\index{Stack$<$ \_T $>$@{Stack$<$ \_T $>$}}
+
+
+Use to store data.  
+
+
+
+
+{\ttfamily \#include $<$Stack.\+h$>$}
+
+
+
+Inheritance diagram for Stack$<$ \+\_\+T $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=151pt]{class_stack__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Stack$<$ \+\_\+T $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=151pt]{class_stack__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{class_stack_a77a06326b5cfba36588f8d3c2f652e7a}{get\+Size}} () const
+\item 
+reference \mbox{\hyperlink{class_stack_aae55fe2f4efe8ff3f6a1320e00a7fe3c}{peek}} () const
+\item 
+bool \mbox{\hyperlink{class_stack_a7949d50429dca7f72ea2cddcb8f4d42e}{is\+Empty}} () const override
+\item 
+void \mbox{\hyperlink{class_stack_a9251d3e0b9796fb66be45467a97d2f4c}{push}} (value\+Type item)
+\item 
+void \mbox{\hyperlink{class_stack_a2e97372145e3cbe22ed4f9f95cdded48}{pop}} ()
+\item 
+void \mbox{\hyperlink{class_stack_a9351f50b5b8a5769bdb53a72d9578afb}{clear}} ()
+\item 
+bool \mbox{\hyperlink{class_stack_a32406130e0f2a58e32e739bf86a6dc29}{contain}} (const reference value) const
+\item 
+\mbox{\hyperlink{class_stack_abb559d4d3732c8404df8330a0bec045c}{Stack}} ()
+\item 
+\mbox{\hyperlink{class_stack_a1186d1d4b1578d2da375f39c74b7282f}{Stack}} (const std\+::initializer\+\_\+list$<$ value\+Type $>$ \&data)
+\item 
+\mbox{\hyperlink{class_stack_ae06a23f4a1155871babd9aac6bfae9aa}{$\sim$\+Stack}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_stack_abee50598be4a7edc7a7f6abc3d71630c}\label{class_stack_abee50598be4a7edc7a7f6abc3d71630c}} 
+class {\bfseries Stack\+Helper}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+T$>$\newline
+class Stack$<$ \+\_\+\+T $>$}
+
+Use to store data. 
+
+\mbox{\hyperlink{class_stack}{Stack}} class \begin{DoxyAuthor}{Author}
+ivanmorozfd 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+April 2020 
+\end{DoxyDate}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_stack_abb559d4d3732c8404df8330a0bec045c}\label{class_stack_abb559d4d3732c8404df8330a0bec045c}} 
+\index{Stack$<$ \_T $>$@{Stack$<$ \_T $>$}!Stack@{Stack}}
+\index{Stack@{Stack}!Stack$<$ \_T $>$@{Stack$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{Stack()}{Stack()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+\mbox{\hyperlink{class_stack}{Stack}}$<$ \+\_\+T $>$\+::\mbox{\hyperlink{class_stack}{Stack}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default \mbox{\hyperlink{class_stack}{Stack}} constructor \mbox{\Hypertarget{class_stack_a1186d1d4b1578d2da375f39c74b7282f}\label{class_stack_a1186d1d4b1578d2da375f39c74b7282f}} 
+\index{Stack$<$ \_T $>$@{Stack$<$ \_T $>$}!Stack@{Stack}}
+\index{Stack@{Stack}!Stack$<$ \_T $>$@{Stack$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{Stack()}{Stack()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+\mbox{\hyperlink{class_stack}{Stack}}$<$ \+\_\+T $>$\+::\mbox{\hyperlink{class_stack}{Stack}} (\begin{DoxyParamCaption}\item[{const std\+::initializer\+\_\+list$<$ value\+Type $>$ \&}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Parameterized \mbox{\hyperlink{class_stack}{Stack}} constructor 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em initializer\+\_\+list$<$value\+Type$>$list} & S\+TL init list \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=259pt]{class_stack_a1186d1d4b1578d2da375f39c74b7282f_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_stack_ae06a23f4a1155871babd9aac6bfae9aa}\label{class_stack_ae06a23f4a1155871babd9aac6bfae9aa}} 
+\index{Stack$<$ \_T $>$@{Stack$<$ \_T $>$}!````~Stack@{$\sim$Stack}}
+\index{````~Stack@{$\sim$Stack}!Stack$<$ \_T $>$@{Stack$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$Stack()}{~Stack()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+\mbox{\hyperlink{class_stack}{Stack}}$<$ \+\_\+T $>$\+::$\sim$\mbox{\hyperlink{class_stack}{Stack}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\hyperlink{class_stack}{Stack}} destructor Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_stack_ae06a23f4a1155871babd9aac6bfae9aa_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_stack_a9351f50b5b8a5769bdb53a72d9578afb}\label{class_stack_a9351f50b5b8a5769bdb53a72d9578afb}} 
+\index{Stack$<$ \_T $>$@{Stack$<$ \_T $>$}!clear@{clear}}
+\index{clear@{clear}!Stack$<$ \_T $>$@{Stack$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+void \mbox{\hyperlink{class_stack}{Stack}}$<$ \+\_\+T $>$\+::clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Clear stack Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_stack_a9351f50b5b8a5769bdb53a72d9578afb_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=265pt]{class_stack_a9351f50b5b8a5769bdb53a72d9578afb_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_stack_a32406130e0f2a58e32e739bf86a6dc29}\label{class_stack_a32406130e0f2a58e32e739bf86a6dc29}} 
+\index{Stack$<$ \_T $>$@{Stack$<$ \_T $>$}!contain@{contain}}
+\index{contain@{contain}!Stack$<$ \_T $>$@{Stack$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{contain()}{contain()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+bool \mbox{\hyperlink{class_stack}{Stack}}$<$ \+\_\+T $>$\+::contain (\begin{DoxyParamCaption}\item[{const reference}]{value }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Does the item exist in the \mbox{\hyperlink{class_stack}{Stack}} 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em bool} & True, if elem exist ,otherwise false \\
+\hline
+\mbox{\texttt{ in}}  & {\em const} & reference Checked value \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_stack_a77a06326b5cfba36588f8d3c2f652e7a}\label{class_stack_a77a06326b5cfba36588f8d3c2f652e7a}} 
+\index{Stack$<$ \_T $>$@{Stack$<$ \_T $>$}!getSize@{getSize}}
+\index{getSize@{getSize}!Stack$<$ \_T $>$@{Stack$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{getSize()}{getSize()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+size\+\_\+t \mbox{\hyperlink{class_stack}{Stack}}$<$ \+\_\+T $>$\+::get\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns the stack size 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em size} & \mbox{\hyperlink{class_stack}{Stack}} size \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_stack_a7949d50429dca7f72ea2cddcb8f4d42e}\label{class_stack_a7949d50429dca7f72ea2cddcb8f4d42e}} 
+\index{Stack$<$ \_T $>$@{Stack$<$ \_T $>$}!isEmpty@{isEmpty}}
+\index{isEmpty@{isEmpty}!Stack$<$ \_T $>$@{Stack$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{isEmpty()}{isEmpty()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+bool \mbox{\hyperlink{class_stack}{Stack}}$<$ \+\_\+T $>$\+::is\+Empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Checking the \mbox{\hyperlink{class_stack}{Stack}} for empty space 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em bool} & True,if \mbox{\hyperlink{class_stack}{Stack}} is empty \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_container}{Container}}.
+
+Here is the caller graph for this function\+:
+% FIG 0
+\mbox{\Hypertarget{class_stack_aae55fe2f4efe8ff3f6a1320e00a7fe3c}\label{class_stack_aae55fe2f4efe8ff3f6a1320e00a7fe3c}} 
+\index{Stack$<$ \_T $>$@{Stack$<$ \_T $>$}!peek@{peek}}
+\index{peek@{peek}!Stack$<$ \_T $>$@{Stack$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{peek()}{peek()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+reference \mbox{\hyperlink{class_stack}{Stack}}$<$ \+\_\+T $>$\+::peek (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns the value at the top of the \mbox{\hyperlink{class_stack}{Stack}} 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em value\+Type} & \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=269pt]{class_stack_aae55fe2f4efe8ff3f6a1320e00a7fe3c_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_stack_a2e97372145e3cbe22ed4f9f95cdded48}\label{class_stack_a2e97372145e3cbe22ed4f9f95cdded48}} 
+\index{Stack$<$ \_T $>$@{Stack$<$ \_T $>$}!pop@{pop}}
+\index{pop@{pop}!Stack$<$ \_T $>$@{Stack$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{pop()}{pop()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+void \mbox{\hyperlink{class_stack}{Stack}}$<$ \+\_\+T $>$\+::pop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Remove element from the \mbox{\hyperlink{class_stack}{Stack}} Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=264pt]{class_stack_a2e97372145e3cbe22ed4f9f95cdded48_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_stack_a2e97372145e3cbe22ed4f9f95cdded48_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_stack_a9251d3e0b9796fb66be45467a97d2f4c}\label{class_stack_a9251d3e0b9796fb66be45467a97d2f4c}} 
+\index{Stack$<$ \_T $>$@{Stack$<$ \_T $>$}!push@{push}}
+\index{push@{push}!Stack$<$ \_T $>$@{Stack$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{push()}{push()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+void \mbox{\hyperlink{class_stack}{Stack}}$<$ \+\_\+T $>$\+::push (\begin{DoxyParamCaption}\item[{value\+Type}]{item }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Push element to the \mbox{\hyperlink{class_stack}{Stack}} 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em item} & Element for push \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=259pt]{class_stack_a9251d3e0b9796fb66be45467a97d2f4c_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+source/repos/\+Data-\/structures/\+Main/\+Main/Stack.\+h\end{DoxyCompactItemize}

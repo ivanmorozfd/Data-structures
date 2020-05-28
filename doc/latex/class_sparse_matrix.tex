@@ -1,0 +1,446 @@
+\hypertarget{class_sparse_matrix}{}\doxysection{Sparse\+Matrix$<$ \+\_\+T $>$ Class Template Reference}
+\label{class_sparse_matrix}\index{SparseMatrix$<$ \_T $>$@{SparseMatrix$<$ \_T $>$}}
+
+
+Use to store data in matrix view.  
+
+
+
+
+{\ttfamily \#include $<$Sparse\+Matrix.\+h$>$}
+
+
+
+Inheritance diagram for Sparse\+Matrix$<$ \+\_\+T $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=183pt]{class_sparse_matrix__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Sparse\+Matrix$<$ \+\_\+T $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=183pt]{class_sparse_matrix__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_sparse_matrix_a080e8e201e23388e486ed202c38b952b}{is\+Empty}} () const override
+\item 
+value\+Type \mbox{\hyperlink{class_sparse_matrix_ad00abb1a8baea2d51905f2b8cd23816f}{get}} (size\+\_\+t row, size\+\_\+t column) const
+\item 
+void \mbox{\hyperlink{class_sparse_matrix_ac9ddfe4058c77522c1bf7ce176d034ee}{set}} (value\+Type value, size\+\_\+t row, size\+\_\+t column)
+\item 
+size\+\_\+t \mbox{\hyperlink{class_sparse_matrix_a58c7762f84e69393f47709cbd96f0586}{get\+Rows}} () const
+\item 
+size\+\_\+t \mbox{\hyperlink{class_sparse_matrix_ab2393e56226e175961613d68c3f47b77}{get\+Columns}} () const
+\item 
+\mbox{\Hypertarget{class_sparse_matrix_a1b71549a34a16e9c88a94af64dd4d306}\label{class_sparse_matrix_a1b71549a34a16e9c88a94af64dd4d306}} 
+void {\bfseries clear} ()
+\item 
+\mbox{\hyperlink{class_sparse_matrix}{self}} \& \mbox{\hyperlink{class_sparse_matrix_a8ca35a61f45d4155dab1780945166851}{operator=}} (const \mbox{\hyperlink{class_sparse_matrix}{self}} \&other)
+\item 
+vector$<$ \+\_\+T $>$ \mbox{\hyperlink{class_sparse_matrix_acfff26463167499310db3a07d11c330f}{multiply}} (const vector$<$ \+\_\+T $>$ \&other) const
+\item 
+vector$<$ \+\_\+T $>$ \mbox{\hyperlink{class_sparse_matrix_adf6d5f851c542e92aa99c3457a112491}{operator$\ast$}} (const vector$<$ \+\_\+T $>$ \&other) const
+\item 
+\mbox{\hyperlink{class_sparse_matrix}{self}} \mbox{\hyperlink{class_sparse_matrix_a70f28fb50d1a4c13a05cd656e0d316ac}{multiply}} (const \mbox{\hyperlink{class_sparse_matrix}{self}} \&other) const
+\item 
+\mbox{\hyperlink{class_sparse_matrix}{self}} \mbox{\hyperlink{class_sparse_matrix_a25c6f895547f5cf2a6bab9a87f30f9e1}{operator$\ast$}} (const \mbox{\hyperlink{class_sparse_matrix}{self}} \&other) const
+\item 
+\mbox{\hyperlink{class_sparse_matrix}{self}} \mbox{\hyperlink{class_sparse_matrix_abe345dee3e7ae82177c13f789fa0b2c0}{add}} (const \mbox{\hyperlink{class_sparse_matrix}{self}} \&other) const
+\item 
+\mbox{\hyperlink{class_sparse_matrix}{self}} \mbox{\hyperlink{class_sparse_matrix_a11bd5bd25dbd2fc39613c53e452262a0}{operator+}} (const \mbox{\hyperlink{class_sparse_matrix}{self}} \&other) const
+\item 
+\mbox{\hyperlink{class_sparse_matrix}{self}} \mbox{\hyperlink{class_sparse_matrix_a690d974bc8a8a9c9458f8cc459698534}{subtract}} (const \mbox{\hyperlink{class_sparse_matrix}{self}} \&other) const
+\item 
+\mbox{\hyperlink{class_sparse_matrix}{self}} \mbox{\hyperlink{class_sparse_matrix_a0ad3f47b999105be0cc5272fc549431c}{operator-\/}} (const \mbox{\hyperlink{class_sparse_matrix}{self}} \&other) const
+\item 
+\mbox{\hyperlink{class_sparse_matrix_a1679439314b7585a2eede2eac9ee267d}{Sparse\+Matrix}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor init matrix with five rows and columns. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_sparse_matrix_a3e14ece4e543e4834abd0d930caceefc}{Sparse\+Matrix}} (size\+\_\+t n)
+\begin{DoxyCompactList}\small\item\em Construct square matrix. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_sparse_matrix_a71201c2652574f0691a913155af1608f}{Sparse\+Matrix}} (size\+\_\+t rows, size\+\_\+t columns)
+\begin{DoxyCompactList}\small\item\em Construct matrix with (rows,columns) dimension. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_sparse_matrix_a0384c6f2b60e5f2a7937a0b4764ed4d9}{Sparse\+Matrix}} (const \mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}}$<$ \+\_\+T $>$ \&other)
+\item 
+\mbox{\hyperlink{class_sparse_matrix_afbf6da4a8a892eb76ae5c65b22c8ce89}{$\sim$\+Sparse\+Matrix}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_sparse_matrix_a549dd392bd5b08f5ad5f905de26e3f51}\label{class_sparse_matrix_a549dd392bd5b08f5ad5f905de26e3f51}} 
+class {\bfseries Sparse\+Matrix\+Helper}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+T$>$\newline
+class Sparse\+Matrix$<$ \+\_\+\+T $>$}
+
+Use to store data in matrix view. 
+
+\mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}} class \begin{DoxyAuthor}{Author}
+ivanmorozfd 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+April 2020 
+\end{DoxyDate}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_sparse_matrix_a1679439314b7585a2eede2eac9ee267d}\label{class_sparse_matrix_a1679439314b7585a2eede2eac9ee267d}} 
+\index{SparseMatrix$<$ \_T $>$@{SparseMatrix$<$ \_T $>$}!SparseMatrix@{SparseMatrix}}
+\index{SparseMatrix@{SparseMatrix}!SparseMatrix$<$ \_T $>$@{SparseMatrix$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{SparseMatrix()}{SparseMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+\mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}}$<$ \+\_\+T $>$\+::\mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default constructor init matrix with five rows and columns. 
+
+Default \mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}} constructor \mbox{\Hypertarget{class_sparse_matrix_a3e14ece4e543e4834abd0d930caceefc}\label{class_sparse_matrix_a3e14ece4e543e4834abd0d930caceefc}} 
+\index{SparseMatrix$<$ \_T $>$@{SparseMatrix$<$ \_T $>$}!SparseMatrix@{SparseMatrix}}
+\index{SparseMatrix@{SparseMatrix}!SparseMatrix$<$ \_T $>$@{SparseMatrix$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{SparseMatrix()}{SparseMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+\mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}}$<$ \+\_\+T $>$\+::\mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}} (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct square matrix. 
+
+Default \mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}} constructor 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em size\+\_\+t} & Number of rows and columns \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_sparse_matrix_a71201c2652574f0691a913155af1608f}\label{class_sparse_matrix_a71201c2652574f0691a913155af1608f}} 
+\index{SparseMatrix$<$ \_T $>$@{SparseMatrix$<$ \_T $>$}!SparseMatrix@{SparseMatrix}}
+\index{SparseMatrix@{SparseMatrix}!SparseMatrix$<$ \_T $>$@{SparseMatrix$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{SparseMatrix()}{SparseMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+\mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}}$<$ \+\_\+T $>$\+::\mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}} (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{rows,  }\item[{size\+\_\+t}]{columns }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct matrix with (rows,columns) dimension. 
+
+Default \mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}} constructor 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em size\+\_\+t} & rows Number of rows \\
+\hline
+\mbox{\texttt{ in}}  & {\em size\+\_\+t} & columns Number of columns \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_sparse_matrix_a0384c6f2b60e5f2a7937a0b4764ed4d9}\label{class_sparse_matrix_a0384c6f2b60e5f2a7937a0b4764ed4d9}} 
+\index{SparseMatrix$<$ \_T $>$@{SparseMatrix$<$ \_T $>$}!SparseMatrix@{SparseMatrix}}
+\index{SparseMatrix@{SparseMatrix}!SparseMatrix$<$ \_T $>$@{SparseMatrix$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{SparseMatrix()}{SparseMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+\mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}}$<$ \+\_\+T $>$\+::\mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}}$<$ \+\_\+T $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sparse Matrix copy constructor 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}}} & other matrix \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_sparse_matrix_afbf6da4a8a892eb76ae5c65b22c8ce89}\label{class_sparse_matrix_afbf6da4a8a892eb76ae5c65b22c8ce89}} 
+\index{SparseMatrix$<$ \_T $>$@{SparseMatrix$<$ \_T $>$}!````~SparseMatrix@{$\sim$SparseMatrix}}
+\index{````~SparseMatrix@{$\sim$SparseMatrix}!SparseMatrix$<$ \_T $>$@{SparseMatrix$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$SparseMatrix()}{~SparseMatrix()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+\mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}}$<$ \+\_\+T $>$\+::$\sim$\mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}} destructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_sparse_matrix_abe345dee3e7ae82177c13f789fa0b2c0}\label{class_sparse_matrix_abe345dee3e7ae82177c13f789fa0b2c0}} 
+\index{SparseMatrix$<$ \_T $>$@{SparseMatrix$<$ \_T $>$}!add@{add}}
+\index{add@{add}!SparseMatrix$<$ \_T $>$@{SparseMatrix$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+\mbox{\hyperlink{class_sparse_matrix}{self}} \mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}}$<$ \+\_\+T $>$\+::add (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_sparse_matrix}{self}} \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Matrix-\/\+Matrix add method 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}}} & other matrix \\
+\hline
+\mbox{\texttt{ out}}  & {\em \mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}}} & result matrix \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=306pt]{class_sparse_matrix_abe345dee3e7ae82177c13f789fa0b2c0_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{class_sparse_matrix_abe345dee3e7ae82177c13f789fa0b2c0_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_sparse_matrix_ad00abb1a8baea2d51905f2b8cd23816f}\label{class_sparse_matrix_ad00abb1a8baea2d51905f2b8cd23816f}} 
+\index{SparseMatrix$<$ \_T $>$@{SparseMatrix$<$ \_T $>$}!get@{get}}
+\index{get@{get}!SparseMatrix$<$ \_T $>$@{SparseMatrix$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+value\+Type \mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}}$<$ \+\_\+T $>$\+::get (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{row,  }\item[{size\+\_\+t}]{column }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns element from the \mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}} 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em size\+\_\+t} & Row in \mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}} \\
+\hline
+\mbox{\texttt{ in}}  & {\em size\+\_\+t} & Column in \mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}} \\
+\hline
+\mbox{\texttt{ out}}  & {\em value\+Type} & value at (Row,Column) position \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_sparse_matrix_ad00abb1a8baea2d51905f2b8cd23816f_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_sparse_matrix_ab2393e56226e175961613d68c3f47b77}\label{class_sparse_matrix_ab2393e56226e175961613d68c3f47b77}} 
+\index{SparseMatrix$<$ \_T $>$@{SparseMatrix$<$ \_T $>$}!getColumns@{getColumns}}
+\index{getColumns@{getColumns}!SparseMatrix$<$ \_T $>$@{SparseMatrix$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{getColumns()}{getColumns()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+size\+\_\+t \mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}}$<$ \+\_\+T $>$\+::get\+Columns (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns columns count in the \mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}} 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em size\+\_\+t} & Columns count \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_sparse_matrix_a58c7762f84e69393f47709cbd96f0586}\label{class_sparse_matrix_a58c7762f84e69393f47709cbd96f0586}} 
+\index{SparseMatrix$<$ \_T $>$@{SparseMatrix$<$ \_T $>$}!getRows@{getRows}}
+\index{getRows@{getRows}!SparseMatrix$<$ \_T $>$@{SparseMatrix$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{getRows()}{getRows()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+size\+\_\+t \mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}}$<$ \+\_\+T $>$\+::get\+Rows (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns rows count in the \mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}} 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em size\+\_\+t} & Rows count \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_sparse_matrix_a080e8e201e23388e486ed202c38b952b}\label{class_sparse_matrix_a080e8e201e23388e486ed202c38b952b}} 
+\index{SparseMatrix$<$ \_T $>$@{SparseMatrix$<$ \_T $>$}!isEmpty@{isEmpty}}
+\index{isEmpty@{isEmpty}!SparseMatrix$<$ \_T $>$@{SparseMatrix$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{isEmpty()}{isEmpty()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+bool \mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}}$<$ \+\_\+T $>$\+::is\+Empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Checking the \mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}} for empty space 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em bool} & True,if \mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}} is empty , otherwise False \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_container}{Container}}.
+
+\mbox{\Hypertarget{class_sparse_matrix_a70f28fb50d1a4c13a05cd656e0d316ac}\label{class_sparse_matrix_a70f28fb50d1a4c13a05cd656e0d316ac}} 
+\index{SparseMatrix$<$ \_T $>$@{SparseMatrix$<$ \_T $>$}!multiply@{multiply}}
+\index{multiply@{multiply}!SparseMatrix$<$ \_T $>$@{SparseMatrix$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{multiply()}{multiply()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+\mbox{\hyperlink{class_sparse_matrix}{self}} \mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}}$<$ \+\_\+T $>$\+::multiply (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_sparse_matrix}{self}} \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Matrix-\/\+Matrix multiply multiplication 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}}} & other matrix \\
+\hline
+\mbox{\texttt{ out}}  & {\em \mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}}} & result matrix \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=324pt]{class_sparse_matrix_a70f28fb50d1a4c13a05cd656e0d316ac_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_sparse_matrix_acfff26463167499310db3a07d11c330f}\label{class_sparse_matrix_acfff26463167499310db3a07d11c330f}} 
+\index{SparseMatrix$<$ \_T $>$@{SparseMatrix$<$ \_T $>$}!multiply@{multiply}}
+\index{multiply@{multiply}!SparseMatrix$<$ \_T $>$@{SparseMatrix$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{multiply()}{multiply()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+vector$<$\+\_\+T$>$ \mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}}$<$ \+\_\+T $>$\+::multiply (\begin{DoxyParamCaption}\item[{const vector$<$ \+\_\+T $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Matrix-\/\+Vector multiplication method 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em vector} & \\
+\hline
+\mbox{\texttt{ out}}  & {\em vector} & result vector \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=349pt]{class_sparse_matrix_acfff26463167499310db3a07d11c330f_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_sparse_matrix_a25c6f895547f5cf2a6bab9a87f30f9e1}\label{class_sparse_matrix_a25c6f895547f5cf2a6bab9a87f30f9e1}} 
+\index{SparseMatrix$<$ \_T $>$@{SparseMatrix$<$ \_T $>$}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!SparseMatrix$<$ \_T $>$@{SparseMatrix$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+\mbox{\hyperlink{class_sparse_matrix}{self}} \mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}}$<$ \+\_\+T $>$\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_sparse_matrix}{self}} \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Matrix-\/\+Matrix multiply operator 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}}} & other matrix \\
+\hline
+\mbox{\texttt{ out}}  & {\em \mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}}} & result matrix \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=349pt]{class_sparse_matrix_a25c6f895547f5cf2a6bab9a87f30f9e1_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_sparse_matrix_adf6d5f851c542e92aa99c3457a112491}\label{class_sparse_matrix_adf6d5f851c542e92aa99c3457a112491}} 
+\index{SparseMatrix$<$ \_T $>$@{SparseMatrix$<$ \_T $>$}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!SparseMatrix$<$ \_T $>$@{SparseMatrix$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+vector$<$\+\_\+T$>$ \mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}}$<$ \+\_\+T $>$\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const vector$<$ \+\_\+T $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Matrix-\/\+Vector multiplication operator 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em vector} & \\
+\hline
+\mbox{\texttt{ out}}  & {\em vector} & result vector \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=349pt]{class_sparse_matrix_adf6d5f851c542e92aa99c3457a112491_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_sparse_matrix_a11bd5bd25dbd2fc39613c53e452262a0}\label{class_sparse_matrix_a11bd5bd25dbd2fc39613c53e452262a0}} 
+\index{SparseMatrix$<$ \_T $>$@{SparseMatrix$<$ \_T $>$}!operator+@{operator+}}
+\index{operator+@{operator+}!SparseMatrix$<$ \_T $>$@{SparseMatrix$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{operator+()}{operator+()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+\mbox{\hyperlink{class_sparse_matrix}{self}} \mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}}$<$ \+\_\+T $>$\+::operator+ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_sparse_matrix}{self}} \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Matrix-\/\+Matrix add operator 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}}} & other matrix \\
+\hline
+\mbox{\texttt{ out}}  & {\em \mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}}} & result matrix \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_sparse_matrix_a11bd5bd25dbd2fc39613c53e452262a0_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_sparse_matrix_a0ad3f47b999105be0cc5272fc549431c}\label{class_sparse_matrix_a0ad3f47b999105be0cc5272fc549431c}} 
+\index{SparseMatrix$<$ \_T $>$@{SparseMatrix$<$ \_T $>$}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!SparseMatrix$<$ \_T $>$@{SparseMatrix$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{operator-\/()}{operator-()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+\mbox{\hyperlink{class_sparse_matrix}{self}} \mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}}$<$ \+\_\+T $>$\+::operator-\/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_sparse_matrix}{self}} \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Matrix-\/\+Matrix subtract method 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}}} & other matrix \\
+\hline
+\mbox{\texttt{ out}}  & {\em \mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}}} & result matrix \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_sparse_matrix_a0ad3f47b999105be0cc5272fc549431c_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_sparse_matrix_a8ca35a61f45d4155dab1780945166851}\label{class_sparse_matrix_a8ca35a61f45d4155dab1780945166851}} 
+\index{SparseMatrix$<$ \_T $>$@{SparseMatrix$<$ \_T $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!SparseMatrix$<$ \_T $>$@{SparseMatrix$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+\mbox{\hyperlink{class_sparse_matrix}{self}}\& \mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}}$<$ \+\_\+T $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_sparse_matrix}{self}} \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Basic assignment operator 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}}} & other matrix \\
+\hline
+\mbox{\texttt{ out}}  & {\em \mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}}} & result matrix \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_sparse_matrix_ac9ddfe4058c77522c1bf7ce176d034ee}\label{class_sparse_matrix_ac9ddfe4058c77522c1bf7ce176d034ee}} 
+\index{SparseMatrix$<$ \_T $>$@{SparseMatrix$<$ \_T $>$}!set@{set}}
+\index{set@{set}!SparseMatrix$<$ \_T $>$@{SparseMatrix$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{set()}{set()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+void \mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}}$<$ \+\_\+T $>$\+::set (\begin{DoxyParamCaption}\item[{value\+Type}]{value,  }\item[{size\+\_\+t}]{row,  }\item[{size\+\_\+t}]{column }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Set an element at a position in the matrix 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em size\+\_\+t} & Row in \mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}} \\
+\hline
+\mbox{\texttt{ in}}  & {\em size\+\_\+t} & Column in \mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}} \\
+\hline
+\mbox{\texttt{ out}}  & {\em reference} & value \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_sparse_matrix_a690d974bc8a8a9c9458f8cc459698534}\label{class_sparse_matrix_a690d974bc8a8a9c9458f8cc459698534}} 
+\index{SparseMatrix$<$ \_T $>$@{SparseMatrix$<$ \_T $>$}!subtract@{subtract}}
+\index{subtract@{subtract}!SparseMatrix$<$ \_T $>$@{SparseMatrix$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{subtract()}{subtract()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+\mbox{\hyperlink{class_sparse_matrix}{self}} \mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}}$<$ \+\_\+T $>$\+::subtract (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_sparse_matrix}{self}} \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Matrix-\/\+Matrix subtract method 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}}} & other matrix \\
+\hline
+\mbox{\texttt{ out}}  & {\em \mbox{\hyperlink{class_sparse_matrix}{Sparse\+Matrix}}} & result matrix \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=326pt]{class_sparse_matrix_a690d974bc8a8a9c9458f8cc459698534_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_sparse_matrix_a690d974bc8a8a9c9458f8cc459698534_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+source/repos/\+Data-\/structures/\+Main/\+Main/Sparse\+Matrix.\+h\end{DoxyCompactItemize}

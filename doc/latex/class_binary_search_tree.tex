@@ -1,0 +1,189 @@
+\hypertarget{class_binary_search_tree}{}\doxysection{Binary\+Search\+Tree$<$ \+\_\+T $>$ Class Template Reference}
+\label{class_binary_search_tree}\index{BinarySearchTree$<$ \_T $>$@{BinarySearchTree$<$ \_T $>$}}
+
+
+Use to store data in tree view.  
+
+
+
+
+{\ttfamily \#include $<$Binary\+Search\+Tree.\+h$>$}
+
+
+
+Inheritance diagram for Binary\+Search\+Tree$<$ \+\_\+T $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{class_binary_search_tree__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Binary\+Search\+Tree$<$ \+\_\+T $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{class_binary_search_tree__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_binary_search_tree_a42bf76d2da019eff5cd9788eb3036a6e}\label{class_binary_search_tree_a42bf76d2da019eff5cd9788eb3036a6e}} 
+void {\bfseries clear} ()
+\item 
+bool \mbox{\hyperlink{class_binary_search_tree_a41af267235875384a7c4e8c30c2c1949}{is\+Empty}} () const override
+\item 
+void \mbox{\hyperlink{class_binary_search_tree_a8e6030b8983cf211baa2e5f993fd80e1}{add\+Leaf}} (const\+\_\+reference key)
+\item 
+value\+Type \mbox{\hyperlink{class_binary_search_tree_afaf8fc97c8f73b908ae7724c85ed2093}{return\+Root\+Key}} ()
+\item 
+value\+Type \mbox{\hyperlink{class_binary_search_tree_a4d8187d7e1ad6b80f2661f7da49b8823}{find\+Min}} ()
+\item 
+void \mbox{\hyperlink{class_binary_search_tree_a25705ae5ac466c7c183ac054eecf4464}{remove\+By\+Key}} (const\+\_\+reference key)
+\item 
+\mbox{\hyperlink{class_binary_search_tree_a1dddb4f72ea1926c2839a68d54b6132f}{Binary\+Search\+Tree}} ()
+\item 
+\mbox{\hyperlink{class_binary_search_tree_a413e43df40722bf39ed436aa7a150fc4}{Binary\+Search\+Tree}} (const std\+::initializer\+\_\+list$<$ value\+Type $>$ \&data)
+\item 
+\mbox{\hyperlink{class_binary_search_tree_a78735b3da2e62700138fa401db3166fa}{$\sim$\+Binary\+Search\+Tree}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_binary_search_tree_a5427a78048e83f55696eabd036a01b7f}\label{class_binary_search_tree_a5427a78048e83f55696eabd036a01b7f}} 
+class {\bfseries Binary\+Search\+Tree\+Helper}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+T$>$\newline
+class Binary\+Search\+Tree$<$ \+\_\+\+T $>$}
+
+Use to store data in tree view. 
+
+\mbox{\hyperlink{class_binary_search_tree}{Binary\+Search\+Tree}} class \begin{DoxyAuthor}{Author}
+ivanmorozfd 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+April 2020 
+\end{DoxyDate}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_binary_search_tree_a1dddb4f72ea1926c2839a68d54b6132f}\label{class_binary_search_tree_a1dddb4f72ea1926c2839a68d54b6132f}} 
+\index{BinarySearchTree$<$ \_T $>$@{BinarySearchTree$<$ \_T $>$}!BinarySearchTree@{BinarySearchTree}}
+\index{BinarySearchTree@{BinarySearchTree}!BinarySearchTree$<$ \_T $>$@{BinarySearchTree$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{BinarySearchTree()}{BinarySearchTree()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+\mbox{\hyperlink{class_binary_search_tree}{Binary\+Search\+Tree}}$<$ \+\_\+T $>$\+::\mbox{\hyperlink{class_binary_search_tree}{Binary\+Search\+Tree}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default \mbox{\hyperlink{class_binary_search_tree}{Binary\+Search\+Tree}} constructor \mbox{\Hypertarget{class_binary_search_tree_a413e43df40722bf39ed436aa7a150fc4}\label{class_binary_search_tree_a413e43df40722bf39ed436aa7a150fc4}} 
+\index{BinarySearchTree$<$ \_T $>$@{BinarySearchTree$<$ \_T $>$}!BinarySearchTree@{BinarySearchTree}}
+\index{BinarySearchTree@{BinarySearchTree}!BinarySearchTree$<$ \_T $>$@{BinarySearchTree$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{BinarySearchTree()}{BinarySearchTree()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+\mbox{\hyperlink{class_binary_search_tree}{Binary\+Search\+Tree}}$<$ \+\_\+T $>$\+::\mbox{\hyperlink{class_binary_search_tree}{Binary\+Search\+Tree}} (\begin{DoxyParamCaption}\item[{const std\+::initializer\+\_\+list$<$ value\+Type $>$ \&}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Parameterized \mbox{\hyperlink{class_binary_search_tree}{Binary\+Search\+Tree}} constructor 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em initializer\+\_\+list$<$value\+Type$>$list} & S\+TL init list \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_binary_search_tree_a413e43df40722bf39ed436aa7a150fc4_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_binary_search_tree_a78735b3da2e62700138fa401db3166fa}\label{class_binary_search_tree_a78735b3da2e62700138fa401db3166fa}} 
+\index{BinarySearchTree$<$ \_T $>$@{BinarySearchTree$<$ \_T $>$}!````~BinarySearchTree@{$\sim$BinarySearchTree}}
+\index{````~BinarySearchTree@{$\sim$BinarySearchTree}!BinarySearchTree$<$ \_T $>$@{BinarySearchTree$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$BinarySearchTree()}{~BinarySearchTree()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+\mbox{\hyperlink{class_binary_search_tree}{Binary\+Search\+Tree}}$<$ \+\_\+T $>$\+::$\sim$\mbox{\hyperlink{class_binary_search_tree}{Binary\+Search\+Tree}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\hyperlink{class_binary_search_tree}{Binary\+Search\+Tree}} destructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_binary_search_tree_a8e6030b8983cf211baa2e5f993fd80e1}\label{class_binary_search_tree_a8e6030b8983cf211baa2e5f993fd80e1}} 
+\index{BinarySearchTree$<$ \_T $>$@{BinarySearchTree$<$ \_T $>$}!addLeaf@{addLeaf}}
+\index{addLeaf@{addLeaf}!BinarySearchTree$<$ \_T $>$@{BinarySearchTree$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{addLeaf()}{addLeaf()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+void \mbox{\hyperlink{class_binary_search_tree}{Binary\+Search\+Tree}}$<$ \+\_\+T $>$\+::add\+Leaf (\begin{DoxyParamCaption}\item[{const\+\_\+reference}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Add item to the tree 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em const\+\_\+reference} & key \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_binary_search_tree_a8e6030b8983cf211baa2e5f993fd80e1_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_binary_search_tree_a4d8187d7e1ad6b80f2661f7da49b8823}\label{class_binary_search_tree_a4d8187d7e1ad6b80f2661f7da49b8823}} 
+\index{BinarySearchTree$<$ \_T $>$@{BinarySearchTree$<$ \_T $>$}!findMin@{findMin}}
+\index{findMin@{findMin}!BinarySearchTree$<$ \_T $>$@{BinarySearchTree$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{findMin()}{findMin()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+value\+Type \mbox{\hyperlink{class_binary_search_tree}{Binary\+Search\+Tree}}$<$ \+\_\+T $>$\+::find\+Min (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Find minimal element in the tree 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em value\+Type} & key \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_binary_search_tree_a41af267235875384a7c4e8c30c2c1949}\label{class_binary_search_tree_a41af267235875384a7c4e8c30c2c1949}} 
+\index{BinarySearchTree$<$ \_T $>$@{BinarySearchTree$<$ \_T $>$}!isEmpty@{isEmpty}}
+\index{isEmpty@{isEmpty}!BinarySearchTree$<$ \_T $>$@{BinarySearchTree$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{isEmpty()}{isEmpty()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+bool \mbox{\hyperlink{class_binary_search_tree}{Binary\+Search\+Tree}}$<$ \+\_\+T $>$\+::is\+Empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Is the \mbox{\hyperlink{class_binary_search_tree}{Binary\+Search\+Tree}} empty 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em bool} & True,if \mbox{\hyperlink{class_binary_search_tree}{Binary\+Search\+Tree}} is empty \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_container}{Container}}.
+
+\mbox{\Hypertarget{class_binary_search_tree_a25705ae5ac466c7c183ac054eecf4464}\label{class_binary_search_tree_a25705ae5ac466c7c183ac054eecf4464}} 
+\index{BinarySearchTree$<$ \_T $>$@{BinarySearchTree$<$ \_T $>$}!removeByKey@{removeByKey}}
+\index{removeByKey@{removeByKey}!BinarySearchTree$<$ \_T $>$@{BinarySearchTree$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{removeByKey()}{removeByKey()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+void \mbox{\hyperlink{class_binary_search_tree}{Binary\+Search\+Tree}}$<$ \+\_\+T $>$\+::remove\+By\+Key (\begin{DoxyParamCaption}\item[{const\+\_\+reference}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Remove element from the tree by key 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em value\+Type} & key \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_binary_search_tree_afaf8fc97c8f73b908ae7724c85ed2093}\label{class_binary_search_tree_afaf8fc97c8f73b908ae7724c85ed2093}} 
+\index{BinarySearchTree$<$ \_T $>$@{BinarySearchTree$<$ \_T $>$}!returnRootKey@{returnRootKey}}
+\index{returnRootKey@{returnRootKey}!BinarySearchTree$<$ \_T $>$@{BinarySearchTree$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{returnRootKey()}{returnRootKey()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+value\+Type \mbox{\hyperlink{class_binary_search_tree}{Binary\+Search\+Tree}}$<$ \+\_\+T $>$\+::return\+Root\+Key (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns the value in the root 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em value\+Type} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+source/repos/\+Data-\/structures/\+Main/\+Main/Binary\+Search\+Tree.\+h\end{DoxyCompactItemize}

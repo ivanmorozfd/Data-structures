@@ -1,0 +1,28 @@
+digraph "Container"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Container",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="AvlTree\< _T \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_avl_tree.html",tooltip="Use to store data in tree view"];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="BinaryHeap\< _T \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_binary_heap.html",tooltip="Use to store data and sorting arrays."];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="BinarySearchTree\< _T \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_binary_search_tree.html",tooltip="Use to store data in tree view."];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="BTree",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_b_tree.html",tooltip=" "];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node6 [label="DoubleLinkedList\< _T \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_double_linked_list.html",tooltip="Use to store data."];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node7 [label="MultiDataList",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_multi_data_list.html",tooltip=" "];
+  Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node8 [label="Queue\< _T \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_queue.html",tooltip="Use to store data."];
+  Node1 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node9 [label="RBTree\< _T \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_r_b_tree.html",tooltip="Use to store data in tree view."];
+  Node1 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node10 [label="SparseMatrix\< _T \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sparse_matrix.html",tooltip="Use to store data in matrix view."];
+  Node1 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node11 [label="Stack\< _T \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_stack.html",tooltip="Use to store data."];
+}

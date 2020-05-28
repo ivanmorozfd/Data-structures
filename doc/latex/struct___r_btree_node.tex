@@ -1,0 +1,87 @@
+\hypertarget{struct___r_btree_node}{}\doxysection{\+\_\+\+R\+Btree\+Node$<$ \+\_\+T $>$ Struct Template Reference}
+\label{struct___r_btree_node}\index{\_RBtreeNode$<$ \_T $>$@{\_RBtreeNode$<$ \_T $>$}}
+
+
+Collaboration diagram for \+\_\+\+R\+Btree\+Node$<$ \+\_\+T $>$\+:
+% FIG 0
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct___r_btree_node_a5ecae1c78c3575372917d56925d57509}\label{struct___r_btree_node_a5ecae1c78c3575372917d56925d57509}} 
+typedef \mbox{\hyperlink{struct___r_btree_node}{\+\_\+\+R\+Btree\+Node}} $\ast$ \mbox{\hyperlink{struct___r_btree_node_a5ecae1c78c3575372917d56925d57509}{Node\+Ptr}}
+\begin{DoxyCompactList}\small\item\em Node pointer type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct___r_btree_node_a50cbfd26bec1848c8cee67129815cfbc}\label{struct___r_btree_node_a50cbfd26bec1848c8cee67129815cfbc}} 
+using \mbox{\hyperlink{struct___r_btree_node_a50cbfd26bec1848c8cee67129815cfbc}{value\+Type}} = \+\_\+T
+\begin{DoxyCompactList}\small\item\em Element type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct___r_btree_node_ad2a251b806e57316bb76e2e685298ea5}\label{struct___r_btree_node_ad2a251b806e57316bb76e2e685298ea5}} 
+using \mbox{\hyperlink{struct___r_btree_node_ad2a251b806e57316bb76e2e685298ea5}{reference}} = \mbox{\hyperlink{struct___r_btree_node_a50cbfd26bec1848c8cee67129815cfbc}{value\+Type}} \&
+\begin{DoxyCompactList}\small\item\em Reference element type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct___r_btree_node_a950b55f7d8f157a82dbaa2b3a21018cf}\label{struct___r_btree_node_a950b55f7d8f157a82dbaa2b3a21018cf}} 
+using \mbox{\hyperlink{struct___r_btree_node_a950b55f7d8f157a82dbaa2b3a21018cf}{const\+\_\+reference}} = const \+\_\+T \&
+\begin{DoxyCompactList}\small\item\em Const reference element type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{struct___r_btree_node_a7a94228f662e58d07e19bf3e0cc8ebf4}{color\+To\+String}} ()
+\item 
+\mbox{\hyperlink{struct___r_btree_node_a204f447dd683e11eb504bff8d3efa4ec}{\+\_\+\+R\+Btree\+Node}} (E\+Leaf\+Color \mbox{\hyperlink{struct___r_btree_node_acc6b489f5bcecc3c0adb28f53cbde83b}{color}}, \mbox{\hyperlink{struct___r_btree_node_a5ecae1c78c3575372917d56925d57509}{Node\+Ptr}} \mbox{\hyperlink{struct___r_btree_node_ab7a7b2e0f71458ce8640b7f607d698a7}{left}}, \mbox{\hyperlink{struct___r_btree_node_a5ecae1c78c3575372917d56925d57509}{Node\+Ptr}} \mbox{\hyperlink{struct___r_btree_node_a69fbd120f6e6544467f922a3b5f5c260}{right}}, \mbox{\hyperlink{struct___r_btree_node_a5ecae1c78c3575372917d56925d57509}{Node\+Ptr}} \mbox{\hyperlink{struct___r_btree_node_a8cde3a8e8f49ad082a1eaa2de730667f}{parent}}, \mbox{\hyperlink{struct___r_btree_node_a950b55f7d8f157a82dbaa2b3a21018cf}{const\+\_\+reference}} value)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct___r_btree_node_ab7a7b2e0f71458ce8640b7f607d698a7}\label{struct___r_btree_node_ab7a7b2e0f71458ce8640b7f607d698a7}} 
+\mbox{\hyperlink{struct___r_btree_node_a5ecae1c78c3575372917d56925d57509}{Node\+Ptr}} \mbox{\hyperlink{struct___r_btree_node_ab7a7b2e0f71458ce8640b7f607d698a7}{left}}
+\begin{DoxyCompactList}\small\item\em Pointer to left child. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct___r_btree_node_a69fbd120f6e6544467f922a3b5f5c260}\label{struct___r_btree_node_a69fbd120f6e6544467f922a3b5f5c260}} 
+\mbox{\hyperlink{struct___r_btree_node_a5ecae1c78c3575372917d56925d57509}{Node\+Ptr}} \mbox{\hyperlink{struct___r_btree_node_a69fbd120f6e6544467f922a3b5f5c260}{right}}
+\begin{DoxyCompactList}\small\item\em Pointer to right child. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct___r_btree_node_a8cde3a8e8f49ad082a1eaa2de730667f}\label{struct___r_btree_node_a8cde3a8e8f49ad082a1eaa2de730667f}} 
+\mbox{\hyperlink{struct___r_btree_node_a5ecae1c78c3575372917d56925d57509}{Node\+Ptr}} \mbox{\hyperlink{struct___r_btree_node_a8cde3a8e8f49ad082a1eaa2de730667f}{parent}}
+\begin{DoxyCompactList}\small\item\em Pointer to parent node. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct___r_btree_node_ad561b02d8908016db7f12521b7f9a536}\label{struct___r_btree_node_ad561b02d8908016db7f12521b7f9a536}} 
+\mbox{\hyperlink{struct___r_btree_node_a50cbfd26bec1848c8cee67129815cfbc}{value\+Type}} \mbox{\hyperlink{struct___r_btree_node_ad561b02d8908016db7f12521b7f9a536}{key}}
+\begin{DoxyCompactList}\small\item\em Node key. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct___r_btree_node_acc6b489f5bcecc3c0adb28f53cbde83b}\label{struct___r_btree_node_acc6b489f5bcecc3c0adb28f53cbde83b}} 
+E\+Leaf\+Color \mbox{\hyperlink{struct___r_btree_node_acc6b489f5bcecc3c0adb28f53cbde83b}{color}}
+\begin{DoxyCompactList}\small\item\em Leaf Color. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{struct___r_btree_node_a204f447dd683e11eb504bff8d3efa4ec}\label{struct___r_btree_node_a204f447dd683e11eb504bff8d3efa4ec}} 
+\index{\_RBtreeNode$<$ \_T $>$@{\_RBtreeNode$<$ \_T $>$}!\_RBtreeNode@{\_RBtreeNode}}
+\index{\_RBtreeNode@{\_RBtreeNode}!\_RBtreeNode$<$ \_T $>$@{\_RBtreeNode$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{\_RBtreeNode()}{\_RBtreeNode()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+\mbox{\hyperlink{struct___r_btree_node}{\+\_\+\+R\+Btree\+Node}}$<$ \+\_\+T $>$\+::\mbox{\hyperlink{struct___r_btree_node}{\+\_\+\+R\+Btree\+Node}} (\begin{DoxyParamCaption}\item[{E\+Leaf\+Color}]{color,  }\item[{\mbox{\hyperlink{struct___r_btree_node_a5ecae1c78c3575372917d56925d57509}{Node\+Ptr}}}]{left,  }\item[{\mbox{\hyperlink{struct___r_btree_node_a5ecae1c78c3575372917d56925d57509}{Node\+Ptr}}}]{right,  }\item[{\mbox{\hyperlink{struct___r_btree_node_a5ecae1c78c3575372917d56925d57509}{Node\+Ptr}}}]{parent,  }\item[{\mbox{\hyperlink{struct___r_btree_node_a950b55f7d8f157a82dbaa2b3a21018cf}{const\+\_\+reference}}}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Parameterized \mbox{\hyperlink{struct___r_btree_node}{\+\_\+\+R\+Btree\+Node}} constructor 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em E\+Leaf\+Color} & Leaf color \\
+\hline
+\mbox{\texttt{ in}}  & {\em Node\+Ptr} & Left child \\
+\hline
+\mbox{\texttt{ in}}  & {\em Node\+Ptr} & Right child \\
+\hline
+\mbox{\texttt{ in}}  & {\em Node\+Ptr} & Parent node \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{struct___r_btree_node_a7a94228f662e58d07e19bf3e0cc8ebf4}\label{struct___r_btree_node_a7a94228f662e58d07e19bf3e0cc8ebf4}} 
+\index{\_RBtreeNode$<$ \_T $>$@{\_RBtreeNode$<$ \_T $>$}!colorToString@{colorToString}}
+\index{colorToString@{colorToString}!\_RBtreeNode$<$ \_T $>$@{\_RBtreeNode$<$ \_T $>$}}
+\doxysubsubsection{\texorpdfstring{colorToString()}{colorToString()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+T $>$ \\
+string \mbox{\hyperlink{struct___r_btree_node}{\+\_\+\+R\+Btree\+Node}}$<$ \+\_\+T $>$\+::color\+To\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns the color in string representation 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em string} & Leaf color \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+source/repos/\+Data-\/structures/\+Main/\+Main/R\+B\+Tree.\+h\end{DoxyCompactItemize}

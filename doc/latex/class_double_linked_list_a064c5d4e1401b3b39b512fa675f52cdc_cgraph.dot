@@ -1,0 +1,14 @@
+digraph "DoubleLinkedList::insert"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="DoubleLinkedList::insert",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="DoubleLinkedList::isEmpty",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_double_linked_list.html#a292cfb933899a205c6f1295ec401a22f",tooltip=" "];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="DoubleLinkedList::push_back",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_double_linked_list.html#aac5afa4d0ee5a3216a4805d5cc73067c",tooltip=" "];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="DoubleLinkedList::push\l_front",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_double_linked_list.html#a87126edca55d27e8484d77c6a91ef923",tooltip=" "];
+}

@@ -232,8 +232,8 @@ private:
 		this->m_nrows = rows;
 		this->m_ncolumns = columns;
 		//Initialize data vectors
-		this->m_data = nullptr;
-		this->m_cols = nullptr;
+		this->m_data = new std::vector<_T>();
+		this->m_cols = new std::vector<int>();
 		this->m_ptrs = new vector<int>(this->m_nrows + 1, 1);
 	}
 	//destruct sparseMatrix 

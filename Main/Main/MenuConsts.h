@@ -52,7 +52,7 @@ const char* stackRandomizeUpRangeMessge = "[ Система ] Введите верхнее значение 
 const char* stackRandomizeSuccess = "[ Система ] Стек упешно заполнен случайными числами\n\n";
 
 
-const char* queueMenuSelectAction = "Выберите действие\n";
+const char* queueMenuSelectAction = "\nВыберите действие\n";
 const char* queueMenuCreate = "\n[1] Создать очередь";
 const char* queueMenuEmptyTest = "\n[2] Проверить очередь на пустоту";
 const char* queueMenuPushItem = "\n[3] Добавить элемент очередь";
@@ -89,7 +89,7 @@ const char* queueRandomizeErrorMessage = "[ Система ] Ошибка ввода.Размер очеред
 const char* queueRandomizeUpRangeMessge = "[ Система ] Введите верхнее значение диапазона случайных чисел\n\n";
 const char* queueRandomizeSuccess = "[ Система ] Очередь упешно заполнен случайными числами\n\n";
 
-const char* mlistMenuSelectAction = "Выберите действие\n";
+const char* mlistMenuSelectAction = "\nВыберите действие\n";
 const char* mlistMenuCreate = "\n[1] Создать список";
 const char* mlistMenuIsEmpty = "\n[2] Проверить список на пустоту";
 const char* mlistMenuPush = "\n[3] Добавить пару Фамилия:Номер в список";
@@ -134,7 +134,7 @@ const char* mlistClearSucces = "[ Система ] Список успешно очищен\n\n";
 const char* mlistDestroyedMessage = "[ Система ] Список успешно разрушен\n\n";
 
 
-const char* dlistMenuSelectAction = "Выберите действие\n";
+const char* dlistMenuSelectAction = "\nВыберите действие\n";
 const char* dlistMenuCreate = "\n[1] Создать список";
 const char* dlistMenuIsEmpty = "\n[2] Проверить список на пустоту";
 const char* dlistMenuPushBack = "\n[3] Добавить элемент в конец списка";
@@ -217,7 +217,7 @@ const char* bheapRandomizeUpRangeMessge = "[ Система ] Введите верхний предел чи
 const char* bheapRandomizeSuccess = "[ Система ] Бинарная куча успешно заполнена случайными числами";
 
 
-const char* sMatrixMenuSelectAction = "Выберите действие\n";
+const char* sMatrixMenuSelectAction = "\nВыберите действие\n";
 const char* sMatrixMenuCreate = "\n[1] Создать разреженную матрицу";
 const char* sMatrixMenuIsEmpty = "\n[2] Проверить разреженную матрицу на пустоту";
 const char* sMatrixMenuAddItem = "\n[3] Добавить элемент в разреженную матрицу";
